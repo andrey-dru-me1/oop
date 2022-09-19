@@ -16,7 +16,7 @@ public class Main {
         in.close();
 
         while (nums.size() > 0) {
-            System.out.print(nums.extractMin() + " ");
+            System.out.print(nums.pop() + " ");
         }
 
     }

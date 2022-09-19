@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BinHeap {
 
-    List<Integer> binHeap;
+    private final List<Integer> binHeap;
 
     public BinHeap() {
         binHeap = new ArrayList<>();
@@ -50,7 +50,7 @@ public class BinHeap {
         siftUp(binHeap.size() - 1);
     }
 
-    public int extractMin() {
+    public int pop() {
         int result = binHeap.get(0);
         this.siftDown();
         return result;
