@@ -13,7 +13,7 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        List intArgs = new ArrayList<>();
+        List<Integer> intArgs = new ArrayList<>();
         for (String i : args) {
             intArgs.add(Integer.parseInt(i));
         }
@@ -35,7 +35,7 @@ public class Main {
         while (!input.isEmpty())
             nums.add(input.remove(0));   //Adds all input numbers to the binary heap
 
-        List<Integer> res = new ArrayList<Integer>();   //Creates the variable where sorted list will be contained
+        List<Integer> res = new ArrayList<>();   //Creates the variable where sorted list will be contained
 
         while (nums.size() > 0) res.add(nums.pop()); //Adds elements to the res list in right order
 
