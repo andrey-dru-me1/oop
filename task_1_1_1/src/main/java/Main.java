@@ -1,33 +1,45 @@
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Consists only start method main. Scans the unsorted array
- * from user, sorts it by heapsort and prints the result.
+ * Contains start method main and method sort.
  */
 public class Main {
 
     /**
-     * Scans the unsorted array from user, sorts it by heapsort
-     * and prints the result.
+     * Scans the array of integer values from the prompt and call a sort method for it.
      *
-     * @param args Arguments from the prompt. Not used in program.
+     * @param args Integer arguments from the prompt. The array.
      */
     public static void main(String[] args) {
 
-        Scanner in = new Scanner(System.in);            //Creates helper var to scan input System.in
-        BinHeap nums = new BinHeap();
-
-        System.out.println("Write down integer numbers separated by spaces and ended with dot:");
-
-        while (in.hasNextInt()) {     //Scans next int until any non-space character
-            nums.add(in.nextInt());
+        List intArgs = new ArrayList<>();
+        for (String i : args) {
+            intArgs.add(Integer.parseInt(i));
         }
 
-        in.close();
+        System.out.println(sort(intArgs));
 
-        while (nums.size() > 0) {
-            System.out.print(nums.pop() + " ");
-        }
+    }
+
+    /**
+     * Sorts the input list by heapsort.
+     *
+     * @param input The list to sort.
+     * @return The sorted list.
+     */
+    public static List<Integer> sort(List<Integer> input) {
+
+        BinHeap nums = new BinHeap();   //Creates binary heap for heapsort
+
+        while (!input.isEmpty())
+            nums.add(input.remove(0));   //Adds all input numbers to the binary heap
+
+        List<Integer> res = new ArrayList<Integer>();   //Creates the variable where sorted list will be contained
+
+        while (nums.size() > 0) res.add(nums.pop()); //Adds elements to the res list in right order
+
+        return res;
 
     }
 
