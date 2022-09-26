@@ -56,7 +56,7 @@ class MainTest {
 
         Main.main(new String[]{"3", "2", "1", "4", "5"});
 
-        Assertions.assertEquals(out.toString(), "[1, 2, 3, 4, 5]\r\n");
+        Assertions.assertEquals(out.toString().trim(), "[1, 2, 3, 4, 5]");
     }
 
     @Test
