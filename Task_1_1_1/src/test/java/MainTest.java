@@ -62,7 +62,9 @@ class MainTest {
     @Test
     void testMaxInt() {
         Assertions.assertEquals(
-                Main.sort(new ArrayList<>(Arrays.asList(Integer.MAX_VALUE, Integer.MIN_VALUE, -4, 5, 0))),
+                Main.sort(new ArrayList<>(
+                        Arrays.asList(Integer.MAX_VALUE, Integer.MIN_VALUE, -4, 5, 0))
+                ),
                 new ArrayList<>(Arrays.asList(Integer.MIN_VALUE, -4, 0, 5, Integer.MAX_VALUE))
         );
     }
