@@ -32,12 +32,16 @@ public class Main {
 
         BinHeap nums = new BinHeap();   //Creates binary heap for heapsort
 
-        while (!input.isEmpty())
+        while (!input.isEmpty()) {
             nums.add(input.remove(0));   //Adds all input numbers to the binary heap
+        }
 
-        List<Integer> res = new ArrayList<>();   //Creates the variable where sorted list will be contained
+        List<Integer> res = new ArrayList<>();  //Creates the variable where sorted list
+        //will be contained
 
-        while (nums.size() > 0) res.add(nums.pop()); //Adds elements to the res list in right order
+        while (nums.size() > 0) {
+            res.add(nums.pop()); //Adds elements to the res list in right order
+        }
 
         return res;
 

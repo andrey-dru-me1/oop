@@ -28,14 +28,15 @@ public class BinHeap {
      * @param i Index of the element to return
      * @return The element at the specified position of the binary heap
      * @throws IndexOutOfBoundsException – if the index is out of range
-     *                                   (index less than 0 or index greater than or equal to size())
+     * (index less than 0 or index greater than or equal to size())
      */
     public Integer get(int i) {
         return binHeap.get(i);
     }
 
     /**
-     * Returns the number of elements in this list. If this list contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE.
+     * Returns the number of elements in this list. If this list contains
+     * more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE.
      *
      * @return the number of elements in this list
      */
@@ -68,24 +69,30 @@ public class BinHeap {
         binHeap.remove(binHeap.size() - 1);            //removes the last elem which used to be root
 
         //calculates the minimum for sons of the root
-        int min;                                                                //creates helper variable
+        int min;    //creates helper variable
 
         //Sift-down algorithm itself
         for (int j = 0; j * 2 + 1 < binHeap.size(); j = min) {
 
-            if (j * 2 + 2 >= binHeap.size()) min = j * 2 + 1;                                //if there is only one son
-            else
-                min = (binHeap.get(j * 2 + 1) < binHeap.get(j * 2 + 2)) ? j * 2 + 1 : j * 2 + 2;   //if there are both of sons
+            if (j * 2 + 2 >= binHeap.size()) {
+                min = j * 2 + 1;   //if there is only one son
+            } else {
+                //if there are both of sons
+                min = (binHeap.get(j * 2 + 1) < binHeap.get(j * 2 + 2)) ? j * 2 + 1 : j * 2 + 2;
+            }
 
-            if (binHeap.get(j) <= binHeap.get(min)) break;   //stops iterations when the value gets its position
+            if (binHeap.get(j) <= binHeap.get(min)) {
+                break;   //stops iterations when the value gets its position
+            }
 
-            Collections.swap(binHeap, j, min);  //swaps current elem which used to be the last with one of his sons
+            //swaps current elem which used to be the last with one of his sons
+            Collections.swap(binHeap, j, min);
 
         }
     }
 
     /**
-     * Add the value to the tree using siftUp
+     * Add the value to the tree using siftUp.
      *
      * @param value Value that will add to the tree
      */
