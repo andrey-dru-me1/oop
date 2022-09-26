@@ -27,7 +27,8 @@ public class BinHeap {
      *
      * @param i Index of the element to return
      * @return The element at the specified position of the binary heap
-     * @throws IndexOutOfBoundsException – if the index is out of range (index less than 0 or index greater than or equal size())
+     * @throws IndexOutOfBoundsException – if the index is out of range
+     *                                   (index less than 0 or index greater than or equal to size())
      */
     public Integer get(int i) {
         return binHeap.get(i);
