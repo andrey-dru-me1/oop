@@ -1,15 +1,14 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class MainTest {
 
@@ -36,8 +35,12 @@ class MainTest {
                         new ArrayList<>(Arrays.asList(-35456831, -4, 2, 354154616, 354154636))
                 ),
                 Arguments.of(
-                        new ArrayList<>(Arrays.asList(Integer.MAX_VALUE, Integer.MIN_VALUE, -4, 5, 0)),
-                        new ArrayList<>(Arrays.asList(Integer.MIN_VALUE, -4, 0, 5, Integer.MAX_VALUE))
+                        new ArrayList<>(
+                                Arrays.asList(Integer.MAX_VALUE, Integer.MIN_VALUE, -4, 5, 0)
+                        ),
+                        new ArrayList<>(
+                                Arrays.asList(Integer.MIN_VALUE, -4, 0, 5, Integer.MAX_VALUE)
+                        )
                 ),
                 Arguments.of(
                         new ArrayList<>(Arrays.asList(-3, -2, -1, 0, 1, 2, 3)),
