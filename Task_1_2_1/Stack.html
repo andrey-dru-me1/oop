@@ -130,6 +130,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">Stack</span>
 extends java.lang.Object</pre>
+<div class="block">A black box where you can only put elements on its top (push)
+ or extract them from the top with pop.</div>
 </li>
 </ul>
 </div>
@@ -174,27 +176,37 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#count()">count</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns count of elements in the stack.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>java.lang.Object</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pop()">pop</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns the latest element and removes the one from the stack.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#popStack(int)">popStack</a></span>&#8203;(int&nbsp;cnt)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns an array of the cnt elements from the end of stack.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#push(java.lang.Object)">push</a></span>&#8203;(java.lang.Object&nbsp;value)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Appends element to the ecd of stack.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pushStack(java.lang.Object%5B%5D)">pushStack</a></span>&#8203;(java.lang.Object[]&nbsp;arr)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Appends the array to the end of stack.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -246,6 +258,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>push</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;push&#8203;(java.lang.Object&nbsp;value)</pre>
+<div class="block">Appends element to the ecd of stack.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>value</code> - The value to add to the stack</dd>
+</dl>
 </li>
 </ul>
 <a id="pushStack(java.lang.Object[])">
@@ -255,6 +272,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>pushStack</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;pushStack&#8203;(java.lang.Object[]&nbsp;arr)</pre>
+<div class="block">Appends the array to the end of stack.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>arr</code> - Array of elements to append in the stack</dd>
+</dl>
 </li>
 </ul>
 <a id="pop()">
@@ -264,6 +286,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>pop</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Object&nbsp;pop()</pre>
+<div class="block">Returns the latest element and removes the one from the stack.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The latest element</dd>
+</dl>
 </li>
 </ul>
 <a id="popStack(int)">
@@ -273,6 +300,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>popStack</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Object[]&nbsp;popStack&#8203;(int&nbsp;cnt)</pre>
+<div class="block">Returns an array of the cnt elements from the end of stack.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>cnt</code> - Count of elements to pop</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Array of extracted elements</dd>
+</dl>
 </li>
 </ul>
 <a id="count()">
@@ -282,6 +316,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>count</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;count()</pre>
+<div class="block">Returns count of elements in the stack.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Count of elements</dd>
+</dl>
 </li>
 </ul>
 </li>
