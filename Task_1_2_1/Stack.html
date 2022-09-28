@@ -113,14 +113,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<h2 title="Class Stack" class="title">Class Stack</h2>
+<h2 title="Class Stack" class="title">Class Stack&lt;T&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>Stack</li>
+<li>Stack&lt;T&gt;</li>
 </ul>
 </li>
 </ul>
@@ -128,7 +128,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <hr>
-<pre>public class <span class="typeNameLabel">Stack</span>
+<pre>public class <span class="typeNameLabel">Stack&lt;T&gt;</span>
 extends java.lang.Object</pre>
 <div class="block">A black box where you can only put elements on its top (push)
  or extract them from the top with pop.</div>
@@ -181,14 +181,14 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>java.lang.Object</code></td>
+<td class="colFirst"><code><a href="Stack.html" title="type parameter in Stack">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pop()">pop</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the latest element and removes the one from the stack.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>java.lang.Object[]</code></td>
+<td class="colFirst"><code><a href="Stack.html" title="type parameter in Stack">T</a>[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#popStack(int)">popStack</a></span>&#8203;(int&nbsp;cnt)</code></th>
 <td class="colLast">
 <div class="block">Returns an array of the cnt elements from the end of stack.</div>
@@ -196,14 +196,14 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#push(java.lang.Object)">push</a></span>&#8203;(java.lang.Object&nbsp;value)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#push(T)">push</a></span>&#8203;(<a href="Stack.html" title="type parameter in Stack">T</a>&nbsp;value)</code></th>
 <td class="colLast">
 <div class="block">Appends element to the ecd of stack.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pushStack(java.lang.Object%5B%5D)">pushStack</a></span>&#8203;(java.lang.Object[]&nbsp;arr)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pushStack(T%5B%5D)">pushStack</a></span>&#8203;(<a href="Stack.html" title="type parameter in Stack">T</a>[]&nbsp;arr)</code></th>
 <td class="colLast">
 <div class="block">Appends the array to the end of stack.</div>
 </td>
@@ -253,11 +253,13 @@ extends java.lang.Object</pre>
 <h3>Method Detail</h3>
 <a id="push(java.lang.Object)">
 <!--   -->
+</a><a id="push(T)">
+<!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>push</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;push&#8203;(java.lang.Object&nbsp;value)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;push&#8203;(<a href="Stack.html" title="type parameter in Stack">T</a>&nbsp;value)</pre>
 <div class="block">Appends element to the ecd of stack.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -267,11 +269,13 @@ extends java.lang.Object</pre>
 </ul>
 <a id="pushStack(java.lang.Object[])">
 <!--   -->
+</a><a id="pushStack(T[])">
+<!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>pushStack</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;pushStack&#8203;(java.lang.Object[]&nbsp;arr)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;pushStack&#8203;(<a href="Stack.html" title="type parameter in Stack">T</a>[]&nbsp;arr)</pre>
 <div class="block">Appends the array to the end of stack.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -285,7 +289,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>pop</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Object&nbsp;pop()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Stack.html" title="type parameter in Stack">T</a>&nbsp;pop()</pre>
 <div class="block">Returns the latest element and removes the one from the stack.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -299,7 +303,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>popStack</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Object[]&nbsp;popStack&#8203;(int&nbsp;cnt)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Stack.html" title="type parameter in Stack">T</a>[]&nbsp;popStack&#8203;(int&nbsp;cnt)</pre>
 <div class="block">Returns an array of the cnt elements from the end of stack.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
