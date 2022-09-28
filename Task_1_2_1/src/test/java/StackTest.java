@@ -6,8 +6,8 @@ import java.util.Arrays;
 class StackTest {
 
     @Test
-    void test() {
-        Stack stack = new Stack();
+    void testInts() {
+        Stack<Integer> stack = new Stack<>();
         stack.push(2);
         stack.push(7);
         stack.pushStack(new Integer[]{4, 8});
