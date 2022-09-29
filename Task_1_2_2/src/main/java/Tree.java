@@ -51,6 +51,28 @@ public class Tree<T> {
             if (value != null) value = foo.apply(value);
         }
 
+        private void breadthIterate(Node<T>[] queue, Function<T, T> foo) {
+
+            while (queue.length > 0) {
+                int prevLen = queue.length;
+                queue = Arrays.copyOf(queue, queue.length + queue[0].children.length);
+                System.arraycopy(queue[0].children, 0, queue, prevLen, queue[0].children.length);
+
+                if (queue[0].value != null) {
+                    queue[0].value = foo.apply(queue[0].value);
+                }
+
+                System.arraycopy(queue, 1, queue, 0, queue.length - 1);
+                queue = Arrays.copyOf(queue, queue.length - 1);
+            }
+
+        }
+
+        @SuppressWarnings("unchecked")
+        public void breadthIterate(Function<T, T> foo) {
+            breadthIterate(new Node[]{this}, foo);
+        }
+
         public String toString() {
             StringBuilder res = new StringBuilder("( " + value + ", [");
             for (int i = 0; i < children.length; i++) {
@@ -89,6 +111,14 @@ public class Tree<T> {
 
     public void depthIterate(Node<T> node, Function<T, T> foo) {
         node.depthIterate(foo);
+    }
+
+    public void breadthIterate(Function<T, T> foo) {
+        root.breadthIterate(foo);
+    }
+
+    public void breadthIterate(Node<T> node, Function<T, T> foo) {
+        node.breadthIterate(foo);
     }
 
     public String toString() {
