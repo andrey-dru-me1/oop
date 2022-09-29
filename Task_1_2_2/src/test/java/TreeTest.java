@@ -13,6 +13,9 @@ class TreeTest {
         seven.add(9);
         Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 8, [] ), ( 9, [] )] )] )");
 
+        tree.depthIterate(eight, x -> x / 2);
+        Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 4, [] ), ( 9, [] )] )] )");
+
         tree.remove(eight);
         Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 9, [] )] )] )");
 
