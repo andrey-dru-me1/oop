@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.function.Function;
 
 public class Tree<T> {
 
@@ -43,6 +44,13 @@ public class Tree<T> {
 
         }
 
+        public void depthIterate(Function<T, T> foo) {
+            for (Node<T> i : children) {
+                i.depthIterate(foo);
+            }
+            if (value != null) value = foo.apply(value);
+        }
+
         public String toString() {
             StringBuilder res = new StringBuilder("( " + value + ", [");
             for (int i = 0; i < children.length; i++) {
@@ -73,6 +81,14 @@ public class Tree<T> {
 
     public void remove(Node<T> node) {
         node.remove();
+    }
+
+    public void depthIterate(Function<T, T> foo) {
+        root.depthIterate(foo);
+    }
+
+    public void depthIterate(Node<T> node, Function<T, T> foo) {
+        node.depthIterate(foo);
     }
 
     public String toString() {
