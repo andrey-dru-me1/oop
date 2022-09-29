@@ -5,6 +5,9 @@ class TreeTest {
     @Test
     void test() {
         Tree<Integer> tree = new Tree<>();
-        tree.add(7);
+        Tree.Node<Integer> seven = tree.add(7);
+        tree.add(seven, 8);
+        seven.add(9);
     }
+
 }
