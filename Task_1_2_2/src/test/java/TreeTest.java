@@ -15,6 +15,9 @@ class TreeTest {
 
         tree.remove(eight);
         Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 9, [] )] )] )");
+
+        tree.depthIterate(val -> val * 2);
+        Assertions.assertEquals(tree.toString().trim(), "( null, [( 14, [( 18, [] )] )] )");
     }
 
 }
