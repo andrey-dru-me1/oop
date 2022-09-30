@@ -128,12 +128,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - Type of elements' values</dd>
+</dl>
+<dl>
 <dt>Enclosing class:</dt>
 <dd><a href="Tree.html" title="class in &lt;Unnamed&gt;">Tree</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</dd>
 </dl>
 <hr>
 <pre>public static class <span class="typeNameLabel">Tree.Node&lt;T&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">Represents a tree's nodes with their values and lists of sons.</div>
 </li>
 </ul>
 </div>
@@ -179,27 +184,39 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="Tree.Node.html" title="class in &lt;Unnamed&gt;">Tree.Node</a>&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(T)">add</a></span>&#8203;(<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&nbsp;value)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds new child to current node with the specified value.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#breadthIterate(java.util.function.Function)">breadthIterate</a></span>&#8203;(java.util.function.Function&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>,&#8203;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;&nbsp;foo)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Applies the specified function to each descendant's value of current node
+ and to the current node value itself with breadth-search.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#depthIterate(java.util.function.Function)">depthIterate</a></span>&#8203;(java.util.function.Function&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>,&#8203;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;&nbsp;foo)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Applies the specified function to each descendant's value of current node
+ and to the current node value itself with depth-search.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove()">remove</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Removes current child with its descendants.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Convert tree to a string.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -256,6 +273,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>add</h4>
 <pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in &lt;Unnamed&gt;">Tree.Node</a>&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;&nbsp;add&#8203;(<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&nbsp;value)</pre>
+<div class="block">Adds new child to current node with the specified value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>value</code> - The value that will be bound on the new element.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The new node.</dd>
+</dl>
 </li>
 </ul>
 <a id="remove()">
@@ -265,6 +289,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;remove()</pre>
+<div class="block">Removes current child with its descendants.</div>
 </li>
 </ul>
 <a id="depthIterate(java.util.function.Function)">
@@ -274,6 +299,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>depthIterate</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;depthIterate&#8203;(java.util.function.Function&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>,&#8203;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;&nbsp;foo)</pre>
+<div class="block">Applies the specified function to each descendant's value of current node
+ and to the current node value itself with depth-search.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>foo</code> - Function that will be applied to each descendant's value of current node
+            and to the current node value itself.</dd>
+</dl>
 </li>
 </ul>
 <a id="breadthIterate(java.util.function.Function)">
@@ -283,6 +315,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>breadthIterate</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;breadthIterate&#8203;(java.util.function.Function&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>,&#8203;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;&nbsp;foo)</pre>
+<div class="block">Applies the specified function to each descendant's value of current node
+ and to the current node value itself with breadth-search.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>foo</code> - Function that will be applied to each descendant's value of current node
+            and to the current node value itself.</dd>
+</dl>
 </li>
 </ul>
 <a id="toString()">
@@ -292,9 +331,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
+<div class="block">Convert tree to a string.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The String-representation of the tree.</dd>
 </dl>
 </li>
 </ul>
