@@ -1,6 +1,11 @@
 import java.util.Arrays;
 import java.util.function.Function;
 
+/**
+ * Represents a tree type. Has only root and its descendants.
+ *
+ * @param <T> Type of elements' values
+ */
 public class Tree<T> {
 
     private final Node<T> root;
@@ -9,6 +14,11 @@ public class Tree<T> {
         root = new Node<>(null, null);
     }
 
+    /**
+     * Represents a tree's nodes with their values and lists of sons.
+     *
+     * @param <T> Type of elements' values
+     */
     public static class Node<T> {
 
         T value;
@@ -22,12 +32,21 @@ public class Tree<T> {
             this.parent = parent;
         }
 
+        /**
+         * Adds new child to current node with the specified value.
+         *
+         * @param value The value that will be bound on the new element.
+         * @return The new node.
+         */
         public Node<T> add(T value) {
             children = Arrays.copyOf(children, children.length + 1);
             children[children.length - 1] = new Node<>(this, value);
             return children[children.length - 1];
         }
 
+        /**
+         * Removes current child with its descendants.
+         */
         public void remove() {
             for (Node<T> i : children) {
                 i.remove();
@@ -44,6 +63,13 @@ public class Tree<T> {
 
         }
 
+        /**
+         * Applies the specified function to each descendant's value of current node
+         * and to the current node value itself with depth-search.
+         *
+         * @param foo Function that will be applied to each descendant's value of current node
+         *            and to the current node value itself.
+         */
         public void depthIterate(Function<T, T> foo) {
             for (Node<T> i : children) {
                 i.depthIterate(foo);
@@ -51,6 +77,13 @@ public class Tree<T> {
             if (value != null) value = foo.apply(value);
         }
 
+        /**
+         * Helper method that use queue. Doesn't visible outside the Node class.
+         *
+         * @param queue Queue where all descendant nodes will be contained.
+         * @param foo   Function that will be applied to each descendant's value of current node
+         *              and to the current node value itself.
+         */
         private void breadthIterate(Node<T>[] queue, Function<T, T> foo) {
 
             while (queue.length > 0) {
@@ -68,11 +101,23 @@ public class Tree<T> {
 
         }
 
+        /**
+         * Applies the specified function to each descendant's value of current node
+         * and to the current node value itself with breadth-search.
+         *
+         * @param foo Function that will be applied to each descendant's value of current node
+         *            and to the current node value itself.
+         */
         @SuppressWarnings("unchecked")
         public void breadthIterate(Function<T, T> foo) {
             breadthIterate(new Node[]{this}, foo);
         }
 
+        /**
+         * Convert tree to a string.
+         *
+         * @return The String-representation of the tree.
+         */
         public String toString() {
             StringBuilder res = new StringBuilder("( " + value + ", [");
             for (int i = 0; i < children.length; i++) {
