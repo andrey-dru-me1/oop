@@ -44,7 +44,8 @@ class StackTest {
 
             @Override
             public boolean equals(Object inObj) {
-                if (!(inObj instanceof MyObj obj)) return false;
+                if (!(inObj instanceof MyObj)) return false;
+                MyObj obj = (MyObj) inObj;
                 return (Arrays.equals(this.strings, obj.strings)) &&
                         (Objects.equals(Double.valueOf(this.num), obj.dnum)) &&
                         (Objects.equals(Double.valueOf(obj.num), this.dnum));
