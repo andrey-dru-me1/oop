@@ -13,16 +13,15 @@ public class Stack<T> {
         stack = (T[]) (new Object[0]);
     }
 
-    public Stack(Stack<T> another) {
-        this.stack = another.stack;
-    }
-
     @Override
-    @SuppressWarnings("unchecked")
-    public boolean equals(Object toCompare) {
-        if (!(toCompare instanceof Stack)) return false;
-        Stack<T> obj = (Stack<T>) toCompare;
-        return Arrays.equals(stack, obj.stack);
+    public boolean equals(Object o) {
+
+        if (!(o instanceof Stack)) {
+            return false;
+        }
+
+        Object[] cmp = ((Stack<?>) o).stack;
+        return Arrays.equals(stack, cmp);
     }
 
     /**
