@@ -20,6 +20,9 @@ class StackTest {
         Assertions.assertEquals(stack.popStack(2), toCompare);
 
         Assertions.assertEquals(stack.count(), 1);
+
+        Object totest = new Object();
+        Assertions.assertNotEquals(stack, totest);
     }
 
     @Test
