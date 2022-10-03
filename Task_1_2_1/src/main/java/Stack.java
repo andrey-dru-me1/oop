@@ -41,16 +41,9 @@ public class Stack<T> {
      * @param toPush Stack of elements to append in current stack
      */
     public void pushStack(Stack<T> toPush) {
-        Stack<T> toPushCopy = new Stack<>(toPush);
-
-        Stack<T> toPushRevert = new Stack<>();
-        while (toPushCopy.count() > 0) {
-            toPushRevert.push(toPushCopy.pop());
-        }
-
-        while (toPushRevert.count() > 0) {
-            this.push(toPushRevert.pop());
-        }
+        int prevLen = stack.length;
+        stack = Arrays.copyOf(stack, stack.length + toPush.stack.length);
+        System.arraycopy(toPush.stack, 0, stack, prevLen, stack.length - prevLen);
     }
 
     /**
@@ -71,16 +64,12 @@ public class Stack<T> {
      * @return Stack contained extracted elements
      */
     public Stack<T> popStack(int cnt) {
-        Stack<T> resRevert = new Stack<>();
-
-        for (int i = 0; i < cnt; i++) {
-            resRevert.push(this.pop());
-        }
-
         Stack<T> res = new Stack<>();
-        while (resRevert.count() > 0) {
-            res.push(resRevert.pop());
-        }
+
+        res.stack = Arrays.copyOf(res.stack, cnt);
+
+        System.arraycopy(stack, stack.length - cnt, res.stack, 0, cnt);
+        stack = Arrays.copyOf(stack, stack.length - cnt);
 
         return res;
     }
