@@ -11,18 +11,36 @@ class StackTest {
         Stack<Integer> stack = new Stack<>();
         stack.push(2);
         stack.push(7);
-        stack.pushStack(new Integer[]{4, 8});
-        Assertions.assertEquals(stack.pop(), 8);
-        Assertions.assertEquals(Arrays.toString(stack.popStack(2)).trim(), "[7, 4]");
+        stack.pushStack(stack);
+        Assertions.assertEquals(stack.pop(), 7);
+
+        Stack<Integer> toCompare = new Stack<>();
+        toCompare.push(7);
+        toCompare.push(2);
+        Assertions.assertEquals(stack.popStack(2), toCompare);
+
         Assertions.assertEquals(stack.count(), 1);
     }
 
     @Test
     void testStrings() {
         Stack<String> stack = new Stack<>();
-        stack.pushStack(new String[]{"abrakadabra", "nothing", "Is", "HeRe"});
+
+        Stack<String> newStack = new Stack<>();
+        newStack.push("abrakadabra");
+        newStack.push("nothing");
+        newStack.push("Is");
+        newStack.push("HeRe");
+
+        stack.pushStack(newStack);
         stack.push("");
-        Assertions.assertArrayEquals(stack.popStack(3), new String[]{"Is", "HeRe", ""});
+
+        Stack<String> toCompare = new Stack<>();
+        toCompare.push("Is");
+        toCompare.push("HeRe");
+        toCompare.push("");
+        Assertions.assertEquals(stack.popStack(3), toCompare);
+
         Assertions.assertEquals(stack.count(), 2);
         Assertions.assertEquals(stack.pop(), "nothing");
     }
@@ -58,7 +76,9 @@ class StackTest {
         MyObj obj4 = new MyObj(27, new String[]{"I", "like", "formalin"}, 17.0);
 
         Stack<MyObj> stack = new Stack<>();
-        stack.pushStack(new MyObj[]{obj1, obj2, obj3}); //1, 2, 3
+        stack.push(obj1);   //1
+        stack.push(obj2);   //1, 2
+        stack.push(obj3);   //1, 2, 3
 
         Assertions.assertEquals(stack.count(), 3);
         Assertions.assertNotEquals(stack.pop(), obj4);  //1, 2
@@ -66,10 +86,13 @@ class StackTest {
 
         stack.push(obj4);   //1, 2, 4
         Assertions.assertEquals(stack.count(), 3);
-        Assertions.assertArrayEquals(stack.popStack(2), new MyObj[]{obj4, obj2});   //1
+
+        Stack<MyObj> toCompare = new Stack<>();
+        toCompare.push(obj4);
+        toCompare.push(obj2);
+        Assertions.assertEquals(stack.popStack(2), toCompare);   //1
         Assertions.assertEquals(stack.count(), 1);
 
     }
-
 
 }
