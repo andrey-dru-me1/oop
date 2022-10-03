@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -155,6 +155,10 @@ extends java.lang.Object</pre>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Stack</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(Stack)">Stack</a></span>&#8203;(<a href="Stack.html" title="class in &lt;Unnamed&gt;">Stack</a>&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;&nbsp;another)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -181,31 +185,36 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;toCompare)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="Stack.html" title="type parameter in Stack">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pop()">pop</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the latest element and removes the one from the stack.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="Stack.html" title="type parameter in Stack">T</a>[]</code></td>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="Stack.html" title="class in &lt;Unnamed&gt;">Stack</a>&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#popStack(int)">popStack</a></span>&#8203;(int&nbsp;cnt)</code></th>
 <td class="colLast">
-<div class="block">Returns an array of the cnt elements from the end of stack.</div>
+<div class="block">Returns a stack of the cnt elements from the end of stack.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#push(T)">push</a></span>&#8203;(<a href="Stack.html" title="type parameter in Stack">T</a>&nbsp;value)</code></th>
 <td class="colLast">
 <div class="block">Appends element to the ecd of stack.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pushStack(T%5B%5D)">pushStack</a></span>&#8203;(<a href="Stack.html" title="type parameter in Stack">T</a>[]&nbsp;arr)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pushStack(Stack)">pushStack</a></span>&#8203;(<a href="Stack.html" title="class in &lt;Unnamed&gt;">Stack</a>&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;&nbsp;toPush)</code></th>
 <td class="colLast">
-<div class="block">Appends the array to the end of stack.</div>
+<div class="block">Appends the toPush stack to the end of current stack.</div>
 </td>
 </tr>
 </table>
@@ -214,7 +223,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -235,10 +244,19 @@ extends java.lang.Object</pre>
 <a id="&lt;init&gt;()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>Stack</h4>
 <pre>public&nbsp;Stack()</pre>
+</li>
+</ul>
+<a id="&lt;init&gt;(Stack)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>Stack</h4>
+<pre>public&nbsp;Stack&#8203;(<a href="Stack.html" title="class in &lt;Unnamed&gt;">Stack</a>&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;&nbsp;another)</pre>
 </li>
 </ul>
 </li>
@@ -251,6 +269,19 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>equals</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;toCompare)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
 <a id="push(java.lang.Object)">
 <!--   -->
 </a><a id="push(T)">
@@ -267,19 +298,17 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="pushStack(java.lang.Object[])">
-<!--   -->
-</a><a id="pushStack(T[])">
+<a id="pushStack(Stack)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>pushStack</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;pushStack&#8203;(<a href="Stack.html" title="type parameter in Stack">T</a>[]&nbsp;arr)</pre>
-<div class="block">Appends the array to the end of stack.</div>
+<pre class="methodSignature">public&nbsp;void&nbsp;pushStack&#8203;(<a href="Stack.html" title="class in &lt;Unnamed&gt;">Stack</a>&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;&nbsp;toPush)</pre>
+<div class="block">Appends the toPush stack to the end of current stack.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>arr</code> - Array of elements to append in the stack</dd>
+<dd><code>toPush</code> - Stack of elements to append in current stack</dd>
 </dl>
 </li>
 </ul>
@@ -303,13 +332,13 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>popStack</h4>
-<pre class="methodSignature">public&nbsp;<a href="Stack.html" title="type parameter in Stack">T</a>[]&nbsp;popStack&#8203;(int&nbsp;cnt)</pre>
-<div class="block">Returns an array of the cnt elements from the end of stack.</div>
+<pre class="methodSignature">public&nbsp;<a href="Stack.html" title="class in &lt;Unnamed&gt;">Stack</a>&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;&nbsp;popStack&#8203;(int&nbsp;cnt)</pre>
+<div class="block">Returns a stack of the cnt elements from the end of stack.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>cnt</code> - Count of elements to pop</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Array of extracted elements</dd>
+<dd>Stack contained extracted elements</dd>
 </dl>
 </li>
 </ul>
