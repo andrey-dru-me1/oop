@@ -13,6 +13,18 @@ public class Stack<T> {
         stack = (T[]) (new Object[0]);
     }
 
+    public Stack(Stack<T> another) {
+        this.stack = another.stack;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean equals(Object toCompare) {
+        if (!(toCompare instanceof Stack)) return false;
+        Stack<T> obj = (Stack<T>) toCompare;
+        return Arrays.equals(stack, obj.stack);
+    }
+
     /**
      * Appends element to the ecd of stack.
      *
@@ -24,14 +36,21 @@ public class Stack<T> {
     }
 
     /**
-     * Appends the array to the end of stack.
+     * Appends the toPush stack to the end of current stack.
      *
-     * @param arr Array of elements to append in the stack
+     * @param toPush Stack of elements to append in current stack
      */
-    public void pushStack(T[] arr) {
-        int prevLen = stack.length;
-        stack = Arrays.copyOf(stack, stack.length + arr.length);
-        System.arraycopy(arr, 0, stack, prevLen, stack.length - prevLen);
+    public void pushStack(Stack<T> toPush) {
+        Stack<T> toPushCopy = new Stack<>(toPush);
+
+        Stack<T> toPushRevert = new Stack<>();
+        while (toPushCopy.count() > 0) {
+            toPushRevert.push(toPushCopy.pop());
+        }
+
+        while (toPushRevert.count() > 0) {
+            this.push(toPushRevert.pop());
+        }
     }
 
     /**
@@ -46,16 +65,24 @@ public class Stack<T> {
     }
 
     /**
-     * Returns an array of the cnt elements from the end of stack.
+     * Returns a stack of the cnt elements from the end of stack.
      *
      * @param cnt Count of elements to pop
-     * @return Array of extracted elements
+     * @return Stack contained extracted elements
      */
-    public T[] popStack(int cnt) {
-        @SuppressWarnings("unchecked") T[] arr = (T[]) (new Object[cnt]);
-        System.arraycopy(stack, stack.length - cnt, arr, 0, cnt);
-        stack = Arrays.copyOf(stack, stack.length - cnt);
-        return arr;
+    public Stack<T> popStack(int cnt) {
+        Stack<T> resRevert = new Stack<>();
+
+        for (int i = 0; i < cnt; i++) {
+            resRevert.push(this.pop());
+        }
+
+        Stack<T> res = new Stack<>();
+        while (resRevert.count() > 0) {
+            res.push(resRevert.pop());
+        }
+
+        return res;
     }
 
     /**
