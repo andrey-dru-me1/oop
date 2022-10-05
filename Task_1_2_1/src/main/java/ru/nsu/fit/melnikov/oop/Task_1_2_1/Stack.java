@@ -27,7 +27,7 @@ public class Stack<T> {
     }
 
     /**
-     * Appends element to the ecd of stack.
+     * Appends element to the end of stack.
      *
      * @param value The value to add to the stack
      */
