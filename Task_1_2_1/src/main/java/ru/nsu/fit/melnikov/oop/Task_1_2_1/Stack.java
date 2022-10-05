@@ -1,3 +1,5 @@
+package ru.nsu.fit.melnikov.oop.Task_1_2_1;
+
 import java.util.Arrays;
 
 /**
