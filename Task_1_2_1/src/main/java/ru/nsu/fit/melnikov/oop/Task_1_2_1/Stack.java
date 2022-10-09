@@ -9,10 +9,12 @@ import java.util.Arrays;
 public class Stack<T> {
 
     private T[] stack;
+    private int size;
 
     @SuppressWarnings("unchecked")
     public Stack() {
-        stack = (T[]) (new Object[0]);
+        stack = (T[]) (new Object[1]);
+        size = 0;
     }
 
     @Override
@@ -23,7 +25,7 @@ public class Stack<T> {
         }
 
         Object[] cmp = ((Stack<?>) o).stack;
-        return Arrays.equals(stack, cmp);
+        return Arrays.equals(stack, 0, size - 1, cmp, 0, size - 1);
     }
 
     /**
@@ -32,8 +34,10 @@ public class Stack<T> {
      * @param value The value to add to the stack
      */
     public void push(T value) {
-        stack = Arrays.copyOf(stack, stack.length + 1);
-        stack[stack.length - 1] = value;
+        if (size + 1 > stack.length) {
+            stack = Arrays.copyOf(stack, stack.length * 2);
+        }
+        stack[size++] = value;
     }
 
     /**
@@ -42,9 +46,11 @@ public class Stack<T> {
      * @param toPush Stack of elements to append in current stack
      */
     public void pushStack(Stack<T> toPush) {
-        int prevLen = stack.length;
-        stack = Arrays.copyOf(stack, stack.length + toPush.stack.length);
-        System.arraycopy(toPush.stack, 0, stack, prevLen, stack.length - prevLen);
+        if (size + toPush.size > stack.length) {
+            stack = Arrays.copyOf(stack, (size + toPush.size) * 2);
+        }
+        System.arraycopy(toPush.stack, 0, stack, size, toPush.size);
+        size += toPush.size;
     }
 
     /**
@@ -53,9 +59,7 @@ public class Stack<T> {
      * @return The latest element
      */
     public T pop() {
-        T res = stack[stack.length - 1];
-        stack = Arrays.copyOf(stack, stack.length - 1);
-        return res;
+        return stack[--size];
     }
 
     /**
@@ -65,12 +69,14 @@ public class Stack<T> {
      * @return Stack contained extracted elements
      */
     public Stack<T> popStack(int cnt) {
-        Stack<T> res = new Stack<>();
 
-        res.stack = Arrays.copyOf(res.stack, cnt);
+        Stack<T> res = new Stack<>();   //creates new stack
 
-        System.arraycopy(stack, stack.length - cnt, res.stack, 0, cnt);
-        stack = Arrays.copyOf(stack, stack.length - cnt);
+        res.stack = Arrays.copyOf(res.stack, cnt);  //gives required length
+
+        System.arraycopy(stack, size - cnt, res.stack, 0, cnt); //copies stack array to res array
+        res.size = cnt; //gives required stack size
+        size -= cnt;    //"removes" elements from current stack
 
         return res;
     }
@@ -81,7 +87,7 @@ public class Stack<T> {
      * @return Count of elements
      */
     public int count() {
-        return stack.length;
+        return size;
     }
 
 }
