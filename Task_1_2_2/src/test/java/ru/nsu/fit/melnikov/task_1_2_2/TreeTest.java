@@ -1,3 +1,5 @@
+package ru.nsu.fit.melnikov.task_1_2_2;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
