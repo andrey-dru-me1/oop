@@ -4,35 +4,32 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * Represents a tree type. Has only root and its descendants.
  *
  * @param <T> Type of elements' values
  */
-public class Tree<T> implements Collection {
+public class Tree<T> implements Collection<T> {
 
-    private final Node<T> root;
+    private final Node root;
     private int size;
 
     public Tree() {
-        root = new Node<>(null, null);
+        root = new Node(null, null);
         size = 0;
     }
 
     /**
      * Represents a tree's nodes with their values and lists of sons.
-     *
-     * @param <T> Type of elements' values
      */
-    public static class Node<T> {
+    public class Node {
 
         T value;
         List<Node> children;
-        Node<T> parent;
+        Node parent;
 
-        public Node(Node<T> parent, T value) {
+        public Node(Node parent, T value) {
             this.value = value;
             children = new ArrayList<>();
             this.parent = parent;
@@ -45,7 +42,8 @@ public class Tree<T> implements Collection {
          * @return The new node.
          */
         public boolean add(T value) {
-            Node<T> newNode = new Node<>(this, value);
+            Node newNode = new Node(this, value);
+            Tree.this.size++;
             return children.add(newNode);
         }
 
@@ -62,8 +60,6 @@ public class Tree<T> implements Collection {
             return parent.children.remove(this);
 
         }
-
-
 
         /**
          * Convert tree to a string.
@@ -102,8 +98,39 @@ public class Tree<T> implements Collection {
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
+    public Iterator<T> iterator() {
+        List<Node> Q = new ArrayList<>();
+        Q.add(root);
+        for (Node i : Q) {
+            Q.addAll(i.children);
+        }
+        Q.remove(0);
+
+        List<T> q = new ArrayList<>();
+        for (Node i : Q) {
+            q.add(i.value);
+        }
+        return q.iterator();
+    }
+
+    public Iterator<T> iteratorDFS() {
+        class HelperClass extends ArrayList<Node> {
+            public void foo(Node node) {
+                this.addAll(node.children);
+                for (Node i : node.children) {
+                    foo(i);
+                }
+            }
+        }
+
+        HelperClass Q = new HelperClass();
+        Q.foo(root);
+
+        List<T> q = new ArrayList<>();
+        for (Node i : Q) {
+            q.add(i.value);
+        }
+        return q.iterator();
     }
 
     @Override
@@ -149,38 +176,6 @@ public class Tree<T> implements Collection {
     @Override
     public Object[] toArray(Object[] a) {
         return new Object[0];
-    }
-
-    public Node<T> add(T value) {
-        return root.add(value);
-    }
-
-    public Node<T> add(Node<T> node, T value) {
-        return node.add(value);
-    }
-
-    public void remove() {
-        root.remove();
-    }
-
-    public void remove(Node<T> node) {
-        node.remove();
-    }
-
-    public void depthIterate(Function<T, T> foo) {
-        root.depthIterate(foo);
-    }
-
-    public void depthIterate(Node<T> node, Function<T, T> foo) {
-        node.depthIterate(foo);
-    }
-
-    public void breadthIterate(Function<T, T> foo) {
-        root.breadthIterate(foo);
-    }
-
-    public void breadthIterate(Node<T> node, Function<T, T> foo) {
-        node.breadthIterate(foo);
     }
 
     public String toString() {
