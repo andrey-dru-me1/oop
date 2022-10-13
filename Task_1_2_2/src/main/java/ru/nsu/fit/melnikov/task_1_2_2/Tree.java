@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Tree<T> implements Collection<T> {
 
-    private Node root;
+    private final Node root;
     private int size;
 
     public Tree() {
@@ -36,8 +36,9 @@ public class Tree<T> implements Collection<T> {
             this.value = value;
         }
 
-        public Object get() {
-            return value;
+        @SuppressWarnings("unchecked")
+        public T get() {
+            return (T) value;
         }
 
         /**
@@ -57,8 +58,8 @@ public class Tree<T> implements Collection<T> {
          * Removes current child with its descendants.
          */
         public boolean remove() {
-            for (Node i : children) {
-                i.remove();
+            while (children.size() != 0) {
+                children.get(0).remove();
             }
 
             if (parent == null) return true;
@@ -158,8 +159,8 @@ public class Tree<T> implements Collection<T> {
     private List<Node> toNodeList() {
         List<Node> Q = new ArrayList<>();
         Q.add(root);
-        for (Node i : Q) {
-            Q.addAll(i.children);
+        for (int i = 0; i < Q.size(); i++) {
+            Q.addAll(Q.get(i).children);
         }
         Q.remove(0);
         return Q;
@@ -199,7 +200,6 @@ public class Tree<T> implements Collection<T> {
     @Override
     public void clear() {
         root.remove();
-        root = null;
     }
 
     @Override
