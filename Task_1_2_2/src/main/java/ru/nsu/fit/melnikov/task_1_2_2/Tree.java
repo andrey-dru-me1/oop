@@ -32,6 +32,14 @@ public class Tree<T> implements Collection<T> {
             this.parent = parent;
         }
 
+        public void set(T value) {
+            this.value = value;
+        }
+
+        public Object get() {
+            return value;
+        }
+
         /**
          * Adds new child to current node with the specified value.
          *
@@ -161,6 +169,14 @@ public class Tree<T> implements Collection<T> {
     public boolean add(T o) {
         root.add(o);
         return true;
+    }
+
+    public Node nAdd(T o) {
+        return root.add(o);
+    }
+
+    public Node nAdd(Node node, T o) {
+        return node.add(o);
     }
 
     @Override
