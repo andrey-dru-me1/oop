@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Tree<T> implements Collection<T> {
 
-    private final Node root;
+    private Node root;
     private int size;
 
     public Tree() {
@@ -199,6 +199,7 @@ public class Tree<T> implements Collection<T> {
     @Override
     public void clear() {
         root.remove();
+        root = null;
     }
 
     @Override
