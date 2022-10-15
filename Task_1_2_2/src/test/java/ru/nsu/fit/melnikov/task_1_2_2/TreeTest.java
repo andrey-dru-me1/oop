@@ -64,7 +64,14 @@ class TreeTest {
         );
 
         tree.retainAll(Arrays.asList(7.6, -159.896, 9.87, 9.9999, 0.0069));
-        Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.87, 7.6, 7.6, 9.9999, -159.896});
+
+        Double[] toTest = new Double[3];
+        toTest = tree.toArray(toTest);
+        Assertions.assertArrayEquals(toTest, new Double[]{9.87, 7.6, 7.6, 9.9999, -159.896});
+
+        toTest = new Double[tree.size() + 3];
+        tree.toArray(toTest);
+        Assertions.assertArrayEquals(toTest, new Double[]{9.87, 7.6, 7.6, 9.9999, -159.896, null, null, null});
 
         tree.removeAll(Arrays.asList(7.6, -159.896));
         Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.87, 9.9999});
@@ -73,6 +80,9 @@ class TreeTest {
 
         Assertions.assertFalse(tree.containsAll(Arrays.asList(9.87, -159.896)));
         Assertions.assertTrue(tree.containsAll(Arrays.asList(9.87, 9.9999)));
+
+        tree.clear();
+        Assertions.assertNull(tree.toString());
 
     }
 
