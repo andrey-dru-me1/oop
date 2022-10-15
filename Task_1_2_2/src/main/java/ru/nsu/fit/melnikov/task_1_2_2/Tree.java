@@ -65,10 +65,11 @@ public class Tree<T> implements Collection<T> {
                 children.get(0).remove();
             }
 
-            if (parent == null) return true;
-
-            Tree.this.size--;
-            boolean res = parent.children.remove(this);
+            boolean res = true;
+            if (parent != null) {
+                Tree.this.size--;
+                res = parent.children.remove(this);
+            }
 
             this.value = null;
             this.children = null;
@@ -259,14 +260,14 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Object[] toArray(Object[] a) {
+    public T[] toArray(Object[] a) {
         if (a.length < size)
             // Make a new array of a's runtime type, but my contents:
-            return Arrays.copyOf(this.toArray(), size, a.getClass());
+            return (T[]) Arrays.copyOf(this.toArray(), size, a.getClass());
         System.arraycopy(this.toArray(), 0, a, 0, size);
         if (a.length > size)
             a[size] = null;
-        return a;
+        return (T[]) a;
     }
 
     public String toString() {
