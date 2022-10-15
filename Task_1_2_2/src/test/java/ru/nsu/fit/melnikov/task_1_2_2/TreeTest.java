@@ -13,23 +13,23 @@ class TreeTest {
     @Test
     void testInts() {
         Tree<Integer> tree = new Tree<>();
-        Tree<Integer>.Node seven = tree.nAdd(7);
-        Tree<Integer>.Node eight = tree.nAdd(seven, 8);
+        tree.add(7);
+        tree.add(7, 8);
         Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 8, [] )] )] )");
 
-        seven.add(9);
+        tree.addById(tree.getId(7), 9);
         Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 8, [] ), ( 9, [] )] )] )");
 
-        eight.set(eight.get() / 2);
+        tree.set(8, tree.get(8) / 2);
 
         Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 4, [] ), ( 9, [] )] )] )");
         Assertions.assertEquals(tree.toList().toString().trim(), "[7, 4, 9]");
         Assertions.assertEquals(Arrays.toString(tree.toArray()), "[7, 4, 9]");
 
-        tree.remove(eight);
+        tree.remove(4);
         Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 9, [] )] )] )");
 
-        seven.remove();
+        tree.removeById(tree.getId(7));
         Assertions.assertEquals(tree.toString().trim(), "( null, [] )");
 
     }
@@ -43,10 +43,10 @@ class TreeTest {
         tree.add(6.79);
         Assertions.assertTrue(tree.contains(6.79));
 
-        Tree<Double>.Node sndChild = tree.nAdd(9.87);
-        Tree<Double>.Node trdChild = sndChild.add(8.957);
-        tree.add(sndChild, -159.896);
-        tree.add(trdChild, 0.0069);
+        int sndChild = tree.add2(9.87);
+        int trdChild = tree.addById(sndChild, 8.957);
+        tree.addById(tree.getId(9.87), -159.896);
+        tree.addById(trdChild, 0.0069);
 
         Iterator<Double> iter = tree.iteratorDFS();
         List<Double> helper = new ArrayList<>();
@@ -75,8 +75,6 @@ class TreeTest {
 
         tree.removeAll(Arrays.asList(7.6, -159.896));
         Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.87, 9.9999});
-
-        Assertions.assertNull(trdChild.toString());
 
         Assertions.assertFalse(tree.containsAll(Arrays.asList(9.87, -159.896)));
         Assertions.assertTrue(tree.containsAll(Arrays.asList(9.87, 9.9999)));
