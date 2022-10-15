@@ -3,17 +3,17 @@ package ru.nsu.fit.melnikov.task_1_2_2;
 import java.util.*;
 
 /**
- * Represents a tree type. Has only root and its descendants.
+ * Represents a tree type. Has only ROOT and its descendants.
  *
  * @param <T> Type of elements' values
  */
 public class Tree<T> implements Collection<T> {
 
-    private final Node root;
+    private final Node ROOT;
     private int size;
 
     public Tree() {
-        root = new Node(null, null);
+        ROOT = new Node(null, null);
         size = 0;
     }
 
@@ -129,7 +129,7 @@ public class Tree<T> implements Collection<T> {
         }
 
         HelperClass Q = new HelperClass();
-        Q.foo(root);
+        Q.foo(ROOT);
         Q.remove(0);
 
         List<T> q = new ArrayList<>();
@@ -158,7 +158,7 @@ public class Tree<T> implements Collection<T> {
 
     private List<Node> toNodeList() {
         List<Node> Q = new ArrayList<>();
-        Q.add(root);
+        Q.add(ROOT);
         for (int i = 0; i < Q.size(); i++) {
             Q.addAll(Q.get(i).children);
         }
@@ -168,12 +168,12 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean add(T o) {
-        root.add(o);
+        ROOT.add(o);
         return true;
     }
 
     public Node nAdd(T o) {
-        return root.add(o);
+        return ROOT.add(o);
     }
 
     public Node nAdd(Node node, T o) {
@@ -199,7 +199,7 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public void clear() {
-        root.remove();
+        ROOT.remove();
     }
 
     @Override
@@ -245,7 +245,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     public String toString() {
-        return root.toString();
+        return ROOT.toString();
     }
 
 }
