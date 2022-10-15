@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -86,7 +86,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -147,31 +147,6 @@ implements java.util.Collection&lt;T&gt;</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- ======== NESTED CLASS SUMMARY ======== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="nested.class.summary">
-<!--   -->
-</a>
-<h3>Nested Class Summary</h3>
-<table class="memberSummary">
-<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Class</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a></span></code></th>
-<td class="colLast">
-<div class="block">Represents a tree's nodes with their values and lists of sons.</div>
-</td>
-</tr>
-</table>
-</li>
-</ul>
-</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -208,9 +183,9 @@ implements java.util.Collection&lt;T&gt;</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(ru.nsu.fit.melnikov.task_1_2_2.Tree.Node,T)">add</a></span>&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a>&nbsp;node,
-   <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(java.lang.Object,T)">add</a></span>&#8203;(java.lang.Object&nbsp;parent,
+   <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;newNode)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -219,93 +194,131 @@ implements java.util.Collection&lt;T&gt;</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAll(java.util.Collection)">addAll</a></span>&#8203;(java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</code></th>
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add2(T)">add2</a></span>&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAll(ru.nsu.fit.melnikov.task_1_2_2.Tree.Node,java.util.Collection)">addAll</a></span>&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a>&nbsp;node,
-      java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAll(java.util.Collection)">addAll</a></span>&#8203;(java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear()">clear</a></span>()</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAll(T,java.util.Collection)">addAll</a></span>&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;obj,
+      java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#contains(java.lang.Object)">contains</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAllById(int,java.util.Collection)">addAllById</a></span>&#8203;(int&nbsp;id,
+          java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsAll(java.util.Collection)">containsAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addById(int,T)">addById</a></span>&#8203;(int&nbsp;index,
+       <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear()">clear</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#contains(java.lang.Object)">contains</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iteratorDFS()">iteratorDFS</a></span>()</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsAll(java.util.Collection)">containsAll</a></span>&#8203;(java.util.Collection&nbsp;values)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code><a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nAdd(ru.nsu.fit.melnikov.task_1_2_2.Tree.Node,T)">nAdd</a></span>&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a>&nbsp;node,
-    <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
+<td class="colFirst"><code><a href="Tree.html" title="type parameter in Tree">T</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get(int)">get</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nAdd(T)">nAdd</a></span>&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getId(T)">getId</a></span>&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(java.lang.Object)">remove</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i13" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAll(java.util.Collection)">removeAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
+<td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i14" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(java.util.Collection)">retainAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
+<td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iteratorDFS()">iteratorDFS</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i15" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(java.lang.Object)">remove</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove2(java.lang.Object)">remove2</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAll(java.util.Collection)">removeAll</a></span>&#8203;(java.util.Collection&nbsp;values)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeById(int)">removeById</a></span>&#8203;(int&nbsp;index)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i19" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(java.util.Collection)">retainAll</a></span>&#8203;(java.util.Collection&nbsp;values)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i20" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(java.lang.Object,T)">set</a></span>&#8203;(java.lang.Object&nbsp;node,
+   <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i21" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setById(int,T)">setById</a></span>&#8203;(int&nbsp;index,
+       <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray()">toArray</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="Tree.html" title="type parameter in Tree">T</a>[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray(java.lang.Object%5B%5D)">toArray</a></span>&#8203;(java.lang.Object[]&nbsp;a)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toList()">toList</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -367,6 +380,39 @@ implements java.util.Collection&lt;T&gt;</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="setById(int,java.lang.Object)">
+<!--   -->
+</a><a id="setById(int,T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setById</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setById&#8203;(int&nbsp;index,
+                    <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</pre>
+</li>
+</ul>
+<a id="set(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="set(java.lang.Object,T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>set</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;set&#8203;(java.lang.Object&nbsp;node,
+                <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</pre>
+</li>
+</ul>
+<a id="get(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>get</h4>
+<pre class="methodSignature">public&nbsp;<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;get&#8203;(int&nbsp;index)</pre>
+</li>
+</ul>
 <a id="size()">
 <!--   -->
 </a>
@@ -467,39 +513,53 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="add(ru.nsu.fit.melnikov.task_1_2_2.Tree.Node,java.lang.Object)">
+<a id="add2(java.lang.Object)">
 <!--   -->
-</a><a id="add(ru.nsu.fit.melnikov.task_1_2_2.Tree.Node,T)">
+</a><a id="add2(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>add2</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;add2&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
+</li>
+</ul>
+<a id="addById(int,java.lang.Object)">
+<!--   -->
+</a><a id="addById(int,T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addById</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;addById&#8203;(int&nbsp;index,
+                   <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
+</li>
+</ul>
+<a id="add(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="add(java.lang.Object,T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>add</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;add&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a>&nbsp;node,
-                   <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
+<pre class="methodSignature">public&nbsp;int&nbsp;add&#8203;(java.lang.Object&nbsp;parent,
+               <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;newNode)</pre>
 </li>
 </ul>
-<a id="nAdd(java.lang.Object)">
-<!--   -->
-</a><a id="nAdd(T)">
+<a id="removeById(int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>nAdd</h4>
-<pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a>&nbsp;nAdd&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
-</li>
-</ul>
-<a id="nAdd(ru.nsu.fit.melnikov.task_1_2_2.Tree.Node,java.lang.Object)">
-<!--   -->
-</a><a id="nAdd(ru.nsu.fit.melnikov.task_1_2_2.Tree.Node,T)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>nAdd</h4>
-<pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a>&nbsp;nAdd&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a>&nbsp;node,
-                      <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
+<h4>removeById</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;removeById&#8203;(int&nbsp;index)
+               throws java.lang.ClassCastException</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ClassCastException</code></dd>
+</dl>
 </li>
 </ul>
 <a id="remove(java.lang.Object)">
@@ -518,6 +578,31 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
+<a id="remove2(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>remove2</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;remove2&#8203;(java.lang.Object&nbsp;o)
+            throws java.lang.ClassCastException</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ClassCastException</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getId(java.lang.Object)">
+<!--   -->
+</a><a id="getId(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getId</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getId&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</pre>
+</li>
+</ul>
 <a id="addAll(java.util.Collection)">
 <!--   -->
 </a>
@@ -531,13 +616,25 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="addAll(ru.nsu.fit.melnikov.task_1_2_2.Tree.Node,java.util.Collection)">
+<a id="addAllById(int,java.util.Collection)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addAllById</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addAllById&#8203;(int&nbsp;id,
+                          java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</pre>
+</li>
+</ul>
+<a id="addAll(java.lang.Object,java.util.Collection)">
+<!--   -->
+</a><a id="addAll(T,java.util.Collection)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addAll</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;addAll&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.melnikov.task_1_2_2">Tree.Node</a>&nbsp;node,
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addAll&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;obj,
                       java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</pre>
 </li>
 </ul>
@@ -560,7 +657,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>retainAll</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;retainAll&#8203;(java.util.Collection&nbsp;c)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;retainAll&#8203;(java.util.Collection&nbsp;values)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>retainAll</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
@@ -573,7 +670,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeAll</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;removeAll&#8203;(java.util.Collection&nbsp;c)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;removeAll&#8203;(java.util.Collection&nbsp;values)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>removeAll</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
@@ -586,7 +683,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>containsAll</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;containsAll&#8203;(java.util.Collection&nbsp;c)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;containsAll&#8203;(java.util.Collection&nbsp;values)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>containsAll</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
@@ -669,7 +766,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
