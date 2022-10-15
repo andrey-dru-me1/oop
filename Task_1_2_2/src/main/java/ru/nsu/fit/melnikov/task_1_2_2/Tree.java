@@ -58,6 +58,9 @@ public class Tree<T> implements Collection<T> {
          * Removes current child with its descendants.
          */
         public boolean remove() {
+
+            if (children == null) return true;   //checks if current node has already removed
+
             while (children.size() != 0) {
                 children.get(0).remove();
             }
@@ -65,7 +68,13 @@ public class Tree<T> implements Collection<T> {
             if (parent == null) return true;
 
             Tree.this.size--;
-            return parent.children.remove(this);
+            boolean res = parent.children.remove(this);
+
+            this.value = null;
+            this.children = null;
+            this.parent = null;
+
+            return res;
 
         }
 
@@ -75,6 +84,9 @@ public class Tree<T> implements Collection<T> {
          * @return The String-representation of the tree.
          */
         public String toString() {
+
+            if (children == null) return null;   //check if current node has already removed
+
             StringBuilder res = new StringBuilder("( " + value + ", [");
             for (int i = 0; i < children.size(); i++) {
 
@@ -104,7 +116,10 @@ public class Tree<T> implements Collection<T> {
     public boolean contains(Object o) {
         boolean res = false;
         for (T i : this) {
-            if (i == o) {
+            if (o.getClass() != i.getClass()) {
+                return false;
+            }
+            if (i.equals(o)) {
                 res = true;
                 break;
             }
@@ -168,12 +183,16 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean add(T o) {
-        ROOT.add(o);
+        return add(ROOT, o);
+    }
+
+    public boolean add(Node node, T o) {
+        node.add(o);
         return true;
     }
 
     public Node nAdd(T o) {
-        return ROOT.add(o);
+        return nAdd(ROOT, o);
     }
 
     public Node nAdd(Node node, T o) {
@@ -191,8 +210,12 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
+        return addAll(ROOT, c);
+    }
+
+    public boolean addAll(Node node, Collection<? extends T> c) {
         for (T i : c) {
-            this.add(i);
+            node.add(i);
         }
         return true;
     }
@@ -205,7 +228,7 @@ public class Tree<T> implements Collection<T> {
     @Override
     public boolean retainAll(Collection c) {
         for (Node i : this.toNodeList()) {
-            if (!c.contains(i)) {
+            if (!c.contains(i.value)) {
                 i.remove();
             }
         }
@@ -214,8 +237,10 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean removeAll(Collection c) {
-        for (Object i : c) {
-            this.remove(i);
+        for (Node i : this.toNodeList()) {
+            if (c.contains(i.value)) {
+                i.remove();
+            }
         }
         return true;
     }
