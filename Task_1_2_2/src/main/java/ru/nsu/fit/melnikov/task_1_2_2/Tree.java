@@ -11,25 +11,29 @@ public class Tree<T> implements Collection<T> {
 
     private final Node ROOT;
     private int size;
+    private int ids;
 
     public Tree() {
-        ROOT = new Node(null, null);
+        ROOT = new Node(null, null, 0);
         size = 0;
+        ids = 1;
     }
 
     /**
      * Represents a tree's nodes with their values and lists of sons.
      */
-    public class Node {
+    private class Node {
 
         Object value;
         List<Node> children;
         Node parent;
+        private final int ID;
 
-        public Node(Node parent, T value) {
+        public Node(Node parent, T value, int id) {
             this.value = value;
             children = new ArrayList<>();
             this.parent = parent;
+            ID = id;
         }
 
         public void set(T value) {
@@ -47,35 +51,34 @@ public class Tree<T> implements Collection<T> {
          * @param value The value that will be bound on the new element.
          * @return The new node.
          */
-        public Node add(T value) {
-            Node newNode = new Node(this, value);
+        public int add(T value) {
+            Node newNode = new Node(this, value, ids++);
             children.add(newNode);
             Tree.this.size++;
-            return newNode;
+            return newNode.ID;
         }
 
         /**
          * Removes current child with its descendants.
          */
-        public boolean remove() {
+        public int remove() {
 
-            if (children == null) return true;   //checks if current node has already removed
+            if (children == null) return -1;   //checks if current node has already removed
 
             while (children.size() != 0) {
                 children.get(0).remove();
             }
 
-            boolean res = true;
             if (parent != null) {
                 Tree.this.size--;
-                res = parent.children.remove(this);
+                parent.children.remove(this);
             }
 
             this.value = null;
             this.children = null;
             this.parent = null;
 
-            return res;
+            return this.ID;
 
         }
 
@@ -103,6 +106,18 @@ public class Tree<T> implements Collection<T> {
 
     }
 
+    public void setById(int index, T value) {
+        getNode(index).set(value);
+    }
+
+    public void set(Object node, T value) {
+        getNode(node).set(value);
+    }
+
+    public T get(int index) {
+        return getNode(index).get();
+    }
+
     @Override
     public int size() {
         return size;
@@ -115,17 +130,10 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean contains(Object o) {
-        boolean res = false;
         for (T i : this) {
-            if (o.getClass() != i.getClass()) {
-                return false;
-            }
-            if (i.equals(o)) {
-                res = true;
-                break;
-            }
+            if (i.equals(o)) return true;
         }
-        return res;
+        return false;
     }
 
     @Override
@@ -164,6 +172,7 @@ public class Tree<T> implements Collection<T> {
     public List<T> toList() {
 
         List<Node> Q = toNodeList();
+        Q.remove(0);
 
         List<T> q = new ArrayList<>();
         for (Node i : Q) {
@@ -178,45 +187,83 @@ public class Tree<T> implements Collection<T> {
         for (int i = 0; i < Q.size(); i++) {
             Q.addAll(Q.get(i).children);
         }
-        Q.remove(0);
         return Q;
     }
 
     @Override
     public boolean add(T o) {
-        return add(ROOT, o);
-    }
-
-    public boolean add(Node node, T o) {
-        node.add(o);
+        addById(0, o);
         return true;
     }
 
-    public Node nAdd(T o) {
-        return nAdd(ROOT, o);
+    private Node getNodeById(int id) throws IndexOutOfBoundsException {
+        for (Node i : this.toNodeList()) {
+            if (i.ID == id) {
+                return i;
+            }
+        }
+        throw new IndexOutOfBoundsException();
     }
 
-    public Node nAdd(Node node, T o) {
-        return node.add(o);
+    private Node getNode(Object value) throws IndexOutOfBoundsException {
+        for (Node i : this.toNodeList()) {
+            if (i.ID == 0) continue;
+            if (i.value.equals(value)) {
+                return i;
+            }
+        }
+        throw new IndexOutOfBoundsException();
+    }
+
+    public int add2(T o) {
+        return addById(0, o);
+    }
+
+    public int addById(int index, T o) {
+        return this.getNodeById(index).add(o);
+    }
+
+    public int add(Object parent, T newNode) {
+        return this.getNode(parent).add(newNode);
+    }
+
+    public int removeById(int index) throws ClassCastException {
+        return this.getNodeById(index).remove();
     }
 
     @Override
     public boolean remove(Object o) throws ClassCastException {
-        if (o.getClass() != Node.class) {
-            throw new ClassCastException("Expected 'Node' class but found '" + o.getClass().toString() + "'.");
+        this.getNode(o).remove();
+        return true;
+    }
+
+    public int remove2(Object o) throws ClassCastException {
+        return this.getNode(o).remove();
+    }
+
+    public int getId(T value) {
+        for (Node i : this.toNodeList()) {
+            if (i.ID == 0) continue;
+            if (i.value.equals(value)) return i.ID;
         }
-        @SuppressWarnings("unchecked") boolean res = ((Node) o).remove();
-        return res;
+        throw new IndexOutOfBoundsException();
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return addAll(ROOT, c);
+        return addAllById(0, c);
     }
 
-    public boolean addAll(Node node, Collection<? extends T> c) {
+    public boolean addAllById(int id, Collection<? extends T> c) {
         for (T i : c) {
-            node.add(i);
+            getNodeById(id).add(i);
+        }
+        return true;
+    }
+
+    public boolean addAll(T obj, Collection<? extends T> c) {
+        for (T i : c) {
+            getNode(obj).add(i);
         }
         return true;
     }
@@ -227,9 +274,10 @@ public class Tree<T> implements Collection<T> {
     }
 
     @Override
-    public boolean retainAll(Collection c) {
+    public boolean retainAll(Collection values) {
         for (Node i : this.toNodeList()) {
-            if (!c.contains(i.value)) {
+            if (i.ID == 0) continue;
+            if (!values.contains(i.value)) {
                 i.remove();
             }
         }
@@ -237,9 +285,10 @@ public class Tree<T> implements Collection<T> {
     }
 
     @Override
-    public boolean removeAll(Collection c) {
+    public boolean removeAll(Collection values) {
         for (Node i : this.toNodeList()) {
-            if (c.contains(i.value)) {
+            if (i.ID == 0) continue;
+            if (values.contains(i.value)) {
                 i.remove();
             }
         }
@@ -247,15 +296,11 @@ public class Tree<T> implements Collection<T> {
     }
 
     @Override
-    public boolean containsAll(Collection c) {
-        boolean res = true;
-        for (Object i : c) {
-            if (!contains(i)) {
-                res = false;
-                break;
-            }
+    public boolean containsAll(Collection values) {
+        for (Object i : values) {
+            if (!contains(i)) return false;
         }
-        return res;
+        return true;
     }
 
     @Override
