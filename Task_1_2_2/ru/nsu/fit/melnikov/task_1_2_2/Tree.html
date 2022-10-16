@@ -188,7 +188,7 @@ implements java.util.Collection&lt;T&gt;</pre>
    <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
 <td class="colLast">
 <div class="block">Adds new child node to the node of the tree specified
- by its value and returns node's identifier</div>
+ by its value and returns node's identifier.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -522,20 +522,6 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="iteratorDFS()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>iteratorDFS</h4>
-<pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;iteratorDFS()</pre>
-<div class="block">Returns a depth-search Iterator over this tree.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A depth-search Iterator over this tree.</dd>
-</dl>
-</li>
-</ul>
 <a id="toArray()">
 <!--   -->
 </a>
@@ -546,20 +532,6 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>toArray</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a id="toList()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>toList</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;toList()</pre>
-<div class="block">Converts the tree to a list using breadth-search order.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>List with all values of the tree.</dd>
 </dl>
 </li>
 </ul>
@@ -578,81 +550,6 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="add2(java.lang.Object)">
-<!--   -->
-</a><a id="add2(T)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>add2</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;add2&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
-<div class="block">Adds new node with the specified value to the tree and returns node's identifier.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>o</code> - Object to add</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Identifier of a new node</dd>
-</dl>
-</li>
-</ul>
-<a id="addById(int,java.lang.Object)">
-<!--   -->
-</a><a id="addById(int,T)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addById</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;addById&#8203;(int&nbsp;id,
-                   <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
-<div class="block">Adds new child node to the node of the tree specified by id and returns node's identifier.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>id</code> - Identifier of the node to which children o should be added</dd>
-<dd><code>o</code> - Object to add</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Identifier of a new node</dd>
-</dl>
-</li>
-</ul>
-<a id="add(java.lang.Object,java.lang.Object)">
-<!--   -->
-</a><a id="add(java.lang.Object,T)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>add</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;add&#8203;(java.lang.Object&nbsp;parent,
-               <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
-<div class="block">Adds new child node to the node of the tree specified
- by its value and returns node's identifier</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parent</code> - Value of the node to which children o should be added</dd>
-<dd><code>o</code> - Object to add</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Identifier of a new node</dd>
-</dl>
-</li>
-</ul>
-<a id="removeById(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>removeById</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;removeById&#8203;(int&nbsp;id)</pre>
-<div class="block">Removes node of the tree specified by its id and returns the node's identifier.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>id</code> - Identifier of a node to remove</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Identifier of the removed node</dd>
-</dl>
-</li>
-</ul>
 <a id="remove(java.lang.Object)">
 <!--   -->
 </a>
@@ -666,40 +563,6 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="remove2(java.lang.Object)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>remove2</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;remove2&#8203;(java.lang.Object&nbsp;o)</pre>
-<div class="block">Removes a node of the tree specified by its value and returns the node's identifier.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>o</code> - Value of node to remove</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Identifier of the removed node</dd>
-</dl>
-</li>
-</ul>
-<a id="getId(java.lang.Object)">
-<!--   -->
-</a><a id="getId(T)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getId</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getId&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</pre>
-<div class="block">Returns an identifier of the node specified by its value.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>value</code> - Value of node which id to return</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Identifier of node specified by its value</dd>
-</dl>
-</li>
-</ul>
 <a id="addAll(java.util.Collection)">
 <!--   -->
 </a>
@@ -710,46 +573,6 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>addAll</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a id="addAllById(int,java.util.Collection)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addAllById</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;addAllById&#8203;(int&nbsp;id,
-                          java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</pre>
-<div class="block">Adds all the elements in the specified collection
- to a node of the tree specified by its identifier.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>id</code> - Identifier of a node to which children elements to add</dd>
-<dd><code>c</code> - Collection with elements to add</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>True if the tree changed as the result of call</dd>
-</dl>
-</li>
-</ul>
-<a id="addAll(java.lang.Object,java.util.Collection)">
-<!--   -->
-</a><a id="addAll(T,java.util.Collection)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addAll</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;addAll&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;obj,
-                      java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</pre>
-<div class="block">Adds all the elements in the specified collection
- to a node of the tree specified by its identifier.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>obj</code> - Value of a node to which children elements to add</dd>
-<dd><code>c</code> - Collection with elements to add</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>True if the tree changed as the result of call</dd>
 </dl>
 </li>
 </ul>
@@ -815,6 +638,183 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>toArray</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="iteratorDFS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>iteratorDFS</h4>
+<pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;iteratorDFS()</pre>
+<div class="block">Returns a depth-search Iterator over this tree.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A depth-search Iterator over this tree.</dd>
+</dl>
+</li>
+</ul>
+<a id="toList()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toList</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;toList()</pre>
+<div class="block">Converts the tree to a list using breadth-search order.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>List with all values of the tree.</dd>
+</dl>
+</li>
+</ul>
+<a id="add2(java.lang.Object)">
+<!--   -->
+</a><a id="add2(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>add2</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;add2&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
+<div class="block">Adds new node with the specified value to the tree and returns node's identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - Object to add</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Identifier of a new node</dd>
+</dl>
+</li>
+</ul>
+<a id="addById(int,java.lang.Object)">
+<!--   -->
+</a><a id="addById(int,T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addById</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;addById&#8203;(int&nbsp;id,
+                   <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
+<div class="block">Adds new child node to the node of the tree specified by id and returns node's identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - Identifier of the node to which children o should be added</dd>
+<dd><code>o</code> - Object to add</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Identifier of a new node</dd>
+</dl>
+</li>
+</ul>
+<a id="add(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="add(java.lang.Object,T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>add</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;add&#8203;(java.lang.Object&nbsp;parent,
+               <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
+<div class="block">Adds new child node to the node of the tree specified
+ by its value and returns node's identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>parent</code> - Value of the node to which children o should be added</dd>
+<dd><code>o</code> - Object to add</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Identifier of a new node</dd>
+</dl>
+</li>
+</ul>
+<a id="removeById(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeById</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;removeById&#8203;(int&nbsp;id)</pre>
+<div class="block">Removes node of the tree specified by its id and returns the node's identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - Identifier of a node to remove</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Identifier of the removed node</dd>
+</dl>
+</li>
+</ul>
+<a id="remove2(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>remove2</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;remove2&#8203;(java.lang.Object&nbsp;o)</pre>
+<div class="block">Removes a node of the tree specified by its value and returns the node's identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - Value of node to remove</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Identifier of the removed node</dd>
+</dl>
+</li>
+</ul>
+<a id="getId(java.lang.Object)">
+<!--   -->
+</a><a id="getId(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getId</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getId&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</pre>
+<div class="block">Returns an identifier of the node specified by its value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>value</code> - Value of node which id to return</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Identifier of node specified by its value</dd>
+</dl>
+</li>
+</ul>
+<a id="addAllById(int,java.util.Collection)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addAllById</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addAllById&#8203;(int&nbsp;id,
+                          java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</pre>
+<div class="block">Adds all the elements in the specified collection
+ to a node of the tree specified by its identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - Identifier of a node to which children elements to add</dd>
+<dd><code>c</code> - Collection with elements to add</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>True if the tree changed as the result of call</dd>
+</dl>
+</li>
+</ul>
+<a id="addAll(java.lang.Object,java.util.Collection)">
+<!--   -->
+</a><a id="addAll(T,java.util.Collection)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addAll</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addAll&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;obj,
+                      java.util.Collection&lt;? extends <a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;c)</pre>
+<div class="block">Adds all the elements in the specified collection
+ to a node of the tree specified by its identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>obj</code> - Value of a node to which children elements to add</dd>
+<dd><code>c</code> - Collection with elements to add</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>True if the tree changed as the result of call</dd>
 </dl>
 </li>
 </ul>
