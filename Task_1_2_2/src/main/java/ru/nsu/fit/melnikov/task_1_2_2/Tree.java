@@ -137,7 +137,7 @@ public class Tree<T> implements Collection<T> {
      * @param value Value to which the node has to be modified
      */
     public void setById(int id, T value) {
-        getNode(id).set(value);
+        getNodeById(id).set(value);
     }
 
     /**
