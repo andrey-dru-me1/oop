@@ -87,7 +87,9 @@ public class Tree<T> implements Collection<T> {
          */
         public int remove() {
 
-            if (children == null) return -1;   //checks if current node has already removed
+            if (children == null) {
+                return -1;   //checks if current node has already removed
+            }
 
             while (children.size() != 0) {
                 children.get(0).remove();
@@ -113,7 +115,9 @@ public class Tree<T> implements Collection<T> {
          */
         public String toString() {
 
-            if (children == null) return null;   //check if current node has already removed
+            if (children == null) {
+                return null;   //check if current node has already removed
+            }
 
             StringBuilder res = new StringBuilder("( " + value + ", [");
             for (int i = 0; i < children.size(); i++) {
@@ -173,7 +177,9 @@ public class Tree<T> implements Collection<T> {
     @Override
     public boolean contains(Object o) {
         for (T i : this) {
-            if (i.equals(o)) return true;
+            if (i.equals(o)) {
+                return true;
+            }
         }
         return false;
     }
@@ -186,6 +192,83 @@ public class Tree<T> implements Collection<T> {
     @Override
     public Iterator<T> iterator() {
         return this.toList().iterator();
+    }
+
+    @Override
+    public Object[] toArray() {
+        return this.toList().toArray();
+    }
+
+    @Override
+    public boolean add(T o) {
+        addById(0, o);
+        return true;
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        this.getNode(o).remove();
+        return true;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        return addAllById(0, c);
+    }
+
+    @Override
+    public void clear() {
+        ROOT.remove();
+    }
+
+    @Override
+    public boolean retainAll(Collection values) {
+        for (Node i : this.toNodeList()) {
+            if (i.ID == 0) {
+                continue;
+            }
+            if (!values.contains(i.value)) {
+                i.remove();
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean removeAll(Collection values) {
+        for (Node i : this.toNodeList()) {
+            if (i.ID == 0) {
+                continue;
+            }
+            if (values.contains(i.value)) {
+                i.remove();
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean containsAll(Collection values) {
+        for (Object i : values) {
+            if (!contains(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public T[] toArray(Object[] a) {
+        if (a.length < size) {
+            // Make a new array of a's runtime type, but my contents:
+            return (T[]) Arrays.copyOf(this.toArray(), size, a.getClass());
+        }
+        System.arraycopy(this.toArray(), 0, a, 0, size);
+        if (a.length > size) {
+            a[size] = null;
+        }
+        return (T[]) a;
     }
 
     /**
@@ -213,11 +296,6 @@ public class Tree<T> implements Collection<T> {
             q.add((T) i.value);
         }
         return q.iterator();
-    }
-
-    @Override
-    public Object[] toArray() {
-        return this.toList().toArray();
     }
 
     /**
@@ -252,12 +330,6 @@ public class Tree<T> implements Collection<T> {
         return Q;
     }
 
-    @Override
-    public boolean add(T o) {
-        addById(0, o);
-        return true;
-    }
-
     /**
      * Returns the node with id identifier.
      *
@@ -285,7 +357,9 @@ public class Tree<T> implements Collection<T> {
      */
     private Node getNode(Object value) throws IndexOutOfBoundsException {
         for (Node i : this.toNodeList()) {
-            if (i.ID == 0) continue;
+            if (i.ID == 0) {
+                continue;
+            }
             if (i.value.equals(value)) {
                 return i;
             }
@@ -316,7 +390,7 @@ public class Tree<T> implements Collection<T> {
 
     /**
      * Adds new child node to the node of the tree specified
-     * by its value and returns node's identifier
+     * by its value and returns node's identifier.
      *
      * @param parent Value of the node to which children o should be added
      * @param o      Object to add
@@ -334,12 +408,6 @@ public class Tree<T> implements Collection<T> {
      */
     public int removeById(int id) {
         return this.getNodeById(id).remove();
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        this.getNode(o).remove();
-        return true;
     }
 
     /**
@@ -360,15 +428,14 @@ public class Tree<T> implements Collection<T> {
      */
     public int getId(T value) {
         for (Node i : this.toNodeList()) {
-            if (i.ID == 0) continue;
-            if (i.value.equals(value)) return i.ID;
+            if (i.ID == 0) {
+                continue;
+            }
+            if (i.value.equals(value)) {
+                return i.ID;
+            }
         }
         throw new IndexOutOfBoundsException();
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return addAllById(0, c);
     }
 
     /**
@@ -399,53 +466,6 @@ public class Tree<T> implements Collection<T> {
             getNode(obj).add(i);
         }
         return true;
-    }
-
-    @Override
-    public void clear() {
-        ROOT.remove();
-    }
-
-    @Override
-    public boolean retainAll(Collection values) {
-        for (Node i : this.toNodeList()) {
-            if (i.ID == 0) continue;
-            if (!values.contains(i.value)) {
-                i.remove();
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public boolean removeAll(Collection values) {
-        for (Node i : this.toNodeList()) {
-            if (i.ID == 0) continue;
-            if (values.contains(i.value)) {
-                i.remove();
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public boolean containsAll(Collection values) {
-        for (Object i : values) {
-            if (!contains(i)) return false;
-        }
-        return true;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public T[] toArray(Object[] a) {
-        if (a.length < size)
-            // Make a new array of a's runtime type, but my contents:
-            return (T[]) Arrays.copyOf(this.toArray(), size, a.getClass());
-        System.arraycopy(this.toArray(), 0, a, 0, size);
-        if (a.length > size)
-            a[size] = null;
-        return (T[]) a;
     }
 
     /**

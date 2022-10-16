@@ -18,11 +18,17 @@ class TreeTest {
         Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 8, [] )] )] )");
 
         tree.addById(tree.getId(7), 9);
-        Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 8, [] ), ( 9, [] )] )] )");
+        Assertions.assertEquals(
+                tree.toString().trim(),
+                "( null, [( 7, [( 8, [] ), ( 9, [] )] )] )"
+        );
 
         tree.set(8, tree.get(8) / 2);
 
-        Assertions.assertEquals(tree.toString().trim(), "( null, [( 7, [( 4, [] ), ( 9, [] )] )] )");
+        Assertions.assertEquals(
+                tree.toString().trim(),
+                "( null, [( 7, [( 4, [] ), ( 9, [] )] )] )"
+        );
         Assertions.assertEquals(tree.toList().toString().trim(), "[7, 4, 9]");
         Assertions.assertEquals(Arrays.toString(tree.toArray()), "[7, 4, 9]");
 
@@ -55,7 +61,10 @@ class TreeTest {
         }
         Assertions.assertEquals(helper, Arrays.asList(6.79, 9.87, 8.957, 0.0069, -159.896));
 
-        Assertions.assertArrayEquals(tree.toArray(), new Double[]{6.79, 9.87, 8.957, -159.896, 0.0069});
+        Assertions.assertArrayEquals(
+                tree.toArray(),
+                new Double[]{6.79, 9.87, 8.957, -159.896, 0.0069}
+        );
 
         tree.addAll(Arrays.asList(7.6, 7.6, 9.9999));
         Assertions.assertArrayEquals(
@@ -71,7 +80,10 @@ class TreeTest {
 
         toTest = new Double[tree.size() + 3];
         tree.toArray(toTest);
-        Assertions.assertArrayEquals(toTest, new Double[]{9.87, 7.6, 7.6, 9.9999, -159.896, null, null, null});
+        Assertions.assertArrayEquals(
+                toTest,
+                new Double[]{9.87, 7.6, 7.6, 9.9999, -159.896, null, null, null}
+        );
 
         tree.removeAll(Arrays.asList(7.6, -159.896));
         Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.87, 9.9999});
@@ -83,10 +95,16 @@ class TreeTest {
         Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.88, 9.9999});
 
         tree.addAll(9.9999, Arrays.asList(987654321.0, -5.321, 8.00901));
-        Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.88, 9.9999, 987654321.0, -5.321, 8.00901});
+        Assertions.assertArrayEquals(
+                tree.toArray(),
+                new Double[]{9.88, 9.9999, 987654321.0, -5.321, 8.00901}
+        );
 
         tree.remove2(-5.321);
-        Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.88, 9.9999, 987654321.0, 8.00901});
+        Assertions.assertArrayEquals(
+                tree.toArray(),
+                new Double[]{9.88, 9.9999, 987654321.0, 8.00901}
+        );
 
         tree.clear();
         Assertions.assertNull(tree.toString());
