@@ -146,11 +146,11 @@ public class Tree<T> implements Collection<T> {
     /**
      * Sets a value of the node to the new one.
      *
-     * @param node  Node to modify
-     * @param value Value to which the node has to be modified
+     * @param nodeValue Node with specific value to modify
+     * @param newValue  Value to which the node has to be modified
      */
-    public void set(Object node, T value) {
-        getNode(node).set(value);
+    public void set(T nodeValue, T newValue) {
+        getNode(nodeValue).set(newValue);
     }
 
     /**
