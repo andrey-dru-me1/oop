@@ -12,7 +12,7 @@ public class Tree<T> implements Collection<T> {
     /**
      * Null sentinel which points to significant nodes.
      */
-    private final Node ROOT;
+    private final Node root;
     /**
      * Count of elements (nodes) in current tree without a root.
      */
@@ -23,7 +23,7 @@ public class Tree<T> implements Collection<T> {
     private int ids;
 
     public Tree() {
-        ROOT = new Node(null, null, 0);
+        root = new Node(null, null, 0);
         size = 0;
         ids = 1;
     }
@@ -39,13 +39,13 @@ public class Tree<T> implements Collection<T> {
         T value;
         List<Node> children;
         Node parent;
-        private final int ID;
+        private final int id;
 
         public Node(Node parent, T value, int id) {
             this.value = value;
             children = new ArrayList<>();
             this.parent = parent;
-            ID = id;
+            this.id = id;
         }
 
         /**
@@ -76,7 +76,7 @@ public class Tree<T> implements Collection<T> {
             Node newNode = new Node(this, value, ids++);
             children.add(newNode);
             Tree.this.size++;
-            return newNode.ID;
+            return newNode.id;
         }
 
         /**
@@ -103,7 +103,7 @@ public class Tree<T> implements Collection<T> {
             this.children = null;
             this.parent = null;
 
-            return this.ID;
+            return this.id;
 
         }
 
@@ -217,13 +217,13 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public void clear() {
-        ROOT.remove();
+        root.remove();
     }
 
     @Override
     public boolean retainAll(Collection values) {
         for (Node i : this.toNodeList()) {
-            if (i.ID == 0) {
+            if (i.id == 0) {
                 continue;
             }
             if (!values.contains(i.value)) {
@@ -236,7 +236,7 @@ public class Tree<T> implements Collection<T> {
     @Override
     public boolean removeAll(Collection values) {
         for (Node i : this.toNodeList()) {
-            if (i.ID == 0) {
+            if (i.id == 0) {
                 continue;
             }
             if (values.contains(i.value)) {
@@ -286,7 +286,7 @@ public class Tree<T> implements Collection<T> {
         }
 
         HelperClass Q = new HelperClass();
-        Q.foo(ROOT);
+        Q.foo(root);
         Q.remove(0);
 
         List<T> q = new ArrayList<>();
@@ -320,7 +320,7 @@ public class Tree<T> implements Collection<T> {
      */
     private List<Node> toNodeList() {
         List<Node> Q = new ArrayList<>();
-        Q.add(ROOT);
+        Q.add(root);
         for (int i = 0; i < Q.size(); i++) {
             Q.addAll(Q.get(i).children);
         }
@@ -337,7 +337,7 @@ public class Tree<T> implements Collection<T> {
      */
     private Node getNodeById(int id) throws IndexOutOfBoundsException {
         for (Node i : this.toNodeList()) {
-            if (i.ID == id) {
+            if (i.id == id) {
                 return i;
             }
         }
@@ -354,7 +354,7 @@ public class Tree<T> implements Collection<T> {
      */
     private Node getNode(Object value) throws IndexOutOfBoundsException {
         for (Node i : this.toNodeList()) {
-            if (i.ID == 0) {
+            if (i.id == 0) {
                 continue;
             }
             if (i.value.equals(value)) {
@@ -425,11 +425,11 @@ public class Tree<T> implements Collection<T> {
      */
     public int getId(T value) {
         for (Node i : this.toNodeList()) {
-            if (i.ID == 0) {
+            if (i.id == 0) {
                 continue;
             }
             if (i.value.equals(value)) {
-                return i.ID;
+                return i.id;
             }
         }
         throw new IndexOutOfBoundsException();
@@ -471,7 +471,7 @@ public class Tree<T> implements Collection<T> {
      * @return String representation of the tree
      */
     public String toString() {
-        return ROOT.toString();
+        return root.toString();
     }
 
 }
