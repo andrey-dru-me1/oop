@@ -118,17 +118,17 @@ public class Tree<T> implements Collection<T> {
                 return null;   //check if current node has already removed
             }
 
-            StringBuilder res = new StringBuilder("( " + value + ", [");
+            String res = "( " + value + ", [";
             for (int i = 0; i < children.size(); i++) {
 
-                res.append(children.get(i).toString());
+                res += children.get(i).toString();
 
                 if (i < children.size() - 1) {
-                    res.append(", ");
+                    res += ", ";
                 }
             }
-            res.append("] )");
-            return res.toString();
+            res += "] )";
+            return res;
         }
 
     }
