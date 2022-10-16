@@ -36,7 +36,7 @@ public class Tree<T> implements Collection<T> {
         /**
          * Value that user places in the tree.
          */
-        Object value;
+        T value;
         List<Node> children;
         Node parent;
         private final int ID;
@@ -62,9 +62,8 @@ public class Tree<T> implements Collection<T> {
          *
          * @return Current node value
          */
-        @SuppressWarnings("unchecked")
         public T get() {
-            return (T) value;
+            return value;
         }
 
         /**
@@ -276,7 +275,6 @@ public class Tree<T> implements Collection<T> {
      *
      * @return A depth-search Iterator over this tree.
      */
-    @SuppressWarnings("unchecked")
     public Iterator<T> iteratorDFS() {
         class HelperClass extends ArrayList<Node> {
             public void foo(Node node) {
@@ -293,7 +291,7 @@ public class Tree<T> implements Collection<T> {
 
         List<T> q = new ArrayList<>();
         for (Node i : Q) {
-            q.add((T) i.value);
+            q.add(i.value);
         }
         return q.iterator();
     }
@@ -303,7 +301,6 @@ public class Tree<T> implements Collection<T> {
      *
      * @return List with all values of the tree.
      */
-    @SuppressWarnings("unchecked")
     public List<T> toList() {
 
         List<Node> Q = toNodeList();
@@ -311,7 +308,7 @@ public class Tree<T> implements Collection<T> {
 
         List<T> q = new ArrayList<>();
         for (Node i : Q) {
-            q.add((T) i.value);
+            q.add(i.value);
         }
         return q;
     }
