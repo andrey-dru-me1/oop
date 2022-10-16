@@ -79,6 +79,15 @@ class TreeTest {
         Assertions.assertFalse(tree.containsAll(Arrays.asList(9.87, -159.896)));
         Assertions.assertTrue(tree.containsAll(Arrays.asList(9.87, 9.9999)));
 
+        tree.setById(sndChild, 9.88);
+        Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.88, 9.9999});
+
+        tree.addAll(9.9999, Arrays.asList(987654321.0, -5.321, 8.00901));
+        Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.88, 9.9999, 987654321.0, -5.321, 8.00901});
+
+        tree.remove2(-5.321);
+        Assertions.assertArrayEquals(tree.toArray(), new Double[]{9.88, 9.9999, 987654321.0, 8.00901});
+
         tree.clear();
         Assertions.assertNull(tree.toString());
 
