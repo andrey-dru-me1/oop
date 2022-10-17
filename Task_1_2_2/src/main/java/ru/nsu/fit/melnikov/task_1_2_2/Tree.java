@@ -190,12 +190,17 @@ public class Tree<T> implements Collection<T> {
      */
     @Override
     public Iterator<T> iterator() {
-        return this.toList().iterator();
+        return this.iteratorBFS();
     }
 
     @Override
     public Object[] toArray() {
-        return this.toList().toArray();
+        Object[] res = new Object[this.size];
+        int i = 0;
+        for (T val : this) {
+            res[i++] = val;
+        }
+        return res;
     }
 
     @Override
@@ -222,28 +227,34 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean retainAll(Collection values) {
-        for (Node i : this.toNodeList()) {
+        List<Node> toRemove = new ArrayList<>();
+        Iterator<Node> iter = this.nodeIterator();
+        while (iter.hasNext()) {
+            Node i = iter.next();
             if (i.id == 0) {
                 continue;
             }
             if (!values.contains(i.value)) {
-                i.remove();
+                toRemove.add(i);
             }
         }
-        return true;
+        return removeNodes(toRemove);
     }
 
     @Override
     public boolean removeAll(Collection values) {
-        for (Node i : this.toNodeList()) {
+        List<Node> toRemove = new ArrayList<>();
+        Iterator<Node> iter = this.nodeIterator();
+        while (iter.hasNext()) {
+            Node i = iter.next();
             if (i.id == 0) {
                 continue;
             }
             if (values.contains(i.value)) {
-                i.remove();
+                toRemove.add(i);
             }
         }
-        return true;
+        return removeNodes(toRemove);
     }
 
     @Override
@@ -270,30 +281,80 @@ public class Tree<T> implements Collection<T> {
         return (T[]) a;
     }
 
+    private boolean removeNodes(List<Node> nodes) {
+        for (Node i : nodes) {
+            i.remove();
+        }
+        return true;
+    }
+
     /**
      * Returns a depth-search Iterator over this tree.
      *
      * @return A depth-search Iterator over this tree.
      */
     public Iterator<T> iteratorDFS() {
-        class HelperClass extends ArrayList<Node> {
-            public void foo(Node node) {
-                this.add(node);
-                for (Node i : node.children) {
-                    foo(i);
-                }
+        return new Itr<T>() {
+
+            @Override
+            public T next() {
+                Q.addAll(1, Q.get(0).children);
+                return Q.remove(0).value;
             }
+        };
+    }
+
+    /**
+     * Returns a breadth-search Iterator over this tree.
+     *
+     * @return A breadth-search Iterator over this tree.
+     */
+    public Iterator<T> iteratorBFS() {
+        return new Itr<T>() {
+
+            @Override
+            public T next() {
+                Q.addAll(Q.get(0).children);
+                return Q.remove(0).value;
+            }
+        };
+    }
+
+    private Iterator<Node> nodeIterator() {
+        return new Itr<Node>() {
+
+            @Override
+            protected void addToQ() {
+                Q.add(root);
+            }
+
+            @Override
+            public Node next() {
+                Q.addAll(Q.get(0).children);
+                return Q.remove(0);
+            }
+        };
+    }
+
+    private abstract class Itr<E> implements Iterator<E> {
+
+        protected final List<Node> Q;
+
+        private Itr() {
+            Q = new ArrayList<>(root.children);
+            addToQ();
         }
 
-        HelperClass Q = new HelperClass();
-        Q.foo(root);
-        Q.remove(0);
-
-        List<T> q = new ArrayList<>();
-        for (Node i : Q) {
-            q.add(i.value);
+        protected void addToQ() {
         }
-        return q.iterator();
+
+        @Override
+        public boolean hasNext() {
+            return Q.size() != 0;
+        }
+
+        @Override
+        public abstract E next();
     }
 
     /**
@@ -302,29 +363,7 @@ public class Tree<T> implements Collection<T> {
      * @return List with all values of the tree.
      */
     public List<T> toList() {
-
-        List<Node> Q = toNodeList();
-        Q.remove(0);
-
-        List<T> q = new ArrayList<>();
-        for (Node i : Q) {
-            q.add(i.value);
-        }
-        return q;
-    }
-
-    /**
-     * Returns a list of all nodes of the tree including the root.
-     *
-     * @return List of all nodes of the tree including the root.
-     */
-    private List<Node> toNodeList() {
-        List<Node> Q = new ArrayList<>();
-        Q.add(root);
-        for (int i = 0; i < Q.size(); i++) {
-            Q.addAll(Q.get(i).children);
-        }
-        return Q;
+        return new ArrayList<>(this);
     }
 
     /**
@@ -336,7 +375,9 @@ public class Tree<T> implements Collection<T> {
      *                                   node with the specified identifier.
      */
     private Node getNodeById(int id) throws IndexOutOfBoundsException {
-        for (Node i : this.toNodeList()) {
+        Iterator<Node> iter = this.nodeIterator();
+        while (iter.hasNext()) {
+            Node i = iter.next();
             if (i.id == id) {
                 return i;
             }
@@ -353,7 +394,9 @@ public class Tree<T> implements Collection<T> {
      *                                   node with specified value.
      */
     private Node getNode(Object value) throws IndexOutOfBoundsException {
-        for (Node i : this.toNodeList()) {
+        Iterator<Node> iter = this.nodeIterator();
+        while (iter.hasNext()) {
+            Node i = iter.next();
             if (i.id == 0) {
                 continue;
             }
@@ -424,7 +467,9 @@ public class Tree<T> implements Collection<T> {
      * @return Identifier of node specified by its value
      */
     public int getId(T value) {
-        for (Node i : this.toNodeList()) {
+        Iterator<Node> iter = this.nodeIterator();
+        while (iter.hasNext()) {
+            Node i = iter.next();
             if (i.id == 0) {
                 continue;
             }
