@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -277,41 +277,48 @@ implements java.util.Collection&lt;T&gt;</pre>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iteratorBFS()">iteratorBFS</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns a breadth-search Iterator over this tree.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iteratorDFS()">iteratorDFS</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns a depth-search Iterator over this tree.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(java.lang.Object)">remove</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove2(java.lang.Object)">remove2</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">
 <div class="block">Removes a node of the tree specified by its value and returns the node's identifier.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAll(java.util.Collection)">removeAll</a></span>&#8203;(java.util.Collection&nbsp;values)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeById(int)">removeById</a></span>&#8203;(int&nbsp;id)</code></th>
 <td class="colLast">
 <div class="block">Removes node of the tree specified by its id and returns the node's identifier.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(java.util.Collection)">retainAll</a></span>&#8203;(java.util.Collection&nbsp;values)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(T,T)">set</a></span>&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;nodeValue,
    <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;newValue)</code></th>
@@ -319,7 +326,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <div class="block">Sets a value of the node to the new one.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setById(int,T)">setById</a></span>&#8203;(int&nbsp;id,
        <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;value)</code></th>
@@ -327,29 +334,29 @@ implements java.util.Collection&lt;T&gt;</pre>
 <div class="block">Sets a value of the node found by id to the new one.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray()">toArray</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code><a href="Tree.html" title="type parameter in Tree">T</a>[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray(java.lang.Object%5B%5D)">toArray</a></span>&#8203;(java.lang.Object[]&nbsp;a)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toList()">toList</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Converts the tree to a list using breadth-search order.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -652,6 +659,20 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A depth-search Iterator over this tree.</dd>
+</dl>
+</li>
+</ul>
+<a id="iteratorBFS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>iteratorBFS</h4>
+<pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;iteratorBFS()</pre>
+<div class="block">Returns a breadth-search Iterator over this tree.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A breadth-search Iterator over this tree.</dd>
 </dl>
 </li>
 </ul>
