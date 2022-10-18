@@ -167,6 +167,26 @@ public class Tree<T> implements Collection<T> {
         return getNode(id).get();
     }
 
+    /**
+     * Returns an identifier of the node specified by its value.
+     *
+     * @param value Value of node which id to return
+     * @return Identifier of node specified by its value
+     */
+    public int getId(T value) {
+        Iterator<Node> iter = this.nodeIterator();
+        while (iter.hasNext()) {
+            Node i = iter.next();
+            if (i.id == 0) {
+                continue;
+            }
+            if (i.value.equals(value)) {
+                return i.id;
+            }
+        }
+        throw new IndexOutOfBoundsException();
+    }
+
     @Override
     public int size() {
         return size;
@@ -429,7 +449,7 @@ public class Tree<T> implements Collection<T> {
      * @param o Object to add
      * @return Identifier of a new node
      */
-    public int add2(T o) {
+    public int addWithId(T o) {
         return addById(0, o);
     }
 
@@ -472,28 +492,8 @@ public class Tree<T> implements Collection<T> {
      * @param o Value of node to remove
      * @return Identifier of the removed node
      */
-    public int remove2(Object o) {
+    public int removeWithId(Object o) {
         return this.getNode(o).remove();
-    }
-
-    /**
-     * Returns an identifier of the node specified by its value.
-     *
-     * @param value Value of node which id to return
-     * @return Identifier of node specified by its value
-     */
-    public int getId(T value) {
-        Iterator<Node> iter = this.nodeIterator();
-        while (iter.hasNext()) {
-            Node i = iter.next();
-            if (i.id == 0) {
-                continue;
-            }
-            if (i.value.equals(value)) {
-                return i.id;
-            }
-        }
-        throw new IndexOutOfBoundsException();
     }
 
     /**
