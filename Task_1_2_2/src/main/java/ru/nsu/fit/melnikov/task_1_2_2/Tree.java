@@ -21,11 +21,13 @@ public class Tree<T> implements Collection<T> {
      * Counter of assigned identifiers.
      */
     private int ids;
+    private int modCount;
 
     public Tree() {
         root = new Node(null, null, 0);
         size = 0;
         ids = 1;
+        modCount = 0;
     }
 
     /**
@@ -76,6 +78,7 @@ public class Tree<T> implements Collection<T> {
             Node newNode = new Node(this, value, ids++);
             children.add(newNode);
             Tree.this.size++;
+            modCount++;
             return newNode.id;
         }
 
@@ -102,6 +105,7 @@ public class Tree<T> implements Collection<T> {
             this.value = null;
             this.children = null;
             this.parent = null;
+            modCount++;
 
             return this.id;
 
@@ -296,8 +300,7 @@ public class Tree<T> implements Collection<T> {
     public Iterator<T> iteratorDFS() {
         return new Itr<T>() {
 
-            @Override
-            public T next() {
+            public T chooseNext() {
                 Q.addAll(1, Q.get(0).children);
                 return Q.remove(0).value;
             }
@@ -312,8 +315,7 @@ public class Tree<T> implements Collection<T> {
     public Iterator<T> iteratorBFS() {
         return new Itr<T>() {
 
-            @Override
-            public T next() {
+            public T chooseNext() {
                 Q.addAll(Q.get(0).children);
                 return Q.remove(0).value;
             }
@@ -328,8 +330,7 @@ public class Tree<T> implements Collection<T> {
                 Q.add(root);
             }
 
-            @Override
-            public Node next() {
+            public Node chooseNext() {
                 Q.addAll(Q.get(0).children);
                 return Q.remove(0);
             }
@@ -338,11 +339,14 @@ public class Tree<T> implements Collection<T> {
 
     private abstract class Itr<E> implements Iterator<E> {
 
+        private final int expectedModCount;
+
         protected final List<Node> Q;
 
         private Itr() {
             Q = new ArrayList<>(root.children);
             addToQ();
+            expectedModCount = modCount;
         }
 
         protected void addToQ() {
@@ -354,7 +358,19 @@ public class Tree<T> implements Collection<T> {
         }
 
         @Override
-        public abstract E next();
+        public E next() {
+            checkForComodification();
+            return chooseNext();
+        }
+
+        protected abstract E chooseNext();
+
+        private void checkForComodification() throws ConcurrentModificationException {
+            if (expectedModCount != modCount) {
+                throw new ConcurrentModificationException();
+            }
+        }
+
     }
 
     /**
