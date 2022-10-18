@@ -3,10 +3,7 @@ package ru.nsu.fit.melnikov.task_1_2_2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 class TreeTest {
 
@@ -105,6 +102,17 @@ class TreeTest {
                 tree.toArray(),
                 new Double[]{9.88, 9.9999, 987654321.0, 8.00901}
         );
+
+        boolean exception = false;
+        try {
+            for (Double i : tree) {
+                tree.add(89.0);
+            }
+        } catch (ConcurrentModificationException e) {
+            exception = true;
+        } finally {
+            Assertions.assertTrue(exception);
+        }
 
         tree.clear();
         Assertions.assertNull(tree.toString());
