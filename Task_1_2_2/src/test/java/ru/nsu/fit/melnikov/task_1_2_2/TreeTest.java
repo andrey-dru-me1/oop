@@ -46,7 +46,7 @@ class TreeTest {
         tree.add(6.79);
         Assertions.assertTrue(tree.contains(6.79));
 
-        int sndChild = tree.add2(9.87);
+        int sndChild = tree.addWithId(9.87);
         int trdChild = tree.addById(sndChild, 8.957);
         tree.addById(tree.getId(9.87), -159.896);
         tree.addById(trdChild, 0.0069);
@@ -97,7 +97,7 @@ class TreeTest {
                 new Double[]{9.88, 9.9999, 987654321.0, -5.321, 8.00901}
         );
 
-        tree.remove2(-5.321);
+        tree.removeWithId(-5.321);
         Assertions.assertArrayEquals(
                 tree.toArray(),
                 new Double[]{9.88, 9.9999, 987654321.0, 8.00901}
