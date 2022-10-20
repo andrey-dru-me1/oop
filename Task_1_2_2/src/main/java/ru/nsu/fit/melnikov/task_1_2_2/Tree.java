@@ -305,6 +305,12 @@ public class Tree<T> implements Collection<T> {
         return (T[]) a;
     }
 
+    /**
+     * Removes all the nodes from list
+     *
+     * @param nodes List of nodes to remove
+     * @return True if success
+     */
     private boolean removeNodes(List<Node> nodes) {
         for (Node i : nodes) {
             i.remove();
@@ -342,6 +348,11 @@ public class Tree<T> implements Collection<T> {
         };
     }
 
+    /**
+     * Creates a BFS iterator over all the nodes.
+     *
+     * @return BFS iterator over all the nodes
+     */
     private Iterator<Node> nodeIterator() {
         return new Itr<Node>() {
 
@@ -357,8 +368,17 @@ public class Tree<T> implements Collection<T> {
         };
     }
 
+    /**
+     * Helper class to not writing all the methods for each of BFS-, DFS- and Node-iterators.
+     *
+     * @param <E> Node or T
+     */
     private abstract class Itr<E> implements Iterator<E> {
 
+        /**
+         * Expected count of modifications. Required to catch when
+         * a tree changes while iterating over it.
+         */
         private final int expectedModCount;
 
         protected final List<Node> Q;
@@ -369,6 +389,9 @@ public class Tree<T> implements Collection<T> {
             expectedModCount = modCount;
         }
 
+        /**
+         * If some other class that extends this one need to iterate over the root.
+         */
         protected void addToQ() {
         }
 
@@ -383,8 +406,20 @@ public class Tree<T> implements Collection<T> {
             return chooseNext();
         }
 
+        /**
+         * DFS- and BFS-iterators has different algorithms to next element choose,
+         * so they have to implement this method on their own.
+         *
+         * @return next value
+         */
         protected abstract E chooseNext();
 
+        /**
+         * Checks if the tree is unchanged during iterating over it.
+         *
+         * @throws ConcurrentModificationException when the tree
+         *                                         is changed while iterating over it
+         */
         private void checkForComodification() throws ConcurrentModificationException {
             if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
