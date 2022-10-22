@@ -324,7 +324,7 @@ public class Tree<T> implements Collection<T> {
      * @return A depth-search Iterator over this tree.
      */
     public Iterator<T> iteratorDFS() {
-        return new Itr<T>() {
+        return new TreeIterator<T>() {
 
             public T chooseNext() {
                 Q.addAll(1, Q.get(0).children);
@@ -339,7 +339,7 @@ public class Tree<T> implements Collection<T> {
      * @return A breadth-search Iterator over this tree.
      */
     public Iterator<T> iteratorBFS() {
-        return new Itr<T>() {
+        return new TreeIterator<T>() {
 
             public T chooseNext() {
                 Q.addAll(Q.get(0).children);
@@ -354,7 +354,7 @@ public class Tree<T> implements Collection<T> {
      * @return BFS iterator over all the nodes
      */
     private Iterator<Node> nodeIterator() {
-        return new Itr<Node>() {
+        return new TreeIterator<Node>() {
 
             @Override
             protected void addToQ() {
@@ -373,7 +373,7 @@ public class Tree<T> implements Collection<T> {
      *
      * @param <E> Node or T
      */
-    private abstract class Itr<E> implements Iterator<E> {
+    private abstract class TreeIterator<E> implements Iterator<E> {
 
         /**
          * Expected count of modifications. Required to catch when
@@ -383,7 +383,7 @@ public class Tree<T> implements Collection<T> {
 
         protected final List<Node> Q;
 
-        private Itr() {
+        private TreeIterator() {
             Q = new ArrayList<>(root.children);
             addToQ();
             expectedModCount = modCount;
