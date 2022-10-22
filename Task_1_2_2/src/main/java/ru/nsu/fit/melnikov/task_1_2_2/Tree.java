@@ -327,8 +327,13 @@ public class Tree<T> implements Collection<T> {
         return new TreeIterator<T>() {
 
             public T chooseNext() {
-                Q.addAll(1, Q.get(0).children);
-                return Q.remove(0).value;
+                Node head = Q.remove();
+                List<Node> list = new ArrayList<>(head.children);
+                Collections.reverse(list);
+                for (Node i : list) {
+                    Q.addFirst(i);
+                }
+                return head.value;
             }
         };
     }
@@ -342,8 +347,8 @@ public class Tree<T> implements Collection<T> {
         return new TreeIterator<T>() {
 
             public T chooseNext() {
-                Q.addAll(Q.get(0).children);
-                return Q.remove(0).value;
+                Q.addAll(Q.element().children);
+                return Q.remove().value;
             }
         };
     }
@@ -362,8 +367,8 @@ public class Tree<T> implements Collection<T> {
             }
 
             public Node chooseNext() {
-                Q.addAll(Q.get(0).children);
-                return Q.remove(0);
+                Q.addAll(Q.element().children);
+                return Q.remove();
             }
         };
     }
@@ -381,10 +386,10 @@ public class Tree<T> implements Collection<T> {
          */
         private final int expectedModCount;
 
-        protected final List<Node> Q;
+        protected final Deque<Node> Q;
 
         private TreeIterator() {
-            Q = new ArrayList<>(root.children);
+            Q = new ArrayDeque<>(root.children);
             addToQ();
             expectedModCount = modCount;
         }
