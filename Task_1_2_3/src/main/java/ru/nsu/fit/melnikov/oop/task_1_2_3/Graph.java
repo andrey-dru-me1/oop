@@ -39,8 +39,10 @@ public class Graph<T> {
             return inc_edges;
         }
 
-        public void setValue(T value) {
+        public T setValue(T value) {
+            T prevVal = this.value;
             this.value = value;
+            return prevVal;
         }
 
         public void addEdge(Edge edge) {
@@ -90,8 +92,10 @@ public class Graph<T> {
             return Arrays.asList(from, to);
         }
 
-        public void setWeight(Double weight) {
+        public Double setWeight(Double weight) {
+            Double prevW = this.weight;
             this.weight = weight;
+            return prevW;
         }
 
         public void setFrom(Vertex vertex) {
@@ -103,7 +107,7 @@ public class Graph<T> {
         }
 
         public boolean setVertices(List<Vertex> vertices) {
-            if (vertices.size() > 2) {
+            if (vertices.size() != 2) {
                 return false;
             }
             this.from = vertices.get(0);
@@ -113,8 +117,43 @@ public class Graph<T> {
 
     }
 
-    public void setVertexValue(int id, T value) {
-        getVertexById(id).setValue(value);
+    public void addVertex(T value) {
+        vertices.add(new Vertex(value));
+    }
+
+    public void addEdge(int v_from_id, int v_to_id, Double weight) {
+        edges.add(
+                new Edge(
+                        getVertexById(v_from_id),
+                        getVertexById(v_to_id),
+                        weight
+                )
+        );
+    }
+
+    public void removeEdge(int id) {
+        Edge e = getEdgeById(id);
+        e.from.getInc_edges().remove(e);
+        e.to.getInc_edges().remove(e);
+        edges.remove(e);
+    }
+
+    public T removeVertex(int id) {
+        Vertex v = getVertexById(id);
+        T val = v.getValue();
+        for (Edge e : v.getInc_edges()) {
+            removeEdge(e.getId());
+        }
+        vertices.remove(v);
+        return val;
+    }
+
+    public T setVertexValue(int id, T value) {
+        return getVertexById(id).setValue(value);
+    }
+
+    public T getVertexValue(int id) {
+        return getVertexById(id).getValue();
     }
 
     private @NotNull Vertex getVertexById(int id) throws NoSuchElementException {
@@ -126,8 +165,34 @@ public class Graph<T> {
         throw new NoSuchElementException();
     }
 
-    public void setEdgeWeight(int id, Double weight) {
-        getEdgeById(id).setWeight(weight);
+    public Double setEdgeWeight(int id, Double weight) {
+        return getEdgeById(id).setWeight(weight);
+    }
+
+    public void setEdgeInceds(int e_id, int v_from_id, int v_to_id) {
+        Edge e = getEdgeById(e_id);
+        Vertex vf = getVertexById(v_from_id);
+        Vertex vt = getVertexById(v_to_id);
+        Vertex prevVf = e.getFromVert();
+        Vertex prevVt = e.getToVert();
+        if (prevVf != vf) {
+            prevVf.getInc_edges().remove(e);
+            vf.getInc_edges().add(e);
+        }
+        if (prevVt != vt) {
+            prevVt.getInc_edges().remove(e);
+            vt.getInc_edges().add(e);
+        }
+        e.from = vf;
+        e.to = vt;
+    }
+
+    public int getEdgeFrom(int id) {
+        return getEdgeById(id).getFromVert().getId();
+    }
+
+    public int getEdgeTo(int id) {
+        return getEdgeById(id).getToVert().getId();
     }
 
     private @NotNull Edge getEdgeById(int id) throws NoSuchElementException {
