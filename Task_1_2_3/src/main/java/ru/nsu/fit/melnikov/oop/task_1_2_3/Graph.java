@@ -6,8 +6,8 @@ import java.util.*;
 
 public class Graph<T> {
 
-    private List<Vertex> vertices;
-    private List<Edge> edges;
+    private final List<Vertex> vertices;
+    private final List<Edge> edges;
 
     public Graph() {
         this.vertices = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Graph<T> {
 
         private static int ids = 0;
         private T value;
-        private Set<Edge> inc_edges;
+        private final Set<Edge> inc_edges;
         private final int id;
 
         private Vertex(T value) {
@@ -70,6 +70,8 @@ public class Graph<T> {
             this.to = to;
             this.weight = weight;
             this.id = ids++;
+            from.inc_edges.add(this);
+            to.inc_edges.add(this);
         }
 
         public int getId() {
@@ -106,29 +108,30 @@ public class Graph<T> {
             this.to = to;
         }
 
-        public boolean setVertices(List<Vertex> vertices) {
-            if (vertices.size() != 2) {
-                return false;
-            }
-            this.from = vertices.get(0);
-            this.to = vertices.get(1);
-            return true;
+    }
+
+    public int addVertex(T value) {
+        Vertex v = new Vertex(value);
+        vertices.add(v);
+        return v.getId();
+    }
+
+    public List<Integer> addVertices(T[] values) {
+        List<Integer> l = new ArrayList<>();
+        for (T i : values) {
+            l.add(addVertex(i));
         }
-
+        return l;
     }
 
-    public void addVertex(T value) {
-        vertices.add(new Vertex(value));
-    }
-
-    public void addEdge(int v_from_id, int v_to_id, Double weight) {
-        edges.add(
-                new Edge(
-                        getVertexById(v_from_id),
-                        getVertexById(v_to_id),
-                        weight
-                )
+    public int addEdge(int v_from_id, int v_to_id, Double weight) {
+        Edge e = new Edge(
+                getVertexById(v_from_id),
+                getVertexById(v_to_id),
+                weight
         );
+        edges.add(e);
+        return e.getId();
     }
 
     public void removeEdge(int id) {
@@ -141,8 +144,14 @@ public class Graph<T> {
     public T removeVertex(int id) {
         Vertex v = getVertexById(id);
         T val = v.getValue();
+
+        List<Integer> toRemove = new ArrayList<>();
         for (Edge e : v.getInc_edges()) {
-            removeEdge(e.getId());
+            toRemove.add(e.getId());
+        }
+        toRemove.sort((x, y) -> y - x);
+        for (int i : toRemove) {
+            removeEdge(i);
         }
         vertices.remove(v);
         return val;
@@ -154,6 +163,26 @@ public class Graph<T> {
 
     public T getVertexValue(int id) {
         return getVertexById(id).getValue();
+    }
+
+    public List<Integer> getVerticesWithValue(T value) {
+        List<Integer> l = new ArrayList<>();
+        for (Vertex i : this.vertices) {
+            if (i.getValue().equals(value)) {
+                l.add(i.getId());
+            }
+        }
+        return l;
+    }
+
+    public List<Integer> getEdgesByVerts(int v_from_id, int v_to_id) {
+        List<Integer> l = new ArrayList<>();
+        for (Edge i : this.edges) {
+            if (i.getFromVert().getId() == v_from_id && i.getToVert().getId() == v_to_id) {
+                l.add(i.getId());
+            }
+        }
+        return l;
     }
 
     private @NotNull Vertex getVertexById(int id) throws NoSuchElementException {
@@ -183,8 +212,8 @@ public class Graph<T> {
             prevVt.getInc_edges().remove(e);
             vt.getInc_edges().add(e);
         }
-        e.from = vf;
-        e.to = vt;
+        e.setFrom(vf);
+        e.setTo(vt);
     }
 
     public int getEdgeFrom(int id) {
@@ -195,6 +224,10 @@ public class Graph<T> {
         return getEdgeById(id).getToVert().getId();
     }
 
+    public Double getEdgeWeight(int id) {
+        return getEdgeById(id).getWeight();
+    }
+
     private @NotNull Edge getEdgeById(int id) throws NoSuchElementException {
         for (Edge e : edges) {
             if (e.getId() == id) {
@@ -202,6 +235,14 @@ public class Graph<T> {
             }
         }
         throw new NoSuchElementException();
+    }
+
+    public int VerticesCount() {
+        return vertices.size();
+    }
+
+    public int EdgesCount() {
+        return edges.size();
     }
 
 }
