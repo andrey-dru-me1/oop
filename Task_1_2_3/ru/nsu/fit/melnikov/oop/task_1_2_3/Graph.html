@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -114,14 +114,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.fit.melnikov.oop.task_1_2_3</a></div>
-<h2 title="Class Graph" class="title">Class Graph&lt;T&gt;</h2>
+<h2 title="Class Graph" class="title">Class Graph&lt;V,&#8203;E&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>ru.nsu.fit.melnikov.oop.task_1_2_3.Graph&lt;T&gt;</li>
+<li>ru.nsu.fit.melnikov.oop.task_1_2_3.Graph&lt;V,&#8203;E&gt;</li>
 </ul>
 </li>
 </ul>
@@ -129,7 +129,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <hr>
-<pre>public class <span class="typeNameLabel">Graph&lt;T&gt;</span>
+<pre>public class <span class="typeNameLabel">Graph&lt;V,&#8203;E&gt;</span>
 extends java.lang.Object</pre>
 </li>
 </ul>
@@ -173,90 +173,97 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(int,int,java.lang.Double)">addEdge</a></span>&#8203;(int&nbsp;v_from_id,
-       int&nbsp;v_to_id,
-       java.lang.Double&nbsp;weight)</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addE(V,V,java.lang.Double,E)">addE</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
+    <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo,
+    java.lang.Double&nbsp;w,
+    <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(T)">addVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;value)</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addV(V)">addV</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertices(T%5B%5D)">addVertices</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>[]&nbsp;values)</code></th>
+<td class="colFirst"><code>java.util.List&lt;java.lang.Boolean&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVerts(V%5B%5D)">addVerts</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>[]&nbsp;vals)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#EdgesCount()">EdgesCount</a></span>()</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsE(E)">containsE</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeFrom(int)">getEdgeFrom</a></span>&#8203;(int&nbsp;id)</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsV(V)">containsV</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesByVerts(int,int)">getEdgesByVerts</a></span>&#8203;(int&nbsp;v_from_id,
-               int&nbsp;v_to_id)</code></th>
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ECnt()">ECnt</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeTo(int)">getEdgeTo</a></span>&#8203;(int&nbsp;id)</code></th>
+<td class="colFirst"><code>java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesByVerts(V,V)">getEdgesByVerts</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
+               <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.Double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeWeight(int)">getEdgeWeight</a></span>&#8203;(int&nbsp;id)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeW(E)">getEdgeW</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">T</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexValue(int)">getVertexValue</a></span>&#8203;(int&nbsp;id)</code></th>
+<td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">V</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEFrom(E)">getEFrom</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVerticesWithValue(T)">getVerticesWithValue</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;value)</code></th>
+<td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">V</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getETo(E)">getETo</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(int)">removeEdge</a></span>&#8203;(int&nbsp;id)</code></th>
+<td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">E</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeE(E)">removeE</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">T</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(int)">removeVertex</a></span>&#8203;(int&nbsp;id)</code></th>
+<td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">V</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeV(V)">removeV</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i12" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeInceds(int,int,int)">setEdgeInceds</a></span>&#8203;(int&nbsp;e_id,
-             int&nbsp;v_from_id,
-             int&nbsp;v_to_id)</code></th>
+<td class="colFirst"><code>java.lang.Double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeW(E,java.lang.Double)">setEdgeW</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val,
+        java.lang.Double&nbsp;w)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i13" class="rowColor">
-<td class="colFirst"><code>java.lang.Double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeWeight(int,java.lang.Double)">setEdgeWeight</a></span>&#8203;(int&nbsp;id,
-             java.lang.Double&nbsp;weight)</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEInceds(E,V,V)">setEInceds</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val,
+          <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
+          <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i14" class="altColor">
-<td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">T</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVertexValue(int,T)">setVertexValue</a></span>&#8203;(int&nbsp;id,
-              <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;value)</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEVal(E,E)">setEVal</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;prevVal,
+       <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;newVal)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i15" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVVal(V,V)">setVVal</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;prevVal,
+       <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;newVal)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#VerticesCount()">VerticesCount</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#VCnt()">VCnt</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -302,163 +309,201 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="addVertex(java.lang.Object)">
+<a id="containsV(java.lang.Object)">
 <!--   -->
-</a><a id="addVertex(T)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addVertex</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;addVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;value)</pre>
-</li>
-</ul>
-<a id="addVertices(java.lang.Object[])">
-<!--   -->
-</a><a id="addVertices(T[])">
+</a><a id="containsV(V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addVertices</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;addVertices&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>[]&nbsp;values)</pre>
+<h4>containsV</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;containsV&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</pre>
 </li>
 </ul>
-<a id="addEdge(int,int,java.lang.Double)">
+<a id="containsE(java.lang.Object)">
+<!--   -->
+</a><a id="containsE(E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addEdge</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;addEdge&#8203;(int&nbsp;v_from_id,
-                   int&nbsp;v_to_id,
-                   java.lang.Double&nbsp;weight)</pre>
+<h4>containsE</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;containsE&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
 </li>
 </ul>
-<a id="removeEdge(int)">
+<a id="addV(java.lang.Object)">
+<!--   -->
+</a><a id="addV(V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>removeEdge</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(int&nbsp;id)</pre>
+<h4>addV</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addV&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</pre>
 </li>
 </ul>
-<a id="removeVertex(int)">
+<a id="addVerts(java.lang.Object[])">
+<!--   -->
+</a><a id="addVerts(V[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>removeVertex</h4>
-<pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;removeVertex&#8203;(int&nbsp;id)</pre>
+<h4>addVerts</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Boolean&gt;&nbsp;addVerts&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>[]&nbsp;vals)</pre>
 </li>
 </ul>
-<a id="setVertexValue(int,java.lang.Object)">
+<a id="addE(java.lang.Object,java.lang.Object,java.lang.Double,java.lang.Object)">
 <!--   -->
-</a><a id="setVertexValue(int,T)">
+</a><a id="addE(V,V,java.lang.Double,E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setVertexValue</h4>
-<pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;setVertexValue&#8203;(int&nbsp;id,
-                        <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;value)</pre>
+<h4>addE</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addE&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
+                    <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo,
+                    java.lang.Double&nbsp;w,
+                    <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
 </li>
 </ul>
-<a id="getVertexValue(int)">
+<a id="removeE(java.lang.Object)">
+<!--   -->
+</a><a id="removeE(E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getVertexValue</h4>
-<pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;getVertexValue&#8203;(int&nbsp;id)</pre>
+<h4>removeE</h4>
+<pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;removeE&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)
+          throws java.util.NoSuchElementException</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.util.NoSuchElementException</code></dd>
+</dl>
 </li>
 </ul>
-<a id="getVerticesWithValue(java.lang.Object)">
+<a id="removeV(java.lang.Object)">
 <!--   -->
-</a><a id="getVerticesWithValue(T)">
+</a><a id="removeV(V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getVerticesWithValue</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getVerticesWithValue&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;value)</pre>
+<h4>removeV</h4>
+<pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;removeV&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</pre>
 </li>
 </ul>
-<a id="getEdgesByVerts(int,int)">
+<a id="setVVal(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="setVVal(V,V)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setVVal</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setVVal&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;prevVal,
+                    <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;newVal)</pre>
+</li>
+</ul>
+<a id="setEdgeW(java.lang.Object,java.lang.Double)">
+<!--   -->
+</a><a id="setEdgeW(E,java.lang.Double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setEdgeW</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;setEdgeW&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val,
+                                 java.lang.Double&nbsp;w)</pre>
+</li>
+</ul>
+<a id="setEVal(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="setEVal(E,E)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setEVal</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setEVal&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;prevVal,
+                    <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;newVal)</pre>
+</li>
+</ul>
+<a id="setEInceds(java.lang.Object,java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="setEInceds(E,V,V)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setEInceds</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setEInceds&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val,
+                       <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
+                       <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo)</pre>
+</li>
+</ul>
+<a id="getEFrom(java.lang.Object)">
+<!--   -->
+</a><a id="getEFrom(E)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEFrom</h4>
+<pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;getEFrom&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
+</li>
+</ul>
+<a id="getETo(java.lang.Object)">
+<!--   -->
+</a><a id="getETo(E)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getETo</h4>
+<pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;getETo&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
+</li>
+</ul>
+<a id="getEdgeW(java.lang.Object)">
+<!--   -->
+</a><a id="getEdgeW(E)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEdgeW</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;getEdgeW&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
+</li>
+</ul>
+<a id="getEdgesByVerts(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="getEdgesByVerts(V,V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getEdgesByVerts</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getEdgesByVerts&#8203;(int&nbsp;v_from_id,
-                                                         int&nbsp;v_to_id)</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&nbsp;getEdgesByVerts&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
+                                         <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo)</pre>
 </li>
 </ul>
-<a id="setEdgeWeight(int,java.lang.Double)">
+<a id="VCnt()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setEdgeWeight</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;setEdgeWeight&#8203;(int&nbsp;id,
-                                      java.lang.Double&nbsp;weight)</pre>
+<h4>VCnt</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;VCnt()</pre>
 </li>
 </ul>
-<a id="setEdgeInceds(int,int,int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setEdgeInceds</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setEdgeInceds&#8203;(int&nbsp;e_id,
-                          int&nbsp;v_from_id,
-                          int&nbsp;v_to_id)</pre>
-</li>
-</ul>
-<a id="getEdgeFrom(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getEdgeFrom</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getEdgeFrom&#8203;(int&nbsp;id)</pre>
-</li>
-</ul>
-<a id="getEdgeTo(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getEdgeTo</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getEdgeTo&#8203;(int&nbsp;id)</pre>
-</li>
-</ul>
-<a id="getEdgeWeight(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getEdgeWeight</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;getEdgeWeight&#8203;(int&nbsp;id)</pre>
-</li>
-</ul>
-<a id="VerticesCount()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>VerticesCount</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;VerticesCount()</pre>
-</li>
-</ul>
-<a id="EdgesCount()">
+<a id="ECnt()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>EdgesCount</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;EdgesCount()</pre>
+<h4>ECnt</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;ECnt()</pre>
 </li>
 </ul>
 </li>
