@@ -8,33 +8,31 @@ class GraphTest {
     @Test
     void test() {
 
-        Graph<Double> graph = new Graph<>();
+        Graph<Double, Double> graph = new Graph<>();
 
-        int fstV = graph.addVertex(7.5);
-        int sndV = graph.addVertex(8.99);
-        int fstE = graph.addEdge(fstV, sndV, 5.0);
-        graph.addVertices(new Double[]{4.55, 4.55, 6.3, 8.99, 0.00006});
+        graph.addV(7.5);
+        graph.addV(8.99);
+        graph.addE(7.5, 8.99, 5.0, 5.0);
+        graph.addVerts(new Double[]{4.55, 4.15, 6.3, 8.19, 0.00006});
 
-        graph.addEdge(graph.getVerticesWithValue(8.99).get(0), fstV, 1.0);
+        graph.addE(8.99, 7.5, 1.0, 1.0);
 
-        graph.setEdgeWeight(fstE, 8.95);
-        graph.setEdgeInceds(fstE, sndV, graph.getVerticesWithValue(4.55).get(1));
-        graph.setVertexValue(graph.getVerticesWithValue(8.99).get(0), 9.88);
-        Assertions.assertEquals(graph.getVertexValue(sndV), 9.88);
+        graph.setEdgeW(5.0, 8.95);
+        graph.setEInceds(5.0, 8.99, 4.15);
+        graph.setVVal(8.99, 9.88);
 
-        graph.addEdge(fstV, sndV, 8.6);
-        graph.removeVertex(fstV);
+        graph.addE(7.5, 9.88, 8.6, 8.6);
+        graph.removeV(7.5);
 
-        graph.addEdge((fstV = graph.getVerticesWithValue(6.3).get(0)), (sndV = graph.getVerticesWithValue(0.00006).get(0)), 6.98);
-        graph.removeEdge(fstE);
+        graph.addE(6.3, 0.00006, 6.98, 6.98);
 
-        Assertions.assertEquals(graph.getEdgeWeight(fstE = graph.getEdgesByVerts(fstV, sndV).get(0)), 6.98);
-        Assertions.assertEquals(graph.getEdgeWeight(fstE), 6.98);
-        Assertions.assertEquals(graph.getEdgeFrom(fstE), fstV);
-        Assertions.assertEquals(graph.getEdgeTo(fstE), sndV);
+        Assertions.assertEquals(graph.getEdgeW(graph.getEdgesByVerts(6.3, 0.00006).get(0)), 6.98);
+        Assertions.assertEquals(graph.getEdgeW(6.98), 6.98);
+        Assertions.assertEquals(graph.getEFrom(6.98), 6.3);
+        Assertions.assertEquals(graph.getETo(6.98), 0.00006);
 
-        Assertions.assertEquals(graph.VerticesCount(), 6);
-        Assertions.assertEquals(graph.EdgesCount(), 1);
+        Assertions.assertEquals(graph.VCnt(), 6);
+        Assertions.assertEquals(graph.ECnt(), 1);
 
     }
 
