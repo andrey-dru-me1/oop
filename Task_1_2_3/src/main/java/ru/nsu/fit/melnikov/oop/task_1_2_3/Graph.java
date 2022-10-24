@@ -81,8 +81,8 @@ public class Graph<V, E> {
             this.to = to;
             this.w = w;
             this.val = val;
-            from.incEdges.add(this);
-            to.incEdges.add(this);
+            from.addEdge(this);
+            to.addEdge(this);
             edges.add(this);
         }
 
