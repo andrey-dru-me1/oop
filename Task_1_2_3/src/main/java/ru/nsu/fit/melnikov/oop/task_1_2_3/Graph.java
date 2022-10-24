@@ -123,8 +123,8 @@ public class Graph<V, E> {
         }
 
         public void setVerts(Vert from, Vert to) {
-            this.from = from;
-            this.to = to;
+            this.setVFrom(from);
+            this.setVTo(to);
         }
 
         public E remove() throws NoSuchElementException {
