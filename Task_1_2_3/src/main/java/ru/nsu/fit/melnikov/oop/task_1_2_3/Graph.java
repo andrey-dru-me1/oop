@@ -9,14 +9,18 @@ public class Graph<T> {
     private final List<Vertex> vertices;
     private final List<Edge> edges;
 
+    private int vids;
+    private int eids;
+
     public Graph() {
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();
+        vids = 0;
+        eids = 0;
     }
 
     private class Vertex {
 
-        private static int ids = 0;
         private T value;
         private final Set<Edge> inc_edges;
         private final int id;
@@ -24,7 +28,7 @@ public class Graph<T> {
         private Vertex(T value) {
             this.value = value;
             inc_edges = new HashSet<>();
-            this.id = ids++;
+            this.id = vids++;
         }
 
         public int getId() {
@@ -59,7 +63,6 @@ public class Graph<T> {
 
     private class Edge {
 
-        private static int ids = 0;
         private Double weight;
         private Vertex from;
         private Vertex to;
@@ -69,7 +72,7 @@ public class Graph<T> {
             this.from = from;
             this.to = to;
             this.weight = weight;
-            this.id = ids++;
+            this.id = eids++;
             from.inc_edges.add(this);
             to.inc_edges.add(this);
         }
