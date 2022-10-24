@@ -22,12 +22,12 @@ public class Graph<T> {
     private class Vertex {
 
         private T value;
-        private final Set<Edge> inc_edges;
+        private final Set<Edge> incEdges;
         private final int id;
 
         private Vertex(T value) {
             this.value = value;
-            inc_edges = new HashSet<>();
+            incEdges = new HashSet<>();
             this.id = vids++;
         }
 
@@ -39,8 +39,8 @@ public class Graph<T> {
             return value;
         }
 
-        public Set<Edge> getInc_edges() {
-            return inc_edges;
+        public Set<Edge> getIncEdges() {
+            return incEdges;
         }
 
         public T setValue(T value) {
@@ -50,7 +50,7 @@ public class Graph<T> {
         }
 
         public void addEdge(Edge edge) {
-            inc_edges.add(edge);
+            incEdges.add(edge);
         }
 
         public void addAllEdges(Collection<Edge> edges) {
@@ -73,8 +73,8 @@ public class Graph<T> {
             this.to = to;
             this.weight = weight;
             this.id = eids++;
-            from.inc_edges.add(this);
-            to.inc_edges.add(this);
+            from.incEdges.add(this);
+            to.incEdges.add(this);
         }
 
         public int getId() {
@@ -139,8 +139,8 @@ public class Graph<T> {
 
     public void removeEdge(int id) {
         Edge e = getEdgeById(id);
-        e.from.getInc_edges().remove(e);
-        e.to.getInc_edges().remove(e);
+        e.from.getIncEdges().remove(e);
+        e.to.getIncEdges().remove(e);
         edges.remove(e);
     }
 
@@ -149,7 +149,7 @@ public class Graph<T> {
         T val = v.getValue();
 
         List<Integer> toRemove = new ArrayList<>();
-        for (Edge e : v.getInc_edges()) {
+        for (Edge e : v.getIncEdges()) {
             toRemove.add(e.getId());
         }
         toRemove.sort((x, y) -> y - x);
@@ -208,12 +208,12 @@ public class Graph<T> {
         Vertex prevVf = e.getFromVert();
         Vertex prevVt = e.getToVert();
         if (prevVf != vf) {
-            prevVf.getInc_edges().remove(e);
-            vf.getInc_edges().add(e);
+            prevVf.getIncEdges().remove(e);
+            vf.getIncEdges().add(e);
         }
         if (prevVt != vt) {
-            prevVt.getInc_edges().remove(e);
-            vt.getInc_edges().add(e);
+            prevVt.getIncEdges().remove(e);
+            vt.getIncEdges().add(e);
         }
         e.setFrom(vf);
         e.setTo(vt);
