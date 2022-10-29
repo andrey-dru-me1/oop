@@ -104,6 +104,18 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
     }
 
     @Override
+    public void setEInceds(E val, V vFrom, V vTo) {
+        Edge e = getE(val);
+        incMtrx.get(e.getVFrom()).remove(e);
+        incMtrx.get(e.getVTo()).remove(e);
+        Vert from = getV(vFrom);
+        Vert to = getV(vTo);
+        e.setVerts(from, to);
+        incMtrx.get(from).add(e);
+        incMtrx.get(to).add(e);
+    }
+
+    @Override
     public List<E> getEdgesByVerts(V vFrom, V vTo) {
         return incMtrx.get(getV(vFrom))
                 .stream()
