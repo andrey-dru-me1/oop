@@ -1,6 +1,7 @@
 package ru.nsu.fit.melnikov.oop.task_1_2_3;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Represents a weighted oriented graph data type with
@@ -11,7 +12,7 @@ import java.util.*;
  */
 public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
 
-    private Map<Vert, Set<Edge>> incMtrx;
+    private final Map<Vert, Set<Edge>> incMtrx;
 
     public GraphIncMtrx() {
         super();
@@ -120,6 +121,6 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
         return incMtrx.get(getV(vFrom))
                 .stream()
                 .filter((e) -> e.getVTo().getVal().equals(vTo))
-                .map(Edge::getVal).toList();
+                .map(Edge::getVal).collect(Collectors.toList());
     }
 }
