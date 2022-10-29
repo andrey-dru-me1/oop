@@ -338,12 +338,7 @@ abstract class AbstractGraph<V, E> {
      * @param vFrom vertex where edge has to begin
      * @param vTo   vertex where edge has to end
      */
-    public void setEInceds(E val, V vFrom, V vTo) {
-        Edge e = getE(val);
-        Vert from = getV(vFrom);
-        Vert to = getV(vTo);
-        e.setVerts(from, to);
-    }
+    abstract public void setEInceds(E val, V vFrom, V vTo);
 
     /**
      * Returns vertex where edge with the specific value begins.

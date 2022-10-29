@@ -5,11 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class GraphTest {
 
-    @Test
-    void test() {
-
-        Graph<Double, Double> graph = new Graph<>();
-
+    void test(AbstractGraph<Double, Double> graph) {
         graph.addV(7.5);
         graph.addV(8.99);
         graph.addE(7.5, 8.99, 5.0, 5.0);
@@ -32,7 +28,17 @@ class GraphTest {
         Assertions.assertEquals(graph.getETo(6.98), 0.00006);
 
         Assertions.assertEquals(graph.VCnt(), 6);
-        Assertions.assertEquals(graph.ECnt(), 1);
+        Assertions.assertEquals(graph.ECnt(), 2);
+    }
+
+    @Test
+    void tests() {
+
+        GraphAdjList<Double, Double> graph = new GraphAdjList<>();
+        test(graph);
+
+        GraphIncMtrx<Double, Double> graph1 = new GraphIncMtrx<>();
+        test(graph1);
 
     }
 
