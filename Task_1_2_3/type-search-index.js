@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.fit.melnikov.oop.task_1_2_3","l":"GraphAdjList"},{"p":"ru.nsu.fit.melnikov.oop.task_1_2_3","l":"GraphIncMtrx"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.fit.melnikov.oop.task_1_2_3","l":"GraphAdjList"},{"p":"ru.nsu.fit.melnikov.oop.task_1_2_3","l":"GraphAdjMtrx"},{"p":"ru.nsu.fit.melnikov.oop.task_1_2_3","l":"GraphIncMtrx"}]
