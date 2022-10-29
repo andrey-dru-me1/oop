@@ -1,6 +1,7 @@
 package ru.nsu.fit.melnikov.oop.task_1_2_3;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
 
@@ -89,7 +90,7 @@ public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
         edges
                 .stream()
                 .filter(e -> e.getVTo().equals(v) || e.getVFrom().equals(v))
-                .toList().forEach(e -> this.removeE(e.getVal()));
+                .collect(Collectors.toList()).forEach(e -> this.removeE(e.getVal()));
         adjList.remove(v);
         adjList.values().forEach(set -> set.remove(v));
         vCnt--;
@@ -113,6 +114,6 @@ public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
                 .stream()
                 .filter(e -> e.getVTo().getVal().equals(vTo) || e.getVFrom().getVal().equals(vFrom))
                 .map(Edge::getVal)
-                .toList();
+                .collect(Collectors.toList());
     }
 }
