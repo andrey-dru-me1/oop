@@ -128,9 +128,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>V</code> - type of vertices' value</dd>
+<dd><code>E</code> - type of edges' value</dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Graph&lt;V,&#8203;E&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">Represents a weighted oriented graph data type with
+ vertices and edges.</div>
 </li>
 </ul>
 </div>
@@ -178,93 +185,127 @@ extends java.lang.Object</pre>
     <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo,
     java.lang.Double&nbsp;w,
     <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds edge with specific value to the graph.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addV(V)">addV</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds a vertex with the specific value to the graph.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Boolean&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVerts(V%5B%5D)">addVerts</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>[]&nbsp;vals)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds new vertices with specific values to the graph.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsE(E)">containsE</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Checks if the graph contains the specific edge.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsV(V)">containsV</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Checks if the graph contains the specific vertex.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ECnt()">ECnt</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns count of edge in the graph.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesByVerts(V,V)">getEdgesByVerts</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
                <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns list of edges which starts with vFrom and ends with vTo vertices.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.Double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeW(E)">getEdgeW</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns weight of edge with the specific value.</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">V</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEFrom(E)">getEFrom</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns vertex where edge with the specific value begins.</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">V</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getETo(E)">getETo</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns vertex where edge with the specific value ends.</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">E</a></code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeE(E)">removeE</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Removes edge with the specific value from the graph.</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="Graph.html" title="type parameter in Graph">V</a></code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeV(V)">removeV</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Removes edge with the specific value from the graph.</div>
+</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>java.lang.Double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeW(E,java.lang.Double)">setEdgeW</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val,
         java.lang.Double&nbsp;w)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Changes weight of the specific edge.</div>
+</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEInceds(E,V,V)">setEInceds</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val,
           <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
           <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Changes incident vertices of the specific edge.</div>
+</td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEVal(E,E)">setEVal</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;prevVal,
        <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;newVal)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Changes value of the specific edge.</div>
+</td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVVal(V,V)">setVVal</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;prevVal,
        <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;newVal)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Changes value of the specific vertex of the graph.</div>
+</td>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#VCnt()">VCnt</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns count of vertex in the graph.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -318,6 +359,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>containsV</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;containsV&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</pre>
+<div class="block">Checks if the graph contains the specific vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value to check if the graph contains it</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if graph contains vertex with specific value</dd>
+</dl>
 </li>
 </ul>
 <a id="containsE(java.lang.Object)">
@@ -329,6 +377,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>containsE</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;containsE&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
+<div class="block">Checks if the graph contains the specific edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value to check if the graph contains it</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if graph contains edge with specific value</dd>
+</dl>
 </li>
 </ul>
 <a id="addV(java.lang.Object)">
@@ -340,6 +395,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>addV</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;addV&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</pre>
+<div class="block">Adds a vertex with the specific value to the graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value of vertex to add</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>false if graph is already contains the vertex with the specific value</dd>
+</dl>
 </li>
 </ul>
 <a id="addVerts(java.lang.Object[])">
@@ -351,6 +413,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>addVerts</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Boolean&gt;&nbsp;addVerts&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>[]&nbsp;vals)</pre>
+<div class="block">Adds new vertices with specific values to the graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vals</code> - values to add to the graph</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>list of boolean for each input value: false if such element
+ is already in the graph</dd>
+</dl>
 </li>
 </ul>
 <a id="addE(java.lang.Object,java.lang.Object,java.lang.Double,java.lang.Object)">
@@ -365,6 +435,17 @@ extends java.lang.Object</pre>
                     <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo,
                     java.lang.Double&nbsp;w,
                     <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
+<div class="block">Adds edge with specific value to the graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vFrom</code> - vertex where edge begins</dd>
+<dd><code>vTo</code> - vertex where edge ends</dd>
+<dd><code>w</code> - weight of a new edge</dd>
+<dd><code>val</code> - value of a new edge</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>false if edge with the specific value is already
+ in the graph.</dd>
+</dl>
 </li>
 </ul>
 <a id="removeE(java.lang.Object)">
@@ -375,11 +456,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeE</h4>
-<pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;removeE&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)
-          throws java.util.NoSuchElementException</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;removeE&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
+<div class="block">Removes edge with the specific value from the graph.</div>
 <dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.util.NoSuchElementException</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value of edge to remove</dd>
 </dl>
 </li>
 </ul>
@@ -391,7 +472,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeV</h4>
-<pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;removeV&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;removeV&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;val)</pre>
+<div class="block">Removes edge with the specific value from the graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value of vertex to remove</dd>
+</dl>
 </li>
 </ul>
 <a id="setVVal(java.lang.Object,java.lang.Object)">
@@ -404,6 +490,12 @@ extends java.lang.Object</pre>
 <h4>setVVal</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setVVal&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;prevVal,
                     <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;newVal)</pre>
+<div class="block">Changes value of the specific vertex of the graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>prevVal</code> - value of vertex to change</dd>
+<dd><code>newVal</code> - value to which specific vertex has to change</dd>
+</dl>
 </li>
 </ul>
 <a id="setEdgeW(java.lang.Object,java.lang.Double)">
@@ -416,6 +508,14 @@ extends java.lang.Object</pre>
 <h4>setEdgeW</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;setEdgeW&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val,
                                  java.lang.Double&nbsp;w)</pre>
+<div class="block">Changes weight of the specific edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value of edge to modify</dd>
+<dd><code>w</code> - new weight of the specific edge</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>previous weight of the specific edge</dd>
+</dl>
 </li>
 </ul>
 <a id="setEVal(java.lang.Object,java.lang.Object)">
@@ -428,6 +528,12 @@ extends java.lang.Object</pre>
 <h4>setEVal</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setEVal&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;prevVal,
                     <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;newVal)</pre>
+<div class="block">Changes value of the specific edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>prevVal</code> - value of edge to change</dd>
+<dd><code>newVal</code> - value to which specific edge has to change</dd>
+</dl>
 </li>
 </ul>
 <a id="setEInceds(java.lang.Object,java.lang.Object,java.lang.Object)">
@@ -441,6 +547,13 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;setEInceds&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val,
                        <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
                        <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo)</pre>
+<div class="block">Changes incident vertices of the specific edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value of the edge to change</dd>
+<dd><code>vFrom</code> - vertex where edge has to begin</dd>
+<dd><code>vTo</code> - vertex where edge has to end</dd>
+</dl>
 </li>
 </ul>
 <a id="getEFrom(java.lang.Object)">
@@ -452,6 +565,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getEFrom</h4>
 <pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;getEFrom&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
+<div class="block">Returns vertex where edge with the specific value begins.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value of edge</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>vertex where edge with the specific value begins</dd>
+</dl>
 </li>
 </ul>
 <a id="getETo(java.lang.Object)">
@@ -463,6 +583,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getETo</h4>
 <pre class="methodSignature">public&nbsp;<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;getETo&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
+<div class="block">Returns vertex where edge with the specific value ends.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value of edge</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>vertex where edge with the specific value ends</dd>
+</dl>
 </li>
 </ul>
 <a id="getEdgeW(java.lang.Object)">
@@ -474,6 +601,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getEdgeW</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;getEdgeW&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;val)</pre>
+<div class="block">Returns weight of edge with the specific value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>val</code> - value of edge</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>weight of edge with the specific value</dd>
+</dl>
 </li>
 </ul>
 <a id="getEdgesByVerts(java.lang.Object,java.lang.Object)">
@@ -486,6 +620,14 @@ extends java.lang.Object</pre>
 <h4>getEdgesByVerts</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&nbsp;getEdgesByVerts&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vFrom,
                                          <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vTo)</pre>
+<div class="block">Returns list of edges which starts with vFrom and ends with vTo vertices.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vFrom</code> - start vertex of edge to get</dd>
+<dd><code>vTo</code> - end vertex of edge to get</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>list of edges which starts with vFrom and ends with vTo vertices</dd>
+</dl>
 </li>
 </ul>
 <a id="VCnt()">
@@ -495,6 +637,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>VCnt</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;VCnt()</pre>
+<div class="block">Returns count of vertex in the graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>count of vertex in the graph</dd>
+</dl>
 </li>
 </ul>
 <a id="ECnt()">
@@ -504,6 +651,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>ECnt</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;ECnt()</pre>
+<div class="block">Returns count of edge in the graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>count of edge in the graph</dd>
+</dl>
 </li>
 </ul>
 </li>
