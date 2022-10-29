@@ -79,6 +79,11 @@ public class GraphAdjMtrx<V, E> extends AbstractGraph<V, E> {
     @Override
     public void removeV(V val) {
         Vert v = getV(val);
+        edges
+                .stream()
+                .filter(e -> e.getVTo().getVal().equals(val) || e.getVFrom().getVal().equals(val))
+                .collect(Collectors.toList())
+                .forEach(e -> this.removeE(e.getVal()));
         adjMtrx.remove(v);
         adjMtrx.values().forEach(map -> map.remove(v));
         vCnt--;
