@@ -40,6 +40,9 @@ class GraphTest {
         GraphIncMtrx<Double, Double> graph1 = new GraphIncMtrx<>();
         test(graph1);
 
+        GraphAdjMtrx<Double, Double> graph2 = new GraphAdjMtrx<>();
+        test(graph2);
+
     }
 
 }
