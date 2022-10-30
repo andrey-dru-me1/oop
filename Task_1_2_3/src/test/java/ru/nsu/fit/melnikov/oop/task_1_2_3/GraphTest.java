@@ -104,7 +104,12 @@ class GraphTest {
             for (int j = 0; j < n; j++) {
                 String weight = scanner.next();
                 if (!weight.equals("-")) {
-                    g.addEdge(vertices.get(i), vertices.get(j), Double.parseDouble(weight), i * n + j);
+                    g.addEdge(
+                            vertices.get(i),
+                            vertices.get(j),
+                            Double.parseDouble(weight),
+                            i * n + j
+                    );
                 }
             }
         }
