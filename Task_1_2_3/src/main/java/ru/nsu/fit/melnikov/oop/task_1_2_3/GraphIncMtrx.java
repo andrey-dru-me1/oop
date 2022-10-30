@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  */
 public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
 
-    private final Map<Vert, Set<Edge>> incMtrx;
+    private final Map<Vertex, Set<Edge>> incMtrx;
 
     public GraphIncMtrx() {
         super();
@@ -20,9 +20,9 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
     }
 
     @Override
-    protected Vert getV(V val) throws NoSuchElementException {
-        for (Vert v : incMtrx.keySet()) {
-            if (v.getVal().equals(val)) {
+    protected Vertex getVertex(V val) throws NoSuchElementException {
+        for (Vertex v : incMtrx.keySet()) {
+            if (v.getValue().equals(val)) {
                 return v;
             }
         }
@@ -30,15 +30,15 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
     }
 
     @Override
-    protected Set<Edge> getVInceds(Vert v) {
+    protected Set<Edge> getVertexIncidents(Vertex v) {
         return incMtrx.get(v);
     }
 
     @Override
-    protected Edge getE(E val) throws NoSuchElementException {
-        for (Vert from : incMtrx.keySet()) {
+    protected Edge getEdge(E val) throws NoSuchElementException {
+        for (Vertex from : incMtrx.keySet()) {
             for (Edge e : incMtrx.get(from)) {
-                if (e.getVal().equals(val)) {
+                if (e.getValue().equals(val)) {
                     return e;
                 }
             }
@@ -47,85 +47,85 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
     }
 
     @Override
-    public boolean addV(V val) {
+    public boolean addVertex(V val) {
         try {
-            getV(val);
+            getVertex(val);
             return false;
         } catch (NoSuchElementException excp) {
-            incMtrx.put(new Vert(val), new HashSet<>());
-            vCnt++;
+            incMtrx.put(new Vertex(val), new HashSet<>());
+            verticesCount++;
             return true;
         }
     }
 
     @Override
-    public boolean addE(V vFrom, V vTo, Double w, E val) {
+    public boolean addEdge(V vFrom, V vTo, Double weight, E val) {
 
-        Vert from = getV(vFrom);
-        Vert to = getV(vTo);
+        Vertex from = getVertex(vFrom);
+        Vertex to = getVertex(vTo);
 
         try {
-            Edge e = getE(val);
+            Edge e = getEdge(val);
 
-            incMtrx.get(e.getVFrom()).remove(e);
-            incMtrx.get(e.getVTo()).remove(e);
+            incMtrx.get(e.getVertexFrom()).remove(e);
+            incMtrx.get(e.getVertexTo()).remove(e);
 
-            e.setVerts(from, to);
+            e.setVertices(from, to);
 
-            incMtrx.get(e.getVFrom()).add(e);
-            incMtrx.get(e.getVTo()).add(e);
+            incMtrx.get(e.getVertexFrom()).add(e);
+            incMtrx.get(e.getVertexTo()).add(e);
 
-            e.setW(w);
+            e.setWeight(weight);
             return false;
         } catch (NoSuchElementException exc) {
 
-            Edge e = new Edge(from, to, w, val);
+            Edge e = new Edge(from, to, weight, val);
 
             incMtrx.get(from).add(e);
             incMtrx.get(to).add(e);
 
-            eCnt++;
+            edgesCount++;
             return true;
         }
     }
 
     @Override
-    public void removeE(E val) {
-        Edge e = getE(val);
-        incMtrx.get(e.getVFrom()).remove(e);
-        incMtrx.get(e.getVTo()).remove(e);
-        eCnt--;
+    public void removeEdge(E val) {
+        Edge e = getEdge(val);
+        incMtrx.get(e.getVertexFrom()).remove(e);
+        incMtrx.get(e.getVertexTo()).remove(e);
+        edgesCount--;
     }
 
     @Override
-    public void removeV(V val) {
+    public void removeVertex(V val) {
 
-        Vert v = getV(val);
+        Vertex v = getVertex(val);
 
         Set<Edge> toRemove = new HashSet<>(incMtrx.get(v));
-        toRemove.forEach(e -> this.removeE(e.getVal()));
+        toRemove.forEach(e -> this.removeEdge(e.getValue()));
 
-        incMtrx.remove(getV(val));
-        vCnt--;
+        incMtrx.remove(getVertex(val));
+        verticesCount--;
     }
 
     @Override
-    public void setEInceds(E val, V vFrom, V vTo) {
-        Edge e = getE(val);
-        incMtrx.get(e.getVFrom()).remove(e);
-        incMtrx.get(e.getVTo()).remove(e);
-        Vert from = getV(vFrom);
-        Vert to = getV(vTo);
-        e.setVerts(from, to);
+    public void setEdgeIncidents(E val, V vFrom, V vTo) {
+        Edge e = getEdge(val);
+        incMtrx.get(e.getVertexFrom()).remove(e);
+        incMtrx.get(e.getVertexTo()).remove(e);
+        Vertex from = getVertex(vFrom);
+        Vertex to = getVertex(vTo);
+        e.setVertices(from, to);
         incMtrx.get(from).add(e);
         incMtrx.get(to).add(e);
     }
 
     @Override
-    public List<E> getEdgesByVerts(V vFrom, V vTo) {
-        return incMtrx.get(getV(vFrom))
+    public List<E> getEdgesByVertices(V vFrom, V vTo) {
+        return incMtrx.get(getVertex(vFrom))
                 .stream()
-                .filter((e) -> e.getVTo().getVal().equals(vTo))
-                .map(Edge::getVal).collect(Collectors.toList());
+                .filter((e) -> e.getVertexTo().getValue().equals(vTo))
+                .map(Edge::getValue).collect(Collectors.toList());
     }
 }

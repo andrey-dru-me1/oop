@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
 
-    Map<Vert, Set<Vert>> adjList;
+    Map<Vertex, Set<Vertex>> adjList;
     Set<Edge> edges;
 
     public GraphAdjList() {
@@ -15,56 +15,56 @@ public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
     }
 
     @Override
-    protected Vert getV(V val) throws NoSuchElementException {
+    protected Vertex getVertex(V val) throws NoSuchElementException {
         return adjList.keySet()
                 .stream()
-                .filter(v -> v.getVal().equals(val))
+                .filter(v -> v.getValue().equals(val))
                 .findFirst()
                 .orElseThrow();
     }
 
     @Override
-    protected Set<Edge> getVInceds(Vert v) {
+    protected Set<Edge> getVertexIncidents(Vertex v) {
         return edges
                 .stream()
-                .filter(e -> e.getVTo().equals(v) || e.getVFrom().equals(v))
+                .filter(e -> e.getVertexTo().equals(v) || e.getVertexFrom().equals(v))
                 .collect(Collectors.toSet());
     }
 
     @Override
-    protected Edge getE(E val) throws NoSuchElementException {
+    protected Edge getEdge(E val) throws NoSuchElementException {
         return edges
                 .stream()
-                .filter(e -> e.getVal().equals(val))
+                .filter(e -> e.getValue().equals(val))
                 .findFirst()
                 .orElseThrow();
     }
 
     @Override
-    public boolean addV(V val) {
+    public boolean addVertex(V val) {
         try {
-            getV(val);
+            getVertex(val);
             return false;
         } catch (NoSuchElementException exc) {
-            adjList.put(new Vert(val), new HashSet<>());
-            vCnt++;
+            adjList.put(new Vertex(val), new HashSet<>());
+            verticesCount++;
             return true;
         }
     }
 
     @Override
-    public boolean addE(V vFrom, V vTo, Double w, E val) {
-        Vert from = getV(vFrom);
-        Vert to = getV(vTo);
+    public boolean addEdge(V vFrom, V vTo, Double w, E val) {
+        Vertex from = getVertex(vFrom);
+        Vertex to = getVertex(vTo);
         try {
 
-            Edge e = getE(val);
+            Edge e = getEdge(val);
 
-            adjList.get(e.getVFrom()).remove(e.getVTo());
-            adjList.get(e.getVTo()).remove(e.getVFrom());
+            adjList.get(e.getVertexFrom()).remove(e.getVertexTo());
+            adjList.get(e.getVertexTo()).remove(e.getVertexFrom());
 
-            e.setW(w);
-            e.setVerts(from, to);
+            e.setWeight(w);
+            e.setVertices(from, to);
 
             adjList.get(from).add(to);
             adjList.get(to).add(from);
@@ -76,52 +76,52 @@ public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
             adjList.get(from).add(to);
             adjList.get(to).add(from);
 
-            eCnt++;
+            edgesCount++;
             return true;
         }
     }
 
     @Override
-    public void removeE(E val) {
-        Edge e = getE(val);
+    public void removeEdge(E val) {
+        Edge e = getEdge(val);
 
-        adjList.get(e.getVFrom()).remove(e.getVTo());
-        adjList.get(e.getVTo()).remove(e.getVFrom());
+        adjList.get(e.getVertexFrom()).remove(e.getVertexTo());
+        adjList.get(e.getVertexTo()).remove(e.getVertexFrom());
 
         edges.remove(e);
-        eCnt--;
+        edgesCount--;
     }
 
     @Override
-    public void removeV(V val) {
-        Vert v = getV(val);
+    public void removeVertex(V val) {
+        Vertex v = getVertex(val);
         edges
                 .stream()
-                .filter(e -> e.getVTo().equals(v) || e.getVFrom().equals(v))
-                .collect(Collectors.toList()).forEach(e -> this.removeE(e.getVal()));
+                .filter(e -> e.getVertexTo().equals(v) || e.getVertexFrom().equals(v))
+                .collect(Collectors.toList()).forEach(e -> this.removeEdge(e.getValue()));
         adjList.remove(v);
         adjList.values().forEach(set -> set.remove(v));
-        vCnt--;
+        verticesCount--;
     }
 
     @Override
-    public void setEInceds(E val, V vFrom, V vTo) {
-        Edge e = getE(val);
-        adjList.get(e.getVFrom()).remove(e.getVTo());
-        adjList.get(e.getVTo()).remove(e.getVFrom());
-        Vert from = getV(vFrom);
-        Vert to = getV(vTo);
-        e.setVerts(from, to);
+    public void setEdgeIncidents(E val, V vFrom, V vTo) {
+        Edge e = getEdge(val);
+        adjList.get(e.getVertexFrom()).remove(e.getVertexTo());
+        adjList.get(e.getVertexTo()).remove(e.getVertexFrom());
+        Vertex from = getVertex(vFrom);
+        Vertex to = getVertex(vTo);
+        e.setVertices(from, to);
         adjList.get(from).add(to);
         adjList.get(to).add(from);
     }
 
     @Override
-    public List<E> getEdgesByVerts(V vFrom, V vTo) {
+    public List<E> getEdgesByVertices(V vFrom, V vTo) {
         return edges
                 .stream()
-                .filter(e -> e.getVTo().getVal().equals(vTo) && e.getVFrom().getVal().equals(vFrom))
-                .map(Edge::getVal)
+                .filter(e -> e.getVertexTo().getValue().equals(vTo) && e.getVertexFrom().getValue().equals(vFrom))
+                .map(Edge::getValue)
                 .collect(Collectors.toList());
     }
 }

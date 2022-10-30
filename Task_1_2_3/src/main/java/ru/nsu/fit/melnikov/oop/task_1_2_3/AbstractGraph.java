@@ -12,27 +12,27 @@ import java.util.stream.Collectors;
  */
 abstract class AbstractGraph<V, E> {
 
-    protected Integer vCnt, eCnt;
+    protected Integer verticesCount, edgesCount;
 
     public AbstractGraph() {
-        vCnt = 0;
-        eCnt = 0;
+        verticesCount = 0;
+        edgesCount = 0;
     }
 
     /**
      * Represents vertex data type.
      */
-    protected class Vert {
+    protected class Vertex {
 
-        private V val;
+        private V value;
 
         /**
          * Creates a new vertex with specific value.
          *
-         * @param val vertex value
+         * @param value vertex value
          */
-        protected Vert(V val) {
-            this.val = val;
+        protected Vertex(V value) {
+            this.value = value;
         }
 
         /**
@@ -40,29 +40,29 @@ abstract class AbstractGraph<V, E> {
          *
          * @return the vertex value
          */
-        public V getVal() {
-            return this.val;
+        public V getValue() {
+            return this.value;
         }
 
         /**
          * Changes current value of the vertex to the new one.
          *
-         * @param val new value for the specified vertex
+         * @param value new value for the specified vertex
          * @return previous vertex value
          */
-        public V setVal(V val) {
-            V prevVal = this.val;
-            this.val = val;
+        public V setValue(V value) {
+            V prevVal = this.value;
+            this.value = value;
             return prevVal;
         }
 
         @Override
         @SuppressWarnings("unchecked")
         public boolean equals(Object o) {
-            if (!(o instanceof AbstractGraph<?, ?>.Vert)) {
+            if (!(o instanceof AbstractGraph<?, ?>.Vertex)) {
                 return false;
             }
-            return ((Vert) o).getVal().equals(this.val);
+            return ((Vertex) o).getValue().equals(this.value);
         }
 
     }
@@ -75,24 +75,24 @@ abstract class AbstractGraph<V, E> {
         /**
          * Weight of the edge
          */
-        private Double w;
-        private Vert from;
-        private Vert to;
-        private E val;
+        private Double weight;
+        private Vertex from;
+        private Vertex to;
+        private E value;
 
         /**
          * Creates new edge and adds it to the to and from vertices incident edges set.
          *
-         * @param from vertex where edge starts
-         * @param to   vertex where edge ends
-         * @param w    edge weight
-         * @param val  edge value
+         * @param from   vertex where edge starts
+         * @param to     vertex where edge ends
+         * @param weight edge weight
+         * @param value  edge value
          */
-        protected Edge(Vert from, Vert to, Double w, E val) {
+        protected Edge(Vertex from, Vertex to, Double weight, E value) {
             this.from = from;
             this.to = to;
-            this.w = w;
-            this.val = val;
+            this.weight = weight;
+            this.value = value;
         }
 
         /**
@@ -100,8 +100,8 @@ abstract class AbstractGraph<V, E> {
          *
          * @return edge value
          */
-        public E getVal() {
-            return this.val;
+        public E getValue() {
+            return this.value;
         }
 
         /**
@@ -109,8 +109,8 @@ abstract class AbstractGraph<V, E> {
          *
          * @return edge weight
          */
-        public Double getW() {
-            return w;
+        public Double getWeight() {
+            return weight;
         }
 
         /**
@@ -118,7 +118,7 @@ abstract class AbstractGraph<V, E> {
          *
          * @return vertex where edge starts
          */
-        public Vert getVFrom() {
+        public Vertex getVertexFrom() {
             return from;
         }
 
@@ -127,31 +127,31 @@ abstract class AbstractGraph<V, E> {
          *
          * @return vertex where edge ends
          */
-        public Vert getVTo() {
+        public Vertex getVertexTo() {
             return to;
         }
 
         /**
          * Changes an edge value.
          *
-         * @param val new edge value
+         * @param value new edge value
          * @return previous edge value
          */
-        public E setVal(E val) {
-            E prevVal = this.val;
-            this.val = val;
+        public E setValue(E value) {
+            E prevVal = this.value;
+            this.value = value;
             return prevVal;
         }
 
         /**
          * Changes an edge weight.
          *
-         * @param w new edge weight
+         * @param weight new edge weight
          * @return previous edge weight
          */
-        public Double setW(Double w) {
-            Double prevW = this.w;
-            this.w = w;
+        public Double setWeight(Double weight) {
+            Double prevW = this.weight;
+            this.weight = weight;
             return prevW;
         }
 
@@ -160,7 +160,7 @@ abstract class AbstractGraph<V, E> {
          *
          * @param v new vertex where the edge begins
          */
-        public void setVFrom(Vert v) {
+        public void setVertexFrom(Vertex v) {
             this.from = v;
         }
 
@@ -169,7 +169,7 @@ abstract class AbstractGraph<V, E> {
          *
          * @param v new vertex where the edge ends
          */
-        public void setVTo(Vert v) {
+        public void setVertexTo(Vertex v) {
             this.to = v;
         }
 
@@ -179,9 +179,9 @@ abstract class AbstractGraph<V, E> {
          * @param from vertex where the edge starts
          * @param to   vertex where the edge ends
          */
-        public void setVerts(Vert from, Vert to) {
-            this.setVFrom(from);
-            this.setVTo(to);
+        public void setVertices(Vertex from, Vertex to) {
+            this.setVertexFrom(from);
+            this.setVertexTo(to);
         }
 
         @Override
@@ -192,10 +192,10 @@ abstract class AbstractGraph<V, E> {
             }
             Edge e = (Edge) o;
             return (
-                    e.w.equals(this.w) &&
+                    e.weight.equals(this.weight) &&
                             e.from.equals(this.from) &&
                             e.to.equals(this.to) &&
-                            e.val.equals(this.val)
+                            e.value.equals(this.value)
             );
         }
 
@@ -204,37 +204,37 @@ abstract class AbstractGraph<V, E> {
     /**
      * Returns a vertex with the specific value.
      *
-     * @param val value of vertex to return
+     * @param value value of vertex to return
      * @return vertex with the specific value
      * @throws NoSuchElementException if there is no any vertex with the specific value
      */
-    abstract protected Vert getV(V val) throws NoSuchElementException;
+    abstract protected Vertex getVertex(V value) throws NoSuchElementException;
 
-    abstract protected Set<Edge> getVInceds(Vert v);
+    abstract protected Set<Edge> getVertexIncidents(Vertex v);
 
-    protected Set<Edge> getVIncedsOut(Vert v) {
-        return this.getVInceds(v)
+    protected Set<Edge> getVertexIncidentsOut(Vertex v) {
+        return this.getVertexIncidents(v)
                 .stream()
-                .filter(e -> e.getVFrom().equals(v))
+                .filter(e -> e.getVertexFrom().equals(v))
                 .collect(Collectors.toSet());
     }
 
-    protected Set<Edge> getVIncedsIn(Vert v) {
-        return this.getVInceds(v)
+    protected Set<Edge> getVertexIncidentsIn(Vertex v) {
+        return this.getVertexIncidents(v)
                 .stream()
-                .filter(e -> e.getVTo().equals(v))
+                .filter(e -> e.getVertexTo().equals(v))
                 .collect(Collectors.toSet());
     }
 
     /**
      * Checks if the graph contains the specific vertex.
      *
-     * @param val value to check if the graph contains it
+     * @param value value to check if the graph contains it
      * @return true if graph contains vertex with specific value
      */
-    public boolean containsV(V val) {
+    public boolean containsVertex(V value) {
         try {
-            getV(val);
+            getVertex(value);
             return true;
         } catch (NoSuchElementException e) {
             return false;
@@ -244,21 +244,21 @@ abstract class AbstractGraph<V, E> {
     /**
      * Returns an edge with the specific value.
      *
-     * @param val value of edge to return
+     * @param value value of edge to return
      * @return edge with the specific value
      * @throws NoSuchElementException if there is no any edge with the specific value
      */
-    abstract protected Edge getE(E val) throws NoSuchElementException;
+    abstract protected Edge getEdge(E value) throws NoSuchElementException;
 
     /**
      * Checks if the graph contains the specific edge.
      *
-     * @param val value to check if the graph contains it
+     * @param value value to check if the graph contains it
      * @return true if graph contains edge with specific value
      */
-    public boolean containsE(E val) {
+    public boolean containsE(E value) {
         try {
-            getE(val);
+            getEdge(value);
             return true;
         } catch (NoSuchElementException e) {
             return false;
@@ -268,10 +268,10 @@ abstract class AbstractGraph<V, E> {
     /**
      * Adds a vertex with the specific value to the graph.
      *
-     * @param val value of vertex to add
+     * @param value value of vertex to add
      * @return false if graph is already contains the vertex with the specific value
      */
-    abstract public boolean addV(V val);
+    abstract public boolean addVertex(V value);
 
     /**
      * Adds new vertices with specific values to the graph.
@@ -280,10 +280,10 @@ abstract class AbstractGraph<V, E> {
      * @return list of boolean for each input value: false if such element
      * is already in the graph
      */
-    public List<Boolean> addVerts(V[] vals) {
+    public List<Boolean> addVertices(V[] vals) {
         List<Boolean> res = new ArrayList<>();
-        for (V val : vals) {
-            res.add(addV(val));
+        for (V value : vals) {
+            res.add(addVertex(value));
         }
         return res;
     }
@@ -291,28 +291,28 @@ abstract class AbstractGraph<V, E> {
     /**
      * Adds edge with specific value to the graph.
      *
-     * @param vFrom vertex where edge begins
-     * @param vTo   vertex where edge ends
-     * @param w     weight of a new edge
-     * @param val   value of a new edge
+     * @param vFrom  vertex where edge begins
+     * @param vTo    vertex where edge ends
+     * @param weight weight of a new edge
+     * @param value  value of a new edge
      * @return false if edge with the specific value is already
      * in the graph.
      */
-    abstract public boolean addE(V vFrom, V vTo, Double w, E val);
+    abstract public boolean addEdge(V vFrom, V vTo, Double weight, E value);
 
     /**
      * Removes edge with the specific value from the graph.
      *
-     * @param val value of edge to remove
+     * @param value value of edge to remove
      */
-    abstract public void removeE(E val);
+    abstract public void removeEdge(E value);
 
     /**
      * Removes edge with the specific value from the graph.
      *
-     * @param val value of vertex to remove
+     * @param value value of vertex to remove
      */
-    abstract public void removeV(V val);
+    abstract public void removeVertex(V value);
 
     /**
      * Changes value of the specific vertex of the graph.
@@ -320,20 +320,20 @@ abstract class AbstractGraph<V, E> {
      * @param prevVal value of vertex to change
      * @param newVal  value to which specific vertex has to change
      */
-    public void setVVal(V prevVal, V newVal) {
-        Vert v = getV(prevVal);
-        v.setVal(newVal);
+    public void setVertexValue(V prevVal, V newVal) {
+        Vertex v = getVertex(prevVal);
+        v.setValue(newVal);
     }
 
     /**
      * Changes weight of the specific edge.
      *
-     * @param val value of edge to modify
-     * @param w   new weight of the specific edge
+     * @param value value of edge to modify
+     * @param weight   new weight of the specific edge
      * @return previous weight of the specific edge
      */
-    public Double setEdgeW(E val, Double w) {
-        return getE(val).setW(w);
+    public Double setEdgeWeight(E value, Double weight) {
+        return getEdge(value).setWeight(weight);
     }
 
     /**
@@ -342,47 +342,47 @@ abstract class AbstractGraph<V, E> {
      * @param prevVal value of edge to change
      * @param newVal  value to which specific edge has to change
      */
-    public void setEVal(E prevVal, E newVal) {
-        getE(prevVal).setVal(newVal);
+    public void setEdgeValue(E prevVal, E newVal) {
+        getEdge(prevVal).setValue(newVal);
     }
 
     /**
      * Changes incident vertices of the specific edge.
      *
-     * @param val   value of the edge to change
+     * @param value   value of the edge to change
      * @param vFrom vertex where edge has to begin
      * @param vTo   vertex where edge has to end
      */
-    abstract public void setEInceds(E val, V vFrom, V vTo);
+    abstract public void setEdgeIncidents(E value, V vFrom, V vTo);
 
     /**
      * Returns vertex where edge with the specific value begins.
      *
-     * @param val value of edge
+     * @param value value of edge
      * @return vertex where edge with the specific value begins
      */
-    public V getEFrom(E val) {
-        return getE(val).getVFrom().getVal();
+    public V getEdgeFrom(E value) {
+        return getEdge(value).getVertexFrom().getValue();
     }
 
     /**
      * Returns vertex where edge with the specific value ends.
      *
-     * @param val value of edge
+     * @param value value of edge
      * @return vertex where edge with the specific value ends
      */
-    public V getETo(E val) {
-        return getE(val).getVTo().getVal();
+    public V getEdgeTo(E value) {
+        return getEdge(value).getVertexTo().getValue();
     }
 
     /**
      * Returns weight of edge with the specific value.
      *
-     * @param val value of edge
+     * @param value value of edge
      * @return weight of edge with the specific value
      */
-    public Double getEdgeW(E val) {
-        return getE(val).getW();
+    public Double getEdgeWeight(E value) {
+        return getEdge(value).getWeight();
     }
 
     /**
@@ -392,15 +392,15 @@ abstract class AbstractGraph<V, E> {
      * @param vTo   end vertex of edge to get
      * @return list of edges which starts with vFrom and ends with vTo vertices
      */
-    abstract public List<E> getEdgesByVerts(V vFrom, V vTo);
+    abstract public List<E> getEdgesByVertices(V vFrom, V vTo);
 
     /**
      * Returns count of vertex in the graph.
      *
      * @return count of vertex in the graph
      */
-    public int VCnt() {
-        return vCnt;
+    public int getVerticesCount() {
+        return verticesCount;
     }
 
     /**
@@ -408,33 +408,33 @@ abstract class AbstractGraph<V, E> {
      *
      * @return count of edge in the graph
      */
-    public int ECnt() {
-        return eCnt;
+    public int getEdgesCount() {
+        return edgesCount;
     }
 
     public List<V> sort(V start) throws NegativeLoopException {
-        Vert s = getV(start);
-        Map<Vert, Double> d = new HashMap<>();
+        Vertex s = getVertex(start);
+        Map<Vertex, Double> d = new HashMap<>();
         d.put(s, 0.0);
-        Queue<Edge> q = new ArrayDeque<>(this.getVIncedsOut(s));
+        Queue<Edge> q = new ArrayDeque<>(this.getVertexIncidentsOut(s));
         int iV = 0;
         while (!q.isEmpty()) {
-            if (iV >= VCnt() * VCnt()) {
+            if (iV >= getVerticesCount() * getVerticesCount()) {
                 throw new NegativeLoopException();
             }
             Edge cur = q.remove();
-            Vert to = cur.getVTo();
-            Double newD = d.get(cur.getVFrom()) + cur.getW();
+            Vertex to = cur.getVertexTo();
+            Double newD = d.get(cur.getVertexFrom()) + cur.getWeight();
             if (!d.containsKey(to) || d.get(to) > newD) {
                 d.put(to, newD);
-                q.addAll(this.getVIncedsOut(to));
+                q.addAll(this.getVertexIncidentsOut(to));
             }
             iV++;
         }
         return d.keySet()
                 .stream()
                 .sorted((v1, v2) -> (int) (d.get(v1) - d.get(v2)))
-                .map(Vert::getVal)
+                .map(Vertex::getValue)
                 .collect(Collectors.toList());
     }
 
