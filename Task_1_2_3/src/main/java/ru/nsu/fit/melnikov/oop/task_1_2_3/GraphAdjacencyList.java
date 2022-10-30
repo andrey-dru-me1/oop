@@ -3,11 +3,20 @@ package ru.nsu.fit.melnikov.oop.task_1_2_3;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a graph using the adjacency matrix.
+ *
+ * @param <V> Type of vertices values
+ * @param <E> Type of edges values
+ */
 public class GraphAdjacencyList<V, E> extends Graph<V, E> {
 
     Map<Vertex, Set<Vertex>> adjList;
     Set<Edge> edges;
 
+    /**
+     * Creates new graph object.
+     */
     public GraphAdjacencyList() {
         super();
         adjList = new HashMap<>();
@@ -53,9 +62,9 @@ public class GraphAdjacencyList<V, E> extends Graph<V, E> {
     }
 
     @Override
-    public boolean addEdge(V vFrom, V vTo, Double w, E val) {
-        Vertex from = getVertex(vFrom);
-        Vertex to = getVertex(vTo);
+    public boolean addEdge(V vertexFrom, V vertexTo, Double w, E val) {
+        Vertex from = getVertex(vertexFrom);
+        Vertex to = getVertex(vertexTo);
         try {
 
             Edge e = getEdge(val);
@@ -105,22 +114,25 @@ public class GraphAdjacencyList<V, E> extends Graph<V, E> {
     }
 
     @Override
-    public void setEdgeIncidents(E val, V vFrom, V vTo) {
+    public void setEdgeIncidents(E val, V vertexFrom, V vertexTo) {
         Edge e = getEdge(val);
         adjList.get(e.getVertexFrom()).remove(e.getVertexTo());
         adjList.get(e.getVertexTo()).remove(e.getVertexFrom());
-        Vertex from = getVertex(vFrom);
-        Vertex to = getVertex(vTo);
+        Vertex from = getVertex(vertexFrom);
+        Vertex to = getVertex(vertexTo);
         e.setVertices(from, to);
         adjList.get(from).add(to);
         adjList.get(to).add(from);
     }
 
     @Override
-    public List<E> getEdgesByVertices(V vFrom, V vTo) {
+    public List<E> getEdgesByVertices(V vertexFrom, V vertexTo) {
         return edges
                 .stream()
-                .filter(e -> e.getVertexTo().getValue().equals(vTo) && e.getVertexFrom().getValue().equals(vFrom))
+                .filter(
+                        e -> e.getVertexTo().getValue().equals(vertexTo)
+                                && e.getVertexFrom().getValue().equals(vertexFrom)
+                )
                 .map(Edge::getValue)
                 .collect(Collectors.toList());
     }

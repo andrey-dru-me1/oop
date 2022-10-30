@@ -59,10 +59,10 @@ public class GraphIncidentMatrix<V, E> extends Graph<V, E> {
     }
 
     @Override
-    public boolean addEdge(V vFrom, V vTo, Double weight, E val) {
+    public boolean addEdge(V vertexFrom, V vertexTo, Double weight, E val) {
 
-        Vertex from = getVertex(vFrom);
-        Vertex to = getVertex(vTo);
+        Vertex from = getVertex(vertexFrom);
+        Vertex to = getVertex(vertexTo);
 
         try {
             Edge e = getEdge(val);
@@ -110,22 +110,22 @@ public class GraphIncidentMatrix<V, E> extends Graph<V, E> {
     }
 
     @Override
-    public void setEdgeIncidents(E val, V vFrom, V vTo) {
+    public void setEdgeIncidents(E val, V vertexFrom, V vertexTo) {
         Edge e = getEdge(val);
         incMatrix.get(e.getVertexFrom()).remove(e);
         incMatrix.get(e.getVertexTo()).remove(e);
-        Vertex from = getVertex(vFrom);
-        Vertex to = getVertex(vTo);
+        Vertex from = getVertex(vertexFrom);
+        Vertex to = getVertex(vertexTo);
         e.setVertices(from, to);
         incMatrix.get(from).add(e);
         incMatrix.get(to).add(e);
     }
 
     @Override
-    public List<E> getEdgesByVertices(V vFrom, V vTo) {
-        return incMatrix.get(getVertex(vFrom))
+    public List<E> getEdgesByVertices(V vertexFrom, V vertexTo) {
+        return incMatrix.get(getVertex(vertexFrom))
                 .stream()
-                .filter((e) -> e.getVertexTo().getValue().equals(vTo))
+                .filter((e) -> e.getVertexTo().getValue().equals(vertexTo))
                 .map(Edge::getValue).collect(Collectors.toList());
     }
 }

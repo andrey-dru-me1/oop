@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
  */
 abstract class Graph<V, E> {
 
-    protected Integer verticesCount, edgesCount;
+    protected Integer verticesCount;
+    protected Integer edgesCount;
 
     public Graph() {
         verticesCount = 0;
@@ -70,7 +71,7 @@ abstract class Graph<V, E> {
     protected class Edge {
 
         /**
-         * Weight of the edge
+         * Weight of the edge.
          */
         private Double weight;
         private Vertex from;
@@ -186,10 +187,10 @@ abstract class Graph<V, E> {
             }
             Edge e = (Edge) o;
             return (
-                    e.weight.equals(this.weight) &&
-                            e.from.equals(this.from) &&
-                            e.to.equals(this.to) &&
-                            e.value.equals(this.value)
+                    e.weight.equals(this.weight)
+                            && e.from.equals(this.from)
+                            && e.to.equals(this.to)
+                            && e.value.equals(this.value)
             );
         }
 
@@ -202,9 +203,9 @@ abstract class Graph<V, E> {
      * @return vertex with the specific value
      * @throws NoSuchElementException if there is no any vertex with the specific value
      */
-    abstract protected Vertex getVertex(V value) throws NoSuchElementException;
+    protected abstract Vertex getVertex(V value) throws NoSuchElementException;
 
-    abstract protected Set<Edge> getVertexIncidents(Vertex v);
+    protected abstract Set<Edge> getVertexIncidents(Vertex v);
 
     protected Set<Edge> getVertexIncidentsOut(Vertex v) {
         return this.getVertexIncidents(v)
@@ -235,7 +236,7 @@ abstract class Graph<V, E> {
      * @return edge with the specific value
      * @throws NoSuchElementException if there is no any edge with the specific value
      */
-    abstract protected Edge getEdge(E value) throws NoSuchElementException;
+    protected abstract Edge getEdge(E value) throws NoSuchElementException;
 
     /**
      * Checks if the graph contains the specific edge.
@@ -258,14 +259,14 @@ abstract class Graph<V, E> {
      * @param value value of vertex to add
      * @return false if graph is already contains the vertex with the specific value
      */
-    abstract public boolean addVertex(V value);
+    public abstract boolean addVertex(V value);
 
     /**
      * Adds new vertices with specific values to the graph.
      *
      * @param values values to add to the graph
      * @return list of boolean for each input value: false if such element
-     * is already in the graph
+     *      is already in the graph
      */
     public List<Boolean> addVertices(V[] values) {
         List<Boolean> res = new ArrayList<>();
@@ -278,28 +279,28 @@ abstract class Graph<V, E> {
     /**
      * Adds edge with specific value to the graph.
      *
-     * @param vFrom  vertex where edge begins
-     * @param vTo    vertex where edge ends
-     * @param weight weight of a new edge
-     * @param value  value of a new edge
+     * @param vertexFrom vertex where edge begins
+     * @param vertexTo   vertex where edge ends
+     * @param weight     weight of a new edge
+     * @param value      value of a new edge
      * @return false if edge with the specific value is already
      * in the graph.
      */
-    abstract public boolean addEdge(V vFrom, V vTo, Double weight, E value);
+    public abstract boolean addEdge(V vertexFrom, V vertexTo, Double weight, E value);
 
     /**
      * Removes edge with the specific value from the graph.
      *
      * @param value value of edge to remove
      */
-    abstract public void removeEdge(E value);
+    public abstract void removeEdge(E value);
 
     /**
      * Removes edge with the specific value from the graph.
      *
      * @param value value of vertex to remove
      */
-    abstract public void removeVertex(V value);
+    public abstract void removeVertex(V value);
 
     /**
      * Changes value of the specific vertex of the graph.
@@ -336,11 +337,11 @@ abstract class Graph<V, E> {
     /**
      * Changes incident vertices of the specific edge.
      *
-     * @param value   value of the edge to change
+     * @param value value of the edge to change
      * @param vFrom vertex where edge has to begin
      * @param vTo   vertex where edge has to end
      */
-    abstract public void setEdgeIncidents(E value, V vFrom, V vTo);
+    public abstract void setEdgeIncidents(E value, V vFrom, V vTo);
 
     /**
      * Returns vertex where edge with the specific value begins.
@@ -379,7 +380,7 @@ abstract class Graph<V, E> {
      * @param vTo   end vertex of edge to get
      * @return list of edges which starts with vFrom and ends with vTo vertices
      */
-    abstract public List<E> getEdgesByVertices(V vFrom, V vTo);
+    public abstract List<E> getEdgesByVertices(V vFrom, V vTo);
 
     /**
      * Returns count of vertex in the graph.
