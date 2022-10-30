@@ -10,18 +10,18 @@ import java.util.stream.Collectors;
  * @param <V> type of vertices' value
  * @param <E> type of edges' value
  */
-public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
+public class GraphIncidentMatrix<V, E> extends Graph<V, E> {
 
-    private final Map<Vertex, Set<Edge>> incMtrx;
+    private final Map<Vertex, Set<Edge>> incMatrix;
 
-    public GraphIncMtrx() {
+    public GraphIncidentMatrix() {
         super();
-        incMtrx = new HashMap<>();
+        incMatrix = new HashMap<>();
     }
 
     @Override
     protected Vertex getVertex(V val) throws NoSuchElementException {
-        for (Vertex v : incMtrx.keySet()) {
+        for (Vertex v : incMatrix.keySet()) {
             if (v.getValue().equals(val)) {
                 return v;
             }
@@ -31,13 +31,13 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
 
     @Override
     protected Set<Edge> getVertexIncidents(Vertex v) {
-        return incMtrx.get(v);
+        return incMatrix.get(v);
     }
 
     @Override
     protected Edge getEdge(E val) throws NoSuchElementException {
-        for (Vertex from : incMtrx.keySet()) {
-            for (Edge e : incMtrx.get(from)) {
+        for (Vertex from : incMatrix.keySet()) {
+            for (Edge e : incMatrix.get(from)) {
                 if (e.getValue().equals(val)) {
                     return e;
                 }
@@ -51,8 +51,8 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
         try {
             getVertex(val);
             return false;
-        } catch (NoSuchElementException excp) {
-            incMtrx.put(new Vertex(val), new HashSet<>());
+        } catch (NoSuchElementException exc) {
+            incMatrix.put(new Vertex(val), new HashSet<>());
             verticesCount++;
             return true;
         }
@@ -67,13 +67,13 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
         try {
             Edge e = getEdge(val);
 
-            incMtrx.get(e.getVertexFrom()).remove(e);
-            incMtrx.get(e.getVertexTo()).remove(e);
+            incMatrix.get(e.getVertexFrom()).remove(e);
+            incMatrix.get(e.getVertexTo()).remove(e);
 
             e.setVertices(from, to);
 
-            incMtrx.get(e.getVertexFrom()).add(e);
-            incMtrx.get(e.getVertexTo()).add(e);
+            incMatrix.get(e.getVertexFrom()).add(e);
+            incMatrix.get(e.getVertexTo()).add(e);
 
             e.setWeight(weight);
             return false;
@@ -81,8 +81,8 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
 
             Edge e = new Edge(from, to, weight, val);
 
-            incMtrx.get(from).add(e);
-            incMtrx.get(to).add(e);
+            incMatrix.get(from).add(e);
+            incMatrix.get(to).add(e);
 
             edgesCount++;
             return true;
@@ -92,8 +92,8 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
     @Override
     public void removeEdge(E val) {
         Edge e = getEdge(val);
-        incMtrx.get(e.getVertexFrom()).remove(e);
-        incMtrx.get(e.getVertexTo()).remove(e);
+        incMatrix.get(e.getVertexFrom()).remove(e);
+        incMatrix.get(e.getVertexTo()).remove(e);
         edgesCount--;
     }
 
@@ -102,28 +102,28 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
 
         Vertex v = getVertex(val);
 
-        Set<Edge> toRemove = new HashSet<>(incMtrx.get(v));
+        Set<Edge> toRemove = new HashSet<>(incMatrix.get(v));
         toRemove.forEach(e -> this.removeEdge(e.getValue()));
 
-        incMtrx.remove(getVertex(val));
+        incMatrix.remove(getVertex(val));
         verticesCount--;
     }
 
     @Override
     public void setEdgeIncidents(E val, V vFrom, V vTo) {
         Edge e = getEdge(val);
-        incMtrx.get(e.getVertexFrom()).remove(e);
-        incMtrx.get(e.getVertexTo()).remove(e);
+        incMatrix.get(e.getVertexFrom()).remove(e);
+        incMatrix.get(e.getVertexTo()).remove(e);
         Vertex from = getVertex(vFrom);
         Vertex to = getVertex(vTo);
         e.setVertices(from, to);
-        incMtrx.get(from).add(e);
-        incMtrx.get(to).add(e);
+        incMatrix.get(from).add(e);
+        incMatrix.get(to).add(e);
     }
 
     @Override
     public List<E> getEdgesByVertices(V vFrom, V vTo) {
-        return incMtrx.get(getVertex(vFrom))
+        return incMatrix.get(getVertex(vFrom))
                 .stream()
                 .filter((e) -> e.getVertexTo().getValue().equals(vTo))
                 .map(Edge::getValue).collect(Collectors.toList());

@@ -3,20 +3,20 @@ package ru.nsu.fit.melnikov.oop.task_1_2_3;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
+public class GraphAdjacencyMatrix<V, E> extends Graph<V, E> {
 
-    Map<Vertex, Set<Vertex>> adjList;
+    Map<Vertex, Map<Vertex, Boolean>> adjMatrix;
     Set<Edge> edges;
 
-    public GraphAdjList() {
+    public GraphAdjacencyMatrix() {
         super();
-        adjList = new HashMap<>();
+        adjMatrix = new HashMap<>();
         edges = new HashSet<>();
     }
 
     @Override
     protected Vertex getVertex(V val) throws NoSuchElementException {
-        return adjList.keySet()
+        return adjMatrix.keySet()
                 .stream()
                 .filter(v -> v.getValue().equals(val))
                 .findFirst()
@@ -46,7 +46,11 @@ public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
             getVertex(val);
             return false;
         } catch (NoSuchElementException exc) {
-            adjList.put(new Vertex(val), new HashSet<>());
+            Map<Vertex, Boolean> helperMap = new HashMap<>();
+            adjMatrix.keySet().forEach(v -> helperMap.put(v, false));
+            Vertex newV = new Vertex(val);
+            adjMatrix.put(newV, helperMap);
+            adjMatrix.values().forEach(map -> map.put(newV, false));
             verticesCount++;
             return true;
         }
@@ -57,25 +61,15 @@ public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
         Vertex from = getVertex(vFrom);
         Vertex to = getVertex(vTo);
         try {
-
             Edge e = getEdge(val);
-
-            adjList.get(e.getVertexFrom()).remove(e.getVertexTo());
-            adjList.get(e.getVertexTo()).remove(e.getVertexFrom());
-
             e.setWeight(w);
-            e.setVertices(from, to);
-
-            adjList.get(from).add(to);
-            adjList.get(to).add(from);
-
+            this.setEdgeIncidents(val, vFrom, vTo);
             return false;
         } catch (NoSuchElementException exc) {
-            edges.add(new Edge(from, to, w, val));
-
-            adjList.get(from).add(to);
-            adjList.get(to).add(from);
-
+            Edge newE = new Edge(from, to, w, val);
+            edges.add(newE);
+            adjMatrix.get(from).replace(to, true);
+            adjMatrix.get(to).replace(from, true);
             edgesCount++;
             return true;
         }
@@ -84,36 +78,31 @@ public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
     @Override
     public void removeEdge(E val) {
         Edge e = getEdge(val);
-
-        adjList.get(e.getVertexFrom()).remove(e.getVertexTo());
-        adjList.get(e.getVertexTo()).remove(e.getVertexFrom());
-
         edges.remove(e);
+        adjMatrix.get(e.getVertexFrom()).replace(e.getVertexTo(), false);
+        adjMatrix.get(e.getVertexTo()).replace(e.getVertexFrom(), false);
         edgesCount--;
     }
 
     @Override
     public void removeVertex(V val) {
         Vertex v = getVertex(val);
-        edges
-                .stream()
-                .filter(e -> e.getVertexTo().equals(v) || e.getVertexFrom().equals(v))
-                .collect(Collectors.toList()).forEach(e -> this.removeEdge(e.getValue()));
-        adjList.remove(v);
-        adjList.values().forEach(set -> set.remove(v));
+        this.getVertexIncidents(v).forEach(e -> this.removeEdge(e.getValue()));
+        adjMatrix.remove(v);
+        adjMatrix.values().forEach(map -> map.remove(v));
         verticesCount--;
     }
 
     @Override
     public void setEdgeIncidents(E val, V vFrom, V vTo) {
         Edge e = getEdge(val);
-        adjList.get(e.getVertexFrom()).remove(e.getVertexTo());
-        adjList.get(e.getVertexTo()).remove(e.getVertexFrom());
         Vertex from = getVertex(vFrom);
         Vertex to = getVertex(vTo);
+        adjMatrix.get(e.getVertexFrom()).replace(e.getVertexTo(), false);
+        adjMatrix.get(e.getVertexTo()).replace(e.getVertexFrom(), false);
         e.setVertices(from, to);
-        adjList.get(from).add(to);
-        adjList.get(to).add(from);
+        adjMatrix.get(from).replace(to, true);
+        adjMatrix.get(to).replace(from, true);
     }
 
     @Override

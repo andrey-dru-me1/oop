@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
  * @param <V> type of vertices' value
  * @param <E> type of edges' value
  */
-abstract class AbstractGraph<V, E> {
+abstract class Graph<V, E> {
 
     protected Integer verticesCount, edgesCount;
 
-    public AbstractGraph() {
+    public Graph() {
         verticesCount = 0;
         edgesCount = 0;
     }
@@ -48,18 +48,15 @@ abstract class AbstractGraph<V, E> {
          * Changes current value of the vertex to the new one.
          *
          * @param value new value for the specified vertex
-         * @return previous vertex value
          */
-        public V setValue(V value) {
-            V prevVal = this.value;
+        public void setValue(V value) {
             this.value = value;
-            return prevVal;
         }
 
         @Override
         @SuppressWarnings("unchecked")
         public boolean equals(Object o) {
-            if (!(o instanceof AbstractGraph<?, ?>.Vertex)) {
+            if (!(o instanceof Graph<?, ?>.Vertex)) {
                 return false;
             }
             return ((Vertex) o).getValue().equals(this.value);
@@ -81,7 +78,7 @@ abstract class AbstractGraph<V, E> {
         private E value;
 
         /**
-         * Creates new edge and adds it to the to and from vertices incident edges set.
+         * Creates new edge and adds it to the 'to' and 'from' vertices incident edges set.
          *
          * @param from   vertex where edge starts
          * @param to     vertex where edge ends
@@ -135,12 +132,9 @@ abstract class AbstractGraph<V, E> {
          * Changes an edge value.
          *
          * @param value new edge value
-         * @return previous edge value
          */
-        public E setValue(E value) {
-            E prevVal = this.value;
+        public void setValue(E value) {
             this.value = value;
-            return prevVal;
         }
 
         /**
@@ -187,7 +181,7 @@ abstract class AbstractGraph<V, E> {
         @Override
         @SuppressWarnings("unchecked")
         public boolean equals(Object o) {
-            if (!(o instanceof AbstractGraph<?, ?>.Edge)) {
+            if (!(o instanceof Graph<?, ?>.Edge)) {
                 return false;
             }
             Edge e = (Edge) o;
@@ -216,13 +210,6 @@ abstract class AbstractGraph<V, E> {
         return this.getVertexIncidents(v)
                 .stream()
                 .filter(e -> e.getVertexFrom().equals(v))
-                .collect(Collectors.toSet());
-    }
-
-    protected Set<Edge> getVertexIncidentsIn(Vertex v) {
-        return this.getVertexIncidents(v)
-                .stream()
-                .filter(e -> e.getVertexTo().equals(v))
                 .collect(Collectors.toSet());
     }
 
@@ -256,7 +243,7 @@ abstract class AbstractGraph<V, E> {
      * @param value value to check if the graph contains it
      * @return true if graph contains edge with specific value
      */
-    public boolean containsE(E value) {
+    public boolean containsEdge(E value) {
         try {
             getEdge(value);
             return true;
@@ -276,13 +263,13 @@ abstract class AbstractGraph<V, E> {
     /**
      * Adds new vertices with specific values to the graph.
      *
-     * @param vals values to add to the graph
+     * @param values values to add to the graph
      * @return list of boolean for each input value: false if such element
      * is already in the graph
      */
-    public List<Boolean> addVertices(V[] vals) {
+    public List<Boolean> addVertices(V[] values) {
         List<Boolean> res = new ArrayList<>();
-        for (V value : vals) {
+        for (V value : values) {
             res.add(addVertex(value));
         }
         return res;
