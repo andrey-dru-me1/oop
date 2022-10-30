@@ -337,11 +337,11 @@ abstract class Graph<V, E> {
     /**
      * Changes incident vertices of the specific edge.
      *
-     * @param value value of the edge to change
-     * @param vFrom vertex where edge has to begin
-     * @param vTo   vertex where edge has to end
+     * @param value      value of the edge to change
+     * @param vertexFrom vertex where edge has to begin
+     * @param vertexTo   vertex where edge has to end
      */
-    public abstract void setEdgeIncidents(E value, V vFrom, V vTo);
+    public abstract void setEdgeIncidents(E value, V vertexFrom, V vertexTo);
 
     /**
      * Returns vertex where edge with the specific value begins.
@@ -374,13 +374,13 @@ abstract class Graph<V, E> {
     }
 
     /**
-     * Returns list of edges which starts with vFrom and ends with vTo vertices.
+     * Returns list of edges which starts with vertexFrom and ends with vertexTo vertices.
      *
-     * @param vFrom start vertex of edge to get
-     * @param vTo   end vertex of edge to get
-     * @return list of edges which starts with vFrom and ends with vTo vertices
+     * @param vertexFrom start vertex of edge to get
+     * @param vertexTo   end vertex of edge to get
+     * @return list of edges which starts with vertexFrom and ends with vertexTo vertices
      */
-    public abstract List<E> getEdgesByVertices(V vFrom, V vTo);
+    public abstract List<E> getEdgesByVertices(V vertexFrom, V vertexTo);
 
     /**
      * Returns count of vertex in the graph.
@@ -405,9 +405,9 @@ abstract class Graph<V, E> {
         Map<Vertex, Double> d = new HashMap<>();
         d.put(s, 0.0);
         Queue<Edge> q = new ArrayDeque<>(this.getVertexIncidentsOut(s));
-        int iV = 0;
+        int vertexIndex = 0;
         while (!q.isEmpty()) {
-            if (iV >= getVerticesCount() * getVerticesCount()) {
+            if (vertexIndex >= getVerticesCount() * getVerticesCount()) {
                 throw new NegativeLoopException();
             }
             Edge cur = q.remove();
@@ -417,7 +417,7 @@ abstract class Graph<V, E> {
                 d.put(to, newD);
                 q.addAll(this.getVertexIncidentsOut(to));
             }
-            iV++;
+            vertexIndex++;
         }
         return d.keySet()
                 .stream()
