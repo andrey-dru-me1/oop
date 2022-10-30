@@ -24,6 +24,14 @@ public class GraphAdjMtrx<V, E> extends AbstractGraph<V, E> {
     }
 
     @Override
+    protected Set<Edge> getVInceds(Vert v) {
+        return edges
+                .stream()
+                .filter(e -> e.getVTo().equals(v) || e.getVFrom().equals(v))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
     protected Edge getE(E val) throws NoSuchElementException {
         return edges
                 .stream()
@@ -79,11 +87,7 @@ public class GraphAdjMtrx<V, E> extends AbstractGraph<V, E> {
     @Override
     public void removeV(V val) {
         Vert v = getV(val);
-        edges
-                .stream()
-                .filter(e -> e.getVTo().getVal().equals(val) || e.getVFrom().getVal().equals(val))
-                .collect(Collectors.toList())
-                .forEach(e -> this.removeE(e.getVal()));
+        this.getVInceds(v).forEach(e -> this.removeE(e.getVal()));
         adjMtrx.remove(v);
         adjMtrx.values().forEach(map -> map.remove(v));
         vCnt--;
@@ -105,7 +109,7 @@ public class GraphAdjMtrx<V, E> extends AbstractGraph<V, E> {
     public List<E> getEdgesByVerts(V vFrom, V vTo) {
         return edges
                 .stream()
-                .filter(e -> e.getVTo().getVal().equals(vTo) || e.getVFrom().getVal().equals(vFrom))
+                .filter(e -> e.getVTo().getVal().equals(vTo) && e.getVFrom().getVal().equals(vFrom))
                 .map(Edge::getVal)
                 .collect(Collectors.toList());
     }
