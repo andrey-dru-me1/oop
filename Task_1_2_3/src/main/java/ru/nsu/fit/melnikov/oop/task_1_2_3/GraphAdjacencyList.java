@@ -98,7 +98,7 @@ public class GraphAdjacencyList<V, E> extends Graph<V, E> {
         edges
                 .stream()
                 .filter(e -> e.getVertexTo().equals(v) || e.getVertexFrom().equals(v))
-                .collect(Collectors.toList()).forEach(e -> this.removeEdge(e.getValue()));
+                .collect(Collectors.toSet()).forEach(e -> this.removeEdge(e.getValue()));
         adjList.remove(v);
         adjList.values().forEach(set -> set.remove(v));
         verticesCount--;
