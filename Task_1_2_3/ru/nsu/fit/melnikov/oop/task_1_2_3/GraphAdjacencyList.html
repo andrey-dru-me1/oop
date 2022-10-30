@@ -128,9 +128,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>V</code> - Type of vertices values</dd>
+<dd><code>E</code> - Type of edges values</dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">GraphAdjacencyList&lt;V,&#8203;E&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">Represents a graph using the adjacency matrix.</div>
 </li>
 </ul>
 </div>
@@ -180,7 +186,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">GraphAdjacencyList</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates new graph object.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -202,8 +210,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(V,V,java.lang.Double,E)">addEdge</a></span>&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vFrom,
-       <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vTo,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(V,V,java.lang.Double,E)">addEdge</a></span>&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexFrom,
+       <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexTo,
        java.lang.Double&nbsp;w,
        <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">E</a>&nbsp;val)</code></th>
 <td class="colLast">
@@ -254,8 +262,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">E</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesByVertices(V,V)">getEdgesByVertices</a></span>&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vFrom,
-                  <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vTo)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesByVertices(V,V)">getEdgesByVertices</a></span>&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexFrom,
+                  <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexTo)</code></th>
 <td class="colLast">
 <div class="block">Returns list of edges which starts with vFrom and ends with vTo vertices.</div>
 </td>
@@ -322,8 +330,8 @@ extends java.lang.Object</pre>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeIncidents(E,V,V)">setEdgeIncidents</a></span>&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">E</a>&nbsp;val,
-                <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vFrom,
-                <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vTo)</code></th>
+                <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexFrom,
+                <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexTo)</code></th>
 <td class="colLast">
 <div class="block">Changes incident vertices of the specific edge.</div>
 </td>
@@ -416,6 +424,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>GraphAdjacencyList</h4>
 <pre>public&nbsp;GraphAdjacencyList()</pre>
+<div class="block">Creates new graph object.</div>
 </li>
 </ul>
 </li>
@@ -505,15 +514,15 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addEdge</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;addEdge&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vFrom,
-                       <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vTo,
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addEdge&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexFrom,
+                       <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexTo,
                        java.lang.Double&nbsp;w,
                        <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">E</a>&nbsp;val)</pre>
 <div class="block">Adds edge with specific value to the graph.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>vFrom</code> - vertex where edge begins</dd>
-<dd><code>vTo</code> - vertex where edge ends</dd>
+<dd><code>vertexFrom</code> - vertex where edge begins</dd>
+<dd><code>vertexTo</code> - vertex where edge ends</dd>
 <dd><code>w</code> - weight of a new edge</dd>
 <dd><code>val</code> - value of a new edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -563,14 +572,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setEdgeIncidents</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setEdgeIncidents&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">E</a>&nbsp;val,
-                             <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vFrom,
-                             <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vTo)</pre>
+                             <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexFrom,
+                             <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexTo)</pre>
 <div class="block">Changes incident vertices of the specific edge.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>val</code> - value of the edge to change</dd>
-<dd><code>vFrom</code> - vertex where edge has to begin</dd>
-<dd><code>vTo</code> - vertex where edge has to end</dd>
+<dd><code>vertexFrom</code> - vertex where edge has to begin</dd>
+<dd><code>vertexTo</code> - vertex where edge has to end</dd>
 </dl>
 </li>
 </ul>
@@ -582,13 +591,13 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getEdgesByVertices</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">E</a>&gt;&nbsp;getEdgesByVertices&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vFrom,
-                                            <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vTo)</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">E</a>&gt;&nbsp;getEdgesByVertices&#8203;(<a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexFrom,
+                                            <a href="GraphAdjacencyList.html" title="type parameter in GraphAdjacencyList">V</a>&nbsp;vertexTo)</pre>
 <div class="block">Returns list of edges which starts with vFrom and ends with vTo vertices.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>vFrom</code> - start vertex of edge to get</dd>
-<dd><code>vTo</code> - end vertex of edge to get</dd>
+<dd><code>vertexFrom</code> - start vertex of edge to get</dd>
+<dd><code>vertexTo</code> - end vertex of edge to get</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>list of edges which starts with vFrom and ends with vTo vertices</dd>
 </dl>
@@ -654,7 +663,7 @@ extends java.lang.Object</pre>
 <dd><code>values</code> - values to add to the graph</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>list of boolean for each input value: false if such element
- is already in the graph</dd>
+      is already in the graph</dd>
 </dl>
 </li>
 </ul>
