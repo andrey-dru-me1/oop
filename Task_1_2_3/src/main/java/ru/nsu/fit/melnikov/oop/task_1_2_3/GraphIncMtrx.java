@@ -30,6 +30,11 @@ public class GraphIncMtrx<V, E> extends AbstractGraph<V, E> {
     }
 
     @Override
+    protected Set<Edge> getVInceds(Vert v) {
+        return incMtrx.get(v);
+    }
+
+    @Override
     protected Edge getE(E val) throws NoSuchElementException {
         for (Vert from : incMtrx.keySet()) {
             for (Edge e : incMtrx.get(from)) {

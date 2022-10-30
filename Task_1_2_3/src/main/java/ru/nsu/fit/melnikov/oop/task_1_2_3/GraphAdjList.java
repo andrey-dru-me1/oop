@@ -24,6 +24,14 @@ public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
     }
 
     @Override
+    protected Set<Edge> getVInceds(Vert v) {
+        return edges
+                .stream()
+                .filter(e -> e.getVTo().equals(v) || e.getVFrom().equals(v))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
     protected Edge getE(E val) throws NoSuchElementException {
         return edges
                 .stream()
@@ -112,7 +120,7 @@ public class GraphAdjList<V, E> extends AbstractGraph<V, E> {
     public List<E> getEdgesByVerts(V vFrom, V vTo) {
         return edges
                 .stream()
-                .filter(e -> e.getVTo().getVal().equals(vTo) || e.getVFrom().getVal().equals(vFrom))
+                .filter(e -> e.getVTo().getVal().equals(vTo) && e.getVFrom().getVal().equals(vFrom))
                 .map(Edge::getVal)
                 .collect(Collectors.toList());
     }

@@ -1,8 +1,7 @@
 package ru.nsu.fit.melnikov.oop.task_1_2_3;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Represents a weighted oriented graph data type with
@@ -13,7 +12,7 @@ import java.util.NoSuchElementException;
  */
 abstract class AbstractGraph<V, E> {
 
-    Integer vCnt, eCnt;
+    protected Integer vCnt, eCnt;
 
     public AbstractGraph() {
         vCnt = 0;
@@ -211,6 +210,22 @@ abstract class AbstractGraph<V, E> {
      */
     abstract protected Vert getV(V val) throws NoSuchElementException;
 
+    abstract protected Set<Edge> getVInceds(Vert v);
+
+    protected Set<Edge> getVIncedsOut(Vert v) {
+        return this.getVInceds(v)
+                .stream()
+                .filter(e -> e.getVFrom().equals(v))
+                .collect(Collectors.toSet());
+    }
+
+    protected Set<Edge> getVIncedsIn(Vert v) {
+        return this.getVInceds(v)
+                .stream()
+                .filter(e -> e.getVTo().equals(v))
+                .collect(Collectors.toSet());
+    }
+
     /**
      * Checks if the graph contains the specific vertex.
      *
@@ -395,6 +410,32 @@ abstract class AbstractGraph<V, E> {
      */
     public int ECnt() {
         return eCnt;
+    }
+
+    public List<V> sort(V start) throws NegativeLoopException {
+        Vert s = getV(start);
+        Map<Vert, Double> d = new HashMap<>();
+        d.put(s, 0.0);
+        Queue<Edge> q = new ArrayDeque<>(this.getVIncedsOut(s));
+        int iV = 0;
+        while (!q.isEmpty()) {
+            if (iV >= VCnt() * VCnt()) {
+                throw new NegativeLoopException();
+            }
+            Edge cur = q.remove();
+            Vert to = cur.getVTo();
+            Double newD = d.get(cur.getVFrom()) + cur.getW();
+            if (!d.containsKey(to) || d.get(to) > newD) {
+                d.put(to, newD);
+                q.addAll(this.getVIncedsOut(to));
+            }
+            iV++;
+        }
+        return d.keySet()
+                .stream()
+                .sorted((v1, v2) -> (int) (d.get(v1) - d.get(v2)))
+                .map(Vert::getVal)
+                .collect(Collectors.toList());
     }
 
 }
