@@ -160,12 +160,12 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected java.lang.Integer</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#eCnt">eCnt</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#edgesCount">edgesCount</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.Integer</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vCnt">vCnt</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#verticesCount">verticesCount</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -209,165 +209,165 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addE(V,V,java.lang.Double,E)">addE</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
-    <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo,
-    java.lang.Double&nbsp;w,
-    <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(V,V,java.lang.Double,E)">addEdge</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
+       <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo,
+       java.lang.Double&nbsp;weight,
+       <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</code></th>
 <td class="colLast">
 <div class="block">Adds edge with specific value to the graph.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addV(V)">addV</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(V)">addVertex</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</code></th>
 <td class="colLast">
 <div class="block">Adds a vertex with the specific value to the graph.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Boolean&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVerts(V%5B%5D)">addVerts</a></span>&#8203;(V[]&nbsp;vals)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertices(V%5B%5D)">addVertices</a></span>&#8203;(V[]&nbsp;vals)</code></th>
 <td class="colLast">
 <div class="block">Adds new vertices with specific values to the graph.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsE(E)">containsE</a></span>&#8203;(E&nbsp;val)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsE(E)">containsE</a></span>&#8203;(E&nbsp;value)</code></th>
 <td class="colLast">
 <div class="block">Checks if the graph contains the specific edge.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsV(V)">containsV</a></span>&#8203;(V&nbsp;val)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsVertex(V)">containsVertex</a></span>&#8203;(V&nbsp;value)</code></th>
 <td class="colLast">
 <div class="block">Checks if the graph contains the specific vertex.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ECnt()">ECnt</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns count of edge in the graph.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
 <td class="colFirst"><code>protected ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getE(E)">getE</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdge(E)">getEdge</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</code></th>
 <td class="colLast">
 <div class="block">Returns an edge with the specific value.</div>
 </td>
 </tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>V</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeFrom(E)">getEdgeFrom</a></span>&#8203;(E&nbsp;value)</code></th>
+<td class="colLast">
+<div class="block">Returns vertex where edge with the specific value begins.</div>
+</td>
+</tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesByVerts(V,V)">getEdgesByVerts</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
-               <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesByVertices(V,V)">getEdgesByVertices</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
+                  <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo)</code></th>
 <td class="colLast">
 <div class="block">Returns list of edges which starts with vFrom and ends with vTo vertices.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code>java.lang.Double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeW(E)">getEdgeW</a></span>&#8203;(E&nbsp;val)</code></th>
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesCount()">getEdgesCount</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns weight of edge with the specific value.</div>
+<div class="block">Returns count of edge in the graph.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>V</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEFrom(E)">getEFrom</a></span>&#8203;(E&nbsp;val)</code></th>
-<td class="colLast">
-<div class="block">Returns vertex where edge with the specific value begins.</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code>V</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getETo(E)">getETo</a></span>&#8203;(E&nbsp;val)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeTo(E)">getEdgeTo</a></span>&#8203;(E&nbsp;value)</code></th>
 <td class="colLast">
 <div class="block">Returns vertex where edge with the specific value ends.</div>
 </td>
 </tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>java.lang.Double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeWeight(E)">getEdgeWeight</a></span>&#8203;(E&nbsp;value)</code></th>
+<td class="colLast">
+<div class="block">Returns weight of edge with the specific value.</div>
+</td>
+</tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code>protected ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getV(V)">getV</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</code></th>
+<td class="colFirst"><code>protected ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertex(V)">getVertex</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</code></th>
 <td class="colLast">
 <div class="block">Returns a vertex with the specific value.</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>protected java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVInceds(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">getVInceds</a></span>&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexIncidents(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex)">getVertexIncidents</a></span>&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex&nbsp;v)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>protected java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVIncedsIn(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">getVIncedsIn</a></span>&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexIncidentsIn(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex)">getVertexIncidentsIn</a></span>&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex&nbsp;v)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>protected java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVIncedsOut(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">getVIncedsOut</a></span>&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexIncidentsOut(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex)">getVertexIncidentsOut</a></span>&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex&nbsp;v)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i15" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeE(E)">removeE</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</code></th>
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVerticesCount()">getVerticesCount</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Removes edge with the specific value from the graph.</div>
+<div class="block">Returns count of vertex in the graph.</div>
 </td>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeV(V)">removeV</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(E)">removeEdge</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</code></th>
 <td class="colLast">
 <div class="block">Removes edge with the specific value from the graph.</div>
 </td>
 </tr>
 <tr id="i17" class="rowColor">
-<td class="colFirst"><code>java.lang.Double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeW(E,java.lang.Double)">setEdgeW</a></span>&#8203;(E&nbsp;val,
-        java.lang.Double&nbsp;w)</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(V)">removeVertex</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</code></th>
 <td class="colLast">
-<div class="block">Changes weight of the specific edge.</div>
+<div class="block">Removes edge with the specific value from the graph.</div>
 </td>
 </tr>
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEInceds(E,V,V)">setEInceds</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val,
-          <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
-          <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeIncidents(E,V,V)">setEdgeIncidents</a></span>&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val,
+                <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
+                <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo)</code></th>
 <td class="colLast">
 <div class="block">Changes incident vertices of the specific edge.</div>
 </td>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEVal(E,E)">setEVal</a></span>&#8203;(E&nbsp;prevVal,
-       E&nbsp;newVal)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeValue(E,E)">setEdgeValue</a></span>&#8203;(E&nbsp;prevVal,
+            E&nbsp;newVal)</code></th>
 <td class="colLast">
 <div class="block">Changes value of the specific edge.</div>
 </td>
 </tr>
 <tr id="i20" class="altColor">
+<td class="colFirst"><code>java.lang.Double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeWeight(E,java.lang.Double)">setEdgeWeight</a></span>&#8203;(E&nbsp;value,
+             java.lang.Double&nbsp;weight)</code></th>
+<td class="colLast">
+<div class="block">Changes weight of the specific edge.</div>
+</td>
+</tr>
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVVal(V,V)">setVVal</a></span>&#8203;(V&nbsp;prevVal,
-       V&nbsp;newVal)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVertexValue(V,V)">setVertexValue</a></span>&#8203;(V&nbsp;prevVal,
+              V&nbsp;newVal)</code></th>
 <td class="colLast">
 <div class="block">Changes value of the specific vertex of the graph.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;V&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sort(V)">sort</a></span>&#8203;(V&nbsp;start)</code></th>
 <td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i22" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#VCnt()">VCnt</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns count of vertex in the graph.</div>
-</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -393,22 +393,22 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a id="vCnt">
+<a id="verticesCount">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>vCnt</h4>
-<pre>protected&nbsp;java.lang.Integer vCnt</pre>
+<h4>verticesCount</h4>
+<pre>protected&nbsp;java.lang.Integer verticesCount</pre>
 </li>
 </ul>
-<a id="eCnt">
+<a id="edgesCount">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>eCnt</h4>
-<pre>protected&nbsp;java.lang.Integer eCnt</pre>
+<h4>edgesCount</h4>
+<pre>protected&nbsp;java.lang.Integer edgesCount</pre>
 </li>
 </ul>
 </li>
@@ -440,16 +440,16 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getV(java.lang.Object)">
+<a id="getVertex(java.lang.Object)">
 <!--   -->
-</a><a id="getV(V)">
+</a><a id="getVertex(V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getV</h4>
-<pre class="methodSignature">protected&nbsp;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;getV&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)
-                                                              throws java.util.NoSuchElementException</pre>
+<h4>getVertex</h4>
+<pre class="methodSignature">protected&nbsp;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex&nbsp;getVertex&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)
+                                                                     throws java.util.NoSuchElementException</pre>
 <div class="block">Returns a vertex with the specific value.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -461,25 +461,25 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getVInceds(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">
+<a id="getVertexIncidents(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getVInceds</h4>
-<pre class="methodSignature">protected&nbsp;java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;&nbsp;getVInceds&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</pre>
+<h4>getVertexIncidents</h4>
+<pre class="methodSignature">protected&nbsp;java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;&nbsp;getVertexIncidents&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex&nbsp;v)</pre>
 </li>
 </ul>
-<a id="getE(java.lang.Object)">
+<a id="getEdge(java.lang.Object)">
 <!--   -->
-</a><a id="getE(E)">
+</a><a id="getEdge(E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getE</h4>
-<pre class="methodSignature">protected&nbsp;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&nbsp;getE&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)
-                                                              throws java.util.NoSuchElementException</pre>
+<h4>getEdge</h4>
+<pre class="methodSignature">protected&nbsp;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&nbsp;getEdge&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)
+                                                                 throws java.util.NoSuchElementException</pre>
 <div class="block">Returns an edge with the specific value.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -491,15 +491,15 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="addV(java.lang.Object)">
+<a id="addVertex(java.lang.Object)">
 <!--   -->
-</a><a id="addV(V)">
+</a><a id="addVertex(V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addV</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;addV&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</pre>
+<h4>addVertex</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addVertex&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</pre>
 <div class="block">Adds a vertex with the specific value to the graph.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -509,24 +509,24 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="addE(java.lang.Object,java.lang.Object,java.lang.Double,java.lang.Object)">
+<a id="addEdge(java.lang.Object,java.lang.Object,java.lang.Double,java.lang.Object)">
 <!--   -->
-</a><a id="addE(V,V,java.lang.Double,E)">
+</a><a id="addEdge(V,V,java.lang.Double,E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addE</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;addE&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
-                    <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo,
-                    java.lang.Double&nbsp;w,
-                    <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</pre>
+<h4>addEdge</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addEdge&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
+                       <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo,
+                       java.lang.Double&nbsp;weight,
+                       <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</pre>
 <div class="block">Adds edge with specific value to the graph.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>vFrom</code> - vertex where edge begins</dd>
 <dd><code>vTo</code> - vertex where edge ends</dd>
-<dd><code>w</code> - weight of a new edge</dd>
+<dd><code>weight</code> - weight of a new edge</dd>
 <dd><code>val</code> - value of a new edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>false if edge with the specific value is already
@@ -534,15 +534,15 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="removeE(java.lang.Object)">
+<a id="removeEdge(java.lang.Object)">
 <!--   -->
-</a><a id="removeE(E)">
+</a><a id="removeEdge(E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>removeE</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeE&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</pre>
+<h4>removeEdge</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val)</pre>
 <div class="block">Removes edge with the specific value from the graph.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -550,15 +550,15 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="removeV(java.lang.Object)">
+<a id="removeVertex(java.lang.Object)">
 <!--   -->
-</a><a id="removeV(V)">
+</a><a id="removeVertex(V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>removeV</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeV&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</pre>
+<h4>removeVertex</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;removeVertex&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;val)</pre>
 <div class="block">Removes edge with the specific value from the graph.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -566,17 +566,17 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="setEInceds(java.lang.Object,java.lang.Object,java.lang.Object)">
+<a id="setEdgeIncidents(java.lang.Object,java.lang.Object,java.lang.Object)">
 <!--   -->
-</a><a id="setEInceds(E,V,V)">
+</a><a id="setEdgeIncidents(E,V,V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setEInceds</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setEInceds&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val,
-                       <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
-                       <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo)</pre>
+<h4>setEdgeIncidents</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setEdgeIncidents&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&nbsp;val,
+                             <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
+                             <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo)</pre>
 <div class="block">Changes incident vertices of the specific edge.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -586,16 +586,16 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getEdgesByVerts(java.lang.Object,java.lang.Object)">
+<a id="getEdgesByVertices(java.lang.Object,java.lang.Object)">
 <!--   -->
-</a><a id="getEdgesByVerts(V,V)">
+</a><a id="getEdgesByVertices(V,V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getEdgesByVerts</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&gt;&nbsp;getEdgesByVerts&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
-                                         <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo)</pre>
+<h4>getEdgesByVertices</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">E</a>&gt;&nbsp;getEdgesByVertices&#8203;(<a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vFrom,
+                                            <a href="GraphIncMtrx.html" title="type parameter in GraphIncMtrx">V</a>&nbsp;vTo)</pre>
 <div class="block">Returns list of edges which starts with vFrom and ends with vTo vertices.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -606,37 +606,37 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getVIncedsOut(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">
+<a id="getVertexIncidentsOut(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getVIncedsOut</h4>
-<pre class="methodSignature">protected&nbsp;java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;&nbsp;getVIncedsOut&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</pre>
+<h4>getVertexIncidentsOut</h4>
+<pre class="methodSignature">protected&nbsp;java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;&nbsp;getVertexIncidentsOut&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex&nbsp;v)</pre>
 </li>
 </ul>
-<a id="getVIncedsIn(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">
+<a id="getVertexIncidentsIn(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getVIncedsIn</h4>
-<pre class="methodSignature">protected&nbsp;java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;&nbsp;getVIncedsIn&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</pre>
+<h4>getVertexIncidentsIn</h4>
+<pre class="methodSignature">protected&nbsp;java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;&nbsp;getVertexIncidentsIn&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vertex&nbsp;v)</pre>
 </li>
 </ul>
-<a id="containsV(java.lang.Object)">
+<a id="containsVertex(java.lang.Object)">
 <!--   -->
-</a><a id="containsV(V)">
+</a><a id="containsVertex(V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>containsV</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;containsV&#8203;(V&nbsp;val)</pre>
+<h4>containsVertex</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;containsVertex&#8203;(V&nbsp;value)</pre>
 <div class="block">Checks if the graph contains the specific vertex.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>val</code> - value to check if the graph contains it</dd>
+<dd><code>value</code> - value to check if the graph contains it</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true if graph contains vertex with specific value</dd>
 </dl>
@@ -650,25 +650,25 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>containsE</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;containsE&#8203;(E&nbsp;val)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;containsE&#8203;(E&nbsp;value)</pre>
 <div class="block">Checks if the graph contains the specific edge.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>val</code> - value to check if the graph contains it</dd>
+<dd><code>value</code> - value to check if the graph contains it</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true if graph contains edge with specific value</dd>
 </dl>
 </li>
 </ul>
-<a id="addVerts(java.lang.Object[])">
+<a id="addVertices(java.lang.Object[])">
 <!--   -->
-</a><a id="addVerts(V[])">
+</a><a id="addVertices(V[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addVerts</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Boolean&gt;&nbsp;addVerts&#8203;(V[]&nbsp;vals)</pre>
+<h4>addVertices</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Boolean&gt;&nbsp;addVertices&#8203;(V[]&nbsp;vals)</pre>
 <div class="block">Adds new vertices with specific values to the graph.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -679,16 +679,16 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="setVVal(java.lang.Object,java.lang.Object)">
+<a id="setVertexValue(java.lang.Object,java.lang.Object)">
 <!--   -->
-</a><a id="setVVal(V,V)">
+</a><a id="setVertexValue(V,V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setVVal</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setVVal&#8203;(V&nbsp;prevVal,
-                    V&nbsp;newVal)</pre>
+<h4>setVertexValue</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setVertexValue&#8203;(V&nbsp;prevVal,
+                           V&nbsp;newVal)</pre>
 <div class="block">Changes value of the specific vertex of the graph.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -697,36 +697,36 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="setEdgeW(java.lang.Object,java.lang.Double)">
+<a id="setEdgeWeight(java.lang.Object,java.lang.Double)">
 <!--   -->
-</a><a id="setEdgeW(E,java.lang.Double)">
+</a><a id="setEdgeWeight(E,java.lang.Double)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setEdgeW</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;setEdgeW&#8203;(E&nbsp;val,
-                                 java.lang.Double&nbsp;w)</pre>
+<h4>setEdgeWeight</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;setEdgeWeight&#8203;(E&nbsp;value,
+                                      java.lang.Double&nbsp;weight)</pre>
 <div class="block">Changes weight of the specific edge.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>val</code> - value of edge to modify</dd>
-<dd><code>w</code> - new weight of the specific edge</dd>
+<dd><code>value</code> - value of edge to modify</dd>
+<dd><code>weight</code> - new weight of the specific edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>previous weight of the specific edge</dd>
 </dl>
 </li>
 </ul>
-<a id="setEVal(java.lang.Object,java.lang.Object)">
+<a id="setEdgeValue(java.lang.Object,java.lang.Object)">
 <!--   -->
-</a><a id="setEVal(E,E)">
+</a><a id="setEdgeValue(E,E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setEVal</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setEVal&#8203;(E&nbsp;prevVal,
-                    E&nbsp;newVal)</pre>
+<h4>setEdgeValue</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setEdgeValue&#8203;(E&nbsp;prevVal,
+                         E&nbsp;newVal)</pre>
 <div class="block">Changes value of the specific edge.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -735,67 +735,67 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getEFrom(java.lang.Object)">
+<a id="getEdgeFrom(java.lang.Object)">
 <!--   -->
-</a><a id="getEFrom(E)">
+</a><a id="getEdgeFrom(E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getEFrom</h4>
-<pre class="methodSignature">public&nbsp;V&nbsp;getEFrom&#8203;(E&nbsp;val)</pre>
+<h4>getEdgeFrom</h4>
+<pre class="methodSignature">public&nbsp;V&nbsp;getEdgeFrom&#8203;(E&nbsp;value)</pre>
 <div class="block">Returns vertex where edge with the specific value begins.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>val</code> - value of edge</dd>
+<dd><code>value</code> - value of edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>vertex where edge with the specific value begins</dd>
 </dl>
 </li>
 </ul>
-<a id="getETo(java.lang.Object)">
+<a id="getEdgeTo(java.lang.Object)">
 <!--   -->
-</a><a id="getETo(E)">
+</a><a id="getEdgeTo(E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getETo</h4>
-<pre class="methodSignature">public&nbsp;V&nbsp;getETo&#8203;(E&nbsp;val)</pre>
+<h4>getEdgeTo</h4>
+<pre class="methodSignature">public&nbsp;V&nbsp;getEdgeTo&#8203;(E&nbsp;value)</pre>
 <div class="block">Returns vertex where edge with the specific value ends.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>val</code> - value of edge</dd>
+<dd><code>value</code> - value of edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>vertex where edge with the specific value ends</dd>
 </dl>
 </li>
 </ul>
-<a id="getEdgeW(java.lang.Object)">
+<a id="getEdgeWeight(java.lang.Object)">
 <!--   -->
-</a><a id="getEdgeW(E)">
+</a><a id="getEdgeWeight(E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getEdgeW</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;getEdgeW&#8203;(E&nbsp;val)</pre>
+<h4>getEdgeWeight</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;getEdgeWeight&#8203;(E&nbsp;value)</pre>
 <div class="block">Returns weight of edge with the specific value.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>val</code> - value of edge</dd>
+<dd><code>value</code> - value of edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>weight of edge with the specific value</dd>
 </dl>
 </li>
 </ul>
-<a id="VCnt()">
+<a id="getVerticesCount()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>VCnt</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;VCnt()</pre>
+<h4>getVerticesCount</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getVerticesCount()</pre>
 <div class="block">Returns count of vertex in the graph.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -803,13 +803,13 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="ECnt()">
+<a id="getEdgesCount()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>ECnt</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;ECnt()</pre>
+<h4>getEdgesCount</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getEdgesCount()</pre>
 <div class="block">Returns count of edge in the graph.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
