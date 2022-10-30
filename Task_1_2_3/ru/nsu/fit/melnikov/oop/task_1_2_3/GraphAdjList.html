@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -87,13 +87,13 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -137,6 +137,34 @@ extends java.lang.Object</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected java.lang.Integer</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#eCnt">eCnt</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected java.lang.Integer</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vCnt">vCnt</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -261,20 +289,35 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i12" class="altColor">
+<td class="colFirst"><code>protected java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVInceds(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">getVInceds</a></span>&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>protected java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVIncedsIn(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">getVIncedsIn</a></span>&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>protected java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVIncedsOut(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">getVIncedsOut</a></span>&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeE(E)">removeE</a></span>&#8203;(<a href="GraphAdjList.html" title="type parameter in GraphAdjList">E</a>&nbsp;val)</code></th>
 <td class="colLast">
 <div class="block">Removes edge with the specific value from the graph.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeV(V)">removeV</a></span>&#8203;(<a href="GraphAdjList.html" title="type parameter in GraphAdjList">V</a>&nbsp;val)</code></th>
 <td class="colLast">
 <div class="block">Removes edge with the specific value from the graph.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>java.lang.Double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeW(E,java.lang.Double)">setEdgeW</a></span>&#8203;(E&nbsp;val,
         java.lang.Double&nbsp;w)</code></th>
@@ -282,7 +325,7 @@ extends java.lang.Object</pre>
 <div class="block">Changes weight of the specific edge.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEInceds(E,V,V)">setEInceds</a></span>&#8203;(<a href="GraphAdjList.html" title="type parameter in GraphAdjList">E</a>&nbsp;val,
           <a href="GraphAdjList.html" title="type parameter in GraphAdjList">V</a>&nbsp;vFrom,
@@ -291,7 +334,7 @@ extends java.lang.Object</pre>
 <div class="block">Changes incident vertices of the specific edge.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEVal(E,E)">setEVal</a></span>&#8203;(E&nbsp;prevVal,
        E&nbsp;newVal)</code></th>
@@ -299,7 +342,7 @@ extends java.lang.Object</pre>
 <div class="block">Changes value of the specific edge.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVVal(V,V)">setVVal</a></span>&#8203;(V&nbsp;prevVal,
        V&nbsp;newVal)</code></th>
@@ -307,7 +350,12 @@ extends java.lang.Object</pre>
 <div class="block">Changes value of the specific vertex of the graph.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i21" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;V&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sort(V)">sort</a></span>&#8203;(V&nbsp;start)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#VCnt()">VCnt</a></span>()</code></th>
 <td class="colLast">
@@ -331,6 +379,34 @@ extends java.lang.Object</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="vCnt">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>vCnt</h4>
+<pre>protected&nbsp;java.lang.Integer vCnt</pre>
+</li>
+</ul>
+<a id="eCnt">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>eCnt</h4>
+<pre>protected&nbsp;java.lang.Integer eCnt</pre>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section role="region">
 <ul class="blockList">
@@ -376,6 +452,15 @@ extends java.lang.Object</pre>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.util.NoSuchElementException</code> - if there is no any vertex with the specific value</dd>
 </dl>
+</li>
+</ul>
+<a id="getVInceds(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVInceds</h4>
+<pre class="methodSignature">protected&nbsp;java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;&nbsp;getVInceds&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</pre>
 </li>
 </ul>
 <a id="getE(java.lang.Object)">
@@ -512,6 +597,24 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>list of edges which starts with vFrom and ends with vTo vertices</dd>
 </dl>
+</li>
+</ul>
+<a id="getVIncedsOut(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVIncedsOut</h4>
+<pre class="methodSignature">protected&nbsp;java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;&nbsp;getVIncedsOut&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</pre>
+</li>
+</ul>
+<a id="getVIncedsIn(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVIncedsIn</h4>
+<pre class="methodSignature">protected&nbsp;java.util.Set&lt;ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Edge&gt;&nbsp;getVIncedsIn&#8203;(ru.nsu.fit.melnikov.oop.task_1_2_3.AbstractGraph.Vert&nbsp;v)</pre>
 </li>
 </ul>
 <a id="containsV(java.lang.Object)">
@@ -696,7 +799,7 @@ extends java.lang.Object</pre>
 <a id="ECnt()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>ECnt</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;ECnt()</pre>
@@ -704,6 +807,22 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>count of edge in the graph</dd>
+</dl>
+</li>
+</ul>
+<a id="sort(java.lang.Object)">
+<!--   -->
+</a><a id="sort(V)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>sort</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;V&gt;&nbsp;sort&#8203;(V&nbsp;start)
+                       throws <a href="NegativeLoopException.html" title="class in ru.nsu.fit.melnikov.oop.task_1_2_3">NegativeLoopException</a></pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="NegativeLoopException.html" title="class in ru.nsu.fit.melnikov.oop.task_1_2_3">NegativeLoopException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -758,13 +877,13 @@ extends java.lang.Object</pre>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
