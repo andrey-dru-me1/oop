@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 class GraphTest {
 
@@ -86,33 +83,13 @@ class GraphTest {
     }
 
     @Test
-    void fromFile() throws FileNotFoundException {
-
-        Graph<String, Integer> g = new GraphAdjacencyMatrix<>();
+    void fromFiles() throws FileNotFoundException {
 
         FileReader file = new FileReader(
-                "src/test/java/ru/nsu/fit/melnikov/oop/task_1_2_3/input_matrix.txt"
+                "src/test/java/ru/nsu/fit/melnikov/oop/task_1_2_3/adjacency_matrix.txt"
         );
-        Scanner scanner = new Scanner(file);
-        int n = scanner.nextInt();
-        List<String> vertices = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            vertices.add(scanner.next());
-            g.addVertex(vertices.get(i));
-        }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                String weight = scanner.next();
-                if (!weight.equals("-")) {
-                    g.addEdge(
-                            vertices.get(i),
-                            vertices.get(j),
-                            Double.parseDouble(weight),
-                            i * n + j
-                    );
-                }
-            }
-        }
+
+        Graph<String, Integer> g = GraphParser.toAdjacencyMatrix(file);
 
         Assertions.assertEquals(g.getEdgesCount(), 6);
         Assertions.assertEquals(g.getVerticesCount(), 5);
@@ -120,6 +97,28 @@ class GraphTest {
         Assertions.assertEquals(g.sort("A"), Arrays.asList("A", "B", "E", "C", "D"));
 
         Assertions.assertTrue(g.containsVertex("E"));
+
+        //-----------------------------------------------------------------------------------------
+
+        file = new FileReader(
+                "src/test/java/ru/nsu/fit/melnikov/oop/task_1_2_3/adjacency_list.txt"
+        );
+
+        g = GraphParser.toAdjacencyList(file);
+
+        Assertions.assertEquals(g.getEdgesCount(), 6);
+        Assertions.assertEquals(g.getVerticesCount(), 5);
+
+        //-----------------------------------------------------------------------------------------
+
+        file = new FileReader(
+                "src/test/java/ru/nsu/fit/melnikov/oop/task_1_2_3/incident_matrix.txt"
+        );
+
+        g = GraphParser.toIncidentMatrix(file);
+
+        Assertions.assertEquals(g.getEdgesCount(), 6);
+        Assertions.assertEquals(g.getVerticesCount(), 5);
 
     }
 
