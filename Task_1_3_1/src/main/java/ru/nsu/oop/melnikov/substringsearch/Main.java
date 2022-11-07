@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Scanner;
 import java.util.regex.MatchResult;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -23,7 +24,7 @@ public class Main {
 
         scanner = new Scanner(reader);
 
-        System.out.println(scanner.findAll(substring).map(MatchResult::start).toList());
+        System.out.println(scanner.findAll(substring).map(MatchResult::start).collect(Collectors.toList()));
 
         scanner.close();
         reader.close();
