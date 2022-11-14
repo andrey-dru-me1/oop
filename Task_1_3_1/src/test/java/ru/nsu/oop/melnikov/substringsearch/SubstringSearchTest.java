@@ -3,7 +3,10 @@ package ru.nsu.oop.melnikov.substringsearch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.FileReader;
+import java.io.IOException;
 
 class SubstringSearchTest {
 
@@ -28,20 +31,6 @@ class SubstringSearchTest {
                         new BufferedReader(new FileReader("src/test/resources/input.txt")), "pispit"
                 )
         );
-    }
-
-    @Test
-    void testMain() throws IOException {
-        String params = "src/test/resources/input.txt pie";
-        System.setIn(new ByteArrayInputStream(params.getBytes()));
-
-        OutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setOut(printStream);
-
-        SubstringSearch.main(new String[]{});
-
-        Assertions.assertEquals("9", outputStream.toString().trim());
     }
 
 }

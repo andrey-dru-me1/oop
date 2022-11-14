@@ -1,29 +1,16 @@
 package ru.nsu.oop.melnikov.substringsearch;
 
-import java.io.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.IOException;
 
+/**
+ * Class with some substring searching algorithms.
+ */
 public class SubstringSearch {
 
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        String fileName = scanner.next();
-        String substring = scanner.next();
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(new FileReader(fileName));
-        } catch (FileNotFoundException e) {
-            System.out.println("No such file exists");
-            return;
-        }
-
-        System.out.println(search(reader, substring));
-
-        reader.close();
-    }
-
     /**
-     * Knut-Morris-Pratt algorithm of substring search
+     * Searches substring in reader stream.
      *
      * @param reader    stream of bytes to search in
      * @param substring substring to search
@@ -31,6 +18,18 @@ public class SubstringSearch {
      * @throws IOException when there is no such substring in reader stream
      */
     public static int search(BufferedReader reader, String substring) throws IOException {
+        return searchKMP(reader, substring);
+    }
+
+    /**
+     * Knut-Morris-Pratt algorithm of substring search.
+     *
+     * @param reader    stream of bytes to search in
+     * @param substring substring to search
+     * @return index of byte where substring begins
+     * @throws IOException when there is no such substring in reader stream
+     */
+    public static int searchKMP(BufferedReader reader, String substring) throws IOException {
 
         int[] prefixFunction = new int[substring.length()];
         prefixFunction[0] = 0;
