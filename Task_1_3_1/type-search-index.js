@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.oop.melnikov.substringsearch","l":"SubstringSearch"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.oop.melnikov.substringsearch","l":"Main"},{"p":"ru.nsu.oop.melnikov.substringsearch","l":"SubstringSearch"}]
