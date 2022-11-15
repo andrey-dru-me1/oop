@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":9};
+var data = {"i0":9,"i1":9,"i2":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -189,6 +189,14 @@ extends java.lang.Object</pre>
 <div class="block">Knut-Morris-Pratt algorithm of substring search.</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchZ(java.io.BufferedReader,java.lang.String)">searchZ</a></span>&#8203;(java.io.BufferedReader&nbsp;reader,
+       java.lang.String&nbsp;substring)</code></th>
+<td class="colLast">
+<div class="block">Algorithm of substring search using Z-function.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -256,13 +264,34 @@ extends java.lang.Object</pre>
 <a id="searchKMP(java.io.BufferedReader,java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>searchKMP</h4>
 <pre class="methodSignature">public static&nbsp;int&nbsp;searchKMP&#8203;(java.io.BufferedReader&nbsp;reader,
                             java.lang.String&nbsp;substring)
                      throws java.io.IOException</pre>
 <div class="block">Knut-Morris-Pratt algorithm of substring search.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>reader</code> - stream of bytes to search in</dd>
+<dd><code>substring</code> - substring to search</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>index of byte where substring begins</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code> - when there is no such substring in reader stream</dd>
+</dl>
+</li>
+</ul>
+<a id="searchZ(java.io.BufferedReader,java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>searchZ</h4>
+<pre class="methodSignature">public static&nbsp;int&nbsp;searchZ&#8203;(java.io.BufferedReader&nbsp;reader,
+                          java.lang.String&nbsp;substring)
+                   throws java.io.IOException</pre>
+<div class="block">Algorithm of substring search using Z-function.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>reader</code> - stream of bytes to search in</dd>
