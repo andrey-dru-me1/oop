@@ -19,5 +19,17 @@ class MainTest {
         Main.main(new String[]{});
 
         Assertions.assertEquals("9", outputStream.toString().trim());
+
+
+        params = "not/existing/path pie";
+        System.setIn(new ByteArrayInputStream(params.getBytes()));
+
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+
+        Main.main(new String[]{});
+
+        Assertions.assertEquals("No such file exists", outputStream.toString().trim());
     }
 }
