@@ -31,6 +31,12 @@ class SubstringSearchTest {
                         new BufferedReader(new FileReader("src/test/resources/input.txt")), "pispit"
                 )
         );
+        Assertions.assertEquals(
+                17,
+                SubstringSearch.searchZ(
+                        new BufferedReader(new FileReader("src/test/resources/input.txt")), "pispit"
+                )
+        );
     }
 
 }
