@@ -1,0 +1,39 @@
+package ru.nsu.fit.melnikov.oop.recordbook;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+class RecordBookTest {
+
+    @Test
+    void test() {
+
+        List<Map<String, Integer>> grades = new ArrayList<>();
+        Map<String, Integer> firstSemester = new HashMap<>();
+        firstSemester.put("Цифровые платформы", 5);
+        firstSemester.put("Введение в алгебру и анализ", 4);
+        firstSemester.put("Декларативное программирование", 5);
+        firstSemester.put("императивное программрование", 5);
+        firstSemester.put("история", 5);
+        firstSemester.put("Основы культуры речи", 5);
+        Map<String, Integer> secondSemester = new HashMap<>();
+        secondSemester.put("Введение в алгебру и анализ", 4);
+        secondSemester.put("Введение в дискретную математику и математическую логику", 5);
+        secondSemester.put("Декларативное программирование", 5);
+        secondSemester.put("исперативное программирование", 5);
+        secondSemester.put("иностранный язык", 4);
+        secondSemester.put("Цифровые платформы", 4);
+        grades.add(firstSemester);
+        grades.add(secondSemester);
+
+        RecordBook recordBook = new RecordBook(grades);
+        Assertions.assertEquals(4.66, recordBook.getAverage());
+        Assertions.assertFalse(recordBook.couldBeRedDiploma());
+    }
+
+}
