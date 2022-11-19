@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ru.nsu.fit.melnikov.oop.recordbook","c":"RecordBook","l":"couldBeRedDiploma()"},{"p":"ru.nsu.fit.melnikov.oop.recordbook","c":"RecordBook","l":"getAverage()"},{"p":"ru.nsu.fit.melnikov.oop.recordbook","c":"RecordBook","l":"RecordBook(List<Map<String, Integer>>)","url":"%3Cinit%3E(java.util.List)"}]
