@@ -26,25 +26,25 @@ class SubstringSearchTest {
                 )
         );
         Assertions.assertEquals(
-                18,
+                17,
                 SubstringSearch.search(
                         new BufferedReader(new FileReader("src/test/resources/input.txt")), "pispit"
                 )
         );
         Assertions.assertEquals(
-                18,
+                17,
                 SubstringSearch.searchZ(
                         new BufferedReader(new FileReader("src/test/resources/input.txt")), "pispit"
                 )
         );
         Assertions.assertEquals(
-                6684,
+                6556,
                 SubstringSearch.searchZ(
                         new BufferedReader(new FileReader("src/test/resources/input.txt")), "preadv() function"
                 )
         );
         Assertions.assertEquals(
-                6684,
+                6556,
                 SubstringSearch.search(
                         new BufferedReader(new FileReader("src/test/resources/input.txt")), "preadv() function"
                 )
