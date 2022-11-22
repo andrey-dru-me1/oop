@@ -27,7 +27,7 @@ public class RecordBook {
     }
 
     public Boolean couldBeRedDiploma() {
-        return this.getAverage() == 5.0;
+        return this.getAverage() > 5.0 * 0.75;
     }
 
 }

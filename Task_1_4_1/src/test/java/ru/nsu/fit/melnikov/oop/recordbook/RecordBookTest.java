@@ -33,7 +33,7 @@ class RecordBookTest {
 
         RecordBook recordBook = new RecordBook(grades);
         Assertions.assertEquals(4.66, recordBook.getAverage());
-        Assertions.assertFalse(recordBook.couldBeRedDiploma());
+        Assertions.assertTrue(recordBook.couldBeRedDiploma());
     }
 
 }
