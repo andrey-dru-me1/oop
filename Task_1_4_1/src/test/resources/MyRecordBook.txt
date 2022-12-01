@@ -1,10 +1,13 @@
 {
-  "name" : "Андрей",
-  "surname" : "Мельников",
-  "middleName" : "Петрович",
-  "faculty" : "ФИТ",
-  "group" : 21214,
-  "educationType" : "FULL_TIME",
+    "student" : {
+        "name" : "Андрей",
+        "surname" : "Мельников",
+        "middleName" : "Петрович",
+        "email" : "a.melnikov4@g.nsu.ru",
+        "faculty" : "ФИТ",
+        "group" : 21214,
+        "educationType" : "FULL_TIME"
+    },
   "issueDate" : "2021-09-01",
   "validUntil" : "2023-08-31"
 }
