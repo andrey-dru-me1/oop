@@ -1,0 +1,8 @@
+RecordBook{
+    "name":"Андрей",
+    "surname":"Мельников",
+    "middleName":"Петрович",
+    "educationType":"FULL_TIME",
+    "issueDate":"2021-09-01",
+    "validUntil":"2023-08-31",
+}

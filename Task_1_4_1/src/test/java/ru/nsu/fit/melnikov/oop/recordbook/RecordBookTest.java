@@ -1,6 +1,5 @@
 package ru.nsu.fit.melnikov.oop.recordbook;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -31,9 +30,19 @@ class RecordBookTest {
         grades.add(firstSemester);
         grades.add(secondSemester);
 
-        RecordBook recordBook = new RecordBook(grades);
-        Assertions.assertEquals(4.66, recordBook.getAverage());
-        Assertions.assertTrue(recordBook.couldBeRedDiploma());
+        RecordBook recordBook = new RecordBook(
+                "Андрей",
+                "Мельников",
+                "Петрович",
+                "FULL_TIME",
+                "2021-09-01",
+                "2023-08-31"
+        );
+        System.out.println(recordBook);
+
+//        RecordBook recordBook = new RecordBook(grades);
+//        Assertions.assertEquals(4.66, recordBook.getAverage());
+//        Assertions.assertTrue(recordBook.couldBeRedDiploma());
     }
 
 }
