@@ -1,7 +1,13 @@
 package ru.nsu.fit.melnikov.oop.recordbook;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +16,7 @@ import java.util.Map;
 class RecordBookTest {
 
     @Test
-    void test() {
+    void test() throws IOException {
 
         List<Map<String, Integer>> grades = new ArrayList<>();
         Map<String, Integer> firstSemester = new HashMap<>();
@@ -34,15 +40,21 @@ class RecordBookTest {
                 "Андрей",
                 "Мельников",
                 "Петрович",
+                "ФИТ",
+                21214,
                 "FULL_TIME",
                 "2021-09-01",
                 "2023-08-31"
         );
-        System.out.println(recordBook);
 
-//        RecordBook recordBook = new RecordBook(grades);
-//        Assertions.assertEquals(4.66, recordBook.getAverage());
-//        Assertions.assertTrue(recordBook.couldBeRedDiploma());
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        mapper.writeValue(Paths.get("src/test/resources/file.txt").toFile(), recordBook);
+
+        recordBook = mapper.readValue(Paths.get("src/test/resources/MyRecordBook.txt").toFile(), RecordBook.class);
+        System.out.println(recordBook);
+        mapper.writeValue(Paths.get("src/test/resources/file2.txt").toFile(), recordBook);
     }
 
 }

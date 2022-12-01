@@ -1,9 +1,10 @@
 package ru.nsu.fit.melnikov.oop.recordbook;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.Map;
 
 public class RecordBook {
@@ -11,16 +12,23 @@ public class RecordBook {
     private final String name;
     private final String surname;
     private final String middleName;
+    private final String faculty;
+    private final int group;
     private final EducationType educationType;
     private final Date issueDate;
     private Date validUntil;
+    private Integer currentSemester;
 
-    private List<Map<String, Integer>> grades;
+    @NotNull
+    private Map<Integer, Map<String, Integer>> grades;
+
 
     public RecordBook(
             String name,
             String surname,
             String middleName,
+            String faculty,
+            int group,
             EducationType educationType,
             Date issueDate,
             Date validUntil
@@ -28,22 +36,38 @@ public class RecordBook {
         this.name = name;
         this.surname = surname;
         this.middleName = middleName;
+        this.faculty = faculty;
+        this.group = group;
         this.educationType = educationType;
         this.issueDate = issueDate;
         this.validUntil = validUntil;
     }
 
+    @JsonCreator
     public RecordBook(
+            @JsonProperty("name")
             String name,
+            @JsonProperty("surname")
             String surname,
+            @JsonProperty("middleName")
             String middleName,
-            @NotNull String educationType,
+            @JsonProperty("faculty")
+            String faculty,
+            @JsonProperty("group")
+            int group,
+            @JsonProperty("educationType")
+            @NotNull
+            String educationType,
+            @JsonProperty("issueDate")
             String issueDate,
+            @JsonProperty("validUntil")
             String validUntil
     ) {
         this.name = name;
         this.surname = surname;
         this.middleName = middleName;
+        this.faculty = faculty;
+        this.group = group;
         if (educationType.equals("FULL_TIME")) {
             this.educationType = EducationType.FULL_TIME;
         } else if (educationType.equals("EXTRAMURAL")) {
@@ -55,9 +79,9 @@ public class RecordBook {
         this.validUntil = Date.valueOf(validUntil);
     }
 
-    public Double getAverage() {
+    public Double calculateAverage() {
         return (double) (int)
-                (this.grades
+                (this.grades.values()
                         .stream()
                         .mapToDouble(
                                 map -> map.values()
@@ -71,7 +95,7 @@ public class RecordBook {
     }
 
     public Boolean couldBeRedDiploma() {
-        return this.getAverage() > 5.0 * 0.75;
+        return this.calculateAverage() > 5.0 * 0.75;
     }
 
     @Override
@@ -86,9 +110,39 @@ public class RecordBook {
                 ",\n\tgrades=" + grades +
                 "\n}";
     }
+
+    public String getIssueDate() {
+        return issueDate.toString();
+    }
+
+    public String getValidUntil() {
+        return issueDate.toString();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public EducationType getEducationType() {
+        return educationType;
+    }
+
+    public Map<Integer, Map<String, Integer>> getGrades() {
+        return grades;
+    }
+
+
+    public enum EducationType {
+        FULL_TIME,
+        EXTRAMURAL
+    }
 }
 
-enum EducationType {
-    FULL_TIME,
-    EXTRAMURAL
-}
