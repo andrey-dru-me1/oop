@@ -62,7 +62,6 @@ class RecordBookTest {
                 Semester.Grade.PASSED
         );
         recordBook.addSemester(semester);
-        recordBook.updateCurrentSemester();
 
         recordBook.setSemesters(recordBook.getSemesters());
 

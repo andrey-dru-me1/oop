@@ -1,5 +1,16 @@
 package ru.nsu.fit.melnikov.oop.recordbook;
 
+/**
+ * Represents student card info.
+ *
+ * @param name          student name
+ * @param surname       student surname
+ * @param middleName    student middle name
+ * @param email         student corporation email
+ * @param faculty       student's faculty (department)
+ * @param group         student's group
+ * @param educationType full time or extramural
+ */
 public record Student(
         String name,
         String surname,

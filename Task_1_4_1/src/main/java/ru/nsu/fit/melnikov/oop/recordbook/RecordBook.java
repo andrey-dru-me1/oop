@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.sql.Date;
 import java.util.List;
 
+/**
+ * Representation of student's record book
+ */
 public class RecordBook {
 
     private final Student student;
@@ -82,14 +85,28 @@ public class RecordBook {
         this.currentSemester = number;
     }
 
+    /**
+     * Adds new semester.
+     *
+     * @param semester new semester to add
+     */
     public void addSemester(Semester semester) {
         semesters.add(semester.number() - 1, semester);
+        this.updateCurrentSemester();
     }
 
+    /**
+     * Updates current semester number to the next one.
+     */
     public void updateCurrentSemester() {
         this.setCurrentSemester(this.getCurrentSemester() + 1);
     }
 
+    /**
+     * Calculates average mark from all the marks in record book.
+     *
+     * @return average mark ever
+     */
     public Double calculateAverage() {
         return (double) (int)
                 (this.semesters
@@ -115,10 +132,20 @@ public class RecordBook {
                         .orElse(Double.NaN) * 100) / 100;
     }
 
+    /**
+     * Checks if student will receive red diploma.
+     *
+     * @return true if student can receive red diploma.
+     */
     public Boolean couldBeRedDiploma() {
         return this.calculateAverage() > 5.0 * 0.75;
     }
 
+    /**
+     * Checks if student could have increased stipend according to the last semester.
+     *
+     * @return true if a stipend should be increased according to the last semester
+     */
     public Boolean willBeIncreasedStipend() {
         if (currentSemester <= 1) return false;
         for (

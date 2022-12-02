@@ -3,6 +3,12 @@ package ru.nsu.fit.melnikov.oop.recordbook;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents a pair for to objects like (k, v).
+ *
+ * @param <K> key class type
+ * @param <V> value class type
+ */
 public class Pair<K, V> {
     private final K key;
     private V value;
