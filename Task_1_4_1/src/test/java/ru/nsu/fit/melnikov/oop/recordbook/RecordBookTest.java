@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
@@ -25,18 +27,6 @@ class RecordBookTest {
         mapper.writeValue(Paths.get("src/test/resources/file.json").toFile(), recordBook);
 
         Student me = recordBook.getStudent();
-        Assertions.assertEquals(
-                "Student{" +
-                        "name='Андрей'" +
-                        ", surname='Мельников'" +
-                        ", middleName='Петрович'" +
-                        ", email='a.melnikov4@g.nsu.ru'" +
-                        ", faculty='ФИТ'" +
-                        ", group=21214" +
-                        ", educationType=FULL_TIME" +
-                        '}',
-                me.toString()
-        );
 
         Assertions.assertEquals("Андрей", me.name());
         Assertions.assertEquals("Мельников", me.surname());
@@ -50,6 +40,13 @@ class RecordBookTest {
         Assertions.assertEquals("2023-08-31", recordBook.getStringValidUntil());
 
         Assertions.assertEquals(3, recordBook.getCurrentSemester());
+
+        Assertions.assertTrue(recordBook.couldBeRedDiploma());
+        Assertions.assertFalse(recordBook.willBeIncreasedStipend());
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("src/test/resources/file.txt"));
+        writer.write(recordBook.toString());
+        writer.close();
 
         recordBook.setValidUntil("2024-08-31");
         Assertions.assertEquals("2024-08-31", recordBook.getStringValidUntil());
@@ -70,8 +67,6 @@ class RecordBookTest {
         recordBook.setSemesters(recordBook.getSemesters());
 
         System.out.println(recordBook.calculateAverage());
-
-        Assertions.assertTrue(recordBook.couldBeRedDiploma());
 
         recordBook.getSemesters().get(1).grades().stream().findFirst().orElseThrow().setValue(Semester.Grade.FAILED);
 

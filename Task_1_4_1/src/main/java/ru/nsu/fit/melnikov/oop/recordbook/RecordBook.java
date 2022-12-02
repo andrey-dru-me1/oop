@@ -119,5 +119,31 @@ public class RecordBook {
         return this.calculateAverage() > 5.0 * 0.75;
     }
 
+    public Boolean willBeIncreasedStipend() {
+        if (currentSemester <= 1) return false;
+        for (
+                Semester.Grade i :
+                this.getSemester(this.getCurrentSemester() - 1).grades()
+                        .stream()
+                        .filter(x -> !x.getKey().gradeType().equals(Subject.GradeType.CREDIT))
+                        .map(Pair::getValue)
+                        .toList()
+        ) {
+            if (i != Semester.Grade.EXCELLENT) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        String sharps = "\n\n############################\n\n";
+        return sharps +
+                student +
+                "\nissueDate=" + issueDate +
+                "\nvalidUntil=" + validUntil +
+                sharps + semesters + sharps;
+    }
 }
 

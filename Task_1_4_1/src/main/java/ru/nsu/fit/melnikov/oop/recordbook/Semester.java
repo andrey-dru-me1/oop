@@ -13,6 +13,12 @@ public record Semester(int number, Set<Pair<Subject, Grade>> grades) {
         return super.clone();
     }
 
+    @Override
+    public String toString() {
+        String hyphens = "\n----------------------\n";
+        return hyphens + number + "\n\n" + grades + "\n";
+    }
+
     public enum Grade {
         FAILED,
         PASSED,

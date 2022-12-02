@@ -9,6 +9,11 @@ public record Subject(String subjectName, List<String> teachers, GradeType grade
         return super.clone();
     }
 
+    @Override
+    public String toString() {
+        return subjectName;
+    }
+
     public enum GradeType {
         CREDIT,
         GRADED_TEST,

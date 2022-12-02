@@ -17,6 +17,25 @@
       "grades": [
         {
           "key": {
+            "subjectName": "Введение в алгебру и анализ",
+            "teachers": [
+              "Васкевич Владимир Леонтьевич",
+              "Шваб Ирина Васильевна"
+            ],
+            "gradeType": "EXAM"
+          },
+          "value": "GOOD"
+        },
+        {
+          "key": {
+            "subjectName": "Введение в дискретную математику и математическую логику",
+            "teachers": [],
+            "gradeType": "EXAM"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
             "subjectName": "Основы культуры речи",
             "teachers": [
               "Заворина Татьяна Ивановна"
@@ -27,19 +46,10 @@
         },
         {
           "key": {
-            "subjectName": "Декларативное программирование",
+            "subjectName": "Цифровые платформы",
             "teachers": [
-              "Куталев Андрей Витальевич"
-            ],
-            "gradeType": "GRADED_TEST"
-          },
-          "value": "EXCELLENT"
-        },
-        {
-          "key": {
-            "subjectName": "Иностранный язык",
-            "teachers": [
-              "Хоцкина Ольга Валерьевна"
+              "Иртегов Дмитрий Валентинович",
+              "Ананько Анатолий Григорьевич"
             ],
             "gradeType": "CREDIT"
           },
@@ -57,90 +67,13 @@
         },
         {
           "key": {
-            "subjectName": "Императивное программирование",
+            "subjectName": "Иностранный язык",
             "teachers": [
-              "Зайцев Вадим Евгеньевич"
-            ],
-            "gradeType": "GRADED_TEST"
-          },
-          "value": "EXCELLENT"
-        },
-        {
-          "key": {
-            "subjectName": "Введение в дискретную математику и математическую логику",
-            "teachers": [],
-            "gradeType": "EXAM"
-          },
-          "value": "EXCELLENT"
-        },
-        {
-          "key": {
-            "subjectName": "Физическая культура и спорт",
-            "teachers": [
-              "Опарин Григорий Андреевич"
+              "Хоцкина Ольга Валерьевна"
             ],
             "gradeType": "CREDIT"
           },
           "value": "PASSED"
-        },
-        {
-          "key": {
-            "subjectName": "Цифровые платформы",
-            "teachers": [
-              "Иртегов Дмитрий Валентинович",
-              "Ананько Анатолий Григорьевич"
-            ],
-            "gradeType": "CREDIT"
-          },
-          "value": "PASSED"
-        },
-        {
-          "key": {
-            "subjectName": "Введение в алгебру и анализ",
-            "teachers": [
-              "Васкевич Владимир Леонтьевич",
-              "Шваб Ирина Васильевна"
-            ],
-            "gradeType": "EXAM"
-          },
-          "value": "GOOD"
-        }
-      ]
-    },
-    {
-      "number": 2,
-      "grades": [
-        {
-          "key": {
-            "subjectName": "Введение в алгебру и анализ",
-            "teachers": [
-              "Васкевич Владимир Леонтьевич",
-              "Шваб Ирина Васильевна"
-            ],
-            "gradeType": "EXAM"
-          },
-          "value": "GOOD"
-        },
-        {
-          "key": {
-            "subjectName": "Цифровые платформы",
-            "teachers": [
-              "Иртегов Дмитрий Валентинович",
-              "Ананько Анатолий Григорьевич"
-            ],
-            "gradeType": "GRADED_TEST"
-          },
-          "value": "GOOD"
-        },
-        {
-          "key": {
-            "subjectName": "Императивное программирование",
-            "teachers": [
-              "Зайцев Вадим Евгеньевич"
-            ],
-            "gradeType": "EXAM"
-          },
-          "value": "EXCELLENT"
         },
         {
           "key": {
@@ -164,6 +97,52 @@
         },
         {
           "key": {
+            "subjectName": "Императивное программирование",
+            "teachers": [
+              "Зайцев Вадим Евгеньевич"
+            ],
+            "gradeType": "GRADED_TEST"
+          },
+          "value": "EXCELLENT"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "grades": [
+        {
+          "key": {
+            "subjectName": "Императивное программирование",
+            "teachers": [
+              "Зайцев Вадим Евгеньевич"
+            ],
+            "gradeType": "EXAM"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
+            "subjectName": "Введение в алгебру и анализ",
+            "teachers": [
+              "Васкевич Владимир Леонтьевич",
+              "Шваб Ирина Васильевна"
+            ],
+            "gradeType": "EXAM"
+          },
+          "value": "GOOD"
+        },
+        {
+          "key": {
+            "subjectName": "Физическая культура и спорт",
+            "teachers": [
+              "Опарин Григорий Андреевич"
+            ],
+            "gradeType": "CREDIT"
+          },
+          "value": "PASSED"
+        },
+        {
+          "key": {
             "subjectName": "Иностранный язык",
             "teachers": [
               "Хоцкина Ольга Валерьевна"
@@ -174,13 +153,14 @@
         },
         {
           "key": {
-            "subjectName": "Введение в дискретную математику и математическую логику",
+            "subjectName": "Цифровые платформы",
             "teachers": [
-              "Апанович Зинаида Владимировна"
+              "Иртегов Дмитрий Валентинович",
+              "Ананько Анатолий Григорьевич"
             ],
-            "gradeType": "EXAM"
+            "gradeType": "GRADED_TEST"
           },
-          "value": "EXCELLENT"
+          "value": "GOOD"
         },
         {
           "key": {
@@ -192,6 +172,26 @@
             "gradeType": "CREDIT"
           },
           "value": "PASSED"
+        },
+        {
+          "key": {
+            "subjectName": "Декларативное программирование",
+            "teachers": [
+              "Куталев Андрей Витальевич"
+            ],
+            "gradeType": "GRADED_TEST"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
+            "subjectName": "Введение в дискретную математику и математическую логику",
+            "teachers": [
+              "Апанович Зинаида Владимировна"
+            ],
+            "gradeType": "EXAM"
+          },
+          "value": "EXCELLENT"
         }
       ]
     }

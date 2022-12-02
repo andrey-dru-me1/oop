@@ -11,15 +11,13 @@ public record Student(
 ) {
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", email='" + email + '\'' +
-                ", faculty='" + faculty + '\'' +
-                ", group=" + group +
-                ", educationType=" + educationType +
-                '}';
+        return "name='" + name + '\'' +
+                "\nsurname='" + surname + '\'' +
+                "\nmiddleName='" + middleName + '\'' +
+                "\nemail='" + email + '\'' +
+                "\nfaculty='" + faculty + '\'' +
+                "\ngroup=" + group +
+                "\neducationType=" + educationType;
     }
 
     public enum EducationType {
