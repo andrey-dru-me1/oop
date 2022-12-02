@@ -95,6 +95,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">RecordBook</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Representation of student's record book</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -127,13 +128,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addSemester(ru.nsu.fit.melnikov.oop.recordbook.Semester)" class="member-name-link">addSemester</a><wbr>(<a href="Semester.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Semester</a>&nbsp;semester)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds new semester.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculateAverage()" class="member-name-link">calculateAverage</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Calculates average mark from all the marks in record book.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#couldBeRedDiploma()" class="member-name-link">couldBeRedDiploma</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if student will receive red diploma.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCurrentSemester()" class="member-name-link">getCurrentSemester</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -175,10 +182,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCurrentSemester()" class="member-name-link">updateCurrentSemester</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Updates current semester number to the next one.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#willBeIncreasedStipend()" class="member-name-link">willBeIncreasedStipend</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if student could have increased stipend according to the last semester.</div>
+</div>
 </div>
 </div>
 </div>
@@ -289,30 +300,51 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addSemester(ru.nsu.fit.melnikov.oop.recordbook.Semester)">
 <h3>addSemester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addSemester</span><wbr><span class="parameters">(<a href="Semester.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Semester</a>&nbsp;semester)</span></div>
+<div class="block">Adds new semester.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>semester</code> - new semester to add</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="updateCurrentSemester()">
 <h3>updateCurrentSemester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateCurrentSemester</span>()</div>
+<div class="block">Updates current semester number to the next one.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="calculateAverage()">
 <h3>calculateAverage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a></span>&nbsp;<span class="element-name">calculateAverage</span>()</div>
+<div class="block">Calculates average mark from all the marks in record book.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>average mark ever</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="couldBeRedDiploma()">
 <h3>couldBeRedDiploma</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></span>&nbsp;<span class="element-name">couldBeRedDiploma</span>()</div>
+<div class="block">Checks if student will receive red diploma.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if student can receive red diploma.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="willBeIncreasedStipend()">
 <h3>willBeIncreasedStipend</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></span>&nbsp;<span class="element-name">willBeIncreasedStipend</span>()</div>
+<div class="block">Checks if student could have increased stipend according to the last semester.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if a stipend should be increased according to the last semester</dd>
+</dl>
 </section>
 </li>
 <li>

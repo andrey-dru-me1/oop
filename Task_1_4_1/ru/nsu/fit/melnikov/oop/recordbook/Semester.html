@@ -94,9 +94,15 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-number">number</span></code> - number of the semester</dd>
+<dd><code><span id="param-grades">grades</span></code> - map of subjects and grades</dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">Semester</span>(int&nbsp;number, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Pair.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Pair</a>&lt;<a href="Subject.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Subject</a>,<wbr><a href="Semester.Grade.html" title="enum class in ru.nsu.fit.melnikov.oop.recordbook">Semester.Grade</a>&gt;&gt;&nbsp;grades)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
+<div class="block">Represents one semester with all its subjects and grades.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -145,7 +151,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addGrade(ru.nsu.fit.melnikov.oop.recordbook.Subject,ru.nsu.fit.melnikov.oop.recordbook.Semester.Grade)" class="member-name-link">addGrade</a><wbr>(<a href="Subject.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Subject</a>&nbsp;subject,
  <a href="Semester.Grade.html" title="enum class in ru.nsu.fit.melnikov.oop.recordbook">Semester.Grade</a>&nbsp;grade)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds new grade for the semester.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#clone()" class="member-name-link">clone</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -157,7 +165,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Pair.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Pair</a>&lt;<a href="Subject.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Subject</a>,<wbr><a href="Semester.Grade.html" title="enum class in ru.nsu.fit.melnikov.oop.recordbook">Semester.Grade</a>&gt;&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#grades()" class="member-name-link">grades</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>grades</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-grades"><code>grades</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
@@ -167,7 +175,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#number()" class="member-name-link">number</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>number</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-number"><code>number</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -199,8 +207,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates an instance of a <code>Semester</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>number</code> - the value for the <code>number</code> record component</dd>
-<dd><code>grades</code> - the value for the <code>grades</code> record component</dd>
+<dd><code>number</code> - the value for the <a href="#param-number"><code>number</code></a> record component</dd>
+<dd><code>grades</code> - the value for the <a href="#param-grades"><code>grades</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -217,6 +225,12 @@ loadScripts(document, 'script');</script>
 <h3>addGrade</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addGrade</span><wbr><span class="parameters">(<a href="Subject.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Subject</a>&nbsp;subject,
  <a href="Semester.Grade.html" title="enum class in ru.nsu.fit.melnikov.oop.recordbook">Semester.Grade</a>&nbsp;grade)</span></div>
+<div class="block">Adds new grade for the semester.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>subject</code> - new subject to add grade to</dd>
+<dd><code>grade</code> - grade to bind with subject</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -277,10 +291,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="number()">
 <h3>number</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">number</span>()</div>
-<div class="block">Returns the value of the <code>number</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-number"><code>number</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>number</code> record component</dd>
+<dd>the value of the <a href="#param-number"><code>number</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -288,10 +302,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="grades()">
 <h3>grades</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Pair.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Pair</a>&lt;<a href="Subject.html" title="class in ru.nsu.fit.melnikov.oop.recordbook">Subject</a>,<wbr><a href="Semester.Grade.html" title="enum class in ru.nsu.fit.melnikov.oop.recordbook">Semester.Grade</a>&gt;&gt;</span>&nbsp;<span class="element-name">grades</span>()</div>
-<div class="block">Returns the value of the <code>grades</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-grades"><code>grades</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>grades</code> record component</dd>
+<dd>the value of the <a href="#param-grades"><code>grades</code></a> record component</dd>
 </dl>
 </section>
 </li>
