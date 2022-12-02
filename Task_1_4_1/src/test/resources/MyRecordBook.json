@@ -1,0 +1,199 @@
+{
+  "student": {
+    "name": "Андрей",
+    "surname": "Мельников",
+    "middleName": "Петрович",
+    "email": "a.melnikov4@g.nsu.ru",
+    "faculty": "ФИТ",
+    "group": 21214,
+    "educationType": "FULL_TIME"
+  },
+  "issueDate": "2021-09-01",
+  "validUntil": "2023-08-31",
+  "currentSemester": null,
+  "semesters": [
+    {
+      "number": 1,
+      "grades": [
+        {
+          "key": {
+            "subjectName": "Основы культуры речи",
+            "teachers": [
+              "Заворина Татьяна Ивановна"
+            ],
+            "gradeType": "GRADED_TEST"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
+            "subjectName": "История",
+            "teachers": [
+              "Оплаканская Рената Валерьевна"
+            ],
+            "gradeType": "GRADED_TEST"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
+            "subjectName": "Введение в алгебру и анализ",
+            "teachers": [
+              "Васкевич Владимир Леонтьевич",
+              "Шваб Ирина Васильевна"
+            ],
+            "gradeType": "EXAM"
+          },
+          "value": "GOOD"
+        },
+        {
+          "key": {
+            "subjectName": "Цифровые платформы",
+            "teachers": [
+              "Иртегов Дмитрий Валентинович",
+              "Ананько Анатолий Григорьевич"
+            ],
+            "gradeType": "CREDIT"
+          },
+          "value": "PASSED"
+        },
+        {
+          "key": {
+            "subjectName": "Императивное программирование",
+            "teachers": [
+              "Зайцев Вадим Евгеньевич"
+            ],
+            "gradeType": "GRADED_TEST"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
+            "subjectName": "Физическая культура и спорт",
+            "teachers": [
+              "Опарин Григорий Андреевич"
+            ],
+            "gradeType": "CREDIT"
+          },
+          "value": "PASSED"
+        },
+        {
+          "key": {
+            "subjectName": "Иностранный язык",
+            "teachers": [
+              "Хоцкина Ольга Валерьевна"
+            ],
+            "gradeType": "CREDIT"
+          },
+          "value": "PASSED"
+        },
+        {
+          "key": {
+            "subjectName": "Декларативное программирование",
+            "teachers": [
+              "Куталев Андрей Витальевич"
+            ],
+            "gradeType": "GRADED_TEST"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
+            "subjectName": "Введение в дискретную математику и математическую логику",
+            "teachers": [],
+            "gradeType": "EXAM"
+          },
+          "value": "EXCELLENT"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "grades": [
+        {
+          "key": {
+            "subjectName": "Введение в алгебру и анализ",
+            "teachers": [
+              "Васкевич Владимир Леонтьевич",
+              "Шваб Ирина Васильевна"
+            ],
+            "gradeType": "EXAM"
+          },
+          "value": "GOOD"
+        },
+        {
+          "key": {
+            "subjectName": "Цифровые платформы",
+            "teachers": [
+              "Иртегов Дмитрий Валентинович",
+              "Ананько Анатолий Григорьевич"
+            ],
+            "gradeType": "GRADED_TEST"
+          },
+          "value": "GOOD"
+        },
+        {
+          "key": {
+            "subjectName": "Императивное программирование",
+            "teachers": [
+              "Зайцев Вадим Евгеньевич"
+            ],
+            "gradeType": "EXAM"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
+            "subjectName": "Физическая культура и спорт",
+            "teachers": [
+              "Опарин Григорий Андреевич"
+            ],
+            "gradeType": "CREDIT"
+          },
+          "value": "PASSED"
+        },
+        {
+          "key": {
+            "subjectName": "Иностранный язык",
+            "teachers": [
+              "Хоцкина Ольга Валерьевна"
+            ],
+            "gradeType": "GRADED_TEST"
+          },
+          "value": "GOOD"
+        },
+        {
+          "key": {
+            "subjectName": "Декларативное программирование",
+            "teachers": [
+              "Куталев Андрей Витальевич"
+            ],
+            "gradeType": "GRADED_TEST"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
+            "subjectName": "Введение в дискретную математику и математическую логику",
+            "teachers": [
+              "Апанович Зинаида Владимировна"
+            ],
+            "gradeType": "EXAM"
+          },
+          "value": "EXCELLENT"
+        },
+        {
+          "key": {
+            "subjectName": "Измерительный практикум",
+            "teachers": [
+              "Брагин Олег Анатольевич",
+              "Белоусов Роман Геннадьевич"
+            ],
+            "gradeType": "CREDIT"
+          },
+          "value": "PASSED"
+        }
+      ]
+    }
+  ]
+}

@@ -1,17 +1,11 @@
 package ru.nsu.fit.melnikov.oop.recordbook;
 
-public record Subject(String name, GradeType gradeType, Grade grade) {
+import java.util.List;
+
+public record Subject(String subjectName, List<String> teachers, GradeType gradeType) {
     public enum GradeType {
         CREDIT,
         GRADED_TEST,
         EXAM
-    }
-
-    public enum Grade {
-        FAILED,
-        PASSED,
-        SATISFYING,
-        GOOD,
-        EXCELLENT
     }
 }

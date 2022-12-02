@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Date;
-import java.util.Map;
+import java.util.List;
 
 public class RecordBook {
 
@@ -14,7 +14,7 @@ public class RecordBook {
     private Date validUntil;
     private Integer currentSemester;
 
-    private Map<Integer, Map<String, Integer>> grades;
+    private List<Semester> semesters;
 
     public RecordBook(Student student, Date issueDate, Date validUntil) {
         this.student = student;
@@ -77,8 +77,8 @@ public class RecordBook {
         return currentSemester;
     }
 
-    public Map<Integer, Map<String, Integer>> getGrades() {
-        return grades;
+    public List<Semester> getSemesters() {
+        return semesters;
     }
 
     public void setValidUntil(Date newDate) {
@@ -89,14 +89,28 @@ public class RecordBook {
         this.validUntil = Date.valueOf(newDate);
     }
 
+    public void setSemesters(List<Semester> semesters) {
+        this.semesters = semesters;
+    }
+
     public Double calculateAverage() {
         return (double) (int)
-                (this.grades.values()
+                (this.semesters
                         .stream()
                         .mapToDouble(
-                                map -> map.values()
+                                map -> map.grades()
                                         .stream()
-                                        .mapToDouble(x -> x)
+                                        .filter(x -> !x.getKey().gradeType().equals(Subject.GradeType.CREDIT))
+                                        .mapToDouble(x -> {
+                                            Semester.Grade grade = x.getValue();
+                                            return switch (grade) {
+                                                case SATISFYING -> 3.0;
+                                                case GOOD -> 4.0;
+                                                case EXCELLENT -> 5.0;
+                                                default ->
+                                                        throw new EnumConstantNotPresentException(Semester.Grade.class, grade.name());
+                                            };
+                                        })
                                         .average()
                                         .orElse(Double.NaN)
                         )
