@@ -4,13 +4,12 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 class RecordBookTest {
 
@@ -25,26 +24,57 @@ class RecordBookTest {
         System.out.println(recordBook);
         mapper.writeValue(Paths.get("src/test/resources/file.json").toFile(), recordBook);
 
-        recordBook = new RecordBook(
-                new Student
-                        (
-                                "Андрей",
-                                "Мельников",
-                                "Петрович",
-                                "a.melnikov4@g.nsu.ru",
-                                "ФИТ",
-                                21214,
-                                Student.EducationType.FULL_TIME
-                        ),
-                "2021-09-01",
-                "2023-08-31");
-        Set<Pair<Subject, Semester.Grade>> grades = new HashSet<>();
-        grades.add(new Pair<>(new Subject("Дифффуры", List.of("Шваб"), Subject.GradeType.EXAM), Semester.Grade.GOOD));
-        List<Semester> semesters = List.of(new Semester(0, grades));
-        recordBook.setSemesters(semesters);
-        mapper.writeValue(Paths.get("src/test/resources/file2.txt").toFile(), recordBook);
-        recordBook = mapper.readValue(Paths.get("src/test/resources/file2.txt").toFile(), RecordBook.class);
-        System.out.println(recordBook);
+        Student me = recordBook.getStudent();
+        Assertions.assertEquals(
+                "Student{" +
+                        "name='Андрей'" +
+                        ", surname='Мельников'" +
+                        ", middleName='Петрович'" +
+                        ", email='a.melnikov4@g.nsu.ru'" +
+                        ", faculty='ФИТ'" +
+                        ", group=21214" +
+                        ", educationType=FULL_TIME" +
+                        '}',
+                me.toString()
+        );
+
+        Assertions.assertEquals("Андрей", me.name());
+        Assertions.assertEquals("Мельников", me.surname());
+        Assertions.assertEquals("Петрович", me.middleName());
+        Assertions.assertEquals("a.melnikov4@g.nsu.ru", me.email());
+        Assertions.assertEquals("ФИТ", me.faculty());
+        Assertions.assertEquals(21214, me.group());
+        Assertions.assertEquals(Student.EducationType.FULL_TIME, me.educationType());
+
+        Assertions.assertEquals("2021-09-01", recordBook.getStringIssueDate());
+        Assertions.assertEquals("2023-08-31", recordBook.getStringValidUntil());
+
+        Assertions.assertEquals(3, recordBook.getCurrentSemester());
+
+        recordBook.setValidUntil("2024-08-31");
+        Assertions.assertEquals("2024-08-31", recordBook.getStringValidUntil());
+
+        Semester toClone = recordBook.getSemester(1);
+        Semester semester = new Semester(3, toClone.grades());
+        semester.addGrade(
+                new Subject(
+                        "Новый предмет",
+                        List.of("Преподаватель"),
+                        Subject.GradeType.CREDIT
+                ),
+                Semester.Grade.PASSED
+        );
+        recordBook.addSemester(semester);
+        recordBook.updateCurrentSemester();
+
+        recordBook.setSemesters(recordBook.getSemesters());
+
+        System.out.println(recordBook.calculateAverage());
+
+        Assertions.assertTrue(recordBook.couldBeRedDiploma());
+
+        recordBook.getSemesters().get(1).grades().stream().findFirst().orElseThrow().setValue(Semester.Grade.FAILED);
+
     }
 
 }

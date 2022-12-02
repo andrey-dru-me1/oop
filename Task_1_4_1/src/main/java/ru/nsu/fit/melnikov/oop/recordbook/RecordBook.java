@@ -16,12 +16,6 @@ public class RecordBook {
 
     private List<Semester> semesters;
 
-    public RecordBook(Student student, Date issueDate, Date validUntil) {
-        this.student = student;
-        this.issueDate = issueDate;
-        this.validUntil = validUntil;
-    }
-
     @JsonCreator
     public RecordBook(
             @JsonProperty("student")
@@ -29,26 +23,13 @@ public class RecordBook {
             @JsonProperty("issueDate")
             String issueDate,
             @JsonProperty("validUntil")
-            String validUntil) {
+            String validUntil,
+            @JsonProperty("currentSemester")
+            int currentSemester) {
         this.student = student;
         this.issueDate = Date.valueOf(issueDate);
         this.validUntil = Date.valueOf(validUntil);
-    }
-
-    public RecordBook(
-            String name,
-            String surname,
-            String middleName,
-            String email,
-            String faculty,
-            int group,
-            Student.EducationType educationType,
-            Date issueDate,
-            Date validUntil
-    ) {
-        this.student = new Student(name, surname, middleName, email, faculty, group, educationType);
-        this.issueDate = issueDate;
-        this.validUntil = validUntil;
+        this.currentSemester = currentSemester;
     }
 
     public Student getStudent() {
@@ -61,7 +42,7 @@ public class RecordBook {
 
     @JsonGetter("issueDate")
     public String getStringIssueDate() {
-        return issueDate.toString();
+        return this.getIssueDate().toString();
     }
 
     public Date getValidUntil() {
@@ -70,7 +51,7 @@ public class RecordBook {
 
     @JsonGetter("validUntil")
     public String getStringValidUntil() {
-        return validUntil.toString();
+        return this.getValidUntil().toString();
     }
 
     public Integer getCurrentSemester() {
@@ -81,16 +62,32 @@ public class RecordBook {
         return semesters;
     }
 
+    public Semester getSemester(int number) {
+        return this.semesters.get(number - 1);
+    }
+
     public void setValidUntil(Date newDate) {
         this.validUntil = newDate;
     }
 
     public void setValidUntil(String newDate) {
-        this.validUntil = Date.valueOf(newDate);
+        this.setValidUntil(Date.valueOf(newDate));
     }
 
     public void setSemesters(List<Semester> semesters) {
         this.semesters = semesters;
+    }
+
+    public void setCurrentSemester(int number) {
+        this.currentSemester = number;
+    }
+
+    public void addSemester(Semester semester) {
+        semesters.add(semester.number() - 1, semester);
+    }
+
+    public void updateCurrentSemester() {
+        this.setCurrentSemester(this.getCurrentSemester() + 1);
     }
 
     public Double calculateAverage() {
@@ -121,5 +118,6 @@ public class RecordBook {
     public Boolean couldBeRedDiploma() {
         return this.calculateAverage() > 5.0 * 0.75;
     }
+
 }
 

@@ -10,7 +10,7 @@
   },
   "issueDate": "2021-09-01",
   "validUntil": "2023-08-31",
-  "currentSemester": null,
+  "currentSemester": 3,
   "semesters": [
     {
       "number": 1,
