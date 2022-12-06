@@ -27,7 +27,7 @@ public class Calculator {
                 case "sqrt" -> operations.push(Operations.SQRT);
                 case "sqr" -> operations.push(Operations.SQR);
                 default -> {
-                    result = Double.parseDouble(buf);
+                    result = Calculator.getValue(buf);
                     loop = false;
                 }
             }
@@ -36,7 +36,7 @@ public class Calculator {
         while (!operations.empty()) {
             Operations operation = operations.pop();
             switch (operation) {
-                case PLUS, MINUS, DIVIDE, MULTIPLY, POW -> number = Double.parseDouble(scanner.next());
+                case PLUS, MINUS, DIVIDE, MULTIPLY, POW -> number = Calculator.getValue(scanner.next());
             }
             result = switch (operation) {
                 case PLUS -> result + number;
@@ -54,6 +54,14 @@ public class Calculator {
         scanner.close();
         System.out.println(result);
 
+    }
+
+    private static Double getValue(String buf) {
+        return switch (buf) {
+            case "e" -> Math.E;
+            case "pi" -> Math.PI;
+            default -> Double.parseDouble(buf);
+        };
     }
 
     private enum Operations {
