@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 class CalculatorTest {
 
@@ -18,7 +19,9 @@ class CalculatorTest {
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);
 
-        DecimalFormat df = new DecimalFormat("#.#####");
+        DecimalFormatSymbols nf = new DecimalFormatSymbols();
+        nf.setDecimalSeparator('.');
+        DecimalFormat df = new DecimalFormat("#.#####", nf);
 
         Calculator.main(new String[]{});
         Assertions.assertEquals(expected, df.format(Double.parseDouble(outputStream.toString().trim())));
