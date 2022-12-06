@@ -25,6 +25,7 @@ public class Calculator {
                 case "cos" -> operations.push(Operations.COS);
                 case "log" -> operations.push(Operations.LOG);
                 case "sqrt" -> operations.push(Operations.SQRT);
+                case "sqr" -> operations.push(Operations.SQR);
                 default -> {
                     result = Double.parseDouble(buf);
                     loop = false;
@@ -47,6 +48,7 @@ public class Calculator {
                 case LOG -> Math.log(result);
                 case SIN -> Math.sin(result);
                 case SQRT -> Math.sqrt(result);
+                case SQR -> result * result;
             };
         }
         scanner.close();
@@ -55,7 +57,7 @@ public class Calculator {
     }
 
     private enum Operations {
-        PLUS, MINUS, MULTIPLY, DIVIDE, SIN, COS, LOG, POW, SQRT
+        PLUS, MINUS, MULTIPLY, DIVIDE, SIN, COS, LOG, POW, SQRT, SQR
     }
 
 }
