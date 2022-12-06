@@ -7,32 +7,29 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.text.DecimalFormat;
 
 class CalculatorTest {
 
+    void testTemplate(String input, String expected) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        OutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+
+        DecimalFormat df = new DecimalFormat("#.#####");
+
+        Calculator.main(new String[]{});
+        Assertions.assertEquals(expected, df.format(Double.parseDouble(outputStream.toString().trim())));
+    }
+
     @Test
     void test() {
-        String params = "sin + - 1 2 1";
-        System.setIn(new ByteArrayInputStream(params.getBytes()));
-
-        OutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setOut(printStream);
-
-        Calculator.main(new String[]{});
-        Assertions.assertEquals("0.0", outputStream.toString().trim());
+        testTemplate("sin + - 1 2 1", "0");
+        testTemplate("pow / sqrt - * sqr 3 2 2 8 3", "0,125");
+        testTemplate("cos / pi 3", "0,5");
+        testTemplate("log pow e 3", "3");
     }
 
-    @Test
-    void testMore() {
-        String params = "pow / sqrt - * sqr 3 2 2 8 3";
-        System.setIn(new ByteArrayInputStream(params.getBytes()));
-
-        OutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setOut(printStream);
-
-        Calculator.main(new String[]{});
-        Assertions.assertEquals("0.125", outputStream.toString().trim());
-    }
 }
