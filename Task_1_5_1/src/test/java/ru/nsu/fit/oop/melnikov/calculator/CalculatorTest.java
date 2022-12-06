@@ -27,8 +27,8 @@ class CalculatorTest {
     @Test
     void test() {
         testTemplate("sin + - 1 2 1", "0");
-        testTemplate("pow / sqrt - * sqr 3 2 2 8 3", "0,125");
-        testTemplate("cos / pi 3", "0,5");
+        testTemplate("pow / sqrt - * sqr 3 2 2 8 3", "0.125");
+        testTemplate("cos / pi 3", "0.5");
         testTemplate("log pow e 3", "3");
     }
 
