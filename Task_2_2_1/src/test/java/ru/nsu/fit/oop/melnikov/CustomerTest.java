@@ -1,6 +1,13 @@
 package ru.nsu.fit.oop.melnikov;
 
-import java.util.HashSet;import java.util.Set;import org.junit.jupiter.api.Test;import ru.nsu.fit.oop.melnikov.pizzeria.employees.Cook;import ru.nsu.fit.oop.melnikov.pizzeria.employees.Courier;import ru.nsu.fit.oop.melnikov.pizzeria.Customer;import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
+import java.util.HashSet;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.melnikov.pizzeria.Customer;
+import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
+import ru.nsu.fit.oop.melnikov.pizzeria.employees.Cook;
+import ru.nsu.fit.oop.melnikov.pizzeria.employees.Courier;
+import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
 class CustomerTest {
 
@@ -34,5 +41,4 @@ class CustomerTest {
       }
     }
   }
-
 }
