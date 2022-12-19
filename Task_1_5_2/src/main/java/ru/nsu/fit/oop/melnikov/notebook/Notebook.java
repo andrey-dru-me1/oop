@@ -26,6 +26,7 @@ public class Notebook {
         this.records = new HashSet<>();
     }
 
+    @SuppressWarnings("unused") // Jackson uses this method to parse the class to json
     public Set<Record> getRecords() {
         return records;
     }
