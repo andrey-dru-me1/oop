@@ -13,7 +13,7 @@ import java.util.Set;
 public class Notebook {
 
     @JsonIgnore
-    final private static String FILE_PATH = "src/test/resources/notebook.json";
+    final private static String FILE_PATH = "Task_1_5_2/src/test/resources/notebook.json";
 
     final private Set<Record> records;
 

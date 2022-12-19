@@ -15,7 +15,7 @@ class NotebookTest {
 
         try {
             //noinspection ResultOfMethodCallIgnored
-            (new File("src/test/resources/notebook.json")).delete();
+            (new File("Task_1_5_2/src/test/resources/notebook.json")).delete();
         } catch (Throwable e) {
         }
 
