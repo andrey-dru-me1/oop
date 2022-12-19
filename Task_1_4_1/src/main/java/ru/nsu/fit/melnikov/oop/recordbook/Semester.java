@@ -17,6 +17,22 @@ public record Semester(int number, Set<Pair<Subject, Grade>> grades) {
      * @param grade   grade to bind with subject
      */
     public void addGrade(Subject subject, Grade grade) {
+
+        Subject.GradeType gradeType = subject.gradeType();
+
+        switch (grade) {
+            case SATISFYING, GOOD, EXCELLENT -> {
+                if (gradeType == Subject.GradeType.CREDIT) {
+                    throw new IllegalArgumentException();
+                }
+            }
+            case PASSED -> {
+                if (gradeType != Subject.GradeType.CREDIT) {
+                    throw new IllegalArgumentException();
+                }
+            }
+        }
+
         grades.add(new Pair<>(subject, grade));
     }
 
