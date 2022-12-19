@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.fit.oop.melnikov.notebook","l":"Notebook"},{"p":"ru.nsu.fit.oop.melnikov.notebook","l":"Record"}];updateSearchResults();
