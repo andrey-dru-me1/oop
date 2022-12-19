@@ -13,11 +13,7 @@ class NotebookTest {
     @Test
     void test() {
 
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            (new File("Task_1_5_2/src/test/resources/notebook.json")).delete();
-        } catch (Throwable e) {
-        }
+        new File("notebook.json").delete();
 
         Notebook.main(new String[]{"-add", "lol", "kek"});
         Notebook.main(new String[]{"-add", "Name", "Description"});
