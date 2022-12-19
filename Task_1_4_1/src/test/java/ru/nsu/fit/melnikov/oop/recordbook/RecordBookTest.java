@@ -42,7 +42,7 @@ class RecordBookTest {
         Assertions.assertEquals(3, recordBook.getCurrentSemester());
 
         Assertions.assertTrue(recordBook.couldBeRedDiploma());
-        Assertions.assertFalse(recordBook.willBeIncreasedStipend());
+        Assertions.assertFalse(recordBook.willBeIncreasedScholarship());
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/test/resources/file.txt"));
         writer.write(recordBook.toString());

@@ -146,7 +146,7 @@ public class RecordBook {
      *
      * @return true if a stipend should be increased according to the last semester
      */
-    public Boolean willBeIncreasedStipend() {
+    public Boolean willBeIncreasedScholarship() {
         if (currentSemester <= 1) return false;
         for (
                 Semester.Grade i :
