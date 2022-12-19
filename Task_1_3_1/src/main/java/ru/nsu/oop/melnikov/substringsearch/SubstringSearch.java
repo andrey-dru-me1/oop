@@ -10,6 +10,8 @@ import java.util.Arrays;
  */
 public class SubstringSearch {
 
+    static final int BUFF_SIZE = 1024;
+
     /**
      * Searches substring in reader stream.
      *
@@ -71,25 +73,25 @@ public class SubstringSearch {
      */
     public static int searchZ(BufferedReader reader, String substring) throws IOException {
 
-        char[] buf = new char[1024];    //buffer size is set to 1024 bytes
+        char[] buf = new char[BUFF_SIZE];    //buffer size is set to BUFF_SIZE bytes
         Arrays.fill(buf, (char) 0);
         if (reader.read(buf, 0, substring.length()) == -1) {
             throw new EOFException();
         }
         int offset = 0;
-        while (reader.read(buf, substring.length(), 1024 - substring.length()) != -1) {
+        while (reader.read(buf, substring.length(), BUFF_SIZE - substring.length()) != -1) {
 
             //Z-function implementation
-            Integer[] z = new Integer[1024];
+            Integer[] z = new Integer[BUFF_SIZE];
             Arrays.fill(z, 0);
             int left = 0;
             int right = 0;
-            for (int i = 1; i < 1024 && buf[i] != 0; i++) {
+            for (int i = 1; i < BUFF_SIZE && buf[i] != 0; i++) {
                 if (i <= right) {
                     z[i] = Math.min(right - i + 1, z[i - left]);
                 }
                 while (
-                        i + z[i] < 1024
+                        i + z[i] < BUFF_SIZE
                                 && substring.charAt(z[i]) == buf[i + z[i]]
                 ) {
                     z[i]++;
@@ -103,8 +105,8 @@ public class SubstringSearch {
                 }
             }
 
-            System.arraycopy(buf, 1024 - substring.length(), buf, 0, substring.length());
-            offset += 1024 - substring.length();
+            System.arraycopy(buf, BUFF_SIZE - substring.length(), buf, 0, substring.length());
+            offset += BUFF_SIZE - substring.length();
 
         }
 
