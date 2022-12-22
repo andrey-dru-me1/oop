@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Log extends Operation {
 
-    final static int ARITY = 1;
+    private final static int ARITY = 1;
 
     @Override
     public int getArity() {

@@ -71,6 +71,7 @@ public class Calculator {
 
                 Map.entry("sin", new Sin()),
                 Map.entry("cos", new Cos()),
+                Map.entry("deg", new Deg()),
 
                 //Other operations
 

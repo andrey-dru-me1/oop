@@ -6,7 +6,7 @@ import java.util.List;
 
 public class I extends Operation {
 
-    final static int ARITY = 0;
+    private final static int ARITY = 0;
 
     @Override
     public int getArity() {

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Plus extends Operation {
 
-    final static int ARITY = 2;
+    private final static int ARITY = 2;
 
     @Override
     public int getArity() {

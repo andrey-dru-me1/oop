@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class Sqrt extends Operation {
+public class Deg extends Operation {
 
     private final static int ARITY = 1;
 
@@ -16,7 +16,6 @@ public class Sqrt extends Operation {
 
     @Override
     protected Complex calculate(@NotNull List<Complex> operands) {
-        return operands.get(0).sqrt();
+        return operands.get(0).divide(180).multiply(Math.PI);
     }
-
 }
