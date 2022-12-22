@@ -96,6 +96,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Calculator</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Implementation of calculator with settable and extendable set of supported operations.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -125,7 +126,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#main(java.lang.String%5B%5D)" class="member-name-link">main</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Loads all basic functions and constants in calculator and execute it.</div>
+</div>
 </div>
 </div>
 </div>
@@ -162,9 +165,13 @@ loadScripts(document, 'script');</script>
 <h3>main</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">main</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args)</span>
                  throws <span class="exceptions"><a href="operations/Operation.WrongOperandsCountException.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation.WrongOperandsCountException</a></span></div>
+<div class="block">Loads all basic functions and constants in calculator and execute it.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>args</code> - aren't expected and aren't handled in this implementation.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="operations/Operation.WrongOperandsCountException.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation.WrongOperandsCountException</a></code></dd>
+<dd><code><a href="operations/Operation.WrongOperandsCountException.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation.WrongOperandsCountException</a></code> - when arity of operation does not
+                                               match the count of operands in string</dd>
 </dl>
 </section>
 </li>
