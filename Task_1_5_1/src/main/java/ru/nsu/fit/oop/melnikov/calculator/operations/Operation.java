@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations;
 
 import org.apache.commons.numbers.complex.Complex;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public abstract class Operation {
      * @param operands list of operands to pass in operation function
      * @return result of calculation
      */
-    public Complex apply(List<Complex> operands) throws WrongOperandsCountException {
+    public Complex apply(@NotNull List<Complex> operands) throws WrongOperandsCountException {
         if (operands.size() != getArity()) throw new WrongOperandsCountException();
         return calculate(operands);
     }

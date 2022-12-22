@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.melnikov.calculator;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
@@ -13,7 +14,7 @@ import java.text.DecimalFormatSymbols;
 
 class CalculatorTest {
 
-    void testTemplate(String input, String expected) throws Operation.WrongOperandsCountException {
+    void testTemplate(@NotNull String input, String expected) throws Operation.WrongOperandsCountException {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         OutputStream outputStream = new ByteArrayOutputStream();

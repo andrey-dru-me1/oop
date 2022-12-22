@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations;
 
 import org.apache.commons.numbers.complex.Complex;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class Log extends Operation {
     }
 
     @Override
-    protected Complex calculate(List<Complex> operands) {
-        return operands.get(0).cos();
+    protected Complex calculate(@NotNull List<Complex> operands) {
+        return operands.get(0).log();
     }
 
 }
