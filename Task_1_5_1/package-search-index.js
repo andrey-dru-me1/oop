@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.fit.oop.melnikov.calculator"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.fit.oop.melnikov.calculator"},{"l":"ru.nsu.fit.oop.melnikov.calculator.operations"}];updateSearchResults();
