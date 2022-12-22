@@ -4,9 +4,9 @@ import org.apache.commons.numbers.complex.Complex;
 
 import java.util.List;
 
-public class Sqr extends Operation {
+public class I extends Operation {
 
-    final static int ARITY = 1;
+    final static int ARITY = 0;
 
     @Override
     public int getArity() {
@@ -15,7 +15,6 @@ public class Sqr extends Operation {
 
     @Override
     protected Complex calculate(List<Complex> operands) {
-        return operands.get(0).multiply(operands.get(0));
+        return Complex.ofCartesian(0, 1);
     }
-
 }

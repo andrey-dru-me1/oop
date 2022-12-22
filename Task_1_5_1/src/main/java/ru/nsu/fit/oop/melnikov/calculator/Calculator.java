@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.melnikov.calculator;
 
+import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.*;
 
@@ -27,7 +28,7 @@ public class Calculator {
      * @throws Operation.WrongOperandsCountException when arity of operation does not
      *                                               match the count of operands in string
      */
-    private Double parseAtom(@NotNull Scanner scanner) throws Operation.WrongOperandsCountException {
+    private Complex parseAtom(@NotNull Scanner scanner) throws Operation.WrongOperandsCountException {
 
         String buf;
         try {
@@ -39,10 +40,10 @@ public class Calculator {
         Operation operation = operations.get(buf);
 
         if (operation == null) {
-            return Double.parseDouble(buf);
+            return Complex.ofCartesian(Double.parseDouble(buf), 0);
         }
 
-        List<Double> operands = new ArrayList<>();
+        List<Complex> operands = new ArrayList<>();
         for (int i = 0; i < operation.getArity(); i++) {
             operands.add(parseAtom(scanner));
         }
@@ -84,13 +85,21 @@ public class Calculator {
                 // Constants
 
                 Map.entry("e", new E()),
-                Map.entry("pi", new Pi())
+                Map.entry("pi", new Pi()),
+                Map.entry("i", new I())
         ));
 
         Scanner scanner = new Scanner(System.in);
 
-        Double result = calculator.parseAtom(scanner);
-        System.out.println(result);
+        Complex result = calculator.parseAtom(scanner);
+
+        if (result.getImaginary() != 0 && result.getReal() != 0) {
+            System.out.println(result.getReal() + " + i ( " + result.getImaginary() + " )");
+        } else if (result.getImaginary() != 0) {
+            System.out.println("i ( " + result.getImaginary() + " )");
+        } else {
+            System.out.println(result.getReal());
+        }
 
         scanner.close();
 

@@ -1,5 +1,7 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations;
 
+import org.apache.commons.numbers.complex.Complex;
+
 import java.util.List;
 
 public class E extends Operation {
@@ -12,8 +14,8 @@ public class E extends Operation {
     }
 
     @Override
-    protected Double calculate(List<Double> operands) {
-        return Math.E;
+    protected Complex calculate(List<Complex> operands) {
+        return Complex.ofCartesian(Math.E, 0);
     }
 
 }

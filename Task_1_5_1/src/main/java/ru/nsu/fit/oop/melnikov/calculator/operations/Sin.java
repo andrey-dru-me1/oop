@@ -1,5 +1,7 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations;
 
+import org.apache.commons.numbers.complex.Complex;
+
 import java.util.List;
 
 public class Sin extends Operation {
@@ -12,8 +14,8 @@ public class Sin extends Operation {
     }
 
     @Override
-    protected Double calculate(List<Double> operands) {
-        return Math.sin(operands.get(0));
+    protected Complex calculate(List<Complex> operands) {
+        return operands.get(0).sin();
     }
 
 }
