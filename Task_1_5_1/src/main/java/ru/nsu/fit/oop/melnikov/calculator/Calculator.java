@@ -1,71 +1,78 @@
 package ru.nsu.fit.oop.melnikov.calculator;
 
-import java.util.Scanner;
-import java.util.Stack;
+import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.operations.*;
+
+import java.util.*;
 
 public class Calculator {
 
-    private static final Stack<Operations> operations = new Stack<>();
+    private final Map<String, Operation> operations;
 
-    public static void main(String[] args) {
+    public Calculator(Map<String, Operation> operations) {
+        this.operations = operations;
+    }
+
+    private Double parseAtom(@NotNull Scanner scanner) throws Operation.WrongOperandsCountException {
+
+        String buf;
+        try {
+            buf = scanner.next();
+        } catch (NoSuchElementException exception) {
+            throw new Operation.WrongOperandsCountException();
+        }
+
+        Operation operation = operations.get(buf);
+
+        if (operation == null) {
+            return Double.parseDouble(buf);
+        }
+
+        List<Double> operands = new ArrayList<>();
+        for (int i = 0; i < operation.getArity(); i++) {
+            operands.add(parseAtom(scanner));
+        }
+        return operation.apply(operands);
+    }
+
+    public static void main(String[] args) throws Operation.WrongOperandsCountException {
+        Calculator calculator = new Calculator(Map.ofEntries(
+
+                // Basic operations
+
+                Map.entry("+", new Plus()),
+                Map.entry("-", new Minus()),
+                Map.entry("*", new Multiply()),
+                Map.entry("/", new Divide()),
+
+                // Trigonometry operations
+
+                Map.entry("sin", new Sin()),
+                Map.entry("cos", new Cos()),
+
+                //Other operations
+
+                Map.entry("log", new Log()),
+
+                // Power operations
+
+                Map.entry("sqrt", new Sqrt()),
+                Map.entry("sqr", new Sqr()),
+                Map.entry("pow", new Pow()),
+
+                // Constants
+
+                Map.entry("e", new E()),
+                Map.entry("pi", new Pi())
+        ));
+
         Scanner scanner = new Scanner(System.in);
 
-        Double result = null;
-        String buf;
-        boolean loop = true;
-        while (loop) {
-            buf = scanner.next();
-            switch (buf) {
-                case "+" -> operations.push(Operations.PLUS);
-                case "-" -> operations.push(Operations.MINUS);
-                case "*" -> operations.push(Operations.MULTIPLY);
-                case "/" -> operations.push(Operations.DIVIDE);
-                case "pow" -> operations.push(Operations.POW);
-                case "sin" -> operations.push(Operations.SIN);
-                case "cos" -> operations.push(Operations.COS);
-                case "log" -> operations.push(Operations.LOG);
-                case "sqrt" -> operations.push(Operations.SQRT);
-                case "sqr" -> operations.push(Operations.SQR);
-                default -> {
-                    result = Calculator.getValue(buf);
-                    loop = false;
-                }
-            }
-        }
-        Double number = null;
-        while (!operations.empty()) {
-            Operations operation = operations.pop();
-            switch (operation) {
-                case PLUS, MINUS, DIVIDE, MULTIPLY, POW -> number = Calculator.getValue(scanner.next());
-            }
-            result = switch (operation) {
-                case PLUS -> result + number;
-                case MINUS -> result - number;
-                case DIVIDE -> result / number;
-                case MULTIPLY -> result * number;
-                case POW -> Math.pow(result, number);
-                case COS -> Math.cos(result);
-                case LOG -> Math.log(result);
-                case SIN -> Math.sin(result);
-                case SQRT -> Math.sqrt(result);
-                case SQR -> result * result;
-            };
-        }
-        scanner.close();
+        Double result = calculator.parseAtom(scanner);
         System.out.println(result);
 
-    }
+        scanner.close();
 
-    private static Double getValue(String buf) {
-        return switch (buf) {
-            case "e" -> Math.E;
-            case "pi" -> Math.PI;
-            default -> Double.parseDouble(buf);
-        };
-    }
-
-    private enum Operations {
-        PLUS, MINUS, MULTIPLY, DIVIDE, SIN, COS, LOG, POW, SQRT, SQR
     }
 
 }

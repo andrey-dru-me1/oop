@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.melnikov.calculator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +13,7 @@ import java.text.DecimalFormatSymbols;
 
 class CalculatorTest {
 
-    void testTemplate(String input, String expected) {
+    void testTemplate(String input, String expected) throws Operation.WrongOperandsCountException {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         OutputStream outputStream = new ByteArrayOutputStream();
@@ -29,10 +30,19 @@ class CalculatorTest {
 
     @Test
     void test() {
-        testTemplate("sin + - 1 2 1", "0");
-        testTemplate("pow / sqrt - * sqr 3 2 2 8 3", "0.125");
-        testTemplate("cos / pi 3", "0.5");
-        testTemplate("log pow e 3", "3");
+        try {
+            testTemplate("sin + - 1 2 1", "0");
+            testTemplate("pow / sqrt - * sqr 3 2 2 8 3", "0.125");
+            testTemplate("cos / pi 3", "0.5");
+            testTemplate("log pow e 3", "3");
+        } catch (Operation.WrongOperandsCountException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    void testException() {
+        Assertions.assertThrowsExactly(Operation.WrongOperandsCountException.class, () -> testTemplate("+ 6", ""));
     }
 
 }
