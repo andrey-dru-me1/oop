@@ -14,7 +14,7 @@ import java.text.DecimalFormatSymbols;
 
 class CalculatorTest {
 
-    void testTemplate(@NotNull String input, String expected) throws Operation.WrongOperandsCountException {
+    void testTemplate(@NotNull String input, String expected) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         OutputStream outputStream = new ByteArrayOutputStream();
@@ -31,14 +31,21 @@ class CalculatorTest {
 
     @Test
     void test() {
-        try {
-            testTemplate("sin + - 1 2 1", "0");
-            testTemplate("pow / sqrt - * sqr 3 2 2 8 3", "0.125");
-            testTemplate("cos / pi 3", "0.5");
-            testTemplate("log pow e 3", "3");
-        } catch (Operation.WrongOperandsCountException e) {
-            throw new RuntimeException(e);
-        }
+        testTemplate("sin + - 1 2 1", "0");
+        testTemplate("pow / sqrt - * sqr 3 2 2 8 3", "0.125");
+        testTemplate("cos / pi 3", "0.5");
+        testTemplate("log pow e 3", "3");
+        testTemplate("sin deg 30", "0.5");
+
+        System.setIn(new ByteArrayInputStream("+ 5 * i 3".getBytes()));
+
+        OutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+
+        Calculator.main(new String[]{});
+        Assertions.assertEquals("5.0 + i ( 3.0 )", outputStream.toString().trim());
+
     }
 
     @Test
