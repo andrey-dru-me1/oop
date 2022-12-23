@@ -31,12 +31,12 @@ public abstract class Operation {
      * @param operands list of operands to pass in operation function
      * @return result of calculation
      */
-    public Complex apply(@NotNull List<Complex> operands) throws WrongOperandsCountException {
+    public Complex apply(@NotNull List<Complex> operands) {
         if (operands.size() != getArity()) throw new WrongOperandsCountException();
         return calculate(operands);
     }
 
-    static public class WrongOperandsCountException extends Exception {
+    static public class WrongOperandsCountException extends RuntimeException {
     }
 
 }

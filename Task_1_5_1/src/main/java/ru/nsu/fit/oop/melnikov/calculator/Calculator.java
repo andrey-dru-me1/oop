@@ -28,7 +28,7 @@ public class Calculator {
      * @throws Operation.WrongOperandsCountException when arity of operation does not
      *                                               match the count of operands in string
      */
-    private Complex parseAtom(@NotNull Scanner scanner) throws Operation.WrongOperandsCountException {
+    private Complex parseAtom(@NotNull Scanner scanner) {
 
         String buf;
         try {
@@ -57,7 +57,7 @@ public class Calculator {
      * @throws Operation.WrongOperandsCountException when arity of operation does not
      *                                               match the count of operands in string
      */
-    public static void main(String[] args) throws Operation.WrongOperandsCountException {
+    public static void main(String[] args) {
         Calculator calculator = new Calculator(Map.ofEntries(
 
                 // Basic operations
