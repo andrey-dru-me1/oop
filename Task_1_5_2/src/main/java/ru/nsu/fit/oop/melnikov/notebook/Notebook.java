@@ -71,7 +71,14 @@ public class Notebook {
 
                         String str = "";
                         for (BookRecord i : notebook.records.stream().sorted(Comparator.comparing(r -> r.date().getEpochSecond())).toList()) {
-                            if (i.date().isAfter(from) && i.date().isBefore(to)) {
+                            boolean hasSubstring = args.length == 3;
+                            for (int k = 3; k < args.length; k++) {
+                                if (i.name().contains(args[k])) {
+                                    hasSubstring = true;
+                                    break;
+                                }
+                            }
+                            if (i.date().isAfter(from) && i.date().isBefore(to) && hasSubstring) {
                                 str += "[" + formatter.format(i.date()) + "] " + i.name() + ": " + i.record() + "\n";
                             }
                         }
