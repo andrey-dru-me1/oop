@@ -26,6 +26,14 @@ class NotebookTest {
         Notebook.main(new String[]{"-show"});
 
         Assertions.assertEquals("Notebook:\nlol: kek", outputStream.toString().trim());
+
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+
+        Notebook.main(new String[]{"-show", "10.10.2022 00:00", "10.10.2022 23:59"});
+
+        Assertions.assertEquals("Notebook:", outputStream.toString().trim());
     }
 
 }
