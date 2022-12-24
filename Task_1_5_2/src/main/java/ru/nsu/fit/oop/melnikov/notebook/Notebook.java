@@ -4,10 +4,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 public class Notebook {
@@ -15,10 +22,10 @@ public class Notebook {
     @JsonIgnore
     final private static String FILE_PATH = "notebook.json";
 
-    final private Set<Record> records;
+    final private Set<BookRecord> records;
 
     @JsonCreator
-    public Notebook(@JsonProperty("records") Set<Record> records) {
+    public Notebook(@JsonProperty("records") Set<BookRecord> records) {
         this.records = records;
     }
 
@@ -27,7 +34,7 @@ public class Notebook {
     }
 
     @SuppressWarnings("unused") // Jackson uses this method to parse the class to json
-    public Set<Record> getRecords() {
+    public Set<BookRecord> getRecords() {
         return records;
     }
 
@@ -35,6 +42,8 @@ public class Notebook {
         if (args.length > 0) {
 
             ObjectMapper mapper = new ObjectMapper();
+            mapper.registerModule(new JavaTimeModule());
+
             Notebook notebook;
 
             try {
@@ -52,19 +61,37 @@ public class Notebook {
                     System.out.println("Remove record");
                     notebook.removeRecord(args[1]);
                 }
-                case "-show" -> System.out.println(notebook);
+                case "-show" -> {
+                    if (args.length < 3) {
+                        System.out.println(notebook);
+                    } else {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.y HH:mm", Locale.ENGLISH).withZone(ZoneId.systemDefault());
+                        Instant from = LocalDateTime.parse(args[1], formatter).atZone(ZoneId.systemDefault()).toInstant();
+                        Instant to = LocalDateTime.parse(args[2], formatter).atZone(ZoneId.systemDefault()).toInstant();
+
+                        String str = "";
+                        for (BookRecord i : notebook.records.stream().sorted(Comparator.comparing(r -> r.date().getEpochSecond())).toList()) {
+                            if (i.date().isAfter(from) && i.date().isBefore(to)) {
+                                str += "[" + formatter.format(i.date()) + "] " + i.name() + ": " + i.record() + "\n";
+                            }
+                        }
+                        System.out.print("Notebook:\n" + str);
+
+                    }
+                }
             }
         } else System.out.println("usage: notebook -add");
     }
 
     public void updateFile() {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
 
         File file = new File(FILE_PATH);
         try {
             //noinspection ResultOfMethodCallIgnored
             file.createNewFile();
-            mapper.writeValue(file, this);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
         } catch (IOException ignored) {
         }
     }
@@ -75,7 +102,7 @@ public class Notebook {
     }
 
     public void addRecord(String name, String record) {
-        records.add(new Record(name, record));
+        records.add(new BookRecord(name, record, Instant.now()));
         updateFile();
     }
 
