@@ -19,4 +19,17 @@ public class Divide extends Operation {
         return operands.get(0).divide(operands.get(1));
     }
 
+    @Override
+    public Divide clone() {
+        return new Divide();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("/")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

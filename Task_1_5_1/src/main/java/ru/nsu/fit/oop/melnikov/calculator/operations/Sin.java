@@ -19,4 +19,17 @@ public class Sin extends Operation {
         return operands.get(0).sin();
     }
 
+    @Override
+    public Sin clone() {
+        return new Sin();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("sin")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

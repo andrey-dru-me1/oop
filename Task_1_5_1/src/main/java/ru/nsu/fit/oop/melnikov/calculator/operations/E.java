@@ -18,4 +18,17 @@ public class E extends Operation {
         return Complex.ofCartesian(Math.E, 0);
     }
 
+    @Override
+    public E clone() {
+        return new E();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("e")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

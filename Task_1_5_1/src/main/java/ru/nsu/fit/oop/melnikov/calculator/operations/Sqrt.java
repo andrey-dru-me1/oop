@@ -19,4 +19,17 @@ public class Sqrt extends Operation {
         return operands.get(0).sqrt();
     }
 
+    @Override
+    public Sqrt clone() {
+        return new Sqrt();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("sqrt")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

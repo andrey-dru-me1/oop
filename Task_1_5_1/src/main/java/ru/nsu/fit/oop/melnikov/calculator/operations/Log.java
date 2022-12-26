@@ -20,4 +20,17 @@ public class Log extends Operation {
         return operands.get(0).log();
     }
 
+    @Override
+    public Log clone() {
+        return new Log();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("log")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

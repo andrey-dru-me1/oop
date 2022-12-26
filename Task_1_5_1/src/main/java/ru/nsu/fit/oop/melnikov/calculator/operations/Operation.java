@@ -36,7 +36,14 @@ public abstract class Operation {
         return calculate(operands);
     }
 
+    public abstract Operation clone();
+
+    public abstract Operation parse(String string);
+
     static public class WrongOperandsCountException extends RuntimeException {
+    }
+
+    static public class ParseOperationException extends RuntimeException {
     }
 
 }

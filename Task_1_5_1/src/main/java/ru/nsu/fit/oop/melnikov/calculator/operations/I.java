@@ -17,4 +17,17 @@ public class I extends Operation {
     protected Complex calculate(List<Complex> operands) {
         return Complex.ofCartesian(0, 1);
     }
+
+    @Override
+    public I clone() {
+        return new I();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("i")) {
+            return this.clone();
+        }
+        return null;
+    }
 }

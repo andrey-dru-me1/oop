@@ -19,4 +19,17 @@ public class Cos extends Operation {
         return operands.get(0).cos();
     }
 
+    @Override
+    public Cos clone() {
+        return new Cos();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("cos")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

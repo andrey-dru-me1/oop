@@ -19,4 +19,17 @@ public class Plus extends Operation {
         return operands.get(0).add(operands.get(1));
     }
 
+    @Override
+    public Plus clone() {
+        return new Plus();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("+")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

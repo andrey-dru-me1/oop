@@ -18,4 +18,17 @@ public class Pi extends Operation {
         return Complex.ofCartesian(Math.PI, 0);
     }
 
+    @Override
+    public Pi clone() {
+        return new Pi();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("pi")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

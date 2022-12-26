@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.melnikov.calculator;
 
 import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Number;
 import ru.nsu.fit.oop.melnikov.calculator.operations.*;
 
 import java.util.*;
@@ -14,9 +15,9 @@ public class Calculator {
     /**
      * Set of supported operations.
      */
-    private final Map<String, Operation> operations;
+    private final List<Operation> operations;
 
-    public Calculator(Map<String, Operation> operations) {
+    public Calculator(List<Operation> operations) {
         this.operations = operations;
     }
 
@@ -37,10 +38,19 @@ public class Calculator {
             throw new Operation.WrongOperandsCountException();
         }
 
-        Operation operation = operations.get(buf);
+        Operation operation = null;
+        for (Operation i : operations) {
+
+            operation = i.parse(buf);
+
+            if (operation != null) {
+                break;
+            }
+
+        }
 
         if (operation == null) {
-            return Complex.ofCartesian(Double.parseDouble(buf), 0);
+            throw new Operation.ParseOperationException();
         }
 
         List<Complex> operands = new ArrayList<>();
@@ -58,36 +68,23 @@ public class Calculator {
      *                                               match the count of operands in string
      */
     public static void main(String[] args) {
-        Calculator calculator = new Calculator(Map.ofEntries(
+
+        Calculator calculator = new Calculator(Arrays.asList(
 
                 // Basic operations
-
-                Map.entry("+", new Plus()),
-                Map.entry("-", new Minus()),
-                Map.entry("*", new Multiply()),
-                Map.entry("/", new Divide()),
+                new Plus(), new Minus(), new Multiply(), new Divide(),
 
                 // Trigonometry operations
-
-                Map.entry("sin", new Sin()),
-                Map.entry("cos", new Cos()),
-                Map.entry("deg", new Deg()),
+                new Sin(), new Cos(), new Deg(),
 
                 //Other operations
-
-                Map.entry("log", new Log()),
+                new Log(), new Number(),
 
                 // Power operations
-
-                Map.entry("sqrt", new Sqrt()),
-                Map.entry("sqr", new Sqr()),
-                Map.entry("pow", new Pow()),
+                new Sqrt(), new Sqr(), new Pow(),
 
                 // Constants
-
-                Map.entry("e", new E()),
-                Map.entry("pi", new Pi()),
-                Map.entry("i", new I())
+                new E(), new Pi(), new I()
         ));
 
         Scanner scanner = new Scanner(System.in);

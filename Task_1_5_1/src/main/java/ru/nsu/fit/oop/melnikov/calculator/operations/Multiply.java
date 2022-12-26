@@ -19,4 +19,17 @@ public class Multiply extends Operation {
         return operands.get(0).multiply(operands.get(1));
     }
 
+    @Override
+    public Multiply clone() {
+        return new Multiply();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("*")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

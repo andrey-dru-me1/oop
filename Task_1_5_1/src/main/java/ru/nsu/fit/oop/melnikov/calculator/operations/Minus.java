@@ -19,4 +19,17 @@ public class Minus extends Operation {
         return operands.get(0).subtract(operands.get(1));
     }
 
+    @Override
+    public Minus clone() {
+        return new Minus();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("-")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }

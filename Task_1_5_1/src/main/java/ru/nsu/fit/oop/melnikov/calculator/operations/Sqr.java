@@ -19,4 +19,17 @@ public class Sqr extends Operation {
         return operands.get(0).multiply(operands.get(0));
     }
 
+    @Override
+    public Sqr clone() {
+        return new Sqr();
+    }
+
+    @Override
+    public Operation parse(String string) {
+        if (string.equals("sqr")) {
+            return this.clone();
+        }
+        return null;
+    }
+
 }
