@@ -67,8 +67,38 @@ class RecordBookTest {
 
         System.out.println(recordBook.calculateAverage());
 
-        recordBook.getSemesters().get(1).grades().stream().findFirst().orElseThrow().setValue(Semester.Grade.FAILED);
+        recordBook.getSemesters().get(1).grades().entrySet().stream().findFirst().orElseThrow().setValue(Semester.Grade.FAILED);
 
     }
+
+//    @Test
+//    void testLol() throws IOException {
+//
+//        RecordBook recordBook = new RecordBook(new Student("Андрей", "Мельников", "Петрович", "a.melnikov4@g.nsu.ru", "ФИТ", 21214, Student.EducationType.FULL_TIME),
+//                "2022-10-10", "2023-10-10", 1);
+//
+//        Semester semester = new Semester(1, new HashMap<>());
+//        semester.addGrade(
+//                new Subject(
+//                        "Новый предмет",
+//                        List.of("Преподаватель"),
+//                        Subject.GradeType.CREDIT
+//                ),
+//                Semester.Grade.PASSED
+//        );
+//        recordBook.addSemester(semester);
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+//        ByteArrayOutputStream s = new ByteArrayOutputStream();
+//        mapper.writeValue(s, recordBook);
+//
+//        ByteArrayInputStream in = new ByteArrayInputStream(s.toByteArray());
+//
+//        System.out.println(s);
+//
+//        recordBook =  mapper.readValue(in, RecordBook.class);
+//
+//    }
 
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public class RecordBook {
         this.issueDate = Date.valueOf(issueDate);
         this.validUntil = Date.valueOf(validUntil);
         this.currentSemester = currentSemester;
+        this.semesters = new ArrayList<>();
     }
 
     public Student getStudent() {
@@ -113,6 +115,7 @@ public class RecordBook {
                         .stream()
                         .mapToDouble(
                                 map -> map.grades()
+                                        .entrySet()
                                         .stream()
                                         .filter(x -> !x.getKey().gradeType().equals(Subject.GradeType.CREDIT))
                                         .mapToDouble(x -> {
@@ -151,9 +154,10 @@ public class RecordBook {
         for (
                 Semester.Grade i :
                 this.getSemester(this.getCurrentSemester() - 1).grades()
+                        .entrySet()
                         .stream()
                         .filter(x -> !x.getKey().gradeType().equals(Subject.GradeType.CREDIT))
-                        .map(Pair::getValue)
+                        .map(java.util.Map.Entry::getValue)
                         .toList()
         ) {
             if (i != Semester.Grade.EXCELLENT) {

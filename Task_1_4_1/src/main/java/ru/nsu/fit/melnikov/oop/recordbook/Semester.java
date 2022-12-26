@@ -1,5 +1,9 @@
 package ru.nsu.fit.melnikov.oop.recordbook;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -8,7 +12,10 @@ import java.util.Set;
  * @param number number of the semester
  * @param grades map of subjects and grades
  */
-public record Semester(int number, Set<Pair<Subject, Grade>> grades) {
+public record Semester(int number,
+                       @JsonSerialize(using = CustomMapSerializer.class)
+                       @JsonDeserialize(using = CustomMapDeserializer.class)
+                       Map<Subject, Grade> grades) {
 
     /**
      * Adds new grade for the semester.
@@ -24,7 +31,7 @@ public record Semester(int number, Set<Pair<Subject, Grade>> grades) {
             throw new IllegalArgumentException();
         }
 
-        grades.add(new Pair<>(subject, grade));
+        grades.put(subject, grade);
     }
 
     @Override
@@ -34,8 +41,11 @@ public record Semester(int number, Set<Pair<Subject, Grade>> grades) {
 
     @Override
     public String toString() {
-        String hyphens = "\n----------------------\n";
-        return hyphens + number + "\n\n" + grades + "\n";
+        String result = "\n----------------------\n" + number + "\n\n";
+        for (Map.Entry<Subject, Grade> grade : grades.entrySet()) {
+            result += grade.getKey() + ": " + grade.getValue() + "\n";
+        }
+        return result;
     }
 
     public enum Grade {
