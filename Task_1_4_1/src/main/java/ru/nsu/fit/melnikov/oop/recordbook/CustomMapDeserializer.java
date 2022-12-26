@@ -13,14 +13,6 @@ import java.util.Map;
 
 public class CustomMapDeserializer extends JsonDeserializer<Map<Subject, Semester.Grade>> {
 
-//    @Override
-//    public Subject deserializeKey(
-//            String key,
-//            DeserializationContext ctxt) {
-//
-//        return (Subject) ctxt.getParser().getParsingContext().getParent().getCurrentValue();
-//    }
-
     @Override
     public Map<Subject, Semester.Grade> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
         Map<Subject, Semester.Grade> result = new HashMap<>();

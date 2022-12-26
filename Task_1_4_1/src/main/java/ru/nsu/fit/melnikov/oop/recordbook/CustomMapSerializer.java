@@ -9,16 +9,6 @@ import java.util.Map;
 
 public class CustomMapSerializer extends JsonSerializer<Map<Subject, Semester.Grade>> {
 
-//    @Override
-//    public void serialize(Subject value,
-//                          JsonGenerator gen,
-//                          SerializerProvider serializers)
-//            throws IOException {
-//
-//        gen.writeFieldName("key");
-//        gen.writeObject(value);
-//    }
-
     @Override
     public void serialize(Map<Subject, Semester.Grade> value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
         gen.writeStartArray();
