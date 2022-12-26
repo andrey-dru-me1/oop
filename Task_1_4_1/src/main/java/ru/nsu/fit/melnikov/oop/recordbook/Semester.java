@@ -20,17 +20,8 @@ public record Semester(int number, Set<Pair<Subject, Grade>> grades) {
 
         Subject.GradeType gradeType = subject.gradeType();
 
-        switch (grade) {
-            case SATISFYING, GOOD, EXCELLENT -> {
-                if (gradeType == Subject.GradeType.CREDIT) {
-                    throw new IllegalArgumentException();
-                }
-            }
-            case PASSED -> {
-                if (gradeType != Subject.GradeType.CREDIT) {
-                    throw new IllegalArgumentException();
-                }
-            }
+        if (!grade.checkCorrectness(gradeType)) {
+            throw new IllegalArgumentException();
         }
 
         grades.add(new Pair<>(subject, grade));
@@ -48,10 +39,21 @@ public record Semester(int number, Set<Pair<Subject, Grade>> grades) {
     }
 
     public enum Grade {
-        FAILED,
-        PASSED,
-        SATISFYING,
-        GOOD,
-        EXCELLENT
+        FAILED(Set.of(Subject.GradeType.CREDIT, Subject.GradeType.GRADED_TEST, Subject.GradeType.EXAM)),
+        PASSED(Set.of(Subject.GradeType.CREDIT)),
+        SATISFYING(Set.of(Subject.GradeType.GRADED_TEST, Subject.GradeType.EXAM)),
+        GOOD(Set.of(Subject.GradeType.GRADED_TEST, Subject.GradeType.EXAM)),
+        EXCELLENT(Set.of(Subject.GradeType.GRADED_TEST, Subject.GradeType.EXAM));
+
+        private final Set<Subject.GradeType> appropriateTypes;
+
+        Grade(Set<Subject.GradeType> types) {
+            appropriateTypes = types;
+        }
+
+        public boolean checkCorrectness(Subject.GradeType gradeType) {
+            return appropriateTypes.contains(gradeType);
+        }
+
     }
 }
