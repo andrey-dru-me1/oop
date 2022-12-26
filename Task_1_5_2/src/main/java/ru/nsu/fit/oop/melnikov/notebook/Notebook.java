@@ -20,9 +20,9 @@ import java.util.Set;
 public class Notebook {
 
     @JsonIgnore
-    final private static String FILE_PATH = "notebook.json";
+    private final static String FILE_PATH = "notebook.json";
 
-    final private Set<BookRecord> records;
+    private final Set<BookRecord> records;
 
     @JsonCreator
     public Notebook(@JsonProperty("records") Set<BookRecord> records) {
