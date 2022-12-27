@@ -1,11 +1,11 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
-import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Deg extends Operation {
+public class Deg extends DoubleOperation {
 
     private final static int ARITY = 1;
 
@@ -15,8 +15,8 @@ public class Deg extends Operation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Complex> operands) {
-        return operands.get(0).divide(180).multiply(Math.PI);
+    protected Double calculate(@NotNull List<Object> operands) {
+        return ((Double) operands.get(0)) / 180.0 * Math.PI;
     }
 
     @Override

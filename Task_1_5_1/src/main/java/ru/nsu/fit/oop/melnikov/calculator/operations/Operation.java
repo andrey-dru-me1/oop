@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations;
 
-import org.apache.commons.numbers.complex.Complex;
+import com.sun.jdi.InvalidTypeException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -23,7 +23,9 @@ public abstract class Operation {
      * @param operands list of operands to pass in operation function
      * @return result of calculation
      */
-    abstract protected Complex calculate(List<Complex> operands);
+    abstract protected Object calculate(List<Object> operands);
+
+    abstract protected Class<?> getOperandClass();
 
     /**
      * Applies current operation to operands.
@@ -31,8 +33,14 @@ public abstract class Operation {
      * @param operands list of operands to pass in operation function
      * @return result of calculation
      */
-    public Complex apply(@NotNull List<Complex> operands) {
+    public Object apply(@NotNull List<Object> operands) {
         if (operands.size() != getArity()) throw new WrongOperandsCountException();
+        Class<?> clazz = this.getOperandClass();
+        for (int i = 0; i < getArity(); i++) {
+            if (!(operands.get(i).getClass() == clazz)) {
+                throw new RuntimeException(new InvalidTypeException());
+            }
+        }
         return calculate(operands);
     }
 

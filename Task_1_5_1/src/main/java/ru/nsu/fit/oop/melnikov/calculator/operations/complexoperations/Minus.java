@@ -1,11 +1,12 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
 
 import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Minus extends Operation {
+public class Minus extends ComplexOperation {
 
     private final static int ARITY = 2;
 
@@ -15,8 +16,8 @@ public class Minus extends Operation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Complex> operands) {
-        return operands.get(0).subtract(operands.get(1));
+    protected Complex calculate(@NotNull List<Object> operands) {
+        return ((Complex) operands.get(0)).subtract((Complex) operands.get(1));
     }
 
     @Override

@@ -1,11 +1,11 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
-import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Number extends Operation {
+public class Number extends DoubleOperation {
 
     private final static int ARITY = 0;
     private final Double value;
@@ -24,8 +24,8 @@ public class Number extends Operation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Complex> operands) {
-        return Complex.ofCartesian(this.value, 0);
+    protected Double calculate(@NotNull List<Object> operands) {
+        return this.value;
     }
 
     @Override

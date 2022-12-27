@@ -1,11 +1,11 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
-import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Cos extends Operation {
+public class Cos extends DoubleOperation {
 
     private final static int ARITY = 1;
 
@@ -15,8 +15,8 @@ public class Cos extends Operation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Complex> operands) {
-        return operands.get(0).cos();
+    protected Double calculate(@NotNull List<Object> operands) {
+        return Math.cos((Double) operands.get(0));
     }
 
     @Override

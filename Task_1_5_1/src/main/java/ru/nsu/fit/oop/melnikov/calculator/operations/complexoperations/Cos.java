@@ -1,11 +1,12 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
 
 import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Sqrt extends Operation {
+public class Cos extends ComplexOperation {
 
     private final static int ARITY = 1;
 
@@ -15,18 +16,18 @@ public class Sqrt extends Operation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Complex> operands) {
-        return operands.get(0).sqrt();
+    protected Complex calculate(@NotNull List<Object> operands) {
+        return ((Complex) operands.get(0)).cos();
     }
 
     @Override
-    public Sqrt clone() {
-        return new Sqrt();
+    public Cos clone() {
+        return new Cos();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("sqrt")) {
+        if (string.equals("cos")) {
             return this.clone();
         }
         return null;

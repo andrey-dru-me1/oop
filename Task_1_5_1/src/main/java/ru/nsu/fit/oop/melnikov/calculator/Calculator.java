@@ -1,9 +1,9 @@
 package ru.nsu.fit.oop.melnikov.calculator;
 
-import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
-import ru.nsu.fit.oop.melnikov.calculator.operations.Number;
-import ru.nsu.fit.oop.melnikov.calculator.operations.*;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations.Number;
+import ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations.*;
 
 import java.util.*;
 
@@ -29,7 +29,7 @@ public class Calculator {
      * @throws Operation.WrongOperandsCountException when arity of operation does not
      *                                               match the count of operands in string
      */
-    private Complex parseAtom(@NotNull Scanner scanner) {
+    private Object parseAtom(@NotNull Scanner scanner) {
 
         String buf;
         try {
@@ -53,7 +53,7 @@ public class Calculator {
             throw new Operation.ParseOperationException();
         }
 
-        List<Complex> operands = new ArrayList<>();
+        List<Object> operands = new ArrayList<>();
         for (int i = 0; i < operation.getArity(); i++) {
             operands.add(parseAtom(scanner));
         }
@@ -84,22 +84,22 @@ public class Calculator {
                 new Sqrt(), new Sqr(), new Pow(),
 
                 // Constants
-                new E(), new Pi(), new I()
+                new E(), new Pi()
         ));
 
         Scanner scanner = new Scanner(System.in);
 
-        Complex result = calculator.parseAtom(scanner);
-
-        if (result.getImaginary() != 0 && result.getReal() != 0) {
-            System.out.println(result.getReal() + " + i ( " + result.getImaginary() + " )");
-        } else if (result.getImaginary() != 0) {
-            System.out.println("i ( " + result.getImaginary() + " )");
-        } else {
-            System.out.println(result.getReal());
-        }
+        System.out.println(calculator.parseAtom(scanner));
 
         scanner.close();
+
+    }
+
+    public String calculate(String expression) {
+        Scanner scanner = new Scanner(expression);
+        String result = this.parseAtom(scanner).toString();
+        scanner.close();
+        return result;
 
     }
 
