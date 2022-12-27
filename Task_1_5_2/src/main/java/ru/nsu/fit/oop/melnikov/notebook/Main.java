@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.melnikov.notebook;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,10 +14,11 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class Main {
-    private final static String FILE_PATH = "notebook.json";
 
-    public static void main(String[] args) {
-        if (args.length > 0) {
+    public static void main(String @NotNull [] args) {
+        if (args.length > 1) {
+
+            final String FILE_PATH = args[0] + ".json";
 
             ObjectMapper mapper = new ObjectMapper();
             mapper.registerModule(new JavaTimeModule());
@@ -26,30 +28,31 @@ public class Main {
             try {
                 notebook = mapper.readValue(new File(FILE_PATH), Notebook.class);
             } catch (IOException e) {
-                notebook = new Notebook();
+                notebook = new Notebook(FILE_PATH);
             }
 
-            switch (args[0]) {
+            switch (args[1]) {
                 case "-add" -> {
                     System.out.println("Add record");
-                    notebook.addRecord(args[1], args[2]);
+                    notebook.addRecord(args[2], args[3]);
                 }
                 case "-rm" -> {
                     System.out.println("Remove record");
-                    notebook.removeRecord(args[1]);
+                    notebook.removeRecord(args[2]);
                 }
                 case "-show" -> {
-                    if (args.length < 3) {
+                    if (args.length < 4) {
                         System.out.println(notebook);
                     } else {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.y HH:mm", Locale.ENGLISH).withZone(ZoneId.systemDefault());
-                        Instant from = LocalDateTime.parse(args[1], formatter).atZone(ZoneId.systemDefault()).toInstant();
-                        Instant to = LocalDateTime.parse(args[2], formatter).atZone(ZoneId.systemDefault()).toInstant();
-                        System.out.print(notebook.showWithTimeLimits(formatter, from, to, Arrays.stream(args).skip(3).toArray(String[]::new)));
+                        Instant from = LocalDateTime.parse(args[2], formatter).atZone(ZoneId.systemDefault()).toInstant();
+                        Instant to = LocalDateTime.parse(args[3], formatter).atZone(ZoneId.systemDefault()).toInstant();
+                        System.out.print(notebook.showWithTimeLimits(formatter, from, to, Arrays.stream(args).skip(4).toArray(String[]::new)));
 
                     }
                 }
             }
-        } else System.out.println("usage: notebook -add");
+        } else
+            System.out.println("usage: notebook [parameter]\n\tparameters:\n\t\t-add\n\t\t--rm\n\t\t-show");
     }
 }

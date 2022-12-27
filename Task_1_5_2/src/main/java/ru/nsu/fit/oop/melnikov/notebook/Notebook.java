@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.melnikov.notebook;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -16,17 +15,18 @@ import java.util.Set;
 
 public class Notebook {
 
-    @JsonIgnore
-    private final static String FILE_PATH = "notebook.json";
+    private final String fileName;
 
     private final Set<BookRecord> records;
 
     @JsonCreator
-    public Notebook(@JsonProperty("records") Set<BookRecord> records) {
+    public Notebook(@JsonProperty("filename") String filename, @JsonProperty("records") Set<BookRecord> records) {
+        this.fileName = filename;
         this.records = records;
     }
 
-    public Notebook() {
+    public Notebook(String filename) {
+        this.fileName = filename;
         this.records = new HashSet<>();
     }
 
@@ -35,11 +35,15 @@ public class Notebook {
         return records;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
     public void updateFile() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 
-        File file = new File(FILE_PATH);
+        File file = new File(fileName);
         try {
             //noinspection ResultOfMethodCallIgnored
             file.createNewFile();
