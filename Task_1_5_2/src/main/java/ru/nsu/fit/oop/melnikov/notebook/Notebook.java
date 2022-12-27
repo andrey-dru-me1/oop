@@ -9,12 +9,9 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 public class Notebook {
@@ -38,58 +35,6 @@ public class Notebook {
         return records;
     }
 
-    public static void main(String[] args) {
-        if (args.length > 0) {
-
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.registerModule(new JavaTimeModule());
-
-            Notebook notebook;
-
-            try {
-                notebook = mapper.readValue(new File(FILE_PATH), Notebook.class);
-            } catch (IOException e) {
-                notebook = new Notebook();
-            }
-
-            switch (args[0]) {
-                case "-add" -> {
-                    System.out.println("Add record");
-                    notebook.addRecord(args[1], args[2]);
-                }
-                case "-rm" -> {
-                    System.out.println("Remove record");
-                    notebook.removeRecord(args[1]);
-                }
-                case "-show" -> {
-                    if (args.length < 3) {
-                        System.out.println(notebook);
-                    } else {
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.y HH:mm", Locale.ENGLISH).withZone(ZoneId.systemDefault());
-                        Instant from = LocalDateTime.parse(args[1], formatter).atZone(ZoneId.systemDefault()).toInstant();
-                        Instant to = LocalDateTime.parse(args[2], formatter).atZone(ZoneId.systemDefault()).toInstant();
-
-                        String str = "";
-                        for (BookRecord i : notebook.records.stream().sorted(Comparator.comparing(r -> r.date().getEpochSecond())).toList()) {
-                            boolean hasSubstring = args.length == 3;
-                            for (int k = 3; k < args.length; k++) {
-                                if (i.name().contains(args[k])) {
-                                    hasSubstring = true;
-                                    break;
-                                }
-                            }
-                            if (i.date().isAfter(from) && i.date().isBefore(to) && hasSubstring) {
-                                str += "[" + formatter.format(i.date()) + "] " + i.name() + ": " + i.record() + "\n";
-                            }
-                        }
-                        System.out.print("Notebook:\n" + str);
-
-                    }
-                }
-            }
-        } else System.out.println("usage: notebook -add");
-    }
-
     public void updateFile() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
@@ -101,6 +46,25 @@ public class Notebook {
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
         } catch (IOException ignored) {
         }
+    }
+
+    public String showWithTimeLimits(DateTimeFormatter formatter, Instant from, Instant to, String[] substrings) {
+
+        String str = "";
+        for (BookRecord i : this.getRecords().stream().sorted(Comparator.comparing(r -> r.date().getEpochSecond())).toList()) {
+            boolean hasSubstring = substrings.length == 0;
+            for (String substring : substrings) {
+                if (i.name().contains(substring)) {
+                    hasSubstring = true;
+                    break;
+                }
+            }
+            if (i.date().isAfter(from) && i.date().isBefore(to) && hasSubstring) {
+                str += "[" + formatter.format(i.date()) + "] " + i.name() + ": " + i.record() + "\n";
+            }
+        }
+
+        return "Notebook:\n" + str;
     }
 
     public void removeRecord(String name) {
