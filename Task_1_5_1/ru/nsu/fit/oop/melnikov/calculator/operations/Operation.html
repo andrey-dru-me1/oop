@@ -95,7 +95,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="Cos.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Cos</a></code>, <code><a href="Deg.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Deg</a></code>, <code><a href="Divide.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Divide</a></code>, <code><a href="E.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">E</a></code>, <code><a href="I.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">I</a></code>, <code><a href="Log.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Log</a></code>, <code><a href="Minus.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Minus</a></code>, <code><a href="Multiply.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Multiply</a></code>, <code><a href="Number.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Number</a></code>, <code><a href="Pi.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Pi</a></code>, <code><a href="Plus.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Plus</a></code>, <code><a href="Pow.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Pow</a></code>, <code><a href="Sin.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Sin</a></code>, <code><a href="Sqr.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Sqr</a></code>, <code><a href="Sqrt.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Sqrt</a></code></dd>
+<dd><code><a href="complexoperations/ComplexOperation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations">ComplexOperation</a></code>, <code><a href="doubleoperations/DoubleOperation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations">DoubleOperation</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">Operation</span>
@@ -146,13 +146,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.apache.commons.numbers.complex.Complex</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#apply(java.util.List)" class="member-name-link">apply</a><wbr>(@NotNull <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;org.apache.commons.numbers.complex.Complex&gt;&nbsp;operands)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#apply(java.util.List)" class="member-name-link">apply</a><wbr>(@NotNull <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;&nbsp;operands)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Applies current operation to operands.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract org.apache.commons.numbers.complex.Complex</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#calculate(java.util.List)" class="member-name-link">calculate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;org.apache.commons.numbers.complex.Complex&gt;&nbsp;operands)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#calculate(java.util.List)" class="member-name-link">calculate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;&nbsp;operands)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Calculates a result of function.</div>
 </div>
@@ -166,9 +166,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">returns arity of operation.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#parse(java.lang.String)" class="member-name-link">parse</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getOperandClass()" class="member-name-link">getOperandClass</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#parse(java.lang.String)" class="member-name-link">parse</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -214,7 +217,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="calculate(java.util.List)">
 <h3>calculate</h3>
-<div class="member-signature"><span class="modifiers">protected abstract</span>&nbsp;<span class="return-type">org.apache.commons.numbers.complex.Complex</span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;org.apache.commons.numbers.complex.Complex&gt;&nbsp;operands)</span></div>
+<div class="member-signature"><span class="modifiers">protected abstract</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;&nbsp;operands)</span></div>
 <div class="block">Calculates a result of function.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -225,10 +228,16 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="getOperandClass()">
+<h3>getOperandClass</h3>
+<div class="member-signature"><span class="modifiers">protected abstract</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;</span>&nbsp;<span class="element-name">getOperandClass</span>()</div>
+</section>
+</li>
+<li>
 <section class="detail" id="apply(java.util.List)">
 <h3>apply</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.apache.commons.numbers.complex.Complex</span>&nbsp;<span class="element-name">apply</span><wbr><span class="parameters">(@NotNull
- @NotNull <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;org.apache.commons.numbers.complex.Complex&gt;&nbsp;operands)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">apply</span><wbr><span class="parameters">(@NotNull
+ @NotNull <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;&nbsp;operands)</span></div>
 <div class="block">Applies current operation to operands.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
