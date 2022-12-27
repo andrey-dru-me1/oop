@@ -2,7 +2,6 @@ package ru.nsu.fit.oop.melnikov.calculator;
 
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
-import ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations.Number;
 import ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations.*;
 
 import java.util.*;
@@ -72,19 +71,19 @@ public class Calculator {
         Calculator calculator = new Calculator(Arrays.asList(
 
                 // Basic operations
-                new Plus(), new Minus(), new Multiply(), new Divide(),
+                new DoublePlus(), new DoubleMinus(), new DoubleMultiply(), new DoubleDivide(),
 
                 // Trigonometry operations
-                new Sin(), new Cos(), new Deg(),
+                new DoubleSin(), new DoubleCos(), new DoubleDeg(),
 
                 //Other operations
-                new Log(), new Number(),
+                new DoubleLog(), new DoubleNumber(),
 
                 // Power operations
-                new Sqrt(), new Sqr(), new Pow(),
+                new DoubleSqrt(), new DoubleSqr(), new DoublePow(),
 
                 // Constants
-                new E(), new Pi()
+                new DoubleE(), new DoublePi()
         ));
 
         Scanner scanner = new Scanner(System.in);

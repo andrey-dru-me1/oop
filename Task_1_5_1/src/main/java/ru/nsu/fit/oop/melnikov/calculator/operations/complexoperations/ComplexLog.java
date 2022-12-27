@@ -6,9 +6,10 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Divide extends ComplexOperation {
 
-    private final static int ARITY = 2;
+public class ComplexLog extends ComplexOperation {
+
+    private final static int ARITY = 1;
 
     @Override
     public int getArity() {
@@ -17,17 +18,17 @@ public class Divide extends ComplexOperation {
 
     @Override
     protected Complex calculate(@NotNull List<Object> operands) {
-        return ((Complex) operands.get(0)).divide((Complex) operands.get(1));
+        return ((Complex) operands.get(0)).log();
     }
 
     @Override
-    public Divide clone() {
-        return new Divide();
+    public ComplexLog clone() {
+        return new ComplexLog();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("/")) {
+        if (string.equals("log")) {
             return this.clone();
         }
         return null;

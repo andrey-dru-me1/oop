@@ -6,7 +6,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Pow extends ComplexOperation {
+public class ComplexMinus extends ComplexOperation {
 
     private final static int ARITY = 2;
 
@@ -17,17 +17,17 @@ public class Pow extends ComplexOperation {
 
     @Override
     protected Complex calculate(@NotNull List<Object> operands) {
-        return ((Complex) operands.get(0)).pow((Complex) operands.get(1));
+        return ((Complex) operands.get(0)).subtract((Complex) operands.get(1));
     }
 
     @Override
-    public Pow clone() {
-        return new Pow();
+    public ComplexMinus clone() {
+        return new ComplexMinus();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("pow")) {
+        if (string.equals("-")) {
             return this.clone();
         }
         return null;

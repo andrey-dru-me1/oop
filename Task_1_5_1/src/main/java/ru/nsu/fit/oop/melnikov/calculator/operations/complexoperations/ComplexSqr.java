@@ -6,9 +6,9 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Multiply extends ComplexOperation {
+public class ComplexSqr extends ComplexOperation {
 
-    private final static int ARITY = 2;
+    private final static int ARITY = 1;
 
     @Override
     public int getArity() {
@@ -17,17 +17,17 @@ public class Multiply extends ComplexOperation {
 
     @Override
     protected Complex calculate(@NotNull List<Object> operands) {
-        return ((Complex) operands.get(0)).multiply((Complex) operands.get(1));
+        return ((Complex) operands.get(0)).multiply((Complex) operands.get(0));
     }
 
     @Override
-    public Multiply clone() {
-        return new Multiply();
+    public ComplexSqr clone() {
+        return new ComplexSqr();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("*")) {
+        if (string.equals("sqr")) {
             return this.clone();
         }
         return null;

@@ -1,20 +1,21 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
 
+import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Number extends DoubleOperation {
+public class ComplexNumber extends ComplexOperation {
 
     private final static int ARITY = 0;
     private final Double value;
 
-    public Number() {
+    public ComplexNumber() {
         this(null);
     }
 
-    public Number(Double value) {
+    public ComplexNumber(Double value) {
         this.value = value;
     }
 
@@ -24,13 +25,13 @@ public class Number extends DoubleOperation {
     }
 
     @Override
-    protected Double calculate(@NotNull List<Object> operands) {
-        return this.value;
+    protected Complex calculate(@NotNull List<Object> operands) {
+        return Complex.ofCartesian(this.value, 0);
     }
 
     @Override
-    public Number clone() {
-        return new Number(this.value);
+    public ComplexNumber clone() {
+        return new ComplexNumber(this.value);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class Number extends DoubleOperation {
         } catch (NumberFormatException exception) {
             return null;
         }
-        return new Number(value);
+        return new ComplexNumber(value);
     }
 
 }

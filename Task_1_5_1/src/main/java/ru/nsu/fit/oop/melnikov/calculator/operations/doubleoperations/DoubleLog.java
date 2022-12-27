@@ -5,9 +5,10 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Multiply extends DoubleOperation {
 
-    private final static int ARITY = 2;
+public class DoubleLog extends DoubleOperation {
+
+    private final static int ARITY = 1;
 
     @Override
     public int getArity() {
@@ -16,17 +17,17 @@ public class Multiply extends DoubleOperation {
 
     @Override
     protected Double calculate(@NotNull List<Object> operands) {
-        return ((Double) operands.get(0)) * ((Double) operands.get(1));
+        return Math.log((Double) operands.get(0));
     }
 
     @Override
-    public Multiply clone() {
-        return new Multiply();
+    public DoubleLog clone() {
+        return new DoubleLog();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("*")) {
+        if (string.equals("log")) {
             return this.clone();
         }
         return null;

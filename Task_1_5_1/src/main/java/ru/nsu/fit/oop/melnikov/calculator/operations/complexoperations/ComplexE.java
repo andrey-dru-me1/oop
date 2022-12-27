@@ -6,9 +6,9 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Deg extends ComplexOperation {
+public class ComplexE extends ComplexOperation {
 
-    private final static int ARITY = 1;
+    private final static int ARITY = 0;
 
     @Override
     public int getArity() {
@@ -17,17 +17,17 @@ public class Deg extends ComplexOperation {
 
     @Override
     protected Complex calculate(@NotNull List<Object> operands) {
-        return ((Complex) operands.get(0)).divide(180).multiply(Math.PI);
+        return Complex.ofCartesian(Math.E, 0);
     }
 
     @Override
-    public Deg clone() {
-        return new Deg();
+    public ComplexE clone() {
+        return new ComplexE();
     }
 
     @Override
-    public Operation parse(String string) {
-        if (string.equals("deg")) {
+    public Operation parse(@NotNull String string) {
+        if (string.equals("e")) {
             return this.clone();
         }
         return null;

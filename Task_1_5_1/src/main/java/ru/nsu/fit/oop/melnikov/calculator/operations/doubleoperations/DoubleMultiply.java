@@ -5,9 +5,9 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Sin extends DoubleOperation {
+public class DoubleMultiply extends DoubleOperation {
 
-    private final static int ARITY = 1;
+    private final static int ARITY = 2;
 
     @Override
     public int getArity() {
@@ -16,17 +16,17 @@ public class Sin extends DoubleOperation {
 
     @Override
     protected Double calculate(@NotNull List<Object> operands) {
-        return Math.sin((Double) operands.get(0));
+        return ((Double) operands.get(0)) * ((Double) operands.get(1));
     }
 
     @Override
-    public Sin clone() {
-        return new Sin();
+    public DoubleMultiply clone() {
+        return new DoubleMultiply();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("sin")) {
+        if (string.equals("*")) {
             return this.clone();
         }
         return null;

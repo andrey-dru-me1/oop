@@ -1,13 +1,14 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
 
 import org.apache.commons.numbers.complex.Complex;
+import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Pi extends ComplexOperation {
+public class ComplexDivide extends ComplexOperation {
 
-    private final static int ARITY = 0;
+    private final static int ARITY = 2;
 
     @Override
     public int getArity() {
@@ -15,18 +16,18 @@ public class Pi extends ComplexOperation {
     }
 
     @Override
-    protected Complex calculate(List<Object> operands) {
-        return Complex.ofCartesian(Math.PI, 0);
+    protected Complex calculate(@NotNull List<Object> operands) {
+        return ((Complex) operands.get(0)).divide((Complex) operands.get(1));
     }
 
     @Override
-    public Pi clone() {
-        return new Pi();
+    public ComplexDivide clone() {
+        return new ComplexDivide();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("pi")) {
+        if (string.equals("/")) {
             return this.clone();
         }
         return null;

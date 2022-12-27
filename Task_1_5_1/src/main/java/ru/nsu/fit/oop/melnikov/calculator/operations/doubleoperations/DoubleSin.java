@@ -5,8 +5,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-
-public class Log extends DoubleOperation {
+public class DoubleSin extends DoubleOperation {
 
     private final static int ARITY = 1;
 
@@ -17,17 +16,17 @@ public class Log extends DoubleOperation {
 
     @Override
     protected Double calculate(@NotNull List<Object> operands) {
-        return Math.log((Double) operands.get(0));
+        return Math.sin((Double) operands.get(0));
     }
 
     @Override
-    public Log clone() {
-        return new Log();
+    public DoubleSin clone() {
+        return new DoubleSin();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("log")) {
+        if (string.equals("sin")) {
             return this.clone();
         }
         return null;

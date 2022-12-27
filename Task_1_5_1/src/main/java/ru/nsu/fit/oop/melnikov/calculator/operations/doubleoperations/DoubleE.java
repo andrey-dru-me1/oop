@@ -1,12 +1,11 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
-import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class E extends ComplexOperation {
+public class DoubleE extends DoubleOperation {
 
     private final static int ARITY = 0;
 
@@ -16,13 +15,13 @@ public class E extends ComplexOperation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Object> operands) {
-        return Complex.ofCartesian(Math.E, 0);
+    protected Double calculate(@NotNull List<Object> operands) {
+        return Math.E;
     }
 
     @Override
-    public E clone() {
-        return new E();
+    public DoubleE clone() {
+        return new DoubleE();
     }
 
     @Override

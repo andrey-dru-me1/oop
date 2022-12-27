@@ -5,7 +5,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Cos extends DoubleOperation {
+public class DoubleCos extends DoubleOperation {
 
     private final static int ARITY = 1;
 
@@ -20,8 +20,8 @@ public class Cos extends DoubleOperation {
     }
 
     @Override
-    public Cos clone() {
-        return new Cos();
+    public DoubleCos clone() {
+        return new DoubleCos();
     }
 
     @Override

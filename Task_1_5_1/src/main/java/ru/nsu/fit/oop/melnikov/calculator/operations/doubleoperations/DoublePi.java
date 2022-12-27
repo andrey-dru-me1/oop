@@ -1,11 +1,10 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
-import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class E extends DoubleOperation {
+public class DoublePi extends DoubleOperation {
 
     private final static int ARITY = 0;
 
@@ -15,18 +14,18 @@ public class E extends DoubleOperation {
     }
 
     @Override
-    protected Double calculate(@NotNull List<Object> operands) {
-        return Math.E;
+    protected Double calculate(List<Object> operands) {
+        return Math.PI;
     }
 
     @Override
-    public E clone() {
-        return new E();
+    public DoublePi clone() {
+        return new DoublePi();
     }
 
     @Override
-    public Operation parse(@NotNull String string) {
-        if (string.equals("e")) {
+    public Operation parse(String string) {
+        if (string.equals("pi")) {
             return this.clone();
         }
         return null;

@@ -5,7 +5,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Plus extends DoubleOperation {
+public class DoubleDivide extends DoubleOperation {
 
     private final static int ARITY = 2;
 
@@ -16,17 +16,17 @@ public class Plus extends DoubleOperation {
 
     @Override
     protected Double calculate(@NotNull List<Object> operands) {
-        return ((Double) operands.get(0)) + ((Double) operands.get(1));
+        return ((Double) operands.get(0)) / ((Double) operands.get(1));
     }
 
     @Override
-    public Plus clone() {
-        return new Plus();
+    public DoubleDivide clone() {
+        return new DoubleDivide();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("+")) {
+        if (string.equals("/")) {
             return this.clone();
         }
         return null;

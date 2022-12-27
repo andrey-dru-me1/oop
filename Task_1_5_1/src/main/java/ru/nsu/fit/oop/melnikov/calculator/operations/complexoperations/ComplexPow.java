@@ -6,9 +6,9 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Cos extends ComplexOperation {
+public class ComplexPow extends ComplexOperation {
 
-    private final static int ARITY = 1;
+    private final static int ARITY = 2;
 
     @Override
     public int getArity() {
@@ -17,17 +17,17 @@ public class Cos extends ComplexOperation {
 
     @Override
     protected Complex calculate(@NotNull List<Object> operands) {
-        return ((Complex) operands.get(0)).cos();
+        return ((Complex) operands.get(0)).pow((Complex) operands.get(1));
     }
 
     @Override
-    public Cos clone() {
-        return new Cos();
+    public ComplexPow clone() {
+        return new ComplexPow();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("cos")) {
+        if (string.equals("pow")) {
             return this.clone();
         }
         return null;

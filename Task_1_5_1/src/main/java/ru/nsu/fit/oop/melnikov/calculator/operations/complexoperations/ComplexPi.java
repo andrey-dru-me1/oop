@@ -1,10 +1,11 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
 
+import org.apache.commons.numbers.complex.Complex;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Pi extends DoubleOperation {
+public class ComplexPi extends ComplexOperation {
 
     private final static int ARITY = 0;
 
@@ -14,13 +15,13 @@ public class Pi extends DoubleOperation {
     }
 
     @Override
-    protected Double calculate(List<Object> operands) {
-        return Math.PI;
+    protected Complex calculate(List<Object> operands) {
+        return Complex.ofCartesian(Math.PI, 0);
     }
 
     @Override
-    public Pi clone() {
-        return new Pi();
+    public ComplexPi clone() {
+        return new ComplexPi();
     }
 
     @Override

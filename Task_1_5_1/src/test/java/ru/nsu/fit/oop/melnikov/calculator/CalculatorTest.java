@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
-import ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations.Number;
 import ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations.*;
 
 import java.io.ByteArrayInputStream;
@@ -47,19 +46,19 @@ class CalculatorTest {
         Calculator calculator = new Calculator(List.of(
 
                 // Basic operations
-                new Plus(), new Minus(), new Multiply(), new Divide(),
+                new ComplexPlus(), new ComplexMinus(), new ComplexMultiply(), new ComplexDivide(),
 
                 // Trigonometry operations
-                new Sin(), new Cos(), new Deg(),
+                new ComplexSin(), new ComplexCos(), new ComplexDeg(),
 
                 //Other operations
-                new Log(), new Number(),
+                new ComplexLog(), new ComplexNumber(),
 
                 // Power operations
-                new Sqrt(), new Sqr(), new Pow(),
+                new ComplexSqrt(), new ComplexSqr(), new ComplexPow(),
 
                 // Constants
-                new E(), new Pi(), new I()
+                new ComplexE(), new ComplexPi(), new I()
         ));
 
         Assertions.assertEquals("(5.0,3.0)", calculator.calculate("+ 5 * 3 i"));

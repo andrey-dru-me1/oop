@@ -6,7 +6,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Sqr extends ComplexOperation {
+public class ComplexSin extends ComplexOperation {
 
     private final static int ARITY = 1;
 
@@ -17,17 +17,17 @@ public class Sqr extends ComplexOperation {
 
     @Override
     protected Complex calculate(@NotNull List<Object> operands) {
-        return ((Complex) operands.get(0)).multiply((Complex) operands.get(0));
+        return ((Complex) operands.get(0)).sin();
     }
 
     @Override
-    public Sqr clone() {
-        return new Sqr();
+    public ComplexSin clone() {
+        return new ComplexSin();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("sqr")) {
+        if (string.equals("sin")) {
             return this.clone();
         }
         return null;

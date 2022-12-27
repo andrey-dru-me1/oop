@@ -5,7 +5,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Sqrt extends DoubleOperation {
+public class DoubleSqrt extends DoubleOperation {
 
     private final static int ARITY = 1;
 
@@ -20,8 +20,8 @@ public class Sqrt extends DoubleOperation {
     }
 
     @Override
-    public Sqrt clone() {
-        return new Sqrt();
+    public DoubleSqrt clone() {
+        return new DoubleSqrt();
     }
 
     @Override

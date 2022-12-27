@@ -1,11 +1,12 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
 
+import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Pow extends DoubleOperation {
+public class ComplexPlus extends ComplexOperation {
 
     private final static int ARITY = 2;
 
@@ -15,18 +16,18 @@ public class Pow extends DoubleOperation {
     }
 
     @Override
-    protected Double calculate(@NotNull List<Object> operands) {
-        return Math.pow((Double) operands.get(0), (Double) operands.get(1));
+    protected Complex calculate(@NotNull List<Object> operands) {
+        return ((Complex) operands.get(0)).add((Complex) operands.get(1));
     }
 
     @Override
-    public Pow clone() {
-        return new Pow();
+    public ComplexPlus clone() {
+        return new ComplexPlus();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("pow")) {
+        if (string.equals("+")) {
             return this.clone();
         }
         return null;

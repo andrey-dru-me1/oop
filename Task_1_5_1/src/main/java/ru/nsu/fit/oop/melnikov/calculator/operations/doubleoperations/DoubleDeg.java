@@ -1,12 +1,11 @@
-package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
+package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
-import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
 
 import java.util.List;
 
-public class Sin extends ComplexOperation {
+public class DoubleDeg extends DoubleOperation {
 
     private final static int ARITY = 1;
 
@@ -16,18 +15,18 @@ public class Sin extends ComplexOperation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Object> operands) {
-        return ((Complex) operands.get(0)).sin();
+    protected Double calculate(@NotNull List<Object> operands) {
+        return ((Double) operands.get(0)) / 180.0 * Math.PI;
     }
 
     @Override
-    public Sin clone() {
-        return new Sin();
+    public DoubleDeg clone() {
+        return new DoubleDeg();
     }
 
     @Override
     public Operation parse(String string) {
-        if (string.equals("sin")) {
+        if (string.equals("deg")) {
             return this.clone();
         }
         return null;
