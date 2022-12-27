@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
-import ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations.I;
 import ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations.Number;
 import ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations.*;
 
@@ -64,6 +63,11 @@ class CalculatorTest {
         ));
 
         Assertions.assertEquals("(5.0,3.0)", calculator.calculate("+ 5 * 3 i"));
+        Assertions.assertEquals("(0.0,0.0)", calculator.calculate("sin + - 1 2 1"));
+//        Assertions.assertEquals("(0.125,0.0)", calculator.calculate("pow / sqrt - * sqr 3 2 2 8 3"));
+//        Assertions.assertEquals("(0.5,0.0)", calculator.calculate("cos / pi 3"));
+        Assertions.assertEquals("(3.0,0.0)", calculator.calculate("log pow e 3"));
+//        Assertions.assertEquals("(0.5,0.0)", calculator.calculate("sin deg 30"));
 
     }
 
