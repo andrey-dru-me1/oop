@@ -1,7 +1,11 @@
 package ru.nsu.fit.oop.melnikov.calculator;
 
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.exception.ParseOperationException;
+import ru.nsu.fit.oop.melnikov.calculator.exception.WrongOperandsCountException;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Parsable;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 import ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations.*;
 
 import java.util.*;
@@ -14,9 +18,9 @@ public class Calculator {
     /**
      * Set of supported operations.
      */
-    private final List<Operation> operations;
+    private final List<Parsable> operations;
 
-    public Calculator(List<Operation> operations) {
+    public Calculator(List<Parsable> operations) {
         this.operations = operations;
     }
 
@@ -25,45 +29,51 @@ public class Calculator {
      *
      * @param scanner scanner that have string to parse
      * @return result of input string expression
-     * @throws Operation.WrongOperandsCountException when arity of operation does not
-     *                                               match the count of operands in string
+     * @throws WrongOperandsCountException when arity of operation does not
+     *                                     match the count of operands in string
      */
-    private Object parseAtom(@NotNull Scanner scanner) {
+    private Value parseAtom(@NotNull Scanner scanner) {
 
         String buf;
         try {
             buf = scanner.next();
         } catch (NoSuchElementException exception) {
-            throw new Operation.WrongOperandsCountException();
+            throw new WrongOperandsCountException();
         }
 
-        Operation operation = null;
-        for (Operation i : operations) {
+        Parsable parsable = null;
+        for (Parsable i : operations) {
 
-            operation = i.parse(buf);
+            parsable = i.parse(buf);
 
-            if (operation != null) {
+            if (parsable != null) {
                 break;
             }
 
         }
 
-        if (operation == null) {
-            throw new Operation.ParseOperationException();
+        if (parsable == null) {
+            throw new ParseOperationException();
         }
 
-        List<Object> operands = new ArrayList<>();
-        for (int i = 0; i < operation.getArity(); i++) {
+        List<Value> operands = new ArrayList<>();
+        for (int i = 0; i < parsable.getArity(); i++) {
             operands.add(parseAtom(scanner));
         }
-        return operation.apply(operands);
+        if (parsable instanceof Value val && operands.size() == 0) {
+            return val;
+        }
+        if (parsable instanceof Operation op) {
+            return op.calculate(operands);
+        }
+        throw new ParseOperationException();
     }
 
     /**
      * Loads all basic functions and constants in calculator and execute it.
      *
      * @param args aren't expected and aren't handled in this implementation.
-     * @throws Operation.WrongOperandsCountException when arity of operation does not
+     * @throws WrongOperandsCountException when arity of operation does not
      *                                               match the count of operands in string
      */
     public static void main(String[] args) {
@@ -88,7 +98,7 @@ public class Calculator {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(calculator.parseAtom(scanner));
+        System.out.println(calculator.parseAtom(scanner).getValue());
 
         scanner.close();
 
@@ -96,7 +106,7 @@ public class Calculator {
 
     public String calculate(String expression) {
         Scanner scanner = new Scanner(expression);
-        String result = this.parseAtom(scanner).toString();
+        String result = this.parseAtom(scanner).getValue();
         scanner.close();
         return result;
 

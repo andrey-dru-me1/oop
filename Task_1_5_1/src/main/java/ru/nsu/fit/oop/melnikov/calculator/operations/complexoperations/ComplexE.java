@@ -1,12 +1,12 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
 
-import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 import java.util.List;
 
-public class ComplexE extends ComplexOperation {
+public class ComplexE extends Operation {
 
     private final static int ARITY = 0;
 
@@ -16,8 +16,8 @@ public class ComplexE extends ComplexOperation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Object> operands) {
-        return Complex.ofCartesian(Math.E, 0);
+    public ComplexNumber calculate(@NotNull List<Value> operands) {
+        return new ComplexNumber(Math.E);
     }
 
     @Override

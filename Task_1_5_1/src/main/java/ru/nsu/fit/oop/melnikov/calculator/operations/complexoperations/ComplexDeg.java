@@ -1,12 +1,13 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
 
-import org.apache.commons.numbers.complex.Complex;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.exception.ParseOperationException;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 import java.util.List;
 
-public class ComplexDeg extends ComplexOperation {
+public class ComplexDeg extends Operation {
 
     private final static int ARITY = 1;
 
@@ -16,8 +17,13 @@ public class ComplexDeg extends ComplexOperation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Object> operands) {
-        return ((Complex) operands.get(0)).divide(180).multiply(Math.PI);
+    public ComplexNumber calculate(@NotNull List<Value> operands) {
+        if (operands.size() == 1) {
+            if (operands.get(0) instanceof ComplexNumber complex1) {
+                return new ComplexNumber(complex1.getComplexNumber().divide(180).multiply(Math.PI));
+            }
+        }
+        throw new ParseOperationException();
     }
 
     @Override

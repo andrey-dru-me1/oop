@@ -1,11 +1,13 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.exception.ParseOperationException;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 import java.util.List;
 
-public class DoubleSqrt extends DoubleOperation {
+public class DoubleSqrt extends Operation {
 
     private final static int ARITY = 1;
 
@@ -15,8 +17,13 @@ public class DoubleSqrt extends DoubleOperation {
     }
 
     @Override
-    protected Double calculate(@NotNull List<Object> operands) {
-        return Math.sqrt((Double) operands.get(0));
+    public DoubleNumber calculate(@NotNull List<Value> operands) {
+        if (operands.size() == 1) {
+            if (operands.get(0) instanceof DoubleNumber double1) {
+                return new DoubleNumber(Math.sqrt(double1.getDoubleValue()));
+            }
+        }
+        throw new ParseOperationException();
     }
 
     @Override
@@ -25,7 +32,7 @@ public class DoubleSqrt extends DoubleOperation {
     }
 
     @Override
-    public Operation parse(String string) {
+    public ru.nsu.fit.oop.melnikov.calculator.operations.Operation parse(String string) {
         if (string.equals("sqrt")) {
             return this.clone();
         }

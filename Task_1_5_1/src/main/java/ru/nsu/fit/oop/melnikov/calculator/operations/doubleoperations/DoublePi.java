@@ -1,10 +1,11 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 import java.util.List;
 
-public class DoublePi extends DoubleOperation {
+public class DoublePi extends Operation {
 
     private final static int ARITY = 0;
 
@@ -14,8 +15,8 @@ public class DoublePi extends DoubleOperation {
     }
 
     @Override
-    protected Double calculate(List<Object> operands) {
-        return Math.PI;
+    public DoubleNumber calculate(List<Value> operands) {
+        return new DoubleNumber(Math.PI);
     }
 
     @Override
@@ -24,7 +25,7 @@ public class DoublePi extends DoubleOperation {
     }
 
     @Override
-    public Operation parse(String string) {
+    public ru.nsu.fit.oop.melnikov.calculator.operations.Operation parse(String string) {
         if (string.equals("pi")) {
             return this.clone();
         }

@@ -1,20 +1,17 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
-import org.jetbrains.annotations.NotNull;
-import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
-import java.util.List;
-
-public class DoubleNumber extends DoubleOperation {
+public class DoubleNumber extends Value {
 
     private final static int ARITY = 0;
-    private final Double value;
+    private final java.lang.Double value;
 
     public DoubleNumber() {
         this(null);
     }
 
-    public DoubleNumber(Double value) {
+    public DoubleNumber(java.lang.Double value) {
         this.value = value;
     }
 
@@ -24,17 +21,12 @@ public class DoubleNumber extends DoubleOperation {
     }
 
     @Override
-    protected Double calculate(@NotNull List<Object> operands) {
-        return this.value;
-    }
-
-    @Override
     public DoubleNumber clone() {
         return new DoubleNumber(this.value);
     }
 
     @Override
-    public Operation parse(String string) {
+    public DoubleNumber parse(String string) {
         double value;
         try {
             value = Double.parseDouble(string);
@@ -42,6 +34,15 @@ public class DoubleNumber extends DoubleOperation {
             return null;
         }
         return new DoubleNumber(value);
+    }
+
+    @Override
+    public String getValue() {
+        return value.toString();
+    }
+
+    public Double getDoubleValue() {
+        return value;
     }
 
 }

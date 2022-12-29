@@ -3,7 +3,7 @@ package ru.nsu.fit.oop.melnikov.calculator;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.exception.WrongOperandsCountException;
 import ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations.*;
 
 import java.io.ByteArrayInputStream;
@@ -72,7 +72,7 @@ class CalculatorTest {
 
     @Test
     void testException() {
-        Assertions.assertThrowsExactly(Operation.WrongOperandsCountException.class, () -> testTemplate("+ 6", ""));
+        Assertions.assertThrowsExactly(WrongOperandsCountException.class, () -> testTemplate("+ 6", ""));
     }
 
 }

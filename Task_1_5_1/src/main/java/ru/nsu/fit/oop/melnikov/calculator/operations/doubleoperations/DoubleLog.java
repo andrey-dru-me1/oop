@@ -1,12 +1,14 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.calculator.exception.ParseOperationException;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 import java.util.List;
 
 
-public class DoubleLog extends DoubleOperation {
+public class DoubleLog extends Operation {
 
     private final static int ARITY = 1;
 
@@ -16,8 +18,13 @@ public class DoubleLog extends DoubleOperation {
     }
 
     @Override
-    protected Double calculate(@NotNull List<Object> operands) {
-        return Math.log((Double) operands.get(0));
+    public DoubleNumber calculate(@NotNull List<Value> operands) {
+        if (operands.size() == 1) {
+            if (operands.get(0) instanceof DoubleNumber double1) {
+                return new DoubleNumber(Math.log(double1.getDoubleValue()));
+            }
+        }
+        throw new ParseOperationException();
     }
 
     @Override
@@ -26,7 +33,7 @@ public class DoubleLog extends DoubleOperation {
     }
 
     @Override
-    public Operation parse(String string) {
+    public ru.nsu.fit.oop.melnikov.calculator.operations.Operation parse(String string) {
         if (string.equals("log")) {
             return this.clone();
         }

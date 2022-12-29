@@ -2,10 +2,11 @@ package ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations;
 
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 import java.util.List;
 
-public class DoubleE extends DoubleOperation {
+public class DoubleE extends Operation {
 
     private final static int ARITY = 0;
 
@@ -15,8 +16,8 @@ public class DoubleE extends DoubleOperation {
     }
 
     @Override
-    protected Double calculate(@NotNull List<Object> operands) {
-        return Math.E;
+    public DoubleNumber calculate(@NotNull List<Value> operands) {
+        return new DoubleNumber(Math.E);
     }
 
     @Override
@@ -25,7 +26,7 @@ public class DoubleE extends DoubleOperation {
     }
 
     @Override
-    public Operation parse(@NotNull String string) {
+    public ru.nsu.fit.oop.melnikov.calculator.operations.Operation parse(@NotNull String string) {
         if (string.equals("e")) {
             return this.clone();
         }

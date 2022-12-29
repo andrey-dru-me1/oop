@@ -1,21 +1,22 @@
 package ru.nsu.fit.oop.melnikov.calculator.operations.complexoperations;
 
 import org.apache.commons.numbers.complex.Complex;
-import org.jetbrains.annotations.NotNull;
-import ru.nsu.fit.oop.melnikov.calculator.operations.Operation;
+import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
-import java.util.List;
-
-public class ComplexNumber extends ComplexOperation {
+public class ComplexNumber extends Value {
 
     private final static int ARITY = 0;
-    private final Double value;
+    private final org.apache.commons.numbers.complex.Complex value;
 
     public ComplexNumber() {
-        this(null);
+        this(0.0);
     }
 
-    public ComplexNumber(Double value) {
+    public ComplexNumber(java.lang.Double value) {
+        this.value = org.apache.commons.numbers.complex.Complex.ofCartesian(value, 0);
+    }
+
+    public ComplexNumber(org.apache.commons.numbers.complex.Complex value) {
         this.value = value;
     }
 
@@ -25,24 +26,28 @@ public class ComplexNumber extends ComplexOperation {
     }
 
     @Override
-    protected Complex calculate(@NotNull List<Object> operands) {
-        return Complex.ofCartesian(this.value, 0);
-    }
-
-    @Override
     public ComplexNumber clone() {
-        return new ComplexNumber(this.value);
+        return new ComplexNumber(this.value.getReal());
     }
 
     @Override
-    public Operation parse(String string) {
+    public ComplexNumber parse(String string) {
         double value;
         try {
-            value = Double.parseDouble(string);
+            value = java.lang.Double.parseDouble(string);
         } catch (NumberFormatException exception) {
             return null;
         }
         return new ComplexNumber(value);
+    }
+
+    @Override
+    public String getValue() {
+        return value.toString();
+    }
+
+    public Complex getComplexNumber() {
+        return value;
     }
 
 }
