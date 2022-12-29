@@ -42,7 +42,7 @@ loadScripts(document, 'script');</script>
 <li>
 <p>Summary:</p>
 <ul>
-<li><a href="#nested-class-summary">Nested</a></li>
+<li>Nested</li>
 <li>Field</li>
 <li><a href="#constructor-summary">Constr</a></li>
 <li><a href="#method-summary">Method</a></li>
@@ -62,7 +62,7 @@ loadScripts(document, 'script');</script>
 <div id="navbar-sub-list">
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested-class-summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
@@ -90,8 +90,8 @@ loadScripts(document, 'script');</script>
 <h1 title="Class DoubleSqr" class="title">Class DoubleSqr</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
+<div class="inheritance"><a href="../Parsable.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">ru.nsu.fit.oop.melnikov.calculator.operations.Parsable</a>
 <div class="inheritance"><a href="../Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">ru.nsu.fit.oop.melnikov.calculator.operations.Operation</a>
-<div class="inheritance"><a href="DoubleOperation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations">ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations.DoubleOperation</a>
 <div class="inheritance">ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations.DoubleSqr</div>
 </div>
 </div>
@@ -99,19 +99,10 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DoubleSqr</span>
-<span class="extends-implements">extends <a href="DoubleOperation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations">DoubleOperation</a></span></div>
+<span class="extends-implements">extends <a href="../Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation</a></span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
-<!-- ======== NESTED CLASS SUMMARY ======== -->
-<li>
-<section class="nested-class-summary" id="nested-class-summary">
-<h2>Nested Class Summary</h2>
-<div class="inherited-list">
-<h2 id="nested-classes-inherited-from-class-ru.nsu.fit.oop.melnikov.calculator.operations.Operation">Nested classes/interfaces inherited from class&nbsp;ru.nsu.fit.oop.melnikov.calculator.operations.<a href="../Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation</a></h2>
-<code><a href="../Operation.ParseOperationException.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation.ParseOperationException</a>, <a href="../Operation.WrongOperandsCountException.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation.WrongOperandsCountException</a></code></div>
-</section>
-</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -136,8 +127,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(java.util.List)" class="member-name-link">calculate</a><wbr>(@NotNull <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;&nbsp;operands)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DoubleNumber.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations">DoubleNumber</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(java.util.List)" class="member-name-link">calculate</a><wbr>(@NotNull <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Value.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Value</a>&gt;&nbsp;operands)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Calculates a result of function.</div>
 </div>
@@ -157,12 +148,6 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 </div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations.DoubleOperation">Methods inherited from class&nbsp;ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations.<a href="DoubleOperation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations">DoubleOperation</a></h3>
-<code><a href="DoubleOperation.html#getOperandClass()">getOperandClass</a></code></div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-ru.nsu.fit.oop.melnikov.calculator.operations.Operation">Methods inherited from class&nbsp;ru.nsu.fit.oop.melnikov.calculator.operations.<a href="../Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation</a></h3>
-<code><a href="../Operation.html#apply(java.util.List)">apply</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -195,11 +180,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getArity()">
 <h3>getArity</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getArity</span>()</div>
-<div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="../Operation.html#getArity()">Operation</a></code></span></div>
+<div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="../Parsable.html#getArity()">Parsable</a></code></span></div>
 <div class="block">returns arity of operation.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../Operation.html#getArity()">getArity</a></code>&nbsp;in class&nbsp;<code><a href="../Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation</a></code></dd>
+<dd><code><a href="../Parsable.html#getArity()">getArity</a></code>&nbsp;in class&nbsp;<code><a href="../Parsable.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Parsable</a></code></dd>
 <dt>Returns:</dt>
 <dd>arity of operation</dd>
 </dl>
@@ -208,8 +193,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="calculate(java.util.List)">
 <h3>calculate</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a></span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(@NotNull
- @NotNull <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;&nbsp;operands)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="DoubleNumber.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations">DoubleNumber</a></span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(@NotNull
+ @NotNull <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Value.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Value</a>&gt;&nbsp;operands)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="../Operation.html#calculate(java.util.List)">Operation</a></code></span></div>
 <div class="block">Calculates a result of function.</div>
 <dl class="notes">
@@ -226,11 +211,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="clone()">
 <h3>clone</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="DoubleSqr.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations.doubleoperations">DoubleSqr</a></span>&nbsp;<span class="element-name">clone</span>()</div>
-<div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="../Operation.html#clone()">Operation</a></code></span></div>
+<div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="../Parsable.html#clone()">Parsable</a></code></span></div>
 <div class="block">Clones current object and returns a clone.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../Operation.html#clone()">clone</a></code>&nbsp;in class&nbsp;<code><a href="../Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation</a></code></dd>
+<dd><code><a href="../Parsable.html#clone()">clone</a></code>&nbsp;in class&nbsp;<code><a href="../Parsable.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Parsable</a></code></dd>
 <dt>Returns:</dt>
 <dd>new object which is the same as this object</dd>
 </dl>
@@ -242,7 +227,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation</a></span>&nbsp;<span class="element-name">parse</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../Operation.html#parse(java.lang.String)">parse</a></code>&nbsp;in class&nbsp;<code><a href="../Operation.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Operation</a></code></dd>
+<dd><code><a href="../Parsable.html#parse(java.lang.String)">parse</a></code>&nbsp;in class&nbsp;<code><a href="../Parsable.html" title="class in ru.nsu.fit.oop.melnikov.calculator.operations">Parsable</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>string</code> - string to parse (single word)</dd>
 <dt>Returns:</dt>
