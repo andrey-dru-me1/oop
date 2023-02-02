@@ -15,15 +15,15 @@ class NotebookTest {
 
         new File("notebook.json").delete();
 
-        Main.main(new String[]{"notebook", "-add", "lol", "kek"});
-        Main.main(new String[]{"notebook", "-add", "Name", "Description"});
-        Main.main(new String[]{"notebook", "-rm", "Name"});
+        Main.main(new String[]{"-n", "notebook", "-add", "lol", "kek"});
+        Main.main(new String[]{"-add", "Name", "Description"});
+        Main.main(new String[]{"-rm", "Name"});
 
         OutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);
 
-        Main.main(new String[]{"notebook", "-show"});
+        Main.main(new String[]{"-n", "notebook", "-show"});
 
         Assertions.assertEquals("Notebook ( notebook.json ) :\nlol: kek", outputStream.toString().trim());
 
@@ -31,7 +31,7 @@ class NotebookTest {
         printStream = new PrintStream(outputStream);
         System.setOut(printStream);
 
-        Main.main(new String[]{"notebook", "-show", "10.10.2022 00:00", "10.10.2022 23:59"});
+        Main.main(new String[]{"-show", "10.10.2022 00:00", "10.10.2022 23:59"});
 
         Assertions.assertEquals("Notebook ( notebook.json ) :", outputStream.toString().trim());
     }
