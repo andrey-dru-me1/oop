@@ -84,7 +84,14 @@ public class Notebook {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (String i : records.stream().map(record -> record.toString() + "\n").toList()) {
+        for (String i :
+                this
+                        .getRecords()
+                        .stream()
+                        .sorted(Comparator.comparing(r -> r.date().getEpochSecond()))
+                        .map(record -> record + "\n")
+                        .toList()
+        ) {
             str.append(i);
         }
         return "Notebook:\n" + str;
