@@ -3,7 +3,10 @@ package ru.nsu.fit.oop.melnikov.notebook.subcommands;
 import picocli.CommandLine;
 import ru.nsu.fit.oop.melnikov.notebook.Notebook;
 
-@CommandLine.Command(name = "-rm")
+@CommandLine.Command(
+        name = "-rm",
+        description = "Removes a note with specific name"
+)
 public class RemoveRecord implements Runnable {
     private final Notebook notebook;
 

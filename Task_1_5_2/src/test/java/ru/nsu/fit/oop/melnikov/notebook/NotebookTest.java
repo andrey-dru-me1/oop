@@ -25,7 +25,7 @@ class NotebookTest {
 
         Main.main(new String[]{"notebook", "-show"});
 
-        Assertions.assertEquals("Notebook:\nlol: kek", outputStream.toString().trim());
+        Assertions.assertEquals("Notebook ( notebook.json ) :\nlol: kek", outputStream.toString().trim());
 
         outputStream = new ByteArrayOutputStream();
         printStream = new PrintStream(outputStream);
@@ -33,7 +33,7 @@ class NotebookTest {
 
         Main.main(new String[]{"notebook", "-show", "10.10.2022 00:00", "10.10.2022 23:59"});
 
-        Assertions.assertEquals("Notebook:", outputStream.toString().trim());
+        Assertions.assertEquals("Notebook ( notebook.json ) :", outputStream.toString().trim());
     }
 
 }

@@ -3,7 +3,10 @@ package ru.nsu.fit.oop.melnikov.notebook.subcommands;
 import picocli.CommandLine;
 import ru.nsu.fit.oop.melnikov.notebook.Notebook;
 
-@CommandLine.Command(name = "-add")
+@CommandLine.Command(
+        name = "-add",
+        description = "Adds new note to a notebook"
+)
 public class AddRecord implements Runnable {
     private final Notebook notebook;
 

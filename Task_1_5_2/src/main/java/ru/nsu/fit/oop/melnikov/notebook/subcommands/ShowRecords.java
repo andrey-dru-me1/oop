@@ -10,7 +10,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Locale;
 
-@CommandLine.Command(name = "-show")
+@CommandLine.Command(
+        name = "-show",
+        description = "Shows list of notes sorted by creating time. " +
+                "Depending on data parameters it can cut showing time interval"
+)
 public class ShowRecords implements Runnable {
 
     private final Notebook notebook;
