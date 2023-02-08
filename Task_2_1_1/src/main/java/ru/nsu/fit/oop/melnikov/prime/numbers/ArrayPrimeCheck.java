@@ -2,6 +2,9 @@ package ru.nsu.fit.oop.melnikov.prime.numbers;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class ArrayPrimeCheck {
 
     /**
@@ -25,26 +28,75 @@ public class ArrayPrimeCheck {
 
     }
 
-//    public static boolean threadSolution(int @NotNull [] array) {
-//
-//        boolean res = false;
-//
-//        for(int i : array) {
-//
-//            (new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    for(int divider = 2; divider * divider <= i; divider++) {
-//                        if(i % divider == 0) {
-//                        }
-//                    }
-//                }
-//            }))
-//
-//        }
-//
-//        return false;
-//
-//    }
+    public static boolean threadSolution(int @NotNull [] array) {
+
+        int cores = Runtime.getRuntime().availableProcessors();
+
+        class CommonVar {
+            public volatile boolean var;
+
+            public volatile int currentIndex;
+
+            private CommonVar(boolean var) {
+                this.var = var;
+                this.currentIndex = 0;
+            }
+
+        }
+        class PrimeCheck extends Thread {
+
+            private final int[] numbers;
+            private final CommonVar res;
+
+            public PrimeCheck(int[] numbers, CommonVar res) {
+                this.numbers = numbers;
+                this.res = res;
+            }
+
+            @Override
+            public void run() {
+
+                int number;
+
+                while (!res.var) {
+
+                    synchronized (res) {
+                        if (res.currentIndex >= numbers.length)
+                            break;
+                        number = numbers[res.currentIndex++];
+                    }
+
+                    for (int divider = 2; divider * divider <= number && !res.var; divider++) {
+                        if (number % divider == 0) {
+                            res.var = true;
+                            break;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        CommonVar res = new CommonVar(false);
+
+        Deque<Thread> threads = new ArrayDeque<>(cores);
+
+        for (int i = 0; i < cores; i++) {
+            PrimeCheck thread = new PrimeCheck(array, res);
+            thread.start();
+            threads.add(thread);
+        }
+
+        for (Thread i : threads) {
+            try {
+                i.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return res.var;
+
+    }
 
 }
