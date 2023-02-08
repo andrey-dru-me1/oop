@@ -1,10 +1,19 @@
 package ru.nsu.fit.oop.melnikov.prime.numbers;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
+import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Class that contains three different methods of non-prime number searching:
+ * - Sequential execution
+ * - Parallel execution using threads
+ * - Parallel execution using parallelStream
+ */
 public class ArrayPrimeCheck {
 
     /**
@@ -14,7 +23,8 @@ public class ArrayPrimeCheck {
      * @param array an input array where non-prime numbers will be searched
      * @return true if there is at least one non-prime number and false otherwise
      */
-    public static boolean sequential(int @NotNull [] array) {
+    @Contract(pure = true)
+    public static @NotNull Boolean sequential(int @NotNull [] array) {
 
         for (int i : array) {
             for (int divider = 2; divider * divider <= i; divider++) {
@@ -28,17 +38,35 @@ public class ArrayPrimeCheck {
 
     }
 
-    public static boolean threadSolution(int @NotNull [] array) {
 
-        int cores = Runtime.getRuntime().availableProcessors();
+    /**
+     * Checks if input array contains non-prime numbers or not.
+     * Parallel execution using threads.
+     *
+     * @param array an input array where non-prime numbers will be searched
+     * @return true if there is at least one non-prime number and false otherwise
+     */
+    public static Boolean threadSolution(int @NotNull [] array) {
+        return threadSolution(array, Runtime.getRuntime().availableProcessors());
+    }
 
-        class CommonVar {
-            public volatile boolean var;
+    /**
+     * Checks if input array contains non-prime numbers or not.
+     * Parallel execution using threads.
+     *
+     * @param array       array an input array where non-prime numbers will be searched
+     * @param threadCount count of threads to work
+     * @return true if there is at least one non-prime number and false otherwise
+     */
+    public static Boolean threadSolution(int @NotNull [] array, int threadCount) {
+
+        class CommonVars {
+            public volatile boolean hasCompositeNumber;
 
             public volatile int currentIndex;
 
-            private CommonVar(boolean var) {
-                this.var = var;
+            private CommonVars(boolean hasCompositeNumber) {
+                this.hasCompositeNumber = hasCompositeNumber;
                 this.currentIndex = 0;
             }
 
@@ -46,9 +74,9 @@ public class ArrayPrimeCheck {
         class PrimeCheck extends Thread {
 
             private final int[] numbers;
-            private final CommonVar res;
+            private final CommonVars res;
 
-            public PrimeCheck(int[] numbers, CommonVar res) {
+            public PrimeCheck(int[] numbers, CommonVars res) {
                 this.numbers = numbers;
                 this.res = res;
             }
@@ -58,7 +86,7 @@ public class ArrayPrimeCheck {
 
                 int number;
 
-                while (!res.var) {
+                while (!res.hasCompositeNumber) {
 
                     synchronized (res) {
                         if (res.currentIndex >= numbers.length)
@@ -66,9 +94,9 @@ public class ArrayPrimeCheck {
                         number = numbers[res.currentIndex++];
                     }
 
-                    for (int divider = 2; divider * divider <= number && !res.var; divider++) {
+                    for (int divider = 2; divider * divider <= number && !res.hasCompositeNumber; divider++) {
                         if (number % divider == 0) {
-                            res.var = true;
+                            res.hasCompositeNumber = true;
                             break;
                         }
                     }
@@ -77,11 +105,11 @@ public class ArrayPrimeCheck {
             }
         }
 
-        CommonVar res = new CommonVar(false);
+        CommonVars res = new CommonVars(false);
 
-        Deque<Thread> threads = new ArrayDeque<>(cores);
+        Deque<Thread> threads = new ArrayDeque<>(threadCount);
 
-        for (int i = 0; i < cores; i++) {
+        for (int i = 0; i < threadCount; i++) {
             PrimeCheck thread = new PrimeCheck(array, res);
             thread.start();
             threads.add(thread);
@@ -95,7 +123,33 @@ public class ArrayPrimeCheck {
             }
         }
 
-        return res.var;
+        return res.hasCompositeNumber;
+
+    }
+
+    /**
+     * Checks if input array contains non-prime numbers or not.
+     * Parallel execution using parallelStream.
+     *
+     * @param array an input array where non-prime numbers will be searched
+     * @return true if there is at least one non-prime number and false otherwise
+     */
+    public static @NotNull Boolean parallelStreamSolution(int @NotNull [] array) {
+
+        AtomicBoolean res = new AtomicBoolean(false);
+
+        Arrays.stream(array).parallel().forEach(
+                (int x) -> {
+                    for (int divider = 2; divider * divider <= x && !res.get(); divider++) {
+                        if (x % divider == 0) {
+                            res.set(true);
+                            break;
+                        }
+                    }
+                }
+        );
+
+        return res.get();
 
     }
 

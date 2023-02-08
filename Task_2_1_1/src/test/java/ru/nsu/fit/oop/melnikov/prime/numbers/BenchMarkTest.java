@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Scanner;
+import java.util.function.Function;
 
 @BenchmarkMode(Mode.AverageTime)
 @Fork(1)
@@ -42,22 +43,23 @@ public class BenchMarkTest {
         return array;
     }
 
+    private void test(@NotNull Function<int[], Boolean> foo) {
+        Assertions.assertTrue(foo.apply(readFile("prime_numbers.txt")));
+    }
+
     @Benchmark
     public void benchmarkSequential() {
-        Assertions.assertTrue(
-                ArrayPrimeCheck.sequential(
-                        readFile("prime_numbers.txt")
-                )
-        );
+        test(ArrayPrimeCheck::sequential);
     }
 
     @Benchmark
     public void benchmarkThreads() {
-        Assertions.assertTrue(
-                ArrayPrimeCheck.threadSolution(
-                        readFile("prime_numbers.txt")
-                )
-        );
+        test(ArrayPrimeCheck::threadSolution);
+    }
+
+    @Benchmark
+    public void benchmarkParallelStreams() {
+        test(ArrayPrimeCheck::parallelStreamSolution);
     }
 
 }
