@@ -1,65 +1,37 @@
 package ru.nsu.fit.oop.melnikov.prime.numbers;
 
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.openjdk.jmh.annotations.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Scanner;
-import java.util.function.Function;
-
-@BenchmarkMode(Mode.AverageTime)
-@Fork(1)
-@Warmup(iterations = 0)
-@Measurement(iterations = 1)
+@State(Scope.Benchmark)
+@BenchmarkMode(Mode.Throughput)
+@Fork(3)
+@Warmup(iterations = 3)
+@Measurement(iterations = 5)
 public class BenchMarkTest {
 
-    private int @NotNull [] readFile(String filename) {
+    private final int[] array;
 
-        Scanner scanner;
-        try {
-            scanner = new Scanner(
-                    new File(filename)
-            );
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+    public BenchMarkTest() {
+        array = new int[1000];
+        for (int i = 0; i < 1000; i++) {
+            array[i] = 1000000007;
         }
-
-        Deque<Integer> queue = new ArrayDeque<>();
-
-        while (scanner.hasNextInt()) {
-            queue.add(scanner.nextInt());
-        }
-
-        int[] array = new int[queue.size()];
-
-        for (int i = 0; !queue.isEmpty(); i++) {
-            array[i] = queue.pop();
-        }
-
-        return array;
-    }
-
-    private void test(@NotNull Function<int[], Boolean> foo) {
-        Assertions.assertTrue(foo.apply(readFile("prime_numbers.txt")));
     }
 
     @Benchmark
     public void benchmarkSequential() {
-        test(ArrayPrimeCheck::sequential);
+        Assertions.assertFalse(ArrayPrimeCheck.sequential(array));
     }
 
     @Benchmark
     public void benchmarkThreads() {
-        test(ArrayPrimeCheck::threadSolution);
+        Assertions.assertFalse(ArrayPrimeCheck.threadSolution(array));
     }
 
     @Benchmark
     public void benchmarkParallelStreams() {
-        test(ArrayPrimeCheck::parallelStreamSolution);
+        Assertions.assertFalse(ArrayPrimeCheck.parallelStreamSolution(array));
     }
 
 }
