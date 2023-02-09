@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Class that contains three different methods of non-prime number searching:
@@ -136,20 +135,20 @@ public class ArrayPrimeCheck {
      */
     public static @NotNull Boolean parallelStreamSolution(int @NotNull [] array) {
 
-        AtomicBoolean res = new AtomicBoolean(false);
+        final boolean[] res = {false};
 
         Arrays.stream(array).parallel().forEach(
                 (int x) -> {
-                    for (int divider = 2; divider * divider <= x && !res.get(); divider++) {
+                    for (int divider = 2; divider * divider <= x && !res[0]; divider++) {
                         if (x % divider == 0) {
-                            res.set(true);
+                            res[0] = true;
                             break;
                         }
                     }
                 }
         );
 
-        return res.get();
+        return res[0];
 
     }
 
