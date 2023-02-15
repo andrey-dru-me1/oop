@@ -21,17 +21,22 @@ public class BenchMarkTest {
 
     @Benchmark
     public void benchmarkSequential() {
-        Assertions.assertFalse(ArrayPrimeCheck.sequential(array));
+        Assertions.assertFalse(new SequentialArrayPrimeCheck().check(array));
     }
 
     @Benchmark
     public void benchmarkThreads() {
-        Assertions.assertFalse(ArrayPrimeCheck.threadSolution(array));
+        Assertions.assertFalse(new SynchronizedThreadArrayPrimeCheck().check(array));
+    }
+
+    @Benchmark
+    public void benchmarkAtomicThreads() {
+        Assertions.assertFalse(new AtomicThreadArrayPrimeCheck().check(array));
     }
 
     @Benchmark
     public void benchmarkParallelStreams() {
-        Assertions.assertFalse(ArrayPrimeCheck.parallelStreamSolution(array));
+        Assertions.assertFalse(new ParallelStreamArrayPrimeCheck().check(array));
     }
 
 }
