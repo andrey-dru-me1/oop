@@ -2,6 +2,8 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'java-library'
+    id "me.champeau.jmh" version "0.6.8"
+    id "io.morethan.jmhreport" version "0.9.0"
 }
 
 group 'ru.nsu.fit.melnikov'
@@ -31,6 +33,18 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(18)
     }
+}
+
+jmh {
+    resultsFile = project.file("src/test/java/ru/nsu/fit/oop/melnikov/prime/numbers/benchmark_results/results.json")
+    timeOnIteration = "200ms"
+    warmup = "200ms"
+    resultFormat = "JSON"
+}
+
+jmhReport {
+    jmhResultPath = project.file('src/test/java/ru/nsu/fit/oop/melnikov/prime/numbers/benchmark_results/results.json')
+    jmhReportOutput = project.file('src/test/java/ru/nsu/fit/oop/melnikov/prime/numbers/benchmark_results')
 }
 
 jacoco {
