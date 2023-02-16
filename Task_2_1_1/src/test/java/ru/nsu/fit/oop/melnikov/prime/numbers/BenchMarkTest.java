@@ -2,6 +2,8 @@ package ru.nsu.fit.oop.melnikov.prime.numbers;
 
 import org.junit.jupiter.api.Assertions;
 import org.openjdk.jmh.annotations.*;
+import ru.nsu.fit.oop.melnikov.prime.numbers.thread.AtomicThreadArrayPrimeCheck;
+import ru.nsu.fit.oop.melnikov.prime.numbers.thread.SynchronizedThreadArrayPrimeCheck;
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.Throughput)
