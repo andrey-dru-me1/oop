@@ -12,7 +12,7 @@ import ru.nsu.fit.oop.melnikov.prime.numbers.thread.SynchronizedThreadArrayPrime
 import java.util.stream.Stream;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class SequentialArrayPrimeCheckTest {
+class ArrayPrimeCheckTest {
 
     @ParameterizedTest
     @MethodSource("getFunctions")

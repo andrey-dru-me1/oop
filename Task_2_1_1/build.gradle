@@ -29,12 +29,6 @@ test {
     useJUnitPlatform()
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(18)
-    }
-}
-
 jmh {
     resultsFile = project.file("src/test/java/ru/nsu/fit/oop/melnikov/prime/numbers/benchmark_results/results.json")
     timeOnIteration = "200ms"
