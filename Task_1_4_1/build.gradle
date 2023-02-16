@@ -30,12 +30,6 @@ java {
     }
 }
 
-repositories {
-    maven {
-        url "https://repo1.maven.org/maven2/"
-    }
-}
-
 jacoco {
     toolVersion = "0.8.8"
     reportsDirectory = layout.buildDirectory.dir('reports/jacoco')
