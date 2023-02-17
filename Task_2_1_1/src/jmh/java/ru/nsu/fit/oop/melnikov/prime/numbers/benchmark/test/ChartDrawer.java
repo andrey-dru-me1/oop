@@ -1,8 +1,7 @@
-package ru.nsu.fit.oop.melnikov.prime.numbers;
+package ru.nsu.fit.oop.melnikov.prime.numbers.benchmark.test;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Test;
 import org.knowm.xchart.*;
 
 import java.io.File;
@@ -13,14 +12,18 @@ import java.util.Map;
 
 public class ChartDrawer {
 
-    @Test
-    void drawChart() throws IOException {
+    public static void main(String[] args) {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        JsonNode jsonNodeRoot = mapper.readTree(
-                new File("src/test/java/ru/nsu/fit/oop/melnikov/prime/numbers/benchmark_results/results.json")
-        );
+        JsonNode jsonNodeRoot;
+        try {
+            jsonNodeRoot = mapper.readTree(
+                    new File("results.json")
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         Map<String, Map<Integer, Double>> charts = new HashMap<>();
 
@@ -33,7 +36,7 @@ public class ChartDrawer {
             charts.get(test).put(node.path("params").get("size").asInt(), node.path("primaryMetric").get("score").asDouble());
         }
 
-        XYChart chart = new XYChartBuilder().width(1280).height(720).title("Benchmark tests").xAxisTitle("array size").yAxisTitle("score, op/s").build();
+        XYChart chart = new XYChartBuilder().title("Benchmark tests").xAxisTitle("array size").yAxisTitle("score, op/s").build();
         chart.getStyler().setXAxisLogarithmic(true);
         chart.getStyler().setYAxisLogarithmic(true);
 
@@ -43,7 +46,16 @@ public class ChartDrawer {
             chart.addSeries(testName, sizeData, scoreData);
         }
 
-        BitmapEncoder.saveBitmapWithDPI(chart, "./Benchmark_tests_result.png", BitmapEncoder.BitmapFormat.PNG, 300);
+        try {
+            BitmapEncoder.saveBitmapWithDPI(
+                    chart,
+                    "./Benchmark_tests_result.png",
+                    BitmapEncoder.BitmapFormat.PNG,
+                    300
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

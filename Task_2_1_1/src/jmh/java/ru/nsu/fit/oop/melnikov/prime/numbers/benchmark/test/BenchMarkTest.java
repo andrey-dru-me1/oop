@@ -1,7 +1,9 @@
-package ru.nsu.fit.oop.melnikov.prime.numbers;
+package ru.nsu.fit.oop.melnikov.prime.numbers.benchmark.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.openjdk.jmh.annotations.*;
+import ru.nsu.fit.oop.melnikov.prime.numbers.ParallelStreamArrayPrimeCheck;
+import ru.nsu.fit.oop.melnikov.prime.numbers.SequentialArrayPrimeCheck;
 import ru.nsu.fit.oop.melnikov.prime.numbers.thread.AtomicThreadArrayPrimeCheck;
 import ru.nsu.fit.oop.melnikov.prime.numbers.thread.SynchronizedThreadArrayPrimeCheck;
 
