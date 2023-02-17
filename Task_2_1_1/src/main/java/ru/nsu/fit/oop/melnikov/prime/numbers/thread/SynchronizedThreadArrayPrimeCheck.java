@@ -46,7 +46,7 @@ public class SynchronizedThreadArrayPrimeCheck implements ArrayPrimeCheck {
     }
 
     public static Boolean check(int @NotNull [] array, int threadCount) {
-        return new ThreadArrayPrimeCheck<SynchronizedCommonVars>()
+        return ThreadArrayPrimeCheck
                 .check(
                         array,
                         threadCount,

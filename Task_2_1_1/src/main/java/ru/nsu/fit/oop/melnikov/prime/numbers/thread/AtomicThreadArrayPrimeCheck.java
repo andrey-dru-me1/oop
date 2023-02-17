@@ -46,9 +46,9 @@ public class AtomicThreadArrayPrimeCheck implements ArrayPrimeCheck {
      * @param threadCount count of threads to work
      * @return true if there is at least one non-prime number and false otherwise
      */
-    public @NotNull Boolean check(int @NotNull [] array, int threadCount) {
+    public static @NotNull Boolean check(int @NotNull [] array, int threadCount) {
 
-        return new ThreadArrayPrimeCheck<AtomicCommonVars>()
+        return ThreadArrayPrimeCheck
                 .check(array, threadCount, new AtomicCommonVars(false));
 
     }

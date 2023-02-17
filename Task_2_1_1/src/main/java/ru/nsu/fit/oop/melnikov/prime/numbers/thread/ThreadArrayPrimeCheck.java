@@ -5,14 +5,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class ThreadArrayPrimeCheck <T extends CommonVars> {
+public class ThreadArrayPrimeCheck {
 
-        private class PrimeCheck extends Thread {
+        private static class PrimeCheck extends Thread {
 
             private final int[] numbers;
-            private final T res;
+            private final CommonVars res;
 
-            public PrimeCheck(int[] numbers, T res) {
+            public PrimeCheck(int[] numbers, CommonVars res) {
                 this.numbers = numbers;
                 this.res = res;
             }
@@ -45,7 +45,7 @@ public class ThreadArrayPrimeCheck <T extends CommonVars> {
          * @param threadCount count of threads to work
          * @return true if there is at least one non-prime number and false otherwise
          */
-        public @NotNull Boolean check(int @NotNull [] array, int threadCount, T res) {
+        public static @NotNull Boolean check(int @NotNull [] array, int threadCount, CommonVars res) {
 
             Deque<Thread> threads = new ArrayDeque<>(threadCount);
 
