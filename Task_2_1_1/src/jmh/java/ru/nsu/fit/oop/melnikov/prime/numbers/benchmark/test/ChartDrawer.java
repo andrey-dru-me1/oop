@@ -36,7 +36,7 @@ public class ChartDrawer {
             charts.get(test).put(node.path("params").get("size").asInt(), node.path("primaryMetric").get("score").asDouble());
         }
 
-        XYChart chart = new XYChartBuilder().title("Benchmark tests").xAxisTitle("array size").yAxisTitle("score, op/s").build();
+        XYChart chart = new XYChartBuilder().title("Benchmark tests").xAxisTitle("array size").yAxisTitle("score, ops/s").build();
         chart.getStyler().setXAxisLogarithmic(true);
         chart.getStyler().setYAxisLogarithmic(true);
 
