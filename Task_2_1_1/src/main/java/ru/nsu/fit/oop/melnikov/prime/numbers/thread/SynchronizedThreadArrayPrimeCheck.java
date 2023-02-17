@@ -45,7 +45,7 @@ public class SynchronizedThreadArrayPrimeCheck implements ArrayPrimeCheck {
         return check(array, Runtime.getRuntime().availableProcessors());
     }
 
-    public static Boolean check(int @NotNull [] array, int threadCount) {
+    public static @NotNull Boolean check(int @NotNull [] array, int threadCount) {
         return ThreadArrayPrimeCheck
                 .check(
                         array,
