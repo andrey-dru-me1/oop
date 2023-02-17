@@ -12,11 +12,15 @@ import ru.nsu.fit.oop.melnikov.prime.numbers.thread.SynchronizedThreadArrayPrime
 @Measurement(iterations = 5)
 public class BenchMarkTest {
 
-    private final int[] array;
+    private int[] array;
 
-    public BenchMarkTest() {
-        array = new int[1000];
-        for (int i = 0; i < 1000; i++) {
+    @Param({"5", "10", "20", "100", "500", "1000", "5000", "10000", "100000"})
+    int size;
+
+    @Setup(Level.Invocation)
+    public void setArray() {
+        array = new int[size];
+        for (int i = 0; i < size; i++) {
             array[i] = 1000000007;
         }
     }
