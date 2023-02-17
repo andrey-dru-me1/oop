@@ -8,16 +8,12 @@ import ru.nsu.fit.oop.melnikov.prime.numbers.thread.AtomicThreadArrayPrimeCheck;
 import ru.nsu.fit.oop.melnikov.prime.numbers.thread.SynchronizedThreadArrayPrimeCheck;
 
 @State(Scope.Benchmark)
-@BenchmarkMode(Mode.Throughput)
-@Fork(3)
-@Warmup(iterations = 3)
-@Measurement(iterations = 5)
 public class BenchMarkTest {
 
     private int[] array;
 
     @Param({"5", "10", "20", "100", "500", "1000", "5000", "10000", "100000"})
-    int size;
+    private int size;
 
     @Setup(Level.Invocation)
     public void setArray() {
@@ -28,11 +24,6 @@ public class BenchMarkTest {
     }
 
     @Benchmark
-    public void benchmarkSequential() {
-        Assertions.assertFalse(new SequentialArrayPrimeCheck().check(array));
-    }
-
-    @Benchmark
     public void benchmarkThreads() {
         Assertions.assertFalse(new SynchronizedThreadArrayPrimeCheck().check(array));
     }
@@ -40,6 +31,11 @@ public class BenchMarkTest {
     @Benchmark
     public void benchmarkAtomicThreads() {
         Assertions.assertFalse(new AtomicThreadArrayPrimeCheck().check(array));
+    }
+
+    @Benchmark
+    public void benchmarkSequential() {
+        Assertions.assertFalse(new SequentialArrayPrimeCheck().check(array));
     }
 
     @Benchmark
