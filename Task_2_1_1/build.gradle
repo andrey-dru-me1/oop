@@ -26,6 +26,12 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(19)
+    }
+}
+
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
     useJUnitPlatform()
