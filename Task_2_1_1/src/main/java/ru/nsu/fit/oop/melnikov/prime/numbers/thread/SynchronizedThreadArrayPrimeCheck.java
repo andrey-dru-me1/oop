@@ -8,7 +8,7 @@ public class SynchronizedThreadArrayPrimeCheck implements ArrayPrimeCheck {
     private static class SynchronizedCommonVars implements CommonVars {
         private boolean hasCompositeNumber;
 
-        public int currentIndex;
+        private int currentIndex;
 
         private SynchronizedCommonVars(boolean hasCompositeNumber) {
             this.hasCompositeNumber = hasCompositeNumber;
@@ -45,6 +45,14 @@ public class SynchronizedThreadArrayPrimeCheck implements ArrayPrimeCheck {
         return check(array, Runtime.getRuntime().availableProcessors());
     }
 
+    /**
+     * Checks if input array contains non-prime numbers or not.
+     * Parallel execution using specified count of threads.
+     *
+     * @param array an input array where non-prime numbers will be searched
+     * @param threadCount count of threads to use
+     * @return true if there is at least one non-prime number and false otherwise
+     */
     public static @NotNull Boolean check(int @NotNull [] array, int threadCount) {
         return ThreadArrayPrimeCheck
                 .check(

@@ -33,6 +33,14 @@ public class AtomicThreadArrayPrimeCheck implements ArrayPrimeCheck {
         }
     }
 
+    /**
+     * Checks if input array contains non-prime numbers or not.
+     * Parallel execution using threads and AtomicInteger to solve critical sections.
+     * Uses number of parallel threads equals to number of available processors.
+     *
+     * @param array array an input array where non-prime numbers will be searched
+     * @return true if there is at least one non-prime number and false otherwise
+     */
     @Override
     public @NotNull Boolean check(int @NotNull [] array) {
         return check(array, Runtime.getRuntime().availableProcessors());
@@ -40,7 +48,7 @@ public class AtomicThreadArrayPrimeCheck implements ArrayPrimeCheck {
 
     /**
      * Checks if input array contains non-prime numbers or not.
-     * Parallel execution using threads.
+     * Parallel execution using threads and AtomicInteger to solve critical sections.
      *
      * @param array       array an input array where non-prime numbers will be searched
      * @param threadCount count of threads to work

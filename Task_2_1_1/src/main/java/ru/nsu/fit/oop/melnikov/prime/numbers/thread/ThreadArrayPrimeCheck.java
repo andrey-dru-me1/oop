@@ -7,6 +7,9 @@ import java.util.Deque;
 
 public class ThreadArrayPrimeCheck {
 
+    /**
+     * Searches a non-prime number from an array and breaks if found.
+     */
         private static class PrimeCheck extends Thread {
 
             private final int[] numbers;
