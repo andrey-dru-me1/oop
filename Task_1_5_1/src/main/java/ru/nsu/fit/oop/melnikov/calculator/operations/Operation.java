@@ -7,12 +7,12 @@ import java.util.List;
  */
 public abstract class Operation extends Parsable {
 
-    /**
-     * Calculates a result of function.
-     *
-     * @param operands list of operands to pass in operation function
-     * @return result of calculation
-     */
-    abstract public Value calculate(List<Value> operands);
+  /**
+   * Calculates a result of function.
+   *
+   * @param operands list of operands to pass in operation function
+   * @return result of calculation
+   */
+  abstract public Value calculate(List<Value> operands);
 
 }
