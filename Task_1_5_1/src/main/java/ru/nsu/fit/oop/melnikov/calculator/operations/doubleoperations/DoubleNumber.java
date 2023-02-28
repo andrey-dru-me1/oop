@@ -4,7 +4,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 public class DoubleNumber extends Value {
 
-  static final private int ARITY = 0;
+  private static final int ARITY = 0;
   private final java.lang.Double value;
 
   public DoubleNumber() {

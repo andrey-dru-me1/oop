@@ -9,7 +9,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 public class ComplexLog extends Operation {
 
-  static final private int ARITY = 1;
+  private static final int ARITY = 1;
 
   @Override
   public int getArity() {

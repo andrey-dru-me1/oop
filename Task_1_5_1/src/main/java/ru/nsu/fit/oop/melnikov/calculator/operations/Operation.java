@@ -13,6 +13,6 @@ public abstract class Operation extends Parsable {
    * @param operands list of operands to pass in operation function
    * @return result of calculation
    */
-  abstract public Value calculate(List<Value> operands);
+  public abstract Value calculate(List<Value> operands);
 
 }

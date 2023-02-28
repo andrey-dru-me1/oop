@@ -8,7 +8,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 public class ComplexPlus extends Operation {
 
-  static final private int ARITY = 2;
+  private static final int ARITY = 2;
 
   @Override
   public int getArity() {

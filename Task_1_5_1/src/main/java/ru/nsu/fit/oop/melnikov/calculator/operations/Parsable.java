@@ -7,7 +7,7 @@ public abstract class Parsable {
    *
    * @return arity of operation
    */
-  abstract public int getArity();
+  public abstract int getArity();
 
   /**
    * Clones current object and returns a clone.

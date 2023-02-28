@@ -5,7 +5,7 @@ import ru.nsu.fit.oop.melnikov.calculator.operations.Value;
 
 public class ComplexNumber extends Value {
 
-  static final private int ARITY = 0;
+  private static final int ARITY = 0;
   private final org.apache.commons.numbers.complex.Complex value;
 
   public ComplexNumber() {
