@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import org.jetbrains.annotations.NotNull;
 
-public class ThreadArrayPrimeCheck {
+class ThreadArrayPrimeCheck {
 
   /**
    * Checks if input array contains non-prime numbers or not. Parallel execution using threads.
