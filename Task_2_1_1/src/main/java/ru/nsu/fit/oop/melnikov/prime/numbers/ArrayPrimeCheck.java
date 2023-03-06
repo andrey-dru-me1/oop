@@ -7,6 +7,6 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface ArrayPrimeCheck {
 
-    @NotNull Boolean check(int @NotNull [] array);
+  @NotNull Boolean check(int @NotNull [] array);
 
 }
