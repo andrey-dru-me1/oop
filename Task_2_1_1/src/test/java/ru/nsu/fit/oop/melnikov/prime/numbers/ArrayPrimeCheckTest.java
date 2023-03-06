@@ -8,6 +8,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.nsu.fit.oop.melnikov.prime.numbers.thread.AtomicThreadArrayPrimeCheck;
+import ru.nsu.fit.oop.melnikov.prime.numbers.thread.NoVarsThreadArrayPrimeCheck;
 import ru.nsu.fit.oop.melnikov.prime.numbers.thread.SynchronizedThreadArrayPrimeCheck;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -34,6 +35,7 @@ class ArrayPrimeCheckTest {
         new SequentialArrayPrimeCheck(),
         new ParallelStreamArrayPrimeCheck(),
         new AtomicThreadArrayPrimeCheck(),
+        new NoVarsThreadArrayPrimeCheck(),
         new SynchronizedThreadArrayPrimeCheck()
     );
   }
