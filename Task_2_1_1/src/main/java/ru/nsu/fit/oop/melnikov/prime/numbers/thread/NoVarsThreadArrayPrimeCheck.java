@@ -12,7 +12,7 @@ public class NoVarsThreadArrayPrimeCheck implements ArrayPrimeCheck {
     return check(array, Runtime.getRuntime().availableProcessors());
   }
 
-  public @NotNull Boolean check(int @NotNull [] array, int threadCount) {
+  public static @NotNull Boolean check(int @NotNull [] array, int threadCount) {
     Deque<PrimeCheck> threads = new ArrayDeque<>(threadCount);
 
     for (int i = 0; i < threadCount; i++) {

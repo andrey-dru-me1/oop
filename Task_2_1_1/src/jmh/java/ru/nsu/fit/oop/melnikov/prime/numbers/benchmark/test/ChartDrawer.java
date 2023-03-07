@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
@@ -29,56 +30,60 @@ public class ChartDrawer {
       throw new RuntimeException(e);
     }
 
-    Map<String, Map<Integer, Double>> charts = new HashMap<>();
-    Map<String, Map<String, Map<Integer, Double>>> threadCharts = new HashMap<>();
+    Map<String, Map<Integer, Double>> testCountMap = new HashMap<>();
+    Map<String, Map<Integer, Double>> threadCountMap = new HashMap<>();
 
     for (JsonNode node : jsonNodeRoot) {
       String test = node.get("benchmark").asText();
       test = test.substring(test.lastIndexOf(".") + 1);
 
       if (node.path("params").has("threadCount")) {
-
-        int threadCount = node.path("params").get("threadCount").asInt();
-        int size = node.path("params").get("size").asInt();
-        String group = test;
-        test += threadCount;
-
-        if (!threadCharts.containsKey(group)) {
-          threadCharts.put(group, new HashMap<>());
-        }
-        Map<String, Map<Integer, Double>> testPool = threadCharts.get(group);
-
-        if (!testPool.containsKey(test)) {
-          threadCharts.get(group).put(test, new HashMap<>());
-        }
-
-        testPool.get(test).put(size ,node.path("primaryMetric").get("score").asDouble());
-
-        if(threadCount != Runtime.getRuntime().availableProcessors()) {
-          continue;
-        }
-
+        makeMap(node, threadCountMap, test, "threadCount");
       }
-
-      if (!charts.containsKey(test)) {
-        charts.put(test, new HashMap<>());
+      else if(node.path("params").has("size")) {
+        makeMap(node, testCountMap, test, "size");
       }
-      charts.get(test).put(node.path("params").get("size").asInt(),
-          node.path("primaryMetric").get("score").asDouble());
     }
 
-    makeChart(charts, "Benchmark tests");
-    for(Map.Entry<String, Map<String, Map<Integer, Double>>> entry : threadCharts.entrySet()) {
-      makeChart(entry.getValue(), entry.getKey());
-    }
+    XYChart testCountChart = new XYChartBuilder()
+        .title("Benchmark test count")
+        .xAxisTitle("array size")
+        .yAxisTitle("score, ops/s").build();
+    testCountChart.getStyler().setXAxisLogarithmic(true);
+    testCountChart.getStyler().setYAxisLogarithmic(true);
+
+    XYChart threadCountChart = new XYChartBuilder()
+        .title("Benchmark thread count")
+        .xAxisTitle("count of threads")
+        .yAxisTitle("score, ops/s").build();
+
+    makeChart(testCountChart, testCountMap, "Benchmark_test_count");
+    makeChart(threadCountChart, threadCountMap, "Benchmark_thread_count");
 
   }
 
-  private static void makeChart(Map<String, Map<Integer, Double>> charts, String chartName) {
-    XYChart chart = new XYChartBuilder().title(chartName).xAxisTitle("array size")
-        .yAxisTitle("score, ops/s").build();
-    chart.getStyler().setXAxisLogarithmic(true);
-    chart.getStyler().setYAxisLogarithmic(true);
+  private static void makeMap(
+      @NotNull JsonNode node,
+      @NotNull Map<String, Map<Integer, Double>> chart,
+      String test, String param
+  ) {
+    int value = node.path("params").get(param).asInt();
+
+    if (!chart.containsKey(test)) {
+      chart.put(test, new HashMap<>());
+    }
+
+    chart.get(test).put(
+        value,
+        node.path("primaryMetric").get("score").asDouble()
+    );
+  }
+
+  private static void makeChart(
+      XYChart chart,
+      @NotNull Map<String, Map<Integer, Double>> charts,
+      String chartName
+  ) {
 
     for (String testName : charts.keySet()) {
       List<Integer> sizeData = charts.get(testName).keySet().stream().sorted().toList();

@@ -21,6 +21,7 @@ dependencies {
     testAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.36'
     implementation 'org.knowm.xchart:xchart:3.8.3'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
+    jmhAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.36'
 }
 
 java {
@@ -36,7 +37,6 @@ test {
 
 jmh {
     resultsFile = project.file("./results.json")
-    timeOnIteration = "200ms"
     warmup = "200ms"
     resultFormat = "JSON"
     benchmarkMode = ['thrpt']
