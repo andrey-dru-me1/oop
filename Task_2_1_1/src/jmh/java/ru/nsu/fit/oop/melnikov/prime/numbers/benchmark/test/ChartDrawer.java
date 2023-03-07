@@ -30,10 +30,36 @@ public class ChartDrawer {
     }
 
     Map<String, Map<Integer, Double>> charts = new HashMap<>();
+    Map<String, Map<String, Map<Integer, Double>>> threadCharts = new HashMap<>();
 
     for (JsonNode node : jsonNodeRoot) {
       String test = node.get("benchmark").asText();
       test = test.substring(test.lastIndexOf(".") + 1);
+
+      if (node.path("params").has("threadCount")) {
+
+        int threadCount = node.path("params").get("threadCount").asInt();
+        int size = node.path("params").get("size").asInt();
+        String group = test;
+        test += threadCount;
+
+        if (!threadCharts.containsKey(group)) {
+          threadCharts.put(group, new HashMap<>());
+        }
+        Map<String, Map<Integer, Double>> testPool = threadCharts.get(group);
+
+        if (!testPool.containsKey(test)) {
+          threadCharts.get(group).put(test, new HashMap<>());
+        }
+
+        testPool.get(test).put(size ,node.path("primaryMetric").get("score").asDouble());
+
+        if(threadCount != Runtime.getRuntime().availableProcessors()) {
+          continue;
+        }
+
+      }
+
       if (!charts.containsKey(test)) {
         charts.put(test, new HashMap<>());
       }
@@ -41,7 +67,15 @@ public class ChartDrawer {
           node.path("primaryMetric").get("score").asDouble());
     }
 
-    XYChart chart = new XYChartBuilder().title("Benchmark tests").xAxisTitle("array size")
+    makeChart(charts, "Benchmark tests");
+    for(Map.Entry<String, Map<String, Map<Integer, Double>>> entry : threadCharts.entrySet()) {
+      makeChart(entry.getValue(), entry.getKey());
+    }
+
+  }
+
+  private static void makeChart(Map<String, Map<Integer, Double>> charts, String chartName) {
+    XYChart chart = new XYChartBuilder().title(chartName).xAxisTitle("array size")
         .yAxisTitle("score, ops/s").build();
     chart.getStyler().setXAxisLogarithmic(true);
     chart.getStyler().setYAxisLogarithmic(true);
@@ -55,7 +89,7 @@ public class ChartDrawer {
     try {
       BitmapEncoder.saveBitmapWithDPI(
           chart,
-          "./Benchmark_tests_result.png",
+          "./"+ chartName + " result.png",
           BitmapEncoder.BitmapFormat.PNG,
           300
       );
