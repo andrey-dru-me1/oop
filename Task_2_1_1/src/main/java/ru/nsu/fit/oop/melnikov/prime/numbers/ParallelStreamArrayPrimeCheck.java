@@ -18,14 +18,7 @@ public class ParallelStreamArrayPrimeCheck implements ArrayPrimeCheck {
     final boolean[] res = {false};
 
     Arrays.stream(array).parallel().forEach(
-        (int x) -> {
-          for (int divider = 2; divider * divider <= x && !res[0]; divider++) {
-            if (x % divider == 0) {
-              res[0] = true;
-              break;
-            }
-          }
-        }
+        (int x) -> res[0] = res[0] || ArrayPrimeCheck.isComposite(x, () -> res[0])
     );
 
     return res[0];

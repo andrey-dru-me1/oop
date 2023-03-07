@@ -20,10 +20,8 @@ public class SequentialArrayPrimeCheck implements ArrayPrimeCheck {
   public @NotNull Boolean check(int @NotNull [] array) {
 
     for (int i : array) {
-      for (int divider = 2; divider * divider <= i; divider++) {
-        if (i % divider == 0) {
-          return true;
-        }
+      if(ArrayPrimeCheck.isComposite(i, () -> false)) {
+        return true;
       }
     }
 

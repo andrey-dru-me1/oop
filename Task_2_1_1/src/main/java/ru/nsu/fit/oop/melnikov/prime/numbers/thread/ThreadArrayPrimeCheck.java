@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.melnikov.prime.numbers.thread;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.prime.numbers.ArrayPrimeCheck;
 
 class ThreadArrayPrimeCheck {
 
@@ -57,11 +58,8 @@ class ThreadArrayPrimeCheck {
 
         int number = numbers[index];
 
-        for (int divider = 2; divider * divider <= number && !res.hasCompositeNumber(); divider++) {
-          if (number % divider == 0) {
-            res.setCompositeNumber();
-            break;
-          }
+        if(ArrayPrimeCheck.isComposite(number, res::hasCompositeNumber)) {
+          res.setCompositeNumber();
         }
 
       }

@@ -63,12 +63,8 @@ public class NoVarsThreadArrayPrimeCheck implements ArrayPrimeCheck {
 
         int number = numbers[index];
 
-        for (int divider = 2; divider * divider <= number; divider++) {
-          if (number % divider == 0) {
-            hasCompositeNumber = true;
-            return;
-          }
-        }
+        hasCompositeNumber = hasCompositeNumber || ArrayPrimeCheck.isComposite(number, () -> false);
+
       }
 
     }
