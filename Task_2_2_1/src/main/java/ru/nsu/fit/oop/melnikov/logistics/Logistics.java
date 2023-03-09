@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.melnikov.logistics;
 
 import java.util.Set;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.courier.Courier;
 import ru.nsu.fit.oop.melnikov.kitchen.Cook;
 import ru.nsu.fit.oop.melnikov.warehouse.WareHouse;
 
@@ -10,7 +11,7 @@ public class Logistics {
   private final int[] orders;
   private final WareHouse wareHouse;
 
-  public Logistics(@NotNull Set<Cook> cooks, WareHouse wareHouse) {
+  public Logistics(@NotNull Set<Cook> cooks, Set<Courier> couriers, WareHouse wareHouse) {
     this.wareHouse = wareHouse;
     this.orders = new int[1];
 
@@ -18,12 +19,35 @@ public class Logistics {
       new Thread(() -> cook.work(this::waitForOrders, this::putPizza)).start();
     }
 
+    for (Courier courier : couriers) {
+      new Thread(() -> courier.work(this::getPizzas)).start();
+    }
+
+  }
+
+  private void getPizzas(int max) {
+    int pizzasAmount = 0;
+    while (pizzasAmount < max) {
+      synchronized (wareHouse) {
+        try {
+          pizzasAmount += wareHouse.takePizzas(max);
+          wareHouse.notifyAll();
+        } catch (IndexOutOfBoundsException e) {
+          try {
+            wareHouse.wait();
+          } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+          }
+        }
+      }
+    }
   }
 
   private void putPizza() {
     synchronized (wareHouse) {
       try {
         wareHouse.putPizza();
+        wareHouse.notifyAll();
       } catch (IndexOutOfBoundsException e) {
         try {
           wareHouse.wait();
@@ -39,7 +63,6 @@ public class Logistics {
       synchronized (orders) {
         if (orders[0] > 0) {
           orders[0]--;
-          System.out.println("Cook received the order");
           return;
         } else {
           try {
@@ -54,7 +77,6 @@ public class Logistics {
 
   public void orderNewPizza() {
     synchronized (orders) {
-      System.out.println("An order has received");
       orders[0]++;
       orders.notify();
     }

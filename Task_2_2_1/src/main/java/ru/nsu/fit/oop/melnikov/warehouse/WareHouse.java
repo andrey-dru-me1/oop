@@ -12,10 +12,6 @@ public class WareHouse {
     pizzasAmount = 0;
   }
 
-  public int getPizzasAmount() {
-    return pizzasAmount;
-  }
-
   public synchronized void putPizza() throws IndexOutOfBoundsException {
     if (pizzasAmount >= capacity) {
       throw new IndexOutOfBoundsException();

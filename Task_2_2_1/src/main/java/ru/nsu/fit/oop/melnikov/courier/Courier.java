@@ -3,7 +3,7 @@ package ru.nsu.fit.oop.melnikov.courier;
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 public class Courier {
 
@@ -13,33 +13,33 @@ public class Courier {
     this.trunkSize = trunkSize;
   }
 
-  public void work(Function<Integer, Integer> takePizzasFromWareHouse, Runnable delivered) {
+  public void work(Consumer<Integer> giveMePizzas) {
 
     while (!currentThread().isInterrupted()) {
 
-      // Fill all the trunk with pizzas
-      int takenPizzasAmount = 0;
-      while (takenPizzasAmount != trunkSize) {
+      giveMePizzas.accept(trunkSize);
 
-        // Try to take pizzas from warehouse
-        takenPizzasAmount += takePizzasFromWareHouse.apply(trunkSize - takenPizzasAmount);
+      System.out.println("Courier is on the way");
+
+      // Delivering pizzas
+      for (int i = 0; i < trunkSize; i++) {
+
         try {
-          // Wait for cooks to bring pizzas
-          wait();
+          sleep(1000);
         } catch (InterruptedException e) {
           throw new RuntimeException(e);
         }
 
+        System.out.println("Pizza's delivered!");
       }
 
-      // Delivering...
       try {
-        sleep(5000);
+        sleep(1000);
       } catch (InterruptedException e) {
         throw new RuntimeException(e);
       }
 
-      delivered.run();
+      System.out.println("Courier's back!");
 
     }
 
