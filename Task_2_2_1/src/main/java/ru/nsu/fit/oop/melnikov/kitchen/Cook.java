@@ -11,7 +11,7 @@ public class Cook {
     this.experience = experience;
   }
 
-  public void work(Runnable iAmFree) {
+  public void work(Runnable iAmFree, Runnable stayAtWareHouse) {
 
     while (!currentThread().isInterrupted()) {
 
@@ -25,62 +25,14 @@ public class Cook {
         throw new RuntimeException(e);
       }
 
-      System.out.println("Pizza is ready!");
+      System.out.println("Pizza has cooked");
+
+      stayAtWareHouse.run();
+
+      System.out.println("Pizza is in warehouse");
 
     }
 
   }
-
-//  public void work(
-//      Callable<Boolean> getOrder,
-//      Runnable putCookInQueue,
-//      Runnable removeCookFromQueue,
-//      Runnable putPizzaInWareHouse,
-//      Runnable waitForWareHouse,
-//      Runnable removeFromWareHouseQueue
-//  ) {
-//    while(!currentThread().isInterrupted()) {
-//
-//      // Getting order or waiting for order
-//      putCookInQueue.run();
-//      while(true) {
-//        try {
-//          if (getOrder.call())
-//            break;
-//          wait();
-//        } catch (Exception e) {
-//          throw new RuntimeException(e);
-//        }
-//      }
-//      removeCookFromQueue.run();
-//
-//      // Cooking...
-//      try {
-//        sleep(5000/experience);
-//      } catch (InterruptedException e) {
-//        throw new RuntimeException(e);
-//      }
-//
-//      // Waiting for place in warehouse and put pizza in there
-//      waitForWareHouse.run();
-//      while(true) {
-//        try {
-//          putPizzaInWareHouse.run();
-//          break;
-//        } catch(IndexOutOfBoundsException ignore) {
-//
-//          // Waiting for place in warehouse
-//          try {
-//            wait();
-//          } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//          }
-//
-//        }
-//      }
-//      removeFromWareHouseQueue.run();
-//
-//    }
-//  }
 
 }

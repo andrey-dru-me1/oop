@@ -7,7 +7,7 @@ public class WareHouse {
   private final int capacity;
   private volatile int pizzasAmount;
 
-  WareHouse(int capacity) {
+  public WareHouse(int capacity) {
     this.capacity = capacity;
     pizzasAmount = 0;
   }
