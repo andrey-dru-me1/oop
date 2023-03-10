@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov.warehouse;
+package ru.nsu.fit.oop.melnikov;
 
 import static java.lang.Math.min;
 

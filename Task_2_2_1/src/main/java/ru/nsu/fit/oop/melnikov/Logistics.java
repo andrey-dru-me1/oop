@@ -1,10 +1,7 @@
-package ru.nsu.fit.oop.melnikov.logistics;
+package ru.nsu.fit.oop.melnikov;
 
 import java.util.Set;
 import org.jetbrains.annotations.NotNull;
-import ru.nsu.fit.oop.melnikov.courier.Courier;
-import ru.nsu.fit.oop.melnikov.kitchen.Cook;
-import ru.nsu.fit.oop.melnikov.warehouse.WareHouse;
 
 public class Logistics {
 
