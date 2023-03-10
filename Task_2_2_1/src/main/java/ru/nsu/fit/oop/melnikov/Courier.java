@@ -6,9 +6,12 @@ import static java.lang.Thread.sleep;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.function.Consumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Courier {
 
+  private static final Logger logger = LoggerFactory.getLogger(Courier.class);
   private final int trunkSize;
 
   @JsonCreator
@@ -23,7 +26,8 @@ public class Courier {
 
       giveMePizzas.accept(trunkSize);
 
-      System.out.println("Courier is on the way");
+//      System.out.println("Courier is on the way");
+      logger.info("On the way");
 
       // Delivering pizzas
       for (int i = 0; i < trunkSize; i++) {
@@ -34,7 +38,8 @@ public class Courier {
           throw new RuntimeException(e);
         }
 
-        System.out.println("Pizza's delivered!");
+//        System.out.println("Pizza's delivered!");
+        logger.info("Delivered");
       }
 
       try {
@@ -43,7 +48,8 @@ public class Courier {
         throw new RuntimeException(e);
       }
 
-      System.out.println("Courier's back!");
+//      System.out.println("Courier's back!");
+      logger.info("Back");
 
     }
 
