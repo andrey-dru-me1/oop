@@ -1,18 +1,22 @@
-package ru.nsu.fit.oop.melnikov.courier;
+package ru.nsu.fit.oop.melnikov;
 
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.function.Consumer;
 
 public class Courier {
 
   private final int trunkSize;
 
-  public Courier(int trunkSize) {
+  @JsonCreator
+  public Courier(@JsonProperty("trunkSize") int trunkSize) {
     this.trunkSize = trunkSize;
   }
 
+  @SuppressWarnings("BusyWait")
   public void work(Consumer<Integer> giveMePizzas) {
 
     while (!currentThread().isInterrupted()) {
