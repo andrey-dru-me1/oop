@@ -26,7 +26,6 @@ public class Courier {
 
       giveMePizzas.accept(trunkSize);
 
-//      System.out.println("Courier is on the way");
       logger.info("On the way");
 
       // Delivering pizzas
@@ -38,7 +37,6 @@ public class Courier {
           throw new RuntimeException(e);
         }
 
-//        System.out.println("Pizza's delivered!");
         logger.info("Delivered");
       }
 
@@ -48,7 +46,6 @@ public class Courier {
         throw new RuntimeException(e);
       }
 
-//      System.out.println("Courier's back!");
       logger.info("Back");
 
     }
