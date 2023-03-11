@@ -25,7 +25,6 @@ public class Cook {
       iAmFree.run();
 
       // Cooking...
-//      System.out.println("Cook has started cooking");
       logger.info("Start cooking");
       try {
         sleep(5000 / experience);
@@ -33,12 +32,10 @@ public class Cook {
         throw new RuntimeException(e);
       }
 
-//      System.out.println("Pizza has cooked");
       logger.info("Finish cooking");
 
       stayAtWareHouse.run();
 
-//      System.out.println("Pizza is in warehouse");
       logger.info("Put in warehouse");
 
     }
