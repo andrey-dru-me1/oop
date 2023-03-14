@@ -3,24 +3,17 @@ package ru.nsu.fit.oop.melnikov.prime.numbers.thread;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import org.jetbrains.annotations.NotNull;
-import ru.nsu.fit.oop.melnikov.prime.numbers.ArrayPrimeCheck;
+import ru.nsu.fit.oop.melnikov.prime.numbers.CommonArrayPrimeCheck;
 
-public class NoVarsThreadArrayPrimeCheck implements ArrayPrimeCheck {
+public class NoVarsThreadArrayPrimeCheck extends CommonArrayPrimeCheck {
 
-  @Override
-  public @NotNull Boolean check(int @NotNull [] array) {
-    return check(array, Runtime.getRuntime().availableProcessors());
-  }
-
-  public static @NotNull Boolean check(int @NotNull [] array, int threadCount) {
+  public @NotNull Boolean check(int @NotNull [] array, int threadCount) {
     Deque<PrimeCheck> threads = new ArrayDeque<>(threadCount);
 
     for (int i = 0; i < threadCount; i++) {
-      PrimeCheck thread = new PrimeCheck(
-          array.length * i / threadCount,
-          array.length * (i + 1) / threadCount,
-          array
-      );
+      PrimeCheck thread =
+          new PrimeCheck(
+              array.length * i / threadCount, array.length * (i + 1) / threadCount, array);
       thread.start();
       threads.add(thread);
     }
@@ -39,7 +32,12 @@ public class NoVarsThreadArrayPrimeCheck implements ArrayPrimeCheck {
     return res;
   }
 
-  private static class PrimeCheck extends Thread {
+  @Override
+  public @NotNull Boolean check(int @NotNull [] array) {
+    return check(array, Runtime.getRuntime().availableProcessors());
+  }
+
+  private class PrimeCheck extends Thread {
 
     private final int firstIndex;
     private final int lastIndex;
@@ -63,12 +61,9 @@ public class NoVarsThreadArrayPrimeCheck implements ArrayPrimeCheck {
 
         int number = numbers[index];
 
-        hasCompositeNumber = hasCompositeNumber || ArrayPrimeCheck.isComposite(number, () -> false);
-
+        hasCompositeNumber =
+            hasCompositeNumber || NoVarsThreadArrayPrimeCheck.this.isComposite(number, () -> false);
       }
-
     }
-
   }
-
 }

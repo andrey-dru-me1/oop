@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
  * Class that contains three different methods of non-prime number searching: - Sequential execution
  * - Parallel execution using threads - Parallel execution using parallelStream
  */
-public class SequentialArrayPrimeCheck implements ArrayPrimeCheck {
+public class SequentialArrayPrimeCheck extends CommonArrayPrimeCheck {
 
   /**
    * Checks if input array contains non-prime numbers or not. Sequential execution.
@@ -20,13 +20,11 @@ public class SequentialArrayPrimeCheck implements ArrayPrimeCheck {
   public @NotNull Boolean check(int @NotNull [] array) {
 
     for (int i : array) {
-      if(ArrayPrimeCheck.isComposite(i, () -> false)) {
+      if (this.isComposite(i, () -> false)) {
         return true;
       }
     }
 
     return false;
-
   }
-
 }

@@ -3,18 +3,18 @@ package ru.nsu.fit.oop.melnikov.prime.numbers.thread;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import org.jetbrains.annotations.NotNull;
-import ru.nsu.fit.oop.melnikov.prime.numbers.ArrayPrimeCheck;
+import ru.nsu.fit.oop.melnikov.prime.numbers.CommonArrayPrimeCheck;
 
-class ThreadArrayPrimeCheck {
+abstract class ThreadArrayPrimeCheck extends CommonArrayPrimeCheck {
 
   /**
    * Checks if input array contains non-prime numbers or not. Parallel execution using threads.
    *
-   * @param array       array an input array where non-prime numbers will be searched
+   * @param array array an input array where non-prime numbers will be searched
    * @param threadCount count of threads to work
    * @return true if there is at least one non-prime number and false otherwise
    */
-  public static @NotNull Boolean check(int @NotNull [] array, int threadCount, CommonVars res) {
+  public @NotNull Boolean check(int @NotNull [] array, int threadCount, CommonVars res) {
 
     Deque<Thread> threads = new ArrayDeque<>(threadCount);
 
@@ -33,13 +33,10 @@ class ThreadArrayPrimeCheck {
     }
 
     return res.hasCompositeNumber();
-
   }
 
-  /**
-   * Searches a non-prime number from an array and breaks if found.
-   */
-  private static class PrimeCheck extends Thread {
+  /** Searches a non-prime number from an array and breaks if found. */
+  private class PrimeCheck extends Thread {
 
     private final int[] numbers;
     private final CommonVars res;
@@ -58,13 +55,10 @@ class ThreadArrayPrimeCheck {
 
         int number = numbers[index];
 
-        if(ArrayPrimeCheck.isComposite(number, res::hasCompositeNumber)) {
+        if (ThreadArrayPrimeCheck.this.isComposite(number, res::hasCompositeNumber)) {
           res.setCompositeNumber();
         }
-
       }
     }
   }
-
-
 }

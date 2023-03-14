@@ -35,17 +35,17 @@ public class BenchmarkThreadCount {
 
   @Benchmark
   public void benchmarkSynchronizedThreads() {
-    Assertions.assertFalse(SynchronizedThreadArrayPrimeCheck.check(array, threadCount));
+    Assertions.assertFalse(new SynchronizedThreadArrayPrimeCheck().check(array, threadCount));
   }
 
   @Benchmark
   public void benchmarkAtomicThreads() {
-    Assertions.assertFalse(AtomicThreadArrayPrimeCheck.check(array, threadCount));
+    Assertions.assertFalse(new AtomicThreadArrayPrimeCheck().check(array, threadCount));
   }
 
   @Benchmark
   public void benchmarkNoVarsThreads() {
-    Assertions.assertFalse(NoVarsThreadArrayPrimeCheck.check(array, threadCount));
+    Assertions.assertFalse(new NoVarsThreadArrayPrimeCheck().check(array, threadCount));
   }
 
   @Benchmark
