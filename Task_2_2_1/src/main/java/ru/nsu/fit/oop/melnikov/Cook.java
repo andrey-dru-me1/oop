@@ -4,13 +4,14 @@ import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;import org.slf4j.Logger;import org.slf4j.LoggerFactory;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Cook {
 
   private static final Logger logger = LoggerFactory.getLogger(Cook.class);
   private final int experience;
-
 
   @JsonCreator
   public Cook(@JsonProperty("experience") int experience) {
@@ -37,9 +38,6 @@ public class Cook {
       stayAtWareHouse.run();
 
       logger.info("Put in warehouse");
-
     }
-
   }
-
 }
