@@ -9,12 +9,12 @@ import ru.nsu.fit.oop.melnikov.Courier;
 import ru.nsu.fit.oop.melnikov.Cook;
 import ru.nsu.fit.oop.melnikov.LoadData;
 import ru.nsu.fit.oop.melnikov.Logistics;
-import ru.nsu.fit.oop.melnikov.WareHouse;
+import ru.nsu.fit.oop.melnikov.Warehouse;
 
 class LogisticsTest {
 
   void test(Set<Cook> cooks, Set<Courier> couriers) {
-    WareHouse wareHouse = new WareHouse(15);
+    Warehouse wareHouse = new Warehouse(15);
 
     Logistics logistics = new Logistics(cooks, couriers, wareHouse);
 

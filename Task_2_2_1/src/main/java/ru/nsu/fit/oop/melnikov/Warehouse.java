@@ -2,12 +2,12 @@ package ru.nsu.fit.oop.melnikov;
 
 import static java.lang.Math.min;
 
-public class WareHouse {
+public class Warehouse {
 
   private final int capacity;
   private volatile int pizzasAmount;
 
-  public WareHouse(int capacity) {
+  public Warehouse(int capacity) {
     this.capacity = capacity;
     pizzasAmount = 0;
   }

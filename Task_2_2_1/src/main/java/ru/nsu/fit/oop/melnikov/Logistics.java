@@ -6,9 +6,9 @@ import org.jetbrains.annotations.NotNull;
 public class Logistics {
 
   private final int[] orders;
-  private final WareHouse wareHouse;
+  private final Warehouse wareHouse;
 
-  public Logistics(@NotNull Set<Cook> cooks, Set<Courier> couriers, WareHouse wareHouse) {
+  public Logistics(@NotNull Set<Cook> cooks, Set<Courier> couriers, Warehouse wareHouse) {
     this.wareHouse = wareHouse;
     this.orders = new int[1];
 
