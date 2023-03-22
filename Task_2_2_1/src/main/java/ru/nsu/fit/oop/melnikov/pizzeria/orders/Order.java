@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Order {
+public class Order{
 
   public static final Logger log  = LoggerFactory.getLogger("Order");
 
@@ -14,7 +14,7 @@ public class Order {
   private final Pizza pizza;
   private String status;
 
-  Order(Pizza pizza) {
+  public Order(Pizza pizza) {
     this.id = ID_COUNTER.getAndIncrement();
     this.pizza = pizza;
     this.updateStatus("is received");
