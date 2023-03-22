@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.melnikov;
 
-import static java.lang.Thread.sleep;
+import static java.lang.Thread.currentThread;import static java.lang.Thread.sleep;
 
 public record Courier(int trunkSize, String name) {
 
@@ -21,7 +21,7 @@ public record Courier(int trunkSize, String name) {
       }
 
     } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+      currentThread().interrupt();
     }
   }
 }

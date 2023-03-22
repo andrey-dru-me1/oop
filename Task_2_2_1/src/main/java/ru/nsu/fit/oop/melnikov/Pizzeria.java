@@ -10,6 +10,7 @@ public class Pizzeria {
   private final Set<Courier> couriers;
   private final Warehouse warehouse;
   private final OrderQueue orders;
+  private final ThreadController threadController;
 
   public Pizzeria(
       String name, @NotNull Set<Cook> cooks, Set<Courier> couriers, Warehouse warehouse) {
@@ -18,16 +19,28 @@ public class Pizzeria {
     this.couriers = couriers;
     this.warehouse = warehouse;
     this.orders = new OrderQueue();
-  }
+    this.threadController = new ThreadController();
 
-  public void start() {
     for (Cook cook : cooks) {
-      new Thread(() -> cook.work(orders, warehouse)).start();
+      threadController.addCookThread(new Thread(() -> cook.work(orders, warehouse)));
     }
 
     for (Courier courier : couriers) {
-      new Thread(() -> courier.work(warehouse)).start();
+      threadController.addCourierThread(new Thread(() -> courier.work(warehouse)));
     }
+
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void start() {
+    threadController.startAll();
+  }
+
+  public void close() {
+    threadController.interruptAll();
   }
 
   public @NotNull Order orderPizza(Pizza pizza) {

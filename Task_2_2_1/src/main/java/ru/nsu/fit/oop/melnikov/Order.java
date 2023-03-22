@@ -33,12 +33,13 @@ public class Order {
   }
 
   public void updateStatus(String status) {
-    status = "Order " + this.getId() + " " + status;
+    status = this.getId() + ": " + this.getPizza().name() + " order " + status;
     this.status = status;
     log.info(status);
   }
 
   public synchronized void delivered() {
+    updateStatus("is delivered!");
     notifyAll();
   }
 
