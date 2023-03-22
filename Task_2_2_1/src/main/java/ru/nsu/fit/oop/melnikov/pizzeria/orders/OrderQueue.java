@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov;
+package ru.nsu.fit.oop.melnikov.pizzeria.orders;
 
 import java.util.ArrayDeque;
 
