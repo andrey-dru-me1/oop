@@ -1,43 +1,25 @@
 package ru.nsu.fit.oop.melnikov;
 
-import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
+public record Cook(int experience, String name) {
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+  public void work(OrderQueue orders, Warehouse warehouse) {
 
-public class Cook {
+    try {
+      while (!Thread.interrupted()) {
 
-  private static final Logger logger = LoggerFactory.getLogger(Cook.class);
-  private final int experience;
+        Order order = orders.take();
+        order.updateStatus("is started cooking by cook " + this.name);
 
-  @JsonCreator
-  public Cook(@JsonProperty("experience") int experience) {
-    this.experience = experience;
-  }
-
-  @SuppressWarnings("BusyWait")
-  public void work(Runnable iAmFree, Runnable stayAtWareHouse) {
-
-    while (!currentThread().isInterrupted()) {
-
-      iAmFree.run();
-
-      // Cooking...
-      logger.info("Start cooking");
-      try {
+        //Cooking
         sleep(5000 / experience);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
+        order.updateStatus("is cooked!");
+
+        warehouse.putOrder(order);
       }
-
-      logger.info("Finish cooking");
-
-      stayAtWareHouse.run();
-
-      logger.info("Put in warehouse");
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
     }
   }
+
 }
