@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class Order {
 
-  public static final Logger log  = LoggerFactory.getLogger(Order.class);
+  public static final Logger log  = LoggerFactory.getLogger("Order");
 
   private static final AtomicInteger ID_COUNTER = new AtomicInteger(0);
 
