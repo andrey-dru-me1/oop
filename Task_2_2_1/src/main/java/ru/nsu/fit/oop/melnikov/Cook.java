@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.melnikov;
 
-import static java.lang.Thread.sleep;
+import static java.lang.Thread.currentThread;import static java.lang.Thread.sleep;
 public record Cook(int experience, String name) {
 
   public void work(OrderQueue orders, Warehouse warehouse) {
@@ -17,8 +17,8 @@ public record Cook(int experience, String name) {
 
         warehouse.putOrder(order);
       }
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+    } catch (InterruptedException ignore) {
+      currentThread().interrupt();
     }
   }
 

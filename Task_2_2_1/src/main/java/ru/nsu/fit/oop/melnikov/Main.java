@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.melnikov;
 
-import java.util.HashSet;
+import java.util.Collection;import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 import org.slf4j.Logger;
@@ -25,6 +25,8 @@ public class Main {
 
     Scanner scanner = new Scanner(System.in);
 
+    Collection<Thread> customerThreads = new HashSet<>();
+
     boolean isLoop = true;
     while (isLoop) {
 
@@ -34,9 +36,17 @@ public class Main {
         case "order" -> {
           String name = scanner.next();
           Customer customer = new Customer();
-          new Thread(() -> customer.orderPizza(pizzeria, name)).start();
+          Thread thread = new Thread(() -> customer.orderPizza(pizzeria, name));
+          thread.start();
+          customerThreads.add(thread);
         }
-        case "exit" -> isLoop = false;
+        case "exit" -> {
+          isLoop = false;
+          pizzeria.close();
+          for (Thread customerThread : customerThreads) {
+              customerThread.interrupt();
+          }
+        }
         default -> log.error("Unknown command");
       }
     }
