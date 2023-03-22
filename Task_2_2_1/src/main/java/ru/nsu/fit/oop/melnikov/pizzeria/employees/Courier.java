@@ -1,6 +1,8 @@
-package ru.nsu.fit.oop.melnikov;
+package ru.nsu.fit.oop.melnikov.pizzeria.employees;
 
 import static java.lang.Thread.currentThread;import static java.lang.Thread.sleep;
+import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
+import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
 public record Courier(int trunkSize, String name) {
 

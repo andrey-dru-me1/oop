@@ -5,6 +5,11 @@ import java.util.Scanner;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.nsu.fit.oop.melnikov.pizzeria.employees.Cook;
+import ru.nsu.fit.oop.melnikov.pizzeria.employees.Courier;
+import ru.nsu.fit.oop.melnikov.pizzeria.Customer;
+import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
+import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
 public class Main {
 

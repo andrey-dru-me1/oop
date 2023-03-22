@@ -1,7 +1,8 @@
-package ru.nsu.fit.oop.melnikov;
+package ru.nsu.fit.oop.melnikov.pizzeria.warehouse;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
 
 public class Warehouse {
 

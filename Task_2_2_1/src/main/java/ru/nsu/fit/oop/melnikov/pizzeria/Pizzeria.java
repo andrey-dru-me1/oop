@@ -1,7 +1,14 @@
-package ru.nsu.fit.oop.melnikov;
+package ru.nsu.fit.oop.melnikov.pizzeria;
 
 import java.util.Set;
 import org.jetbrains.annotations.NotNull;
+import ru.nsu.fit.oop.melnikov.pizzeria.employees.Cook;
+import ru.nsu.fit.oop.melnikov.pizzeria.employees.Courier;
+import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
+import ru.nsu.fit.oop.melnikov.pizzeria.orders.OrderQueue;
+import ru.nsu.fit.oop.melnikov.pizzeria.orders.Pizza;
+import ru.nsu.fit.oop.melnikov.pizzeria.threads.ThreadController;
+import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
 public class Pizzeria {
 

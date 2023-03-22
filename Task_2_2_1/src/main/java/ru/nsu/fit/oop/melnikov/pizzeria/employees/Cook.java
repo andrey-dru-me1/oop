@@ -1,6 +1,10 @@
-package ru.nsu.fit.oop.melnikov;
+package ru.nsu.fit.oop.melnikov.pizzeria.employees;
 
 import static java.lang.Thread.currentThread;import static java.lang.Thread.sleep;
+import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
+import ru.nsu.fit.oop.melnikov.pizzeria.orders.OrderQueue;
+import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
+
 public record Cook(int experience, String name) {
 
   public void work(OrderQueue orders, Warehouse warehouse) {
