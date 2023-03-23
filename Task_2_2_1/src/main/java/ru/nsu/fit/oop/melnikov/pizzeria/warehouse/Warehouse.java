@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
+import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.timer.WaitingTimer;
 
 public class Warehouse {
 
@@ -38,20 +39,45 @@ public class Warehouse {
     pizzas.add(order);
     order.updateStatus("is placed in warehouse");
     notifyAll();
-
   }
 
-  public synchronized Order takeOrder() throws InterruptedException {
+  public synchronized Queue<Order> takeOrders(int ordersCount) throws InterruptedException {
 
-    while (pizzas.isEmpty()) {
-      wait();
+    Queue<Order> takenOrders = new ArrayDeque<>(ordersCount);
+
+    while (ordersCount > 0) {
+
+      WaitingTimer timer = new WaitingTimer(Thread.currentThread());
+
+      if(!takenOrders.isEmpty()) timer.start(ordersCount * 3000L);
+
+      try {
+
+        while (pizzas.isEmpty()) {
+          wait();
+        }
+
+      } catch (InterruptedException e) {
+
+        if (timer.isTimerTriggered()) {
+          break;
+        } else {
+          throw e;
+        }
+
+      } finally {
+        timer.cancel();
+      }
+
+      Order order = pizzas.remove();
+      order.updateStatus("is taken from warehouse");
+      takenOrders.add(order);
+
+      notifyAll();
+
+      ordersCount--;
     }
 
-    Order order = pizzas.poll();
-    order.updateStatus("is taken from warehouse");
-    notifyAll();
-
-    return order;
-
+    return takenOrders;
   }
 }
