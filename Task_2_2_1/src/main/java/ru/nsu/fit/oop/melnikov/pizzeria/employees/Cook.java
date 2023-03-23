@@ -15,7 +15,8 @@ public record Cook(int experience, String name) {
         Order order = orders.take();
         order.updateStatus("is started cooking by cook " + this.name);
 
-        //Cooking
+        // Cooking
+        //noinspection BusyWait
         sleep(5000 / experience);
         order.updateStatus("is cooked!");
 
