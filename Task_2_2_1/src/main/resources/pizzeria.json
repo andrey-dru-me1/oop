@@ -1,0 +1,30 @@
+{
+  "pizzeria": {
+    "name": "Mama Mia",
+    "employees": {
+      "cooks": [
+        {
+          "name": "John",
+          "experience": 1
+        },
+        {
+          "name": "Max",
+          "experience": 5
+        }
+      ],
+      "couriers": [
+        {
+          "name": "James",
+          "trunkSize": 1
+        },
+        {
+          "name": "Julia",
+          "trunkSize": 2
+        }
+      ]
+    },
+    "warehouse": {
+      "capacity": 3
+    }
+  }
+}

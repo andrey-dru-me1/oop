@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.melnikov.pizzeria;
 
-import java.util.Set;
+import java.util.Collection;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.fit.oop.melnikov.pizzeria.employees.Cook;
 import ru.nsu.fit.oop.melnikov.pizzeria.employees.Courier;
@@ -13,14 +13,13 @@ import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 public class Pizzeria {
 
   private final String name;
-  private final Set<Cook> cooks;
-  private final Set<Courier> couriers;
+  private final Collection<Cook> cooks;
+  private final Collection<Courier> couriers;
   private final Warehouse warehouse;
   private final OrderQueue orders;
   private final ThreadController threadController;
-
   public Pizzeria(
-      String name, @NotNull Set<Cook> cooks, Set<Courier> couriers, Warehouse warehouse) {
+      String name, @NotNull Collection<Cook> cooks, Collection<Courier> couriers, Warehouse warehouse) {
     this.name = name;
     this.cooks = cooks;
     this.couriers = couriers;
@@ -36,6 +35,18 @@ public class Pizzeria {
       threadController.addCourierThread(new Thread(() -> courier.work(warehouse)));
     }
 
+  }
+
+  public Collection<Cook> getCooks() {
+    return cooks;
+  }
+
+  public Collection<Courier> getCouriers() {
+    return couriers;
+  }
+
+  public Warehouse getWarehouse() {
+    return warehouse;
   }
 
   public String getName() {

@@ -1,15 +1,18 @@
 package ru.nsu.fit.oop.melnikov.pizzeria.warehouse;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
 
 public class Warehouse {
 
-  protected final int capacity;
-  protected final Queue<Order> pizzas;
+  private final int capacity;
+  private final Queue<Order> pizzas;
 
-  public Warehouse(int capacity) {
+  @JsonCreator
+  public Warehouse(@JsonProperty("capacity") int capacity) {
     this(capacity, new ArrayDeque<>() {});
   }
 
@@ -40,7 +43,7 @@ public class Warehouse {
 
   public synchronized Order takeOrder() throws InterruptedException {
 
-    while (pizzas.size() == 0) {
+    while (pizzas.isEmpty()) {
       wait();
     }
 
