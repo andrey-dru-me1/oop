@@ -25,7 +25,7 @@ public class Main {
     Collection<Thread> customerThreads = new HashSet<>();
 
     boolean isLoop = true;
-    while (isLoop) {
+    while (isLoop && scanner.hasNext()) {
 
       String command = scanner.next();
 
