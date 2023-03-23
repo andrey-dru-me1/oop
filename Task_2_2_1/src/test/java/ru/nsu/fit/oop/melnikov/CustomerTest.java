@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Set;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.melnikov.customer.Customer;
 import ru.nsu.fit.oop.melnikov.data.loader.ResourceJsonFileLoader;
-import ru.nsu.fit.oop.melnikov.pizzeria.Customer;
 import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
 
 class CustomerTest {
 
-  @Test
   void test() {
 
     try {
@@ -38,4 +37,10 @@ class CustomerTest {
       throw new RuntimeException(e);
     }
   }
+
+  @Test
+  void testWithAssert() {
+    Assertions.assertDoesNotThrow(this::test);
+  }
+
 }

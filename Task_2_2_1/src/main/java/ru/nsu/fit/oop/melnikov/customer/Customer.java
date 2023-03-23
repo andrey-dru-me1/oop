@@ -1,8 +1,9 @@
-package ru.nsu.fit.oop.melnikov.pizzeria;
+package ru.nsu.fit.oop.melnikov.customer;
 
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Pizza;
 

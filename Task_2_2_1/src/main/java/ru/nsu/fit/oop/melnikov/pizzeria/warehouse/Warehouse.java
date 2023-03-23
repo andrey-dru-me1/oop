@@ -26,10 +26,6 @@ public class Warehouse {
     return capacity;
   }
 
-  public Queue<Order> getOrders() {
-    return pizzas;
-  }
-
   public synchronized void putOrder(Order order) throws InterruptedException {
 
     while (pizzas.size() >= capacity) {

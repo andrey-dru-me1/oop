@@ -7,22 +7,17 @@ import java.util.HashSet;
 import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.nsu.fit.oop.melnikov.data.loader.ResourceJsonFileLoader;
-import ru.nsu.fit.oop.melnikov.pizzeria.Customer;
+import ru.nsu.fit.oop.melnikov.customer.Customer;import ru.nsu.fit.oop.melnikov.data.loader.ResourceJsonFileLoader;
 import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
 
 public class Main {
 
-  public static void main(String[] args) {
+  public static void main(String[] args)throws IOException, URISyntaxException {
 
     Logger log = LoggerFactory.getLogger("Main");
 
     Pizzeria pizzeria;
-    try {
-      pizzeria = new ResourceJsonFileLoader().extractPizzeriaFromFilename("pizzeria.json");
-    } catch (IOException | URISyntaxException e) {
-      throw new RuntimeException(e);
-    }
+    pizzeria = new ResourceJsonFileLoader().extractPizzeriaFromFilename("pizzeria.json");
     pizzeria.start();
 
     Scanner scanner = new Scanner(System.in);

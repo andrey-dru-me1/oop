@@ -22,6 +22,7 @@ public record Courier(int trunkSize, String name) {
           order.updateStatus("is on its way, delivering by " + this.name());
 
           // Delivering
+          //noinspection BusyWait
           sleep(1000);
 
           order.delivered();
