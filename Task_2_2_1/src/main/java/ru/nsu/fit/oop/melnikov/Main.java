@@ -1,15 +1,17 @@
 package ru.nsu.fit.oop.melnikov;
 
-import java.util.Collection;import java.util.HashSet;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Scanner;
-import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.nsu.fit.oop.melnikov.pizzeria.employees.Cook;
-import ru.nsu.fit.oop.melnikov.pizzeria.employees.Courier;
+import ru.nsu.fit.oop.melnikov.data.loader.JsonLoader;
 import ru.nsu.fit.oop.melnikov.pizzeria.Customer;
 import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
-import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
 public class Main {
 
@@ -17,15 +19,17 @@ public class Main {
 
     Logger log = LoggerFactory.getLogger("Main");
 
-    Set<Cook> cooks = new HashSet<>();
-    Set<Courier> couriers = new HashSet<>();
-
-    cooks.add(new Cook(1, "John"));
-    couriers.add(new Courier(1, "James"));
-
-    Warehouse warehouse = new Warehouse(1);
-
-    Pizzeria pizzeria = new Pizzeria("Mamma mia", cooks, couriers, warehouse);
+    Pizzeria pizzeria;
+    try {
+      pizzeria =
+          new JsonLoader()
+              .extractPizzeriaFromFile(
+                  new File(
+                      Objects.requireNonNull(Main.class.getClassLoader().getResource("test-pizzeria.json"))
+                          .toURI()));
+    } catch (IOException | URISyntaxException e) {
+      throw new RuntimeException(e);
+    }
     pizzeria.start();
 
     Scanner scanner = new Scanner(System.in);
@@ -49,7 +53,7 @@ public class Main {
           isLoop = false;
           pizzeria.close();
           for (Thread customerThread : customerThreads) {
-              customerThread.interrupt();
+            customerThread.interrupt();
           }
         }
         default -> log.error("Unknown command");

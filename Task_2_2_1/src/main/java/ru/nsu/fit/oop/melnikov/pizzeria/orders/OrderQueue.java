@@ -10,7 +10,7 @@ public class OrderQueue extends ArrayDeque<Order> {
       wait();
     }
 
-    return this.poll();
+    return this.remove();
 
   }
 
