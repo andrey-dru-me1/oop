@@ -12,12 +12,16 @@ public class Order{
 
   private final int id;
   private final Pizza pizza;
-  private String status;
+  private boolean done = false;
 
   public Order(Pizza pizza) {
     this.id = ID_COUNTER.getAndIncrement();
     this.pizza = pizza;
     this.updateStatus("is received");
+  }
+
+  public boolean isDone() {
+    return done;
   }
 
   public int getId() {
@@ -28,18 +32,14 @@ public class Order{
     return pizza;
   }
 
-  public String getStatus() {
-    return status;
-  }
-
   public void updateStatus(String status) {
     status = this.getId() + ": " + this.getPizza().name() + " order " + status;
-    this.status = status;
     log.info(status);
   }
 
   public synchronized void delivered() {
     updateStatus("is delivered!");
+    this.done = true;
     notifyAll();
   }
 

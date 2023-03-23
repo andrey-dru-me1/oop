@@ -26,7 +26,9 @@ public class Customer {
 
     try {
       synchronized (order) {
-        order.wait();
+        while (!order.isDone()) {
+          order.wait();
+        }
       }
 
       log.info("Customer {} receives his {}!", this.name, pizzaName);
