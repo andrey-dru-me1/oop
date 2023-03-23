@@ -1,44 +1,41 @@
 package ru.nsu.fit.oop.melnikov;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.melnikov.data.loader.ResourceJsonFileLoader;
 import ru.nsu.fit.oop.melnikov.pizzeria.Customer;
 import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
-import ru.nsu.fit.oop.melnikov.pizzeria.employees.Cook;
-import ru.nsu.fit.oop.melnikov.pizzeria.employees.Courier;
-import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
 class CustomerTest {
 
   @Test
   void test() {
 
-    Set<Cook> cooks = new HashSet<>();
-    Set<Courier> couriers = new HashSet<>();
+    try {
+      Pizzeria pizzeria = new ResourceJsonFileLoader().extractPizzeriaFromFilename("test-pizzeria.json");
+      pizzeria.start();
 
-    cooks.add(new Cook(1, "John"));
-    couriers.add(new Courier(1, "James"));
-
-    Warehouse warehouse = new Warehouse(1);
-
-    Pizzeria pizzeria = new Pizzeria("Mamma mia", cooks, couriers, warehouse);
-    pizzeria.start();
-
-    Set<Thread> customers = new HashSet<>();
-    for (int i = 0; i < 3; i++) {
-      Customer customer = new Customer();
-      Thread thread = new Thread(() -> customer.orderPizza(pizzeria, "just Pizza"));
-      thread.start();
-      customers.add(thread);
-    }
-
-    for (Thread thread : customers) {
-      try {
-        thread.join();
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
+      Set<Thread> customers = new HashSet<>();
+      for (int i = 0; i < 3; i++) {
+        Customer customer = new Customer();
+        Thread thread = new Thread(() -> customer.orderPizza(pizzeria, "just Pizza"));
+        thread.start();
+        customers.add(thread);
       }
+
+      for (Thread thread : customers) {
+        try {
+          thread.join();
+        } catch (InterruptedException e) {
+          throw new RuntimeException(e);
+        }
+      }
+
+    } catch (IOException | URISyntaxException e) {
+      throw new RuntimeException(e);
     }
   }
 }

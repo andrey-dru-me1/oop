@@ -1,15 +1,13 @@
 package ru.nsu.fit.oop.melnikov;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.nsu.fit.oop.melnikov.data.loader.JsonLoader;
+import ru.nsu.fit.oop.melnikov.data.loader.ResourceJsonFileLoader;
 import ru.nsu.fit.oop.melnikov.pizzeria.Customer;
 import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
 
@@ -21,12 +19,7 @@ public class Main {
 
     Pizzeria pizzeria;
     try {
-      pizzeria =
-          new JsonLoader()
-              .extractPizzeriaFromFile(
-                  new File(
-                      Objects.requireNonNull(Main.class.getClassLoader().getResource("test-pizzeria.json"))
-                          .toURI()));
+      pizzeria = new ResourceJsonFileLoader().extractPizzeriaFromFilename("pizzeria.json");
     } catch (IOException | URISyntaxException e) {
       throw new RuntimeException(e);
     }

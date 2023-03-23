@@ -1,11 +1,9 @@
 package ru.nsu.fit.oop.melnikov.data.loader;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
@@ -18,12 +16,7 @@ class JsonLoaderTest {
   void test() {
     try {
       Pizzeria pizzeria =
-          new JsonLoader()
-              .extractPizzeriaFromFile(
-                  new File(
-                      Objects.requireNonNull(
-                              getClass().getClassLoader().getResource("test-pizzeria.json"))
-                          .toURI()));
+          new ResourceJsonFileLoader().extractPizzeriaFromFilename("test-pizzeria.json");
 
       Assertions.assertEquals("Mama Mia", pizzeria.getName());
 
