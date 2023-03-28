@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'java-library'
 }
 
 group 'ru.nsu.fit.melnikov'
@@ -11,8 +12,18 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.jetbrains:annotations:23.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+
+    implementation 'org.apache.commons:commons-numbers-complex:1.1'
+
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(19)
+    }
 }
 
 test {
