@@ -7,6 +7,12 @@ import java.util.Queue;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
 import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
+/**
+ * Employee that delivers orders from warehouse to customers.
+ *
+ * @param trunkSize maximum orders amount to take
+ * @param name name of courier
+ */
 public record Courier(int trunkSize, String name) {
 
   public void work(Warehouse warehouse) {

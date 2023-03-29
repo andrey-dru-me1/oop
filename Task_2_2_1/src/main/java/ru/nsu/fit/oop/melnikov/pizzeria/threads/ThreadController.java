@@ -1,48 +1,33 @@
 package ru.nsu.fit.oop.melnikov.pizzeria.threads;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
+/**
+ * Class that contains and takes all the control over employee threads.
+ */
 public class ThreadController {
 
-  private final Set<Thread> cookThreads;
-  private final Set<Thread> courierThreads;
+  private final Collection<Thread> threads;
 
   public ThreadController() {
-    this.cookThreads = new HashSet<>();
-    this.courierThreads = new HashSet<>();
+    this.threads = new HashSet<>();
   }
 
-  public void addCookThread(Thread cookThread) {
-    cookThreads.add(cookThread);
-  }
-
-  public void addCourierThread(Thread courierThread) {
-    courierThreads.add(courierThread);
+  public void addThread(Thread thread) {
+    threads.add(thread);
   }
 
   public void startAll() {
-
-    for (Thread thread : cookThreads) {
-        thread.start();
-    }
-
-    for (Thread thread : courierThreads) {
+    for (Thread thread : threads) {
       thread.start();
     }
-
   }
 
   public void interruptAll() {
-
-    for (Thread thread : cookThreads) {
+    for (Thread thread : threads) {
       thread.interrupt();
     }
-
-    for (Thread thread : courierThreads) {
-      thread.interrupt();
-    }
-
   }
 
 }

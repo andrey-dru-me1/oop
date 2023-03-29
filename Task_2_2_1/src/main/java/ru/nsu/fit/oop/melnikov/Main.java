@@ -7,12 +7,18 @@ import java.util.HashSet;
 import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.nsu.fit.oop.melnikov.customer.Customer;import ru.nsu.fit.oop.melnikov.data.loader.ResourceJsonFileLoader;
+import ru.nsu.fit.oop.melnikov.customer.Customer;
+import ru.nsu.fit.oop.melnikov.data.loader.ResourceJsonFileLoader;
 import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
 
+/**
+ * Presents interaction with pizzeria:
+ * <li>put "order pepperoni" in System.in if you want to order;
+ * <li>put "exit" in System.in if you want to close pizzeria.
+ */
 public class Main {
 
-  public static void main(String[] args)throws IOException, URISyntaxException {
+  public static void main(String[] args) throws IOException, URISyntaxException {
 
     Logger log = LoggerFactory.getLogger("Main");
 

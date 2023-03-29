@@ -7,6 +7,10 @@ import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Pizza;
 
+/**
+ * Outside person that wants to order pizza.
+ * If he doesn't want to be named we would call him "Anonymous".
+ */
 public class Customer {
 
   private final String name;
