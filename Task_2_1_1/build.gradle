@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'java-library'
+    id "me.champeau.jmh" version "0.6.8"
 }
 
 group 'ru.nsu.fit.melnikov'
@@ -15,8 +16,18 @@ dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.2'
+    testImplementation 'org.openjdk.jmh:jmh-core:1.36'
+    testAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.36'
+    implementation 'org.knowm.xchart:xchart:3.8.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
+    jmhAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.36'
+}
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(19)
+    }
 }
 
 test {
@@ -24,10 +35,14 @@ test {
     useJUnitPlatform()
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(19)
-    }
+jmh {
+    resultsFile = project.file("./results.json")
+    warmup = "200ms"
+    resultFormat = "JSON"
+    benchmarkMode = ['thrpt']
+    fork = 3
+    warmupIterations = 3
+    iterations = 5
 }
 
 jacoco {
