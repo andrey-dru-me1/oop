@@ -13,8 +13,8 @@ import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
 
 /**
  * Presents interaction with pizzeria:
- * <li>put "order pepperoni" in System.in if you want to order;
- * <li>put "exit" in System.in if you want to close pizzeria.
+ * - put "order pepperoni" in System.in if you want to order;
+ * - put "exit" in System.in if you want to close pizzeria.
  */
 public class Main {
 
