@@ -5,10 +5,20 @@ import java.util.HashSet;import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;import
 import ru.nsu.fit.oop.melnikov.pizzeria.employees.Courier;
 import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
+/**
+ * Creates new pizzeria from json.
+ */
 public class JsonLoader implements Loader {
 
   private static final ObjectMapper MAPPER = new ObjectMapper();
 
+  /**
+   * Creates pizzeria json file.
+   *
+   * @param jsonFile file that contains all the pizzeria data in json format
+   * @return newly created pizzeria
+   * @throws IOException if there is some error during file reading
+   */
   public Pizzeria extractPizzeriaFromFile(File jsonFile) throws IOException {
 
     JsonNode pizzeria = MAPPER.readTree(jsonFile).get("pizzeria");

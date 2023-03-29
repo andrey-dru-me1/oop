@@ -10,6 +10,7 @@ import ru.nsu.fit.oop.melnikov.pizzeria.orders.Pizza;
 import ru.nsu.fit.oop.melnikov.pizzeria.threads.ThreadController;
 import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
+/** Presents Pizzeria with sets of cooks and couriers which will service customers. */
 public class Pizzeria {
 
   private final String name;
@@ -18,8 +19,12 @@ public class Pizzeria {
   private final Warehouse warehouse;
   private final OrderQueue orders;
   private final ThreadController threadController;
+
   public Pizzeria(
-      String name, @NotNull Collection<Cook> cooks, Collection<Courier> couriers, Warehouse warehouse) {
+      String name,
+      @NotNull Collection<Cook> cooks,
+      Collection<Courier> couriers,
+      Warehouse warehouse) {
     this.name = name;
     this.cooks = cooks;
     this.couriers = couriers;
@@ -28,13 +33,12 @@ public class Pizzeria {
     this.threadController = new ThreadController();
 
     for (Cook cook : cooks) {
-      threadController.addCookThread(new Thread(() -> cook.work(orders, warehouse)));
+      threadController.addThread(new Thread(() -> cook.work(orders, warehouse)));
     }
 
     for (Courier courier : couriers) {
-      threadController.addCourierThread(new Thread(() -> courier.work(warehouse)));
+      threadController.addThread(new Thread(() -> courier.work(warehouse)));
     }
-
   }
 
   public Collection<Cook> getCooks() {
@@ -53,14 +57,25 @@ public class Pizzeria {
     return name;
   }
 
+  /**
+   * Make all the cooks and couriers start working. Cooks are waiting for orders and couriers are
+   * waiting for pizzas in warehouse.
+   */
   public void start() {
     threadController.startAll();
   }
 
+  /** Make all the cooks and couriers finish their work and close a pizzeria. */
   public void close() {
     threadController.interruptAll();
   }
 
+  /**
+   * Add order in order queue from where cooks are taking orders to cook.
+   *
+   * @param pizza pizza to cook
+   * @return order formed from request
+   */
   public @NotNull Order orderPizza(Pizza pizza) {
 
     Order order = new Order(pizza);

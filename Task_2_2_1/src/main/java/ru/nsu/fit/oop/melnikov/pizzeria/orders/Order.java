@@ -4,6 +4,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Class contains all the information about single order and logs any status change.
+ */
 public class Order{
 
   public static final Logger log  = LoggerFactory.getLogger("Order");
@@ -32,11 +35,19 @@ public class Order{
     return pizza;
   }
 
+  /**
+   * Logs new status with order id and pizza name specified.
+   *
+   * @param status new status
+   */
   public void updateStatus(String status) {
     status = this.getId() + ": " + this.getPizza().name() + " order " + status;
     log.info(status);
   }
 
+  /**
+   * Sets done flag and notifies customer that pizza has derived.
+   */
   public synchronized void delivered() {
     updateStatus("is delivered!");
     this.done = true;
