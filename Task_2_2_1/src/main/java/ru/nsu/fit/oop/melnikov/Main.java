@@ -18,7 +18,8 @@ import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
  */
 public class Main {
 
-  public static void main(String[] args) throws IOException, URISyntaxException {
+  public static void main(String[] args)
+      throws IOException, URISyntaxException {
 
     Logger log = LoggerFactory.getLogger("Main");
 
@@ -43,12 +44,18 @@ public class Main {
           thread.start();
           customerThreads.add(thread);
         }
-        case "exit" -> {
+        case "evacuate" -> {
           isLoop = false;
-          pizzeria.close();
+          pizzeria.evacuate();
           for (Thread customerThread : customerThreads) {
             customerThread.interrupt();
           }
+        }
+        case "close" -> {
+          isLoop = false;
+          try {
+            pizzeria.close();
+          } catch (InterruptedException ignored) {}
         }
         default -> log.error("Unknown command");
       }

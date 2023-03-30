@@ -14,6 +14,7 @@ public class Warehouse {
 
   private final int capacity;
   private final Queue<Order> orders;
+  private boolean isClosed = false;
 
   @JsonCreator
   public Warehouse(@JsonProperty("capacity") int capacity) {
@@ -24,6 +25,10 @@ public class Warehouse {
   public Warehouse(int capacity, Queue<Order> orders) {
     this.capacity = capacity;
     this.orders = orders;
+  }
+
+  public void setClosed() {
+    isClosed = true;
   }
 
   public int getCapacity() {
@@ -39,6 +44,9 @@ public class Warehouse {
   public synchronized void putOrder(Order order) throws InterruptedException {
 
     while (orders.size() >= capacity) {
+      if(isClosed) {
+        throw new InterruptedException();
+      }
       wait();
     }
 
@@ -48,11 +56,10 @@ public class Warehouse {
   }
 
   /**
-   * Removes orders from warehouse and returns them.
-   * Method can return less than or equal to ordersCount.
-   * Method will wait 3000 * ordersCount seconds for orders and if they don't appear
-   * then returns already taken orders (which is less than ordersCount).
-   * Method can't return 0 orders: it will be waiting for at least one of them.
+   * Removes orders from warehouse and returns them. Method can return less than or equal to
+   * ordersCount. Method will wait 3000 * ordersCount seconds for orders and if they don't appear
+   * then returns already taken orders (which is less than ordersCount). Method can't return 0
+   * orders: it will be waiting for at least one of them.
    *
    * @param ordersCount maximum amount of orders to take
    * @return taken from warehouse orders
@@ -73,6 +80,10 @@ public class Warehouse {
       try {
 
         while (orders.isEmpty()) {
+          if(isClosed) {
+            timer.cancel();
+            return takenOrders;
+          }
           wait();
         }
 
