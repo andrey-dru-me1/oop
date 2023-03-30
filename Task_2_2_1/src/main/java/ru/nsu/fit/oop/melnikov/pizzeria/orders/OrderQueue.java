@@ -4,6 +4,12 @@ import java.util.ArrayDeque;
 
 public class OrderQueue extends ArrayDeque<Order> {
 
+  private boolean isClosed = false;
+
+  public void setClosed() {
+    isClosed = true;
+  }
+
   /**
    * Returns order if at least one of them exists in queue or wait for new order otherwise.
    *
@@ -12,7 +18,10 @@ public class OrderQueue extends ArrayDeque<Order> {
    */
   public synchronized Order take() throws InterruptedException {
 
-    while(this.size() == 0) {
+    while (this.size() == 0) {
+      if (isClosed) {
+        throw new InterruptedException();
+      }
       wait();
     }
 

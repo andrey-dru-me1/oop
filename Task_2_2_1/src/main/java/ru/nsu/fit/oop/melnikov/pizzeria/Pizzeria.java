@@ -33,11 +33,11 @@ public class Pizzeria {
     this.threadController = new ThreadController();
 
     for (Cook cook : cooks) {
-      threadController.addThread(new Thread(() -> cook.work(orders, warehouse)));
+      threadController.addCookThread(new Thread(() -> cook.work(orders, warehouse)));
     }
 
     for (Courier courier : couriers) {
-      threadController.addThread(new Thread(() -> courier.work(warehouse)));
+      threadController.addCourierThread(new Thread(() -> courier.work(warehouse)));
     }
   }
 
@@ -66,8 +66,29 @@ public class Pizzeria {
   }
 
   /** Make all the cooks and couriers finish their work and close a pizzeria. */
-  public void close() {
+  public void evacuate() {
     threadController.interruptAll();
+  }
+
+  /** Wait for all the cooks and couriers finishing their work and close a pizzeria. */
+  public void close() throws InterruptedException {
+    for(Cook cook: cooks) {
+      cook.setEndWork();
+    }
+    orders.setClosed();
+    synchronized (orders){
+      orders.notifyAll();
+    }
+    for(Thread cookThread: threadController.getCookThreads()) {
+      cookThread.join();
+    }
+    for(Courier courier: couriers) {
+      courier.setEndWork();
+    }
+    warehouse.setClosed();
+    synchronized (warehouse){
+      warehouse.notifyAll();
+    }
   }
 
   /**
