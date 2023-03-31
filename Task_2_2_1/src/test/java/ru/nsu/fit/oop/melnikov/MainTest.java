@@ -1,20 +1,18 @@
 package ru.nsu.fit.oop.melnikov;
 
 import java.io.ByteArrayInputStream;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class MainTest {
 
-  @Test
-  void test() {
-    System.setIn(new ByteArrayInputStream("order pepperoni\norder cheese".getBytes()));
-    Assertions.assertDoesNotThrow(() -> Main.main(new String[0]));
-  }
-
-  @Test
-  void testExit() {
-    System.setIn(new ByteArrayInputStream("order pepperoni\nexit".getBytes()));
+  @ParameterizedTest
+  @ValueSource(strings = {"order pepperoni\norder cheese", "start\nclose", "start\nevacuate",
+      "unknown command", "order pepperoni\nexit"})
+  void test(@NotNull String input) {
+    System.setIn(new ByteArrayInputStream(input.getBytes()));
     Assertions.assertDoesNotThrow(() -> Main.main(new String[0]));
   }
 }
