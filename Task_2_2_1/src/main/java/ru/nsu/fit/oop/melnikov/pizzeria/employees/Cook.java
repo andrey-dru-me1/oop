@@ -5,6 +5,8 @@ import static java.lang.Thread.sleep;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.OrderQueue;
 import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
@@ -16,7 +18,8 @@ public class Cook {
 
   private final int experience;
   private final String name;
-  private boolean endWork = false;
+  private final Logger log;
+  private boolean workStatus = false;
 
   /**
    * @param experience time in years that cook has been cooking pizzas
@@ -26,6 +29,12 @@ public class Cook {
   public Cook(@JsonProperty("experience") int experience, @JsonProperty("name") String name) {
     this.experience = experience;
     this.name = name;
+
+    log = LoggerFactory.getLogger("Cook " + name);
+  }
+
+  public void setWorkStatus(boolean workStatus) {
+    this.workStatus = workStatus;
   }
 
   public int getExperience() {
@@ -38,8 +47,10 @@ public class Cook {
 
   public void work(OrderQueue orders, Warehouse warehouse) {
 
+    log.info("Cook {} starts working", this.getName());
+
     try {
-      while (!Thread.interrupted() && !endWork) {
+      while (!Thread.interrupted() && workStatus) {
 
         Order order = orders.take();
         order.updateStatus("is started cooking by cook " + this.name);
@@ -54,10 +65,9 @@ public class Cook {
     } catch (InterruptedException ignore) {
       currentThread().interrupt();
     }
-  }
 
-  public void setEndWork() {
-    endWork = true;
+    log.info("Cook {} ends working", this.getName());
+
   }
 
 }

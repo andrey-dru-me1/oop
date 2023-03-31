@@ -6,6 +6,8 @@ import static java.lang.Thread.sleep;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Queue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
 import ru.nsu.fit.oop.melnikov.pizzeria.warehouse.Warehouse;
 
@@ -16,7 +18,9 @@ public class Courier {
 
   private final int trunkSize;
   private final String name;
-  private boolean endWork = false;
+  private boolean workStatus = false;
+
+  private final Logger log;
 
   /**
    * @param trunkSize maximum orders amount to take
@@ -26,6 +30,11 @@ public class Courier {
   public Courier(@JsonProperty("trunkSize") int trunkSize, @JsonProperty("name") String name) {
     this.trunkSize = trunkSize;
     this.name = name;
+    log = LoggerFactory.getLogger("Courier " + name);
+  }
+
+  public void setWorkStatus(boolean workStatus) {
+    this.workStatus = workStatus;
   }
 
   public int getTrunkSize() {
@@ -38,9 +47,11 @@ public class Courier {
 
   public void work(Warehouse warehouse) {
 
+    log.info("Courier {} starts working", this.getName());
+
     try {
 
-      while (!Thread.interrupted() && !endWork) {
+      while (!Thread.interrupted() && workStatus) {
 
         Queue<Order> orders = warehouse.takeOrders(this.trunkSize);
 
@@ -59,9 +70,8 @@ public class Courier {
     } catch (InterruptedException e) {
       currentThread().interrupt();
     }
-  }
 
-  public void setEndWork() {
-    endWork = true;
+    log.info("Courier {} ends working", this.getName());
+
   }
 }

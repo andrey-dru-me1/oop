@@ -4,10 +4,10 @@ import java.util.ArrayDeque;
 
 public class OrderQueue extends ArrayDeque<Order> {
 
-  private boolean isClosed = false;
+  private boolean isOpened = false;
 
-  public void setClosed() {
-    isClosed = true;
+  public void setOpened(boolean opened) {
+    isOpened = opened;
   }
 
   /**
@@ -19,7 +19,7 @@ public class OrderQueue extends ArrayDeque<Order> {
   public synchronized Order take() throws InterruptedException {
 
     while (this.size() == 0) {
-      if (isClosed) {
+      if (!isOpened) {
         throw new InterruptedException();
       }
       wait();
