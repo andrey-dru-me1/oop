@@ -108,7 +108,7 @@ public class Pizzeria {
    * Wait for all the cooks and couriers finishing their work and close a pizzeria. If pizzeria is
    * already closed does nothing.
    */
-  public void close() {
+  public void stop() {
     if (!workStatus) {
       return;
     }
