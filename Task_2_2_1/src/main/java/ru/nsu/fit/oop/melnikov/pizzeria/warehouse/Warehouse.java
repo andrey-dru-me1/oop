@@ -14,7 +14,7 @@ public class Warehouse {
 
   private final int capacity;
   private final Queue<Order> orders;
-  private boolean isClosed = false;
+  private boolean isOpened = false;
 
   @JsonCreator
   public Warehouse(@JsonProperty("capacity") int capacity) {
@@ -27,8 +27,8 @@ public class Warehouse {
     this.orders = orders;
   }
 
-  public void setClosed() {
-    isClosed = true;
+  public void setOpened(boolean opened) {
+    isOpened = opened;
   }
 
   public int getCapacity() {
@@ -44,7 +44,7 @@ public class Warehouse {
   public synchronized void putOrder(Order order) throws InterruptedException {
 
     while (orders.size() >= capacity) {
-      if(isClosed) {
+      if (!isOpened) {
         throw new InterruptedException();
       }
       wait();
@@ -80,7 +80,7 @@ public class Warehouse {
       try {
 
         while (orders.isEmpty()) {
-          if(isClosed) {
+          if (!isOpened) {
             timer.cancel();
             return takenOrders;
           }

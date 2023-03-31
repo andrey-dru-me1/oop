@@ -25,7 +25,7 @@ public class ThreadController {
     cookThreads.add(cookThread);
   }
 
-  public void addCourierThread(Thread courierThread) {
+  public synchronized void addCourierThread(Thread courierThread) {
     courierThreads.add(courierThread);
   }
 
@@ -51,6 +51,13 @@ public class ThreadController {
       thread.interrupt();
     }
 
+    clearAll();
+
+  }
+
+  public synchronized void clearAll() {
+    cookThreads.clear();
+    courierThreads.clear();
   }
 
 }
