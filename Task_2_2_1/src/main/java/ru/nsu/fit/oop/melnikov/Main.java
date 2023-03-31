@@ -19,10 +19,30 @@ import ru.nsu.fit.oop.melnikov.pizzeria.Pizzeria;
  */
 public class Main {
 
+  private static final String HELP_MESSAGE = """
+      This is an interactive pizzeria command-line app.
+      Commands to use:
+        - start, open - opens pizzeria and starts all the pizzeria processes;
+        - order [pizza_name] - send request for pizza delivering;
+        - stop, close - stops order requesting service, waits for already accepted orders to finish and closes the pizzeria;
+        - evacuate - stops immediately all the processes, so customers will not get their pizzas;
+        - exit - evacuates pizzeria if started and exit the app.
+        
+      Typical use method is:
+        open
+        order pizza1
+        order pizza2
+        ...
+        order pizzaN
+        close
+        exit""";
+
   public static void main(String[] args)
       throws IOException, URISyntaxException {
 
     Logger log = LoggerFactory.getLogger("Main");
+
+    log.info(HELP_MESSAGE);
 
     Pizzeria pizzeria;
     pizzeria = new ResourceJsonFileLoader().extractPizzeriaFromFilename("pizzeria.json");
