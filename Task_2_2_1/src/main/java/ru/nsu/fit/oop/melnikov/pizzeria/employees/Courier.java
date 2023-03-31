@@ -5,6 +5,7 @@ import static java.lang.Thread.sleep;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Objects;
 import java.util.Queue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,4 +75,20 @@ public class Courier {
     log.info("Courier {} ends working", this.getName());
 
   }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.getName(), this.getTrunkSize());
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof Courier courierToCompare) {
+      return (courierToCompare.getName().equals(this.getName())
+          && courierToCompare.getTrunkSize() == this.getTrunkSize());
+    } else {
+      return false;
+    }
+  }
+
 }
