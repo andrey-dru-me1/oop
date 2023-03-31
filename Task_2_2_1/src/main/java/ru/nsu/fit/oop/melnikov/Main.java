@@ -81,7 +81,7 @@ public class Main {
         case "stop", "close" -> {
           if (closeThread.get().isEmpty()) {
             closeThread.set(Optional.of(new Thread(() -> {
-              pizzeria.close();
+              pizzeria.stop();
               closeThread.set(Optional.empty());
               customerThreads.clear();
             })));
