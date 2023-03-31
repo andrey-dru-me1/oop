@@ -5,6 +5,7 @@ import static java.lang.Thread.sleep;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.nsu.fit.oop.melnikov.pizzeria.orders.Order;
@@ -70,4 +71,18 @@ public class Cook {
 
   }
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.getName(), this.getExperience());
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof Cook cookToCompare) {
+      return (cookToCompare.getName().equals(this.getName())
+          && cookToCompare.getExperience() == this.getExperience());
+    } else {
+      return false;
+    }
+  }
 }
