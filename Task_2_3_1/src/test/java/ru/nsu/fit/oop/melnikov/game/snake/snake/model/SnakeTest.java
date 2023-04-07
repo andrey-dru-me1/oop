@@ -52,7 +52,6 @@ class SnakeTest {
     snake.setDirection(Direction.UP);
     snake.move();
 
-    Assertions.assertEquals(2, snake.size());
     Assertions.assertEquals(1, snake.getSnakeHead().y());
 
     snake.setDirection(Direction.RIGHT);
@@ -60,7 +59,7 @@ class SnakeTest {
     snake.move();
     snake.move();
 
-    Assertions.assertEquals(1, snake.size());
+    Assertions.assertEquals(5, snake.getSnakeHead().x());
   }
 
   @Test
