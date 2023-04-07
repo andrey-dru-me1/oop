@@ -15,7 +15,7 @@ public enum Direction {
     this.shiftPoint = shiftPoint;
   }
 
-  public SnakeNode shiftPoint(SnakeNode snakeNode) {
+  public SnakeNode shiftSnakeNode(SnakeNode snakeNode) {
     return this.shiftPoint.apply(snakeNode);
   }
 
