@@ -48,8 +48,8 @@ public class Field {
     return this.getCell(point.x(), point.y());
   }
 
-  public boolean isApple() {
-    return appleFields.size() != 0;
+  public int applesCount() {
+    return appleFields.size();
   }
 
   public void generateApple() throws NoPlaceForAppleException {

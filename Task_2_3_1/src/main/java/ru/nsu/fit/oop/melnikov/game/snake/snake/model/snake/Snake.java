@@ -39,8 +39,12 @@ public class Snake {
     this.sizeToIncrease = 0;
   }
 
-  public void move() throws SnakeCrashedException, NoPlaceForAppleException {
-    appendHead();
+  public void move() throws SnakeCrashedException {
+    try {
+      appendHead();
+    } catch (NoPlaceForAppleException ignored) {
+      //Ignore absence of cells for apple
+    }
     if (sizeToIncrease > 0) {
       sizeToIncrease--;
       return;
@@ -78,14 +82,14 @@ public class Snake {
         throw new SnakeInSnakeException();
       }
 
+      emptyCell.putSnake(this);
+      nodes.add(new SnakeNode(emptyCell));
+
       if (emptyCell.hasApple()) {
         this.increaseSize();
         field.eatApple(emptyCell);
         field.generateApple();  //TODO: make a listener that generates apple when it is eaten
       }
-
-      emptyCell.putSnake(this);
-      nodes.add(new SnakeNode(emptyCell));
     } else if (newHeadCell instanceof Wall) {
       throw new SnakeInWallException();
     }
