@@ -2,15 +2,16 @@ package ru.nsu.fit.oop.melnikov.game.snake.snake.model.field;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.nsu.fit.oop.melnikov.game.snake.snake.model.ModelTest;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.ModelInit;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.NoPlaceForAppleException;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.crash.SnakeInSnakeException;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.crash.SnakeInWallException;
 
-public class FieldTest extends ModelTest {
+class FieldTest extends ModelInit {
 
   public FieldTest() throws SnakeInSnakeException {
+    super();
   }
 
   @Test

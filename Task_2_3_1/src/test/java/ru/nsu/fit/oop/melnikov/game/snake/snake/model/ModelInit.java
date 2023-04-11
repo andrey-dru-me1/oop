@@ -2,24 +2,21 @@ package ru.nsu.fit.oop.melnikov.game.snake.snake.model;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.crash.SnakeInSnakeException;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.EmptyFieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.FieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.snake.SnakeNode;
 
-public class ModelTest {
+public class ModelInit {
 
   protected static final int SIZE = 7;
   protected final Snake snake;
   protected final Field field;
 
-  public ModelTest() throws SnakeInSnakeException {
+  public ModelInit() throws SnakeInSnakeException {
 
     FieldCell[][] fieldCells = new FieldCell[SIZE][SIZE];
 
@@ -34,6 +31,10 @@ public class ModelTest {
         fieldCells[i][j] = new EmptyFieldCell(i, j);
       }
     }
+    fieldCells[0][0] = new Wall(0, 0);
+    fieldCells[0][SIZE - 1] = new Wall(0, SIZE - 1);
+    fieldCells[SIZE - 1][0] = new Wall(SIZE - 1, 0);
+    fieldCells[SIZE - 1][SIZE - 1] = new Wall(SIZE - 1, SIZE - 1);
 
     field = new Field(fieldCells);
 
@@ -46,12 +47,6 @@ public class ModelTest {
 
     snake = new Snake(field, nodes);
 
-  }
-
-  @Test
-  void testSnakeCreation() {
-    Assertions.assertEquals(new Point(3, 1), snake.getHead().cell().getPoint());
-    Assertions.assertEquals(new Point(1, 1), snake.getTail().cell().getPoint());
   }
 
 }

@@ -2,13 +2,14 @@ package ru.nsu.fit.oop.melnikov.game.snake.snake.model.snake;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.nsu.fit.oop.melnikov.game.snake.snake.model.ModelTest;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.ModelInit;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.crash.SnakeInSnakeException;
 
-public class SnakeTest extends ModelTest {
+class SnakeTest extends ModelInit {
 
   public SnakeTest() throws SnakeInSnakeException {
+    super();
   }
 
   @Test

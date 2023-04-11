@@ -20,7 +20,6 @@ public class Snake {
   private final Field field;
   private Direction direction;
   private int sizeToIncrease;
-
   /**
    * Creates new snake with 3 nodes.
    */
@@ -37,6 +36,10 @@ public class Snake {
     this.nodes = snakeNodes;
     this.direction = Direction.RIGHT;
     this.sizeToIncrease = 0;
+  }
+
+  public List<SnakeNode> getNodes() {
+    return nodes;
   }
 
   public void move() throws SnakeCrashedException {

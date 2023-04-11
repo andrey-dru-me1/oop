@@ -16,8 +16,7 @@ public class Field {
   private final int width;
   private final int height;
   private final List<EmptyFieldCell> emptyFieldCells;
-  private List<EmptyFieldCell> appleFields;
-
+  private final List<EmptyFieldCell> appleFields;
   public Field(FieldCell[][] cells) {
     this.cells = cells;
     width = cells.length;
@@ -35,6 +34,10 @@ public class Field {
 
     appleFields = new LinkedList<>();
 
+  }
+
+  public FieldCell[][] getCells() {
+    return cells;
   }
 
   public FieldCell getCell(int x, int y) {
