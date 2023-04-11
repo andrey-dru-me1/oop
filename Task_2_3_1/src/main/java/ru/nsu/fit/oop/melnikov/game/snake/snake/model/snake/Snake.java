@@ -2,8 +2,10 @@ package ru.nsu.fit.oop.melnikov.game.snake.snake.model.snake;
 
 import java.util.List;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.direction.Direction;
-import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.SnakeInSnakeException;
-import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.SnakeInWallException;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.NoPlaceForAppleException;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.crash.SnakeCrashedException;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.crash.SnakeInSnakeException;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.crash.SnakeInWallException;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.EmptyFieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.FieldCell;
@@ -37,7 +39,7 @@ public class Snake {
     this.sizeToIncrease = 0;
   }
 
-  public void move() throws SnakeInSnakeException, SnakeInWallException {
+  public void move() throws SnakeCrashedException, NoPlaceForAppleException {
     appendHead();
     if (sizeToIncrease > 0) {
       sizeToIncrease--;
@@ -66,26 +68,25 @@ public class Snake {
     return nodes.size();
   }
 
-  private void appendHead() throws SnakeInSnakeException, SnakeInWallException {
+  private void appendHead() throws SnakeCrashedException, NoPlaceForAppleException {
     FieldCell newHeadCell = field.getCell(
         direction.nextPoint(this.getSnakeHead().cell().getPoint())
     );
     if (newHeadCell instanceof EmptyFieldCell emptyCell) {
 
-      if(emptyCell.getSnake().isPresent()) {
+      if (emptyCell.getSnake().isPresent()) {
         throw new SnakeInSnakeException();
       }
 
       if (emptyCell.hasApple()) {
         this.increaseSize();
-        emptyCell.eatApple();
+        field.eatApple(emptyCell);
         field.generateApple();  //TODO: make a listener that generates apple when it is eaten
       }
 
       emptyCell.putSnake(this);
       nodes.add(new SnakeNode(emptyCell));
-    }
-    else if(newHeadCell instanceof Wall) {
+    } else if (newHeadCell instanceof Wall) {
       throw new SnakeInWallException();
     }
   }
