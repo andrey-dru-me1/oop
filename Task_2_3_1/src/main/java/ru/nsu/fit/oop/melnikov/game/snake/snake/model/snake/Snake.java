@@ -4,6 +4,7 @@ import java.util.List;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.EmptyFieldCell;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.FieldCell;
 
 public class Snake {
 
@@ -55,20 +56,24 @@ public class Snake {
   }
 
   private void appendHead() {
-    SnakeNode newHead = direction.shiftSnakeNode(this.getSnakeHead());
-    if (field.getCell(newHead.x(), newHead.y()) instanceof EmptyFieldCell emptyCell) {
+    FieldCell newHeadCell = field.getCell(
+        direction.nextPoint(this.getSnakeHead().cell().getPoint())
+    );
+    if (newHeadCell instanceof EmptyFieldCell emptyCell) {
       if (emptyCell.hasApple()) {
         this.increaseSize();
         emptyCell.eatApple();
         field.generateApple();  //TODO: make a listener that generates apple when it is eaten
       }
-      nodes.add(newHead);
+      emptyCell.putSnake(this);
+      nodes.add(new SnakeNode(emptyCell));
     }
     //TODO: end game when snake touches a wall
   }
 
   private void removeTail() {
-    nodes.remove(0);
+    SnakeNode snakeNode = nodes.remove(0);
+    snakeNode.cell().moveSnake();
   }
 
 }

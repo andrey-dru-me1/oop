@@ -1,3 +1,5 @@
 package ru.nsu.fit.oop.melnikov.game.snake.snake.model.snake;
 
-public record SnakeNode(int x, int y) {}
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.EmptyFieldCell;
+
+public record SnakeNode(EmptyFieldCell cell) {}

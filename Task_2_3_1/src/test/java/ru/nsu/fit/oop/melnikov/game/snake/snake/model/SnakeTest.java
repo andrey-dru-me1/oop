@@ -16,6 +16,7 @@ class SnakeTest {
 
   private static final int SIZE = 7;
   private final Snake snake;
+  private final Field field;
 
   SnakeTest() {
 
@@ -33,15 +34,14 @@ class SnakeTest {
       }
     }
 
-    Field field = new Field(fieldCells);
+    field = new Field(fieldCells);
 
-    List<SnakeNode> nodes = new LinkedList<>(
-        List.of(
-            new SnakeNode(1, 1),
-            new SnakeNode(2, 1),
-            new SnakeNode(3, 1)
-        )
-    );
+    List<SnakeNode> nodes = new LinkedList<>();
+    for (int i = 1; i <= 3; i++) {
+      if(field.getCell(i, 1) instanceof EmptyFieldCell emptyFieldCell) {
+        nodes.add(new SnakeNode(emptyFieldCell));
+      }
+    }
 
     snake = new Snake(field, nodes);
 
@@ -52,50 +52,50 @@ class SnakeTest {
     snake.setDirection(Direction.UP);
     snake.move();
 
-    Assertions.assertEquals(1, snake.getSnakeHead().y());
+    Assertions.assertEquals(1, snake.getSnakeHead().cell().getPoint().y());
 
     snake.setDirection(Direction.RIGHT);
-    snake.move();
-    snake.move();
-    snake.move();
+    for (int i = 0; i < 3; i++) {
+      snake.move();
+    }
 
-    Assertions.assertEquals(5, snake.getSnakeHead().x());
+    Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().x());
   }
 
   @Test
   void testSnake() {
 
-    Assertions.assertEquals(3, snake.getSnakeHead().x());
-    Assertions.assertEquals(1, snake.getSnakeHead().y());
-    Assertions.assertEquals(1, snake.getSnakeTail().x());
-    Assertions.assertEquals(1, snake.getSnakeTail().y());
+    Assertions.assertEquals(3, snake.getSnakeHead().cell().getPoint().x());
+    Assertions.assertEquals(1, snake.getSnakeHead().cell().getPoint().y());
+    Assertions.assertEquals(1, snake.getSnakeTail().cell().getPoint().x());
+    Assertions.assertEquals(1, snake.getSnakeTail().cell().getPoint().y());
 
     snake.move();
     snake.move();
 
-    Assertions.assertEquals(5, snake.getSnakeHead().x());
-    Assertions.assertEquals(1, snake.getSnakeHead().y());
-    Assertions.assertEquals(3, snake.getSnakeTail().x());
-    Assertions.assertEquals(1, snake.getSnakeTail().y());
+    Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().x());
+    Assertions.assertEquals(1, snake.getSnakeHead().cell().getPoint().y());
+    Assertions.assertEquals(3, snake.getSnakeTail().cell().getPoint().x());
+    Assertions.assertEquals(1, snake.getSnakeTail().cell().getPoint().y());
 
     snake.setDirection(Direction.DOWN);
     snake.move();
     snake.move();
 
-    Assertions.assertEquals(5, snake.getSnakeHead().x());
-    Assertions.assertEquals(3, snake.getSnakeHead().y());
-    Assertions.assertEquals(5, snake.getSnakeTail().x());
-    Assertions.assertEquals(1, snake.getSnakeTail().y());
+    Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().x());
+    Assertions.assertEquals(3, snake.getSnakeHead().cell().getPoint().y());
+    Assertions.assertEquals(5, snake.getSnakeTail().cell().getPoint().x());
+    Assertions.assertEquals(1, snake.getSnakeTail().cell().getPoint().y());
 
     snake.increaseSize();
     snake.increaseSize();
     snake.move();
     snake.move();
 
-    Assertions.assertEquals(5, snake.getSnakeHead().x());
-    Assertions.assertEquals(5, snake.getSnakeHead().y());
-    Assertions.assertEquals(5, snake.getSnakeTail().x());
-    Assertions.assertEquals(1, snake.getSnakeTail().y());
+    Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().x());
+    Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().y());
+    Assertions.assertEquals(5, snake.getSnakeTail().cell().getPoint().x());
+    Assertions.assertEquals(1, snake.getSnakeTail().cell().getPoint().y());
   }
 
 }

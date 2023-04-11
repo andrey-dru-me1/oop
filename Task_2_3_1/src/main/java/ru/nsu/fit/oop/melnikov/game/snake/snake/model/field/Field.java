@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Random;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.EmptyFieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.FieldCell;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.point.Point;
 
 public class Field {
 
@@ -30,8 +31,6 @@ public class Field {
         }
       }
     }
-
-    this.generateApple();
   }
 
   public FieldCell getCell(int x, int y) {
@@ -41,13 +40,22 @@ public class Field {
     return cells[x][y];
   }
 
+  public FieldCell getCell(Point point) {
+    return this.getCell(point.x(), point.y());
+  }
+
   public boolean isApple() {
     return appleField.isPresent();
   }
 
   public void generateApple() {
-    appleField = Optional.of(emptyFieldCells.get(RANDOM.nextInt(emptyFieldCells.size())));
-    appleField.get().putApple();
+    EmptyFieldCell newAppleField;
+    int i = RANDOM.nextInt(emptyFieldCells.size());
+    while ((newAppleField = emptyFieldCells.get(i)).getSnake().isPresent()) {
+      i = (i + 1) % emptyFieldCells.size();
+    }
+    newAppleField.putApple();
+    appleField = Optional.of(newAppleField);
   }
 
 }
