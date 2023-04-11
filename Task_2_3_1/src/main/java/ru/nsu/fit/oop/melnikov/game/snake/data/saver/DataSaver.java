@@ -20,6 +20,8 @@ public class DataSaver {
     try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename))) {
       StringBuilder result = new StringBuilder();
 
+      result.append(field.getWidth()).append(" ").append(field.getHeight()).append("\n");
+
       //field
       for (FieldCell[] row : field.getCells()) {
         for (FieldCell cell : row) {
@@ -28,10 +30,12 @@ public class DataSaver {
         result.append('\n');
       }
 
+      result.append(snake.size()).append("\n");
+
       //snake
       for (SnakeNode snakeNode : snake.getNodes()) {
         Point point = snakeNode.cell().getPoint();
-        result.append("(").append(point.x()).append(", ").append(point.y()).append(") ");
+        result.append(point.x()).append(" ").append(point.y()).append("\n");
       }
 
       result.append('\n');

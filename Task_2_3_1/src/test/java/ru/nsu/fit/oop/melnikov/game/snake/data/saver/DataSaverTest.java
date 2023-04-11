@@ -19,6 +19,7 @@ class DataSaverTest extends ModelInit {
   void test() throws IOException {
 
     String toCompare = """
+        7 7
         #######
         #     #
         #     #
@@ -26,7 +27,10 @@ class DataSaverTest extends ModelInit {
         #     #
         #     #
         #######
-        (1, 1) (2, 1) (3, 1)
+        3
+        1 1
+        2 1
+        3 1
         """;
 
     Assertions.assertDoesNotThrow(() -> DataSaver.save(field, snake, "test.txt"));
