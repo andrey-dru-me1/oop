@@ -5,6 +5,8 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.direction.Direction;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.SnakeInSnakeException;
+import ru.nsu.fit.oop.melnikov.game.snake.snake.model.exceptions.SnakeInWallException;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.EmptyFieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.snake.model.field.cell.FieldCell;
@@ -18,7 +20,7 @@ class SnakeTest {
   private final Snake snake;
   private final Field field;
 
-  SnakeTest() {
+  SnakeTest() throws SnakeInSnakeException {
 
     FieldCell[][] fieldCells = new FieldCell[SIZE][SIZE];
 
@@ -50,14 +52,14 @@ class SnakeTest {
   @Test
   void testField() {
     snake.setDirection(Direction.UP);
-    snake.move();
+    Assertions.assertThrowsExactly(SnakeInWallException.class, snake::move);
 
     Assertions.assertEquals(1, snake.getSnakeHead().cell().getPoint().y());
 
     snake.setDirection(Direction.RIGHT);
-    for (int i = 0; i < 3; i++) {
-      snake.move();
-    }
+    Assertions.assertDoesNotThrow(snake::move);
+    Assertions.assertDoesNotThrow(snake::move);
+    Assertions.assertThrowsExactly(SnakeInWallException.class, snake::move);
 
     Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().x());
   }
@@ -70,8 +72,8 @@ class SnakeTest {
     Assertions.assertEquals(1, snake.getSnakeTail().cell().getPoint().x());
     Assertions.assertEquals(1, snake.getSnakeTail().cell().getPoint().y());
 
-    snake.move();
-    snake.move();
+    Assertions.assertDoesNotThrow(snake::move);
+    Assertions.assertDoesNotThrow(snake::move);
 
     Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().x());
     Assertions.assertEquals(1, snake.getSnakeHead().cell().getPoint().y());
@@ -79,8 +81,8 @@ class SnakeTest {
     Assertions.assertEquals(1, snake.getSnakeTail().cell().getPoint().y());
 
     snake.setDirection(Direction.DOWN);
-    snake.move();
-    snake.move();
+    Assertions.assertDoesNotThrow(snake::move);
+    Assertions.assertDoesNotThrow(snake::move);
 
     Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().x());
     Assertions.assertEquals(3, snake.getSnakeHead().cell().getPoint().y());
@@ -89,8 +91,8 @@ class SnakeTest {
 
     snake.increaseSize();
     snake.increaseSize();
-    snake.move();
-    snake.move();
+    Assertions.assertDoesNotThrow(snake::move);
+    Assertions.assertDoesNotThrow(snake::move);
 
     Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().x());
     Assertions.assertEquals(5, snake.getSnakeHead().cell().getPoint().y());
