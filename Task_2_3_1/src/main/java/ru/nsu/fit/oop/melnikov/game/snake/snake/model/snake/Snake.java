@@ -60,11 +60,11 @@ public class Snake {
     sizeToIncrease++;
   }
 
-  public SnakeNode getSnakeHead() {
+  public SnakeNode getHead() {
     return nodes.get(nodes.size() - 1);
   }
 
-  public SnakeNode getSnakeTail() {
+  public SnakeNode getTail() {
     return nodes.get(0);
   }
 
@@ -74,7 +74,7 @@ public class Snake {
 
   private void appendHead() throws SnakeCrashedException, NoPlaceForAppleException {
     FieldCell newHeadCell = field.getCell(
-        direction.nextPoint(this.getSnakeHead().cell().getPoint())
+        direction.nextPoint(this.getHead().cell().getPoint())
     );
     if (newHeadCell instanceof EmptyFieldCell emptyCell) {
 
