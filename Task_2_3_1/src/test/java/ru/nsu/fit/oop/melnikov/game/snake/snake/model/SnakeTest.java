@@ -65,6 +65,39 @@ class SnakeTest {
   }
 
   @Test
+  void testSnakeInSnakeStartPlace() {
+    snake.increaseSize();
+    snake.increaseSize();
+    snake.increaseSize();
+
+    snake.setDirection(Direction.DOWN);
+    Assertions.assertDoesNotThrow(snake::move);
+    snake.setDirection(Direction.LEFT);
+    Assertions.assertDoesNotThrow(snake::move);
+    snake.setDirection(Direction.UP);
+    Assertions.assertThrowsExactly(SnakeInSnakeException.class, snake::move);
+
+  }
+
+  @Test
+  void testSnakeInSnakeNewPlace() {
+    snake.increaseSize();
+    snake.increaseSize();
+    snake.increaseSize();
+
+    snake.setDirection(Direction.DOWN);
+    Assertions.assertDoesNotThrow(snake::move);
+    Assertions.assertDoesNotThrow(snake::move);
+    snake.setDirection(Direction.LEFT);
+    Assertions.assertDoesNotThrow(snake::move);
+    snake.setDirection(Direction.UP);
+    Assertions.assertDoesNotThrow(snake::move);
+    snake.setDirection(Direction.RIGHT);
+    Assertions.assertThrowsExactly(SnakeInSnakeException.class, snake::move);
+
+  }
+
+  @Test
   void testSnake() {
 
     Assertions.assertEquals(3, snake.getSnakeHead().cell().getPoint().x());

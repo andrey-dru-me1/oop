@@ -28,6 +28,7 @@ public class Snake {
       if (snakeNode.cell().getSnake().isPresent()) {
         throw new SnakeInSnakeException();
       }
+      snakeNode.cell().putSnake(this);
     }
 
     this.field = field;
