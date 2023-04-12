@@ -55,6 +55,11 @@ public class Snake {
     removeTail();
   }
 
+  public void move(Direction direction) throws SnakeCrashedException {
+    this.setDirection(direction);
+    this.move();
+  }
+
   public void setDirection(Direction direction) {
     this.direction = direction;
   }

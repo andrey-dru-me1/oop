@@ -21,13 +21,12 @@ class FieldTest extends ModelInit {
     }
     Assertions.assertThrowsExactly(NoPlaceForAppleException.class, field::generateApple);
 
-    Assertions.assertDoesNotThrow(snake::move);
-    Assertions.assertDoesNotThrow(snake::move);
-    snake.setDirection(Direction.DOWN);
-    Assertions.assertDoesNotThrow(snake::move);
-    Assertions.assertDoesNotThrow(snake::move);
-    Assertions.assertDoesNotThrow(snake::move);
-    Assertions.assertDoesNotThrow(snake::move);
+    Assertions.assertDoesNotThrow(() -> snake.move());
+    Assertions.assertDoesNotThrow(() -> snake.move());
+    Assertions.assertDoesNotThrow(() -> snake.move(Direction.DOWN));
+    Assertions.assertDoesNotThrow(() -> snake.move());
+    Assertions.assertDoesNotThrow(() -> snake.move());
+    Assertions.assertDoesNotThrow(() -> snake.move());
 
     Assertions.assertEquals(9, snake.size());
     Assertions.assertEquals(4 * 4, field.applesCount());
@@ -41,9 +40,8 @@ class FieldTest extends ModelInit {
 
     Assertions.assertEquals(1, snake.getHead().cell().getPoint().y());
 
-    snake.setDirection(Direction.RIGHT);
-    Assertions.assertDoesNotThrow(snake::move);
-    Assertions.assertDoesNotThrow(snake::move);
+    Assertions.assertDoesNotThrow(() -> snake.move(Direction.RIGHT));
+    Assertions.assertDoesNotThrow(() -> snake.move());
     Assertions.assertThrowsExactly(SnakeInWallException.class, snake::move);
 
     Assertions.assertEquals(5, snake.getHead().cell().getPoint().x());
