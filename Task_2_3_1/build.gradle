@@ -2,6 +2,8 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'java-library'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 group = 'ru.cft.shift.task.test.melnikov'
@@ -17,6 +19,13 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
 }
+
+javafx {
+    version = '20-ea+4'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+mainClassName = 'ru.nsu.fit.oop.melnikov.game.snake.snake.view.Main'
 
 java {
     toolchain {
