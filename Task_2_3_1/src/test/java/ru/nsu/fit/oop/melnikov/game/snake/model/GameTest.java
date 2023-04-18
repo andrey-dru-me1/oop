@@ -15,11 +15,11 @@ class GameTest extends ModelInit {
 
   @Test
   void test() {
-    Game game = new Game(snake);
+    Game game = new Game(snake, 200);
     game.start();
-    Assertions.assertFalse(game.isCrush());
-    await().atMost(1, TimeUnit.SECONDS).until(game::isCrush);
-    Assertions.assertTrue(game.isCrush());
+    Assertions.assertFalse(game.isCrash());
+    await().atMost(1, TimeUnit.SECONDS).until(game::isCrash);
+    Assertions.assertTrue(game.isCrash());
   }
 
 }

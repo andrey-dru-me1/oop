@@ -10,16 +10,18 @@ public class Game {
 
   private final Snake snake;
   private final Timer timer;
-  private boolean crush;
+  private boolean crash;
+  private final int delay;
 
-  public Game(Snake snake) {
+  public Game(Snake snake, int delay) {
     this.snake = snake;
+    this.delay = delay;
     this.timer = new Timer();
-    crush = false;
+    crash = false;
   }
 
-  public boolean isCrush() {
-    return crush;
+  public boolean isCrash() {
+    return crash;
   }
 
   public void start() {
@@ -30,11 +32,11 @@ public class Game {
             try {
               snake.move();
             } catch (SnakeCrashedException e) {
-              crush = true;
+              crash = true;
               this.cancel();
             }
           }
-        }, 0, 200
+        }, delay, delay
     );
   }
 

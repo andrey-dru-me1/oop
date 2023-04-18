@@ -5,19 +5,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInSnakeException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.EmptyFieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.ObservableSnake;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakeNode;
 
 public class DataLoader {
 
   private final Field field;
-  private final Snake snake;
+  private final ObservableSnake snake;
 
   public DataLoader(String filename) throws IOException, SnakeInSnakeException {
     List<SnakeNode> nodes;
@@ -47,22 +46,21 @@ public class DataLoader {
       nodes = new ArrayList<>(size);
       scanner.reset();
       for (int i = 0; i < size; i++) {
-        if (field.getCell(scanner.nextInt(),
-            scanner.nextInt()) instanceof EmptyFieldCell emptyFieldCell) {
+        if (field.getCell(scanner.nextInt(), scanner.nextInt())
+            instanceof EmptyFieldCell emptyFieldCell) {
           nodes.add(i, new SnakeNode(emptyFieldCell));
         }
       }
     }
 
-    snake = new Snake(field, nodes);
-
+    snake = new ObservableSnake(field, nodes);
   }
 
   public Field getField() {
     return field;
   }
 
-  public Snake getSnake() {
+  public ObservableSnake getSnake() {
     return snake;
   }
 }

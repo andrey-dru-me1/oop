@@ -23,6 +23,10 @@ public class EmptyFieldCell extends FieldCell {
     return snake;
   }
 
+  public boolean hasSnake() {
+    return snake.isPresent();
+  }
+
   public void putApple() {
     this.hasApple = true;
   }

@@ -1,13 +1,12 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.snake;
 
 import java.util.List;
-
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.NoPlaceForAppleException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeCrashedException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInSnakeException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInWallException;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.EmptyFieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
@@ -37,6 +36,10 @@ public class Snake {
     this.nodes = snakeNodes;
     this.direction = Direction.RIGHT;
     this.sizeToIncrease = 0;
+  }
+
+  public Field getField() {
+    return field;
   }
 
   public List<SnakeNode> getNodes() {
@@ -81,7 +84,7 @@ public class Snake {
     return nodes.size();
   }
 
-  private void appendHead() throws SnakeCrashedException, NoPlaceForAppleException {
+  protected void appendHead() throws SnakeCrashedException, NoPlaceForAppleException {
     FieldCell newHeadCell = field.getCell(
         direction.nextPoint(this.getHead().cell().getPoint())
     );
@@ -104,9 +107,10 @@ public class Snake {
     }
   }
 
-  private void removeTail() {
+  protected SnakeNode removeTail() {
     SnakeNode snakeNode = nodes.remove(0);
     snakeNode.cell().moveSnake();
+    return snakeNode;
   }
 
 }
