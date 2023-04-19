@@ -13,16 +13,13 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
 
 public class Snake {
 
-  /**
-   * Snake nodes, where 0 is a tail and last element is a head.
-   */
+  /** Snake nodes, where 0 is a tail and last element is a head. */
   private final List<SnakeNode> nodes;
+
   private final Field field;
   private Direction direction;
   private int sizeToIncrease;
-  /**
-   * Creates new snake with 3 nodes.
-   */
+  /** Creates new snake with 3 nodes. */
   public Snake(Field field, List<SnakeNode> snakeNodes) throws SnakeInSnakeException {
 
     for (SnakeNode snakeNode : snakeNodes) {
@@ -46,12 +43,8 @@ public class Snake {
     return nodes;
   }
 
-  public void move() throws SnakeCrashedException {
-    try {
-      appendHead();
-    } catch (NoPlaceForAppleException ignored) {
-      //Ignore absence of cells for apple
-    }
+  public void move() throws SnakeCrashedException, NoPlaceForAppleException {
+    appendHead();
     if (sizeToIncrease > 0) {
       sizeToIncrease--;
       return;
@@ -59,7 +52,7 @@ public class Snake {
     removeTail();
   }
 
-  public void move(Direction direction) throws SnakeCrashedException {
+  public void move(Direction direction) throws SnakeCrashedException, NoPlaceForAppleException {
     this.setDirection(direction);
     this.move();
   }
@@ -85,9 +78,7 @@ public class Snake {
   }
 
   protected void appendHead() throws SnakeCrashedException, NoPlaceForAppleException {
-    FieldCell newHeadCell = field.getCell(
-        direction.nextPoint(this.getHead().cell().getPoint())
-    );
+    FieldCell newHeadCell = field.getCell(direction.nextPoint(this.getHead().cell().getPoint()));
     if (newHeadCell instanceof EmptyFieldCell emptyCell) {
 
       if (emptyCell.getSnake().isPresent()) {
@@ -100,7 +91,7 @@ public class Snake {
       if (emptyCell.hasApple()) {
         this.increaseSize();
         field.eatApple(emptyCell);
-        field.generateApple();  //TODO: make a listener that generates apple when it is eaten
+        field.generateApple(); // TODO: make a listener that generates apple when it is eaten
       }
     } else if (newHeadCell instanceof Wall) {
       throw new SnakeInWallException();
@@ -112,5 +103,4 @@ public class Snake {
     snakeNode.cell().moveSnake();
     return snakeNode;
   }
-
 }

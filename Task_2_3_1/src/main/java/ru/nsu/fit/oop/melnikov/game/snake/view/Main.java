@@ -4,6 +4,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javafx.application.Application;
@@ -92,6 +94,17 @@ public class Main extends Application {
                 } catch (IOException e) {
                   throw new RuntimeException(e);
                 }
+                },
+                () -> {
+                  try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    URL xmlUrl = Main.class.getClassLoader().getResource("fxmls/victory.fxml");
+                    fxmlLoader.setLocation(xmlUrl);
+                    Parent root = fxmlLoader.load();
+                    Platform.runLater(() -> primaryStage.setScene(new Scene(root)));
+                  } catch (IOException e) {
+                    throw new RuntimeException(e);
+                  }
               });
       game.start();
 
@@ -151,5 +164,11 @@ public class Main extends Application {
         }
       }
     }
+  }
+
+  @Override
+  public void stop() throws Exception {
+
+    super.stop();
   }
 }

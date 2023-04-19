@@ -4,7 +4,7 @@
 <?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <Text fill="#f50000" strokeType="OUTSIDE" strokeWidth="0.0" text="DEFEAT" textAlignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <Text fill="#00b53c" strokeType="OUTSIDE" strokeWidth="0.0" text="VICTORY" textAlignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
       <font>
          <Font size="80.0" />
       </font>
