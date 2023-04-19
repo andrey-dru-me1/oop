@@ -54,8 +54,9 @@ public class Game {
         delay);
   }
 
-  private void stop() {
+  public void stop() {
     timer.cancel();
+    timer.purge();
   }
 
 }

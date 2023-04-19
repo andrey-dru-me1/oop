@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -30,6 +31,8 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakeNode;
 
 public class Main extends Application {
+
+  Game game;
 
   public static void main(String[] args) {
     Application.launch(args);
@@ -63,7 +66,7 @@ public class Main extends Application {
           FieldCell cell = row[j];
           fieldRects[i][j] = new FieldRect(rectSize, rectSize);
           cell.addPropertyChangeListener(fieldRects[i][j]);
-          fieldRects[i][j].setFill(Paint.valueOf((cell instanceof Wall) ? "BLACK" : "WHITE"));
+          fieldRects[i][j].setFill((cell instanceof Wall) ? Color.BLACK : Color.WHITE);
           grid.add(fieldRects[i][j], cell.getPoint().x(), cell.getPoint().y());
         }
       }
@@ -73,12 +76,12 @@ public class Main extends Application {
       ObservableSnake snake = loader.getSnake();
       for (SnakeNode snakeNode : snake.getNodes()) {
         Point point = snakeNode.cell().getPoint();
-        fieldRects[point.x()][point.y()].setFill(Paint.valueOf("GREEN"));
+        fieldRects[point.x()][point.y()].setFill(Color.GREEN);
       }
 
       Scene scene = new Scene(grid);
 
-      Game game =
+      game =
           new Game(
               snake,
               500,
@@ -130,6 +133,7 @@ public class Main extends Application {
 
   @Override
   public void stop() throws Exception {
+    game.stop();
     System.exit(0);
     super.stop();
   }
@@ -153,14 +157,14 @@ public class Main extends Application {
       switch (evt.getPropertyName()) {
         case "snake" -> {
           if (evt.getNewValue() instanceof Optional<?>) {
-            this.setFill(Paint.valueOf("WHITE"));
+            this.setFill(Color.WHITE);
           } else if (evt.getNewValue() instanceof Snake) {
-            this.setFill(Paint.valueOf("GREEN"));
+            this.setFill(Color.GREEN);
           }
         }
         case "apple" -> {
           if (evt.getNewValue() instanceof Boolean res) {
-            this.setFill(Paint.valueOf(Boolean.TRUE.equals(res) ? "RED" : "GREEN"));
+            this.setFill(Boolean.TRUE.equals(res) ? Color.RED : Color.GREEN);
           }
         }
         default -> {
