@@ -48,7 +48,7 @@ public class Main extends Application {
     primaryStage.setWidth(800);
     primaryStage.setHeight(831);
 
-    DataLoader loader = new DataLoader("test.txt");
+    DataLoader loader = new DataLoader("default.txt");
     Field field = loader.getField();
     GridPane grid = new GridPane();
     double rectSize = primaryStage.getWidth() / field.getWidth() - 2;
