@@ -3,8 +3,13 @@ package ru.nsu.fit.oop.melnikov.game.snake.view;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.Optional;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -21,45 +26,17 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.ObservableSnake;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakeNode;
 
 public class Main extends Application {
 
   public static void main(String[] args) {
-    Application.launch(args);
-  }
-
-  private static class SnakeListener implements PropertyChangeListener {
-
-    private final Rectangle[][] rects;
-
-    public SnakeListener(Rectangle[][] rects) {
-      this.rects = rects;
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-      if(evt.getOldValue() == null) {
-        if (evt.getNewValue() instanceof SnakeNode newValue) {
-          Point point = newValue.cell().getPoint();
-          rects[point.x()][point.y()].setFill(Paint.valueOf("GREEN"));
-        }
-      }
-      else if (evt.getOldValue() instanceof SnakeNode oldValue) {
-        Point point = oldValue.cell().getPoint();
-        rects[point.x()][point.y()].setFill(Paint.valueOf("WHITE"));
-      }
-    }
-
+    launch(args);
   }
 
   @Override
-  public void start(Stage primaryStage) throws IOException, SnakeInSnakeException, NoPlaceForAppleException {
-
-//    FXMLLoader loader = new FXMLLoader();
-//    URL xmlUrl = Main.class.getClassLoader().getResource("fxmls/field.fxml");
-//    loader.setLocation(xmlUrl);
-//    Parent root = loader.load();
+  public void start(Stage primaryStage) throws SnakeInSnakeException, IOException {
 
     primaryStage.setTitle("Snake the game");
     primaryStage
@@ -71,58 +48,108 @@ public class Main extends Application {
     primaryStage.setWidth(800);
     primaryStage.setHeight(831);
 
-//    Scene scene = new Scene(root);
-//    primaryStage.setScene(scene);
-
     DataLoader loader = new DataLoader("test.txt");
     Field field = loader.getField();
     GridPane grid = new GridPane();
     double rectSize = primaryStage.getWidth() / field.getWidth() - 2;
 
-    Rectangle[][] rects = new Rectangle[field.getWidth()][field.getHeight()];
+    FieldRect[][] fieldRects = new FieldRect[field.getWidth()][field.getHeight()];
 
-    for (int i = 0; i < field.getWidth(); i++ ) {
-      FieldCell[] row = field.getCells()[i];
-      for(int j = 0; j < field.getHeight(); j++) {
-        FieldCell cell = row[j];
-        rects[i][j] = new Rectangle(rectSize, rectSize);
-        rects[i][j].setFill(Paint.valueOf((cell instanceof Wall) ? "BLACK" : "WHITE"));
-        grid.add(rects[i][j], cell.getPoint().x(), cell.getPoint().y());
+    try {
+
+      for (int i = 0; i < field.getWidth(); i++) {
+        FieldCell[] row = field.getCells()[i];
+        for (int j = 0; j < field.getHeight(); j++) {
+          FieldCell cell = row[j];
+          fieldRects[i][j] = new FieldRect(rectSize, rectSize);
+          cell.addPropertyChangeListener(fieldRects[i][j]);
+          fieldRects[i][j].setFill(Paint.valueOf((cell instanceof Wall) ? "BLACK" : "WHITE"));
+          grid.add(fieldRects[i][j], cell.getPoint().x(), cell.getPoint().y());
+        }
       }
+      grid.setHgap(2);
+      grid.setVgap(2);
+
+      ObservableSnake snake = loader.getSnake();
+      for (SnakeNode snakeNode : snake.getNodes()) {
+        Point point = snakeNode.cell().getPoint();
+        fieldRects[point.x()][point.y()].setFill(Paint.valueOf("GREEN"));
+      }
+
+      Scene scene = new Scene(grid);
+
+      Game game =
+          new Game(
+              snake,
+              500,
+              () -> {
+                try {
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  URL xmlUrl = Main.class.getClassLoader().getResource("fxmls/death.fxml");
+                  fxmlLoader.setLocation(xmlUrl);
+                  Parent root = fxmlLoader.load();
+                  Platform.runLater(() -> primaryStage.setScene(new Scene(root)));
+                } catch (IOException e) {
+                  throw new RuntimeException(e);
+                }
+              });
+      game.start();
+
+      scene.setOnKeyPressed(
+          keyEvent -> {
+            switch (keyEvent.getCode()) {
+              case LEFT -> snake.setDirection(Direction.LEFT);
+              case RIGHT -> snake.setDirection(Direction.RIGHT);
+              case DOWN -> snake.setDirection(Direction.DOWN);
+              case UP -> snake.setDirection(Direction.UP);
+              default -> {
+                // No need to do anything on another keyboard keys
+              }
+            }
+          });
+
+      field.generateApple();
+
+      primaryStage.setScene(scene);
+
+      primaryStage.show();
+    } catch (NoPlaceForAppleException e) {
     }
-    grid.setHgap(2);
-    grid.setVgap(2);
+  }
 
-    ObservableSnake snake = loader.getSnake();
-    for (SnakeNode snakeNode : snake.getNodes()) {
-      Point point = snakeNode.cell().getPoint();
-      rects[point.x()][point.y()].setFill(Paint.valueOf("GREEN"));
+  private static class FieldRect extends Rectangle implements PropertyChangeListener {
+
+    public FieldRect(double width, double height) {
+      super(width, height);
     }
 
-    SnakeListener snakeListener = new SnakeListener(rects);
-    snake.addPropertyChangeListener(snakeListener);
+    public FieldRect(double width, double height, Paint fill) {
+      super(width, height, fill);
+    }
 
-    Game game = new Game(snake, 500);
-    game.start();
+    public FieldRect(double x, double y, double width, double height) {
+      super(x, y, width, height);
+    }
 
-    Scene scene = new Scene(grid);
-
-    scene.setOnKeyPressed(keyEvent -> {
-      switch(keyEvent.getCode()) {
-        case LEFT -> snake.setDirection(Direction.LEFT);
-        case RIGHT -> snake.setDirection(Direction.RIGHT);
-        case DOWN -> snake.setDirection(Direction.DOWN);
-        case UP -> snake.setDirection(Direction.UP);
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+      switch (evt.getPropertyName()) {
+        case "snake" -> {
+          if (evt.getNewValue() instanceof Optional<?>) {
+            this.setFill(Paint.valueOf("WHITE"));
+          } else if (evt.getNewValue() instanceof Snake) {
+            this.setFill(Paint.valueOf("GREEN"));
+          }
+        }
+        case "apple" -> {
+          if (evt.getNewValue() instanceof Boolean res) {
+            this.setFill(Paint.valueOf(Boolean.TRUE.equals(res) ? "RED" : "GREEN"));
+          }
+        }
         default -> {
           // No need to do anything on another keyboard keys
         }
       }
-    });
-
-    field.generateApple();
-
-    primaryStage.setScene(scene);
-
-    primaryStage.show();
+    }
   }
 }

@@ -28,18 +28,22 @@ public class EmptyFieldCell extends FieldCell {
   }
 
   public void putApple() {
+    support.firePropertyChange("apple", this.hasApple, true);
     this.hasApple = true;
   }
 
   public void eatApple() {
+    support.firePropertyChange("apple", this.hasApple, false);
     this.hasApple = false;
   }
 
   public void putSnake(Snake snake) {
+    support.firePropertyChange("snake", this.snake, snake);
     this.snake = Optional.of(snake);
   }
 
   public void moveSnake() {
+    support.firePropertyChange("snake", this.snake, Optional.empty());
     this.snake = Optional.empty();
   }
 
