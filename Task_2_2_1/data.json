@@ -1,0 +1,12 @@
+{
+  "cooks": [
+    {
+      "experience": 5
+    }
+  ],
+  "couriers": [
+    {
+      "trunkSize": 2
+    }
+  ]
+}
