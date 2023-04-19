@@ -4,8 +4,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javafx.application.Application;
@@ -34,11 +32,11 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakeNode;
 public class Main extends Application {
 
   public static void main(String[] args) {
-    launch(args);
+    Application.launch(args);
   }
 
   @Override
-  public void start(Stage primaryStage) throws SnakeInSnakeException, IOException {
+  public void start(Stage primaryStage) throws SnakeInSnakeException {
 
     primaryStage.setTitle("Snake the game");
     primaryStage
@@ -94,17 +92,17 @@ public class Main extends Application {
                 } catch (IOException e) {
                   throw new RuntimeException(e);
                 }
-                },
-                () -> {
-                  try {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    URL xmlUrl = Main.class.getClassLoader().getResource("fxmls/victory.fxml");
-                    fxmlLoader.setLocation(xmlUrl);
-                    Parent root = fxmlLoader.load();
-                    Platform.runLater(() -> primaryStage.setScene(new Scene(root)));
-                  } catch (IOException e) {
-                    throw new RuntimeException(e);
-                  }
+              },
+              () -> {
+                try {
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  URL xmlUrl = Main.class.getClassLoader().getResource("fxmls/victory.fxml");
+                  fxmlLoader.setLocation(xmlUrl);
+                  Parent root = fxmlLoader.load();
+                  Platform.runLater(() -> primaryStage.setScene(new Scene(root)));
+                } catch (IOException e) {
+                  throw new RuntimeException(e);
+                }
               });
       game.start();
 
@@ -128,6 +126,12 @@ public class Main extends Application {
       primaryStage.show();
     } catch (NoPlaceForAppleException e) {
     }
+  }
+
+  @Override
+  public void stop() throws Exception {
+    System.exit(0);
+    super.stop();
   }
 
   private static class FieldRect extends Rectangle implements PropertyChangeListener {
@@ -164,11 +168,5 @@ public class Main extends Application {
         }
       }
     }
-  }
-
-  @Override
-  public void stop() throws Exception {
-    System.exit(0);
-    super.stop();
   }
 }

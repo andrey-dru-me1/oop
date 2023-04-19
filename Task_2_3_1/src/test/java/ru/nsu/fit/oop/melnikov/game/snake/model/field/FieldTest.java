@@ -21,12 +21,12 @@ class FieldTest extends ModelInit {
     }
     Assertions.assertThrowsExactly(NoPlaceForAppleException.class, field::generateApple);
 
-    Assertions.assertDoesNotThrow(() -> snake.move());
-    Assertions.assertDoesNotThrow(() -> snake.move());
-    Assertions.assertDoesNotThrow(() -> snake.move(Direction.DOWN));
-    Assertions.assertDoesNotThrow(() -> snake.move());
-    Assertions.assertDoesNotThrow(() -> snake.move());
-    Assertions.assertDoesNotThrow(() -> snake.move());
+    Assertions.assertThrowsExactly(NoPlaceForAppleException.class, snake::move);
+    Assertions.assertThrowsExactly(NoPlaceForAppleException.class, snake::move);
+    Assertions.assertThrowsExactly(NoPlaceForAppleException.class, () -> snake.move(Direction.DOWN));
+    Assertions.assertThrowsExactly(NoPlaceForAppleException.class, snake::move);
+    Assertions.assertThrowsExactly(NoPlaceForAppleException.class, snake::move);
+    Assertions.assertThrowsExactly(NoPlaceForAppleException.class, snake::move);
 
     Assertions.assertEquals(9, snake.size());
     Assertions.assertEquals(4 * 4, field.applesCount());

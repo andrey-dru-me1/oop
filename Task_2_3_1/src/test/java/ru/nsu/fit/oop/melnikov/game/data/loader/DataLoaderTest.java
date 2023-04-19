@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.melnikov.game.data.loader;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInSnakeException;
@@ -13,7 +15,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 class DataLoaderTest {
 
   @Test
-  void test() throws IOException, SnakeInSnakeException {
+  void test() throws SnakeInSnakeException {
     DataLoader dataLoader = new DataLoader("test.txt");
     Snake snake = dataLoader.getSnake();
 

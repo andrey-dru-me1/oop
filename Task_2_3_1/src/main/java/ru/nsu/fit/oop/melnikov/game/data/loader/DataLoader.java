@@ -1,9 +1,8 @@
 package ru.nsu.fit.oop.melnikov.game.data.loader;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInSnakeException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
@@ -18,38 +17,39 @@ public class DataLoader {
   private final Field field;
   private final ObservableSnake snake;
 
-  public DataLoader(String filename) throws IOException, SnakeInSnakeException {
+  public DataLoader(String filename) throws SnakeInSnakeException {
     List<SnakeNode> nodes;
-    try (Scanner scanner = new Scanner(new File(filename))) {
+    Scanner scanner =
+        new Scanner(
+            Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filename)));
 
-      int width = scanner.nextInt();
-      int height = scanner.nextInt();
-      scanner.skip("\n");
+    int width = scanner.nextInt();
+    int height = scanner.nextInt();
+    scanner.skip("\n");
 
-      FieldCell[][] cells = new FieldCell[width][height];
-      scanner.useDelimiter("");
+    FieldCell[][] cells = new FieldCell[width][height];
+    scanner.useDelimiter("");
 
-      for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-          switch (scanner.next()) {
-            case "#" -> cells[j][i] = new Wall(j, i);
-            case " " -> cells[j][i] = new EmptyFieldCell(j, i);
-            default -> throw new IllegalStateException();
-          }
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        switch (scanner.next()) {
+          case "#" -> cells[j][i] = new Wall(j, i);
+          case " " -> cells[j][i] = new EmptyFieldCell(j, i);
+          default -> throw new IllegalStateException();
         }
-        scanner.skip("\n");
       }
+      scanner.skip("\n");
+    }
 
-      field = new Field(cells);
+    field = new Field(cells);
 
-      int size = scanner.nextInt();
-      nodes = new ArrayList<>(size);
-      scanner.reset();
-      for (int i = 0; i < size; i++) {
-        if (field.getCell(scanner.nextInt(), scanner.nextInt())
-            instanceof EmptyFieldCell emptyFieldCell) {
-          nodes.add(i, new SnakeNode(emptyFieldCell));
-        }
+    int size = scanner.nextInt();
+    nodes = new ArrayList<>(size);
+    scanner.reset();
+    for (int i = 0; i < size; i++) {
+      if (field.getCell(scanner.nextInt(), scanner.nextInt())
+          instanceof EmptyFieldCell emptyFieldCell) {
+        nodes.add(i, new SnakeNode(emptyFieldCell));
       }
     }
 
