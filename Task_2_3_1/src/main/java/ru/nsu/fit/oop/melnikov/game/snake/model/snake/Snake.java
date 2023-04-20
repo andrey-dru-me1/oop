@@ -19,6 +19,7 @@ public class Snake {
   private final Field field;
   private Direction direction;
   private int sizeToIncrease;
+  
   /** Creates new snake with 3 nodes. */
   public Snake(Field field, List<SnakeNode> snakeNodes) throws SnakeInSnakeException {
 
