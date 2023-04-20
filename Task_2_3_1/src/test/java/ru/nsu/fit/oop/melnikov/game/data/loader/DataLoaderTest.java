@@ -1,7 +1,5 @@
 package ru.nsu.fit.oop.melnikov.game.data.loader;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

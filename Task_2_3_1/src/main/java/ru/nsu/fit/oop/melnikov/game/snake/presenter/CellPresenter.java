@@ -1,15 +1,14 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Optional;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.EmptyFieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Optional;
 
 public class CellPresenter implements PropertyChangeListener {
     private final Rectangle rect;

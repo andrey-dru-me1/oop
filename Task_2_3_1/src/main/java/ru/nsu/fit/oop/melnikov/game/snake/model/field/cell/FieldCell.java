@@ -1,14 +1,13 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.field.cell;
 
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
 public class FieldCell {
 
-  private final Point point;
   protected final PropertyChangeSupport support;
+  private final Point point;
 
   protected FieldCell(int x, int y) {
     this(new Point(x, y));

@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.direction;
 
 import java.util.function.UnaryOperator;
-
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
 public enum Direction {

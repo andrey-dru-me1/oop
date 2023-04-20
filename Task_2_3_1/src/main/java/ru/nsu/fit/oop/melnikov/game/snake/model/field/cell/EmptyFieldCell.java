@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.field.cell;
 
 import java.util.Optional;
-
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 public class EmptyFieldCell extends FieldCell {

@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.NoPlaceForAppleException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.EmptyFieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
 public class Field {
 

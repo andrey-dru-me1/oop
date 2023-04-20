@@ -3,7 +3,6 @@ package ru.nsu.fit.oop.melnikov.game.data.saver;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
