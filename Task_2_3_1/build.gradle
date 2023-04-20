@@ -25,7 +25,7 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
-mainClassName = 'ru.nsu.fit.oop.melnikov.game.snake.view.Main'
+mainClassName = 'ru.nsu.fit.oop.melnikov.game.snake.SnakeEntry'
 
 java {
     toolchain {

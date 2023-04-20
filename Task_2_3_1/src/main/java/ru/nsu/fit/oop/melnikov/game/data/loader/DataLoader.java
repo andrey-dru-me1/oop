@@ -9,13 +9,13 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.EmptyFieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.ObservableSnake;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakeNode;
 
 public class DataLoader {
 
   private final Field field;
-  private final ObservableSnake snake;
+  private final Snake snake;
 
   public DataLoader(String filename) throws SnakeInSnakeException {
     List<SnakeNode> nodes;
@@ -53,14 +53,14 @@ public class DataLoader {
       }
     }
 
-    snake = new ObservableSnake(field, nodes);
+    snake = new Snake(field, nodes);
   }
 
   public Field getField() {
     return field;
   }
 
-  public ObservableSnake getSnake() {
+  public Snake getSnake() {
     return snake;
   }
 }

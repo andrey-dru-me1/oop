@@ -4,8 +4,11 @@ module oop.snake.main {
     requires java.desktop;
     requires static awaitility;
 
-    opens ru.nsu.fit.oop.melnikov.game.snake.view to javafx.fxml;
     exports ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash;
-    exports ru.nsu.fit.oop.melnikov.game.snake.view;
+    exports ru.nsu.fit.oop.melnikov.game.snake.model.exceptions;
+    exports ru.nsu.fit.oop.melnikov.game.snake.presenter;
+    opens ru.nsu.fit.oop.melnikov.game.snake.presenter to javafx.fxml;
+    exports ru.nsu.fit.oop.melnikov.game.snake;
+    opens ru.nsu.fit.oop.melnikov.game.snake to javafx.fxml;
 
 }

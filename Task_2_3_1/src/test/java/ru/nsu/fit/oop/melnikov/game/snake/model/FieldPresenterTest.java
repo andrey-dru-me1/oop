@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInSnakeException;
 
-class GameTest extends ModelInit {
+class FieldPresenterTest extends ModelInit {
 
-  public GameTest() throws SnakeInSnakeException {
+  public FieldPresenterTest() throws SnakeInSnakeException {
     super();
   }
 
