@@ -43,7 +43,7 @@ public class GamePresenter {
     model =
         new Game(
             snake,
-            500,
+            400,
             () -> snakeEntry.changeScene("death"),
             () -> snakeEntry.changeScene("victory"));
     model.start();

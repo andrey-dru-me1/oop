@@ -6,7 +6,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
-group = 'ru.cft.shift.task.test.melnikov'
+group = 'ru.nsu.fit.oop.melnikov'
 version = 'unspecified'
 
 repositories {
@@ -25,11 +25,21 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
-mainClassName = 'ru.nsu.fit.oop.melnikov.game.snake.SnakeEntry'
+application {
+    mainModule = "oop.snake"
+    mainClassName = 'ru.nsu.fit.oop.melnikov.game.snake.SnakeEntry'
+}
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(20)
+    }
+}
+
+apply plugin: 'idea'
+idea {
+    module {
+        inheritOutputDirs = true
     }
 }
 

@@ -21,7 +21,7 @@ public class DataLoader {
     List<SnakeNode> nodes;
     Scanner scanner =
         new Scanner(
-            Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filename)));
+            Objects.requireNonNull(getClass().getResourceAsStream("/" + filename)));
 
     int width = scanner.nextInt();
     int height = scanner.nextInt();
