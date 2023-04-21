@@ -1,50 +1,53 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.snake;
 
+import java.util.LinkedList;
 import java.util.List;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.NoPlaceForAppleException;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeCrashedException;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInSnakeException;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInWallException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.EmptyFieldCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
 public class Snake {
 
   /** Snake nodes, where 0 is a tail and last element is a head. */
-  private final List<SnakeNode> nodes;
+  private final List<Cell> nodes;
 
   private final Field field;
   private Direction direction;
   private int sizeToIncrease;
-  
-  /** Creates new snake with 3 nodes. */
-  public Snake(Field field, List<SnakeNode> snakeNodes) throws SnakeInSnakeException {
+  private boolean isDestroyed;
 
-    for (SnakeNode snakeNode : snakeNodes) {
-      if (snakeNode.cell().getSnake().isPresent()) {
-        throw new SnakeInSnakeException();
-      }
-      snakeNode.cell().putSnake(this);
+  /** Creates new snake with 3 nodes. */
+  protected Snake(Field field, List<Point> snakePoints) {
+
+    this.nodes = new LinkedList<>();
+    this.field = field;
+
+    for (Point point : snakePoints) {
+      Cell cell = field.getCell(point);
+      nodes.add(cell);
+      cell.add(new SnakeNode(this));
     }
 
-    this.field = field;
-    this.nodes = snakeNodes;
     this.direction = Direction.RIGHT;
     this.sizeToIncrease = 0;
+    isDestroyed = false;
+  }
+
+  public boolean isDestroyed() {
+    return isDestroyed;
   }
 
   public Field getField() {
     return field;
   }
 
-  public List<SnakeNode> getNodes() {
+  public List<Cell> getNodes() {
     return nodes;
   }
 
-  public void move() throws SnakeCrashedException, NoPlaceForAppleException {
+  public void move() {
     appendHead();
     if (sizeToIncrease > 0) {
       sizeToIncrease--;
@@ -53,7 +56,7 @@ public class Snake {
     removeTail();
   }
 
-  public void move(Direction direction) throws SnakeCrashedException, NoPlaceForAppleException {
+  public void move(Direction direction) {
     this.setDirection(direction);
     this.move();
   }
@@ -66,11 +69,11 @@ public class Snake {
     sizeToIncrease++;
   }
 
-  public SnakeNode getHead() {
+  public Cell getHeadCell() {
     return nodes.get(nodes.size() - 1);
   }
 
-  public SnakeNode getTail() {
+  public Cell getTailCell() {
     return nodes.get(0);
   }
 
@@ -78,30 +81,19 @@ public class Snake {
     return nodes.size();
   }
 
-  protected void appendHead() throws SnakeCrashedException, NoPlaceForAppleException {
-    FieldCell newHeadCell = field.getCell(direction.nextPoint(this.getHead().cell().getPoint()));
-    if (newHeadCell instanceof EmptyFieldCell emptyCell) {
-
-      if (emptyCell.getSnake().isPresent()) {
-        throw new SnakeInSnakeException();
-      }
-
-      emptyCell.putSnake(this);
-      nodes.add(new SnakeNode(emptyCell));
-
-      if (emptyCell.hasApple()) {
-        this.increaseSize();
-        field.eatApple(emptyCell);
-        field.generateApple(); // TODO: make a listener that generates apple when it is eaten
-      }
-    } else if (newHeadCell instanceof Wall) {
-      throw new SnakeInWallException();
-    }
+  protected void appendHead() {
+    Cell newHeadCell = field.getCell(direction.nextPoint(this.getHeadCell().getPoint()));
+    nodes.add(newHeadCell);
+    newHeadCell.add(new SnakeNode(this));
   }
 
-  protected SnakeNode removeTail() {
-    SnakeNode snakeNode = nodes.remove(0);
-    snakeNode.cell().moveSnake();
-    return snakeNode;
+  protected void removeTail() {
+    Cell tailCell = nodes.remove(0);
+    tailCell.remove(SnakeNode.class);
+  }
+
+  public void destroy() {
+    isDestroyed = true;
+    nodes.parallelStream().forEach(cell -> cell.remove(SnakeNode.class));
   }
 }

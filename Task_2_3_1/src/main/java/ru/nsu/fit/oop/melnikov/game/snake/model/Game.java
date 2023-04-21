@@ -2,8 +2,6 @@ package ru.nsu.fit.oop.melnikov.game.snake.model;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.NoPlaceForAppleException;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeCrashedException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 public class Game {
@@ -37,13 +35,13 @@ public class Game {
         new TimerTask() {
           @Override
           public void run() {
-            try {
-              snake.move();
-            } catch (SnakeCrashedException e) {
+            snake.move();
+            if (snake.isDestroyed()) {
               crash = true;
               this.cancel();
               whenCrashed.run();
-            } catch(NoPlaceForAppleException e) {
+            }
+            if (snake.getField().isNoPlaceForApple()) {
               this.cancel();
               whenWon.run();
             }
@@ -57,5 +55,4 @@ public class Game {
     timer.cancel();
     timer.purge();
   }
-
 }

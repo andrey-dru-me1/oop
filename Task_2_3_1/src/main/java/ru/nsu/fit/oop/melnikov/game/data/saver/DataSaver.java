@@ -4,11 +4,10 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakeNode;
 
 public class DataSaver {
 
@@ -23,9 +22,9 @@ public class DataSaver {
       result.append(field.getWidth()).append(" ").append(field.getHeight()).append("\n");
 
       //field
-      for (FieldCell[] row : field.getCells()) {
-        for (FieldCell cell : row) {
-          result.append((cell instanceof Wall) ? '#' : ' ');
+      for (Cell[] row : field.getCells()) {
+        for (Cell cell : row) {
+          result.append((cell.contains(Wall.class)) ? '#' : ' ');
         }
         result.append('\n');
       }
@@ -33,8 +32,8 @@ public class DataSaver {
       result.append(snake.size()).append("\n");
 
       //snake
-      for (SnakeNode snakeNode : snake.getNodes()) {
-        Point point = snakeNode.cell().getPoint();
+      for (Cell cell : snake.getNodes()) {
+        Point point = cell.getPoint();
         result.append(point.x()).append(" ").append(point.y()).append("\n");
       }
 

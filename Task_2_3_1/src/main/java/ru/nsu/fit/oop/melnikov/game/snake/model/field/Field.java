@@ -4,37 +4,44 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.NoPlaceForAppleException;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.EmptyFieldCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Apple;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
 public class Field {
 
   private static final Random RANDOM = new Random();
-  private final FieldCell[][] cells;
+  private final Cell[][] cells;
   private final int width;
   private final int height;
-  private final List<EmptyFieldCell> emptyFieldCells;
-  private final List<EmptyFieldCell> appleFields;
+  private final List<Cell> emptyCells;
+  private final List<Cell> appleCells;
+  private boolean noPlaceForApple;
 
-  public Field(FieldCell[][] cells) {
+  public Field(Cell[][] cells) {
     this.cells = cells;
     width = cells.length;
     height = cells[0].length;
 
-    this.emptyFieldCells = new ArrayList<>();
+    this.emptyCells = new ArrayList<>();
 
-    for (FieldCell[] fieldCells : cells) {
-      for (FieldCell cell : fieldCells) {
-        if (cell instanceof EmptyFieldCell fieldCell) {
-          emptyFieldCells.add(fieldCell);
+    for (Cell[] fieldCells : cells) {
+      for (Cell cell : fieldCells) {
+        if (!cell.contains(Wall.class)) {
+          emptyCells.add(cell);
         }
       }
     }
 
-    appleFields = new LinkedList<>();
+    appleCells = new LinkedList<>();
 
+    noPlaceForApple = false;
+  }
+
+  public boolean isNoPlaceForApple() {
+    return noPlaceForApple;
   }
 
   public int getWidth() {
@@ -45,45 +52,52 @@ public class Field {
     return height;
   }
 
-  public FieldCell[][] getCells() {
+  public Cell[][] getCells() {
     return cells;
   }
 
-  public FieldCell getCell(int x, int y) {
+  public Cell getCell(int x, int y) {
     if (x < 0 || x >= width || y < 0 || y >= height) {
       throw new IndexOutOfBoundsException();
     }
     return cells[x][y];
   }
 
-  public FieldCell getCell(Point point) {
+  public Cell getCell(Point point) {
     return this.getCell(point.x(), point.y());
   }
 
   public int applesCount() {
-    return appleFields.size();
+    return appleCells.size();
   }
 
-  public void generateApple() throws NoPlaceForAppleException {
-    EmptyFieldCell newAppleField;
-    int i = RANDOM.nextInt(emptyFieldCells.size());
+  public void generateApple() {
+    if (noPlaceForApple) {
+      return;
+    }
+    Cell newAppleCell;
+    int i = RANDOM.nextInt(emptyCells.size());
     int startI = i;
-    while ((newAppleField = emptyFieldCells.get(i)).getSnake().isPresent()
-        || newAppleField.hasApple()) {
-      i = (i + 1) % emptyFieldCells.size();
+    while ((newAppleCell = emptyCells.get(i)).contains(SnakeNode.class)
+        || newAppleCell.contains(Apple.class)) {
+      i = (i + 1) % emptyCells.size();
       if (i == startI) {
-        throw new NoPlaceForAppleException();
+        noPlaceForApple = true;
+        return;
       }
     }
-    newAppleField.putApple();
-    appleFields.add(newAppleField);
+    Cell appleCell = newAppleCell;
+    newAppleCell.add(new Apple(() -> {
+      eatApple(appleCell);
+      generateApple();
+    }));
+    appleCells.add(newAppleCell);
   }
 
-  public void eatApple(EmptyFieldCell appleCell) {
-    if (appleCell.hasApple()) {
-      appleFields.remove(appleCell);
-      appleCell.eatApple();
+  public void eatApple(Cell appleCell) {
+    if (appleCell.contains(Apple.class)) {
+      appleCells.remove(appleCell);
+      appleCell.remove(Apple.class);
     }
   }
-
 }

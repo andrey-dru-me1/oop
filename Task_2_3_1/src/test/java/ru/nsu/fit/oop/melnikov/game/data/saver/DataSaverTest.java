@@ -7,18 +7,18 @@ import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.game.snake.model.ModelInit;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInSnakeException;
 
 class DataSaverTest extends ModelInit {
 
-  public DataSaverTest() throws SnakeInSnakeException {
+  public DataSaverTest() {
     super();
   }
 
   @Test
   void test() throws IOException {
 
-    String toCompare = """
+    String toCompare =
+        """
         7 7
         #######
         #     #
@@ -43,5 +43,4 @@ class DataSaverTest extends ModelInit {
     String stringFileValue = new String(fileValue, StandardCharsets.UTF_8);
     Assertions.assertEquals(toCompare.trim(), stringFileValue.trim());
   }
-
 }

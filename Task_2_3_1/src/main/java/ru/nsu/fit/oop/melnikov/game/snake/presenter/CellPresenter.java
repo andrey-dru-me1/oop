@@ -2,25 +2,22 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Optional;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.EmptyFieldCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.*;
 
 public class CellPresenter implements PropertyChangeListener {
   private final Rectangle rect;
 
-  public CellPresenter(FieldCell cell, Rectangle rect) {
+  public CellPresenter(Cell cell, Rectangle rect) {
     this.rect = rect;
-    if (cell instanceof Wall) {
+    if (cell.contains(Wall.class)) {
       rect.setFill(Color.BLACK);
-    } else if (cell instanceof EmptyFieldCell emptyCell) {
-      if (emptyCell.hasSnake()) {
+    } else {
+      if (cell.contains(SnakeNode.class)) {
         rect.setFill(Color.GREEN);
-      } else if (emptyCell.hasApple()) {
+      } else if (cell.contains(Apple.class)) {
         rect.setFill(Color.RED);
       } else {
         rect.setFill(Color.WHITE);
@@ -30,22 +27,14 @@ public class CellPresenter implements PropertyChangeListener {
 
   @Override
   public void propertyChange(PropertyChangeEvent evt) {
-    switch (evt.getPropertyName()) {
-      case "snake" -> {
-        if (evt.getNewValue() instanceof Optional<?>) {
-          rect.setFill(Color.WHITE);
-        } else if (evt.getNewValue() instanceof Snake) {
-          rect.setFill(Color.GREEN);
-        }
-      }
-      case "apple" -> {
-        if (evt.getNewValue() instanceof Boolean res) {
-          rect.setFill(Boolean.TRUE.equals(res) ? Color.RED : Color.GREEN);
-        }
-      }
-      default -> {
-        // No need to do anything on another keyboard keys
-      }
+    if (evt.getNewValue() instanceof Wall) {
+      rect.setFill(Color.BLACK);
+    } else if (evt.getNewValue() instanceof SnakeNode) {
+      rect.setFill(Color.GREEN);
+    } else if (evt.getNewValue() instanceof EmptyCell) {
+      rect.setFill(Color.WHITE);
+    } else if (evt.getNewValue() instanceof Apple) {
+      rect.setFill(Color.RED);
     }
   }
 }

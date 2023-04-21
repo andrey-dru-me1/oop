@@ -4,8 +4,6 @@ module oop.snake {
     requires java.desktop;
     requires static awaitility;
 
-    exports ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash;
-    exports ru.nsu.fit.oop.melnikov.game.snake.model.exceptions;
     exports ru.nsu.fit.oop.melnikov.game.snake.model.field.cell;
     exports ru.nsu.fit.oop.melnikov.game.snake.presenter;
     opens ru.nsu.fit.oop.melnikov.game.snake.presenter to javafx.fxml;

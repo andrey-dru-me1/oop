@@ -5,11 +5,10 @@ import static org.awaitility.Awaitility.await;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInSnakeException;
 
 class FieldPresenterTest extends ModelInit {
 
-  public FieldPresenterTest() throws SnakeInSnakeException {
+  public FieldPresenterTest() {
     super();
   }
 
@@ -21,5 +20,4 @@ class FieldPresenterTest extends ModelInit {
     await().atMost(1, TimeUnit.SECONDS).until(game::isCrash);
     Assertions.assertTrue(game.isCrash());
   }
-
 }

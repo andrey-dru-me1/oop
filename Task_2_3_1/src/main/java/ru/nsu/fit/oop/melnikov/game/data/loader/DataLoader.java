@@ -4,38 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-import ru.nsu.fit.oop.melnikov.game.snake.model.exceptions.crash.SnakeInSnakeException;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.EmptyFieldCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.FieldCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Wall;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.ObservableSnake;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakeNode;
 
 public class DataLoader {
 
   private final Field field;
   private final Snake snake;
 
-  public DataLoader(String filename) throws SnakeInSnakeException {
-    List<SnakeNode> nodes;
+  public DataLoader(String filename) {
+    List<Point> snakePoints;
     Scanner scanner =
-        new Scanner(
-            Objects.requireNonNull(getClass().getResourceAsStream("/" + filename)));
+        new Scanner(Objects.requireNonNull(getClass().getResourceAsStream("/" + filename)));
 
     int width = scanner.nextInt();
     int height = scanner.nextInt();
     scanner.skip("\n");
 
-    FieldCell[][] cells = new FieldCell[width][height];
+    Cell[][] cells = new Cell[width][height];
     scanner.useDelimiter("");
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        switch (scanner.next()) {
-          case "#" -> cells[j][i] = new Wall(j, i);
-          case " " -> cells[j][i] = new EmptyFieldCell(j, i);
-          default -> throw new IllegalStateException();
+        String token = scanner.next();
+        if (token.equals("#") || token.equals(" ")) {
+          cells[i][j] = new Cell(i, j);
+          if (token.equals("#")) {
+            cells[i][j].add(new Wall());
+          }
+        } else {
+          throw new IllegalStateException();
         }
       }
       scanner.skip("\n");
@@ -44,16 +46,13 @@ public class DataLoader {
     field = new Field(cells);
 
     int size = scanner.nextInt();
-    nodes = new ArrayList<>(size);
+    snakePoints = new ArrayList<>(size);
     scanner.reset();
     for (int i = 0; i < size; i++) {
-      if (field.getCell(scanner.nextInt(), scanner.nextInt())
-          instanceof EmptyFieldCell emptyFieldCell) {
-        nodes.add(i, new SnakeNode(emptyFieldCell));
-      }
+      snakePoints.add(i, new Point(scanner.nextInt(), scanner.nextInt()));
     }
 
-    snake = new Snake(field, nodes);
+    snake = new ObservableSnake(field, snakePoints);
   }
 
   public Field getField() {
