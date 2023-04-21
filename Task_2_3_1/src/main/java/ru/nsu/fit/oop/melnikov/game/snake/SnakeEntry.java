@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.Objects;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class SnakeEntry extends Application {
 
   private static final double TITLE_BAR_HEIGHT = 31;
   private static final double WINDOW_SIZE = 800;
+  Scene scene;
   private GamePresenter presenter;
   private Stage stage;
   private GridPane grid;
@@ -30,20 +32,15 @@ public class SnakeEntry extends Application {
     stage.setTitle("Snake the game");
     stage
         .getIcons()
-        .add(
-            new Image(
-                Objects.requireNonNull(
-                    getClass().getResourceAsStream("/icon.png"))));
+        .add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png"))));
     stage.setWidth(WINDOW_SIZE);
     stage.setHeight(WINDOW_SIZE + TITLE_BAR_HEIGHT);
-
     stage.setScene(initScene());
-
     stage.show();
   }
 
   private Scene initScene() {
-    Scene scene = new Scene(grid);
+    scene = new Scene(grid);
     scene.setOnKeyPressed(presenter::onKeyPressed);
     return scene;
   }
@@ -63,8 +60,12 @@ public class SnakeEntry extends Application {
     }
   }
 
-  public Rectangle createRectangle(int x, int y) {
-    Rectangle newRect = new Rectangle(100, 100);
+  public Rectangle createRectangle(int fieldSize, int x, int y) {
+    Rectangle newRect = new Rectangle();
+    var size =
+        Bindings.min(scene.widthProperty(), scene.heightProperty()).divide(fieldSize).subtract(2);
+    newRect.widthProperty().bind(size);
+    newRect.heightProperty().bind(size);
     grid.add(newRect, x, y);
     return newRect;
   }
@@ -76,13 +77,12 @@ public class SnakeEntry extends Application {
   }
 
   @Override
-  public void start(Stage stage) throws Exception {
+  public void start(Stage stage) {
     initPresenter();
     initGrid();
-    presenter.initGameFromFile("default.txt");
-
     this.stage = stage;
     initStage();
+    presenter.initGameFromFile("default.txt");
   }
 
   @Override

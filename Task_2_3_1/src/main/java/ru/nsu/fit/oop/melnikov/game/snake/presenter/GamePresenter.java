@@ -30,7 +30,7 @@ public class GamePresenter {
       Cell[] row = field.getCells()[i];
       for (int j = 0; j < field.getHeight(); j++) {
         Cell cell = row[j];
-        cellPresenters[i][j] = new CellPresenter(cell, snakeEntry.createRectangle(i, j));
+        cellPresenters[i][j] = new CellPresenter(cell, snakeEntry.createRectangle(field.getWidth(), i, j));
         cell.addPropertyChangeListener(cellPresenters[i][j]);
       }
     }
