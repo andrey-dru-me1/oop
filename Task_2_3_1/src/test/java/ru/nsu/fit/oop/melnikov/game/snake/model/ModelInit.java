@@ -19,13 +19,13 @@ public class ModelInit {
 
     Cell[][] fieldCells = new Cell[SIZE][SIZE];
 
-    for(int i = 0; i < SIZE; i++) {
-      for(int j = 0; j < SIZE; j++) {
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j < SIZE; j++) {
         fieldCells[i][j] = new Cell(i, j);
       }
     }
 
-    for(int i = 1; i < SIZE - 1; i++) {
+    for (int i = 1; i < SIZE - 1; i++) {
       fieldCells[i][0].add(new Wall());
       fieldCells[0][i].add(new Wall());
       fieldCells[i][SIZE - 1].add(new Wall());
