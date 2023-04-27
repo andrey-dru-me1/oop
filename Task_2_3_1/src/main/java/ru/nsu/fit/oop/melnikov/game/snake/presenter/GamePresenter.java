@@ -3,7 +3,6 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 import javafx.scene.input.KeyEvent;
 import ru.nsu.fit.oop.melnikov.game.data.loader.DataLoader;
 import ru.nsu.fit.oop.melnikov.game.snake.SnakeEntry;
-import ru.nsu.fit.oop.melnikov.game.snake.model.Game;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
