@@ -42,35 +42,35 @@ class SnakeTest extends ModelInit {
   @Test
   void testSnake() {
 
-    Assertions.assertEquals(3, snake.getHeadCell().getPoint().x());
-    Assertions.assertEquals(1, snake.getHeadCell().getPoint().y());
-    Assertions.assertEquals(1, snake.getTailCell().getPoint().x());
-    Assertions.assertEquals(1, snake.getTailCell().getPoint().y());
+    Assertions.assertEquals(3, snake.getHeadCell().getX());
+    Assertions.assertEquals(1, snake.getHeadCell().getY());
+    Assertions.assertEquals(1, snake.getTailCell().getX());
+    Assertions.assertEquals(1, snake.getTailCell().getY());
 
     Assertions.assertDoesNotThrow(() -> snake.move());
     Assertions.assertDoesNotThrow(() -> snake.move());
 
-    Assertions.assertEquals(5, snake.getHeadCell().getPoint().x());
-    Assertions.assertEquals(1, snake.getHeadCell().getPoint().y());
-    Assertions.assertEquals(3, snake.getTailCell().getPoint().x());
-    Assertions.assertEquals(1, snake.getTailCell().getPoint().y());
+    Assertions.assertEquals(5, snake.getHeadCell().getX());
+    Assertions.assertEquals(1, snake.getHeadCell().getY());
+    Assertions.assertEquals(3, snake.getTailCell().getX());
+    Assertions.assertEquals(1, snake.getTailCell().getY());
 
     Assertions.assertDoesNotThrow(() -> snake.move(Direction.DOWN));
     Assertions.assertDoesNotThrow(() -> snake.move());
 
-    Assertions.assertEquals(5, snake.getHeadCell().getPoint().x());
-    Assertions.assertEquals(3, snake.getHeadCell().getPoint().y());
-    Assertions.assertEquals(5, snake.getTailCell().getPoint().x());
-    Assertions.assertEquals(1, snake.getTailCell().getPoint().y());
+    Assertions.assertEquals(5, snake.getHeadCell().getX());
+    Assertions.assertEquals(3, snake.getHeadCell().getY());
+    Assertions.assertEquals(5, snake.getTailCell().getX());
+    Assertions.assertEquals(1, snake.getTailCell().getY());
 
     snake.increaseSize();
     snake.increaseSize();
     Assertions.assertDoesNotThrow(() -> snake.move());
     Assertions.assertDoesNotThrow(() -> snake.move());
 
-    Assertions.assertEquals(5, snake.getHeadCell().getPoint().x());
-    Assertions.assertEquals(5, snake.getHeadCell().getPoint().y());
-    Assertions.assertEquals(5, snake.getTailCell().getPoint().x());
-    Assertions.assertEquals(1, snake.getTailCell().getPoint().y());
+    Assertions.assertEquals(5, snake.getHeadCell().getX());
+    Assertions.assertEquals(5, snake.getHeadCell().getY());
+    Assertions.assertEquals(5, snake.getTailCell().getX());
+    Assertions.assertEquals(1, snake.getTailCell().getY());
   }
 }

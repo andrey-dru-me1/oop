@@ -10,26 +10,25 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.EmptyCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
-public class Cell {
+public class Cell extends Point {
 
   protected final PropertyChangeSupport support;
-  private final Point point;
 
   private final PriorityQueue<CellObject> cellObjects;
 
   public Cell(int x, int y) {
-    this(new Point(x, y));
-  }
-
-  public Cell(Point point) {
-    this.point = point;
+    super(x, y);
     support = new PropertyChangeSupport(this);
 
     // Descending ordering
     Comparator<CellObject> comparator =
-        (o1, o2) -> Integer.compare(o2.getPriority(), o1.getPriority());
+            (o1, o2) -> Integer.compare(o2.getPriority(), o1.getPriority());
     cellObjects = new PriorityQueue<>(1, comparator);
     cellObjects.add(new EmptyCell());
+  }
+
+  public Cell(Point point) {
+    this(point.getX(), point.getY());
   }
 
   public PriorityQueue<CellObject> getCellObjects() {
@@ -80,9 +79,5 @@ public class Cell {
 
   public void removePropertyChangeListener(PropertyChangeListener listener) {
     support.removePropertyChangeListener(listener);
-  }
-
-  public Point getPoint() {
-    return point;
   }
 }

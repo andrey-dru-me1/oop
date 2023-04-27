@@ -19,7 +19,6 @@ class DataSaverTest extends ModelInit {
 
     String toCompare =
         """
-        7 7
         #######
         #     #
         #     #
@@ -27,6 +26,7 @@ class DataSaverTest extends ModelInit {
         #     #
         #     #
         #######
+        .
         3
         1 1
         2 1

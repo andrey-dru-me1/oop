@@ -1,9 +1,7 @@
 package ru.nsu.fit.oop.melnikov.game.data.loader;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
+
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
@@ -21,29 +19,36 @@ public class DataLoader {
     Scanner scanner =
         new Scanner(Objects.requireNonNull(getClass().getResourceAsStream("/" + filename)));
 
-    int width = scanner.nextInt();
-    int height = scanner.nextInt();
-    scanner.skip("\n");
-
-    Cell[][] cells = new Cell[width][height];
+    Queue<Cell> cells = new ArrayDeque<>();
     scanner.useDelimiter("");
 
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        String token = scanner.next();
-        if (token.equals("#") || token.equals(" ")) {
-          cells[i][j] = new Cell(i, j);
-          if (token.equals("#")) {
-            cells[i][j].add(new Wall());
-          }
-        } else {
-          throw new IllegalStateException();
-        }
+    int x = 0;
+    int y = 0;
+    while(true) {
+      String token = scanner.next();
+      if(token.equals(".")) {
+        break;
       }
-      scanner.skip("\n");
+      if (token.equals("#") || token.equals(" ")) {
+        Cell cell = new Cell(x, y);
+        if (token.equals("#")) {
+          cell.add(new Wall());
+        }
+        cells.add(cell);
+        x++;
+      }
+      else if(token.equals("\n")) {
+        x = 0;
+        y++;
+      }
+      else {
+        throw new IllegalStateException();
+      }
     }
 
     field = new Field(cells);
+
+    scanner.skip("\n");
 
     int size = scanner.nextInt();
     snakePoints = new ArrayList<>(size);

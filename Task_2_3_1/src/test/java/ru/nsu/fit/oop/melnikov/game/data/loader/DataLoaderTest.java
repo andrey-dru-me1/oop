@@ -14,8 +14,8 @@ class DataLoaderTest {
     DataLoader dataLoader = new DataLoader("test.txt");
     Snake snake = dataLoader.getSnake();
 
-    Assertions.assertEquals(new Point(1, 1), snake.getTailCell().getPoint());
-    Assertions.assertEquals(new Point(3, 1), snake.getHeadCell().getPoint());
+    Assertions.assertEquals(new Point(1, 1), snake.getTailCell());
+    Assertions.assertEquals(new Point(3, 1), snake.getHeadCell());
 
     Field field = dataLoader.getField();
 

@@ -82,7 +82,7 @@ public class Snake {
   }
 
   protected void appendHead() {
-    Cell newHeadCell = field.getCell(direction.nextPoint(this.getHeadCell().getPoint()));
+    Cell newHeadCell = field.getCell(direction.nextPoint(this.getHeadCell()));
     nodes.add(newHeadCell);
     newHeadCell.add(new SnakeNode(this));
   }

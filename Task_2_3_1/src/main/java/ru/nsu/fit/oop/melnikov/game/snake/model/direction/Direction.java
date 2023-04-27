@@ -4,10 +4,10 @@ import java.util.function.UnaryOperator;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
 public enum Direction {
-  LEFT(point -> new Point(point.x() - 1, point.y())),
-  RIGHT(point -> new Point(point.x() + 1, point.y())),
-  UP(point -> new Point(point.x(), point.y() - 1)),
-  DOWN(point -> new Point(point.x(), point.y() + 1));
+  LEFT(point -> new Point(point.getX() - 1, point.getY())),
+  RIGHT(point -> new Point(point.getX() + 1, point.getY())),
+  UP(point -> new Point(point.getX(), point.getY() - 1)),
+  DOWN(point -> new Point(point.getX(), point.getY() + 1));
 
   private final UnaryOperator<Point> shiftPoint;
 

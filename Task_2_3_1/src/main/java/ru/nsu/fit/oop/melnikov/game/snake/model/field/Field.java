@@ -1,9 +1,6 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.field;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Apple;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
@@ -40,6 +37,46 @@ public class Field {
     noPlaceForApple = false;
   }
 
+  public Field(Collection<Cell> cells) {
+
+    this.emptyCells = new ArrayList<>();
+
+    int w = 0;
+    int h = 0;
+    for (Cell cell : cells) {
+      if (cell.getX() > w) {
+        w = cell.getX();
+      }
+      if (cell.getY() > h) {
+        h = cell.getY();
+      }
+      if (!cell.contains(Wall.class)) {
+        emptyCells.add(cell);
+      }
+    }
+    this.width = w + 1;
+    this.height = h + 1;
+
+    Cell[][] cellMatrix = new Cell[width][height];
+    for(Cell cell : cells) {
+      cellMatrix[cell.getX()][cell.getY()] = cell;
+    }
+
+    for(int i = 0; i < width; i++) {
+      for(int j = 0; j < height; j++) {
+        if(cellMatrix[i][j] == null) {
+          cellMatrix[i][j] = new Cell(i, j);
+        }
+      }
+    }
+
+    this.cells = cellMatrix;
+
+    appleCells = new LinkedList<>();
+
+    noPlaceForApple = false;
+  }
+
   public boolean isNoPlaceForApple() {
     return noPlaceForApple;
   }
@@ -64,7 +101,7 @@ public class Field {
   }
 
   public Cell getCell(Point point) {
-    return this.getCell(point.x(), point.y());
+    return this.getCell(point.getX(), point.getY());
   }
 
   public int applesCount() {
@@ -87,10 +124,12 @@ public class Field {
       }
     }
     Cell appleCell = newAppleCell;
-    newAppleCell.add(new Apple(() -> {
-      eatApple(appleCell);
-      generateApple();
-    }));
+    newAppleCell.add(
+        new Apple(
+            () -> {
+              eatApple(appleCell);
+              generateApple();
+            }));
     appleCells.add(newAppleCell);
   }
 
