@@ -13,7 +13,6 @@ public class Game {
   private final int delay;
   private final Runnable whenCrashed;
   private final Runnable whenWon;
-  private boolean crash;
 
   public Game(Snake snake, int delay, Runnable whenCrashed, Runnable whenWon) {
     this.snake = snake;
@@ -22,7 +21,6 @@ public class Game {
     this.timer = new Timeline();
     this.timer.setCycleCount(Animation.INDEFINITE);
     this.whenWon = whenWon;
-    crash = false;
   }
 
   public void start() {
@@ -34,7 +32,6 @@ public class Game {
                 t -> {
                   snake.move();
                   if (snake.isDestroyed()) {
-                    crash = true;
                     Game.this.timer.stop();
                     whenCrashed.run();
                   }
