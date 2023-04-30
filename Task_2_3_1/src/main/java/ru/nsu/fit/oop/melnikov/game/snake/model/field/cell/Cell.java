@@ -8,9 +8,9 @@ import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.EmptyCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
 
-public class Cell extends Point {
+public class Cell extends IntPoint {
 
   protected final PropertyChangeSupport support;
 
@@ -25,10 +25,6 @@ public class Cell extends Point {
             (o1, o2) -> Integer.compare(o2.getPriority(), o1.getPriority());
     cellObjects = new PriorityQueue<>(1, comparator);
     cellObjects.add(new EmptyCell());
-  }
-
-  public Cell(Point point) {
-    this(point.getX(), point.getY());
   }
 
   public PriorityQueue<CellObject> getCellObjects() {
@@ -75,9 +71,5 @@ public class Cell extends Point {
 
   public void addPropertyChangeListener(PropertyChangeListener listener) {
     support.addPropertyChangeListener(listener);
-  }
-
-  public void removePropertyChangeListener(PropertyChangeListener listener) {
-    support.removePropertyChangeListener(listener);
   }
 }

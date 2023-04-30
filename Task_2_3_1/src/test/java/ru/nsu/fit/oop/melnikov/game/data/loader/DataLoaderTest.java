@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 class DataLoaderTest {
@@ -14,8 +14,8 @@ class DataLoaderTest {
     DataLoader dataLoader = new DataLoader("test.txt");
     Snake snake = dataLoader.getSnake();
 
-    Assertions.assertEquals(new Point(1, 1), snake.getTailCell());
-    Assertions.assertEquals(new Point(3, 1), snake.getHeadCell());
+    Assertions.assertEquals(new IntPoint(1, 1), snake.getTailCell());
+    Assertions.assertEquals(new IntPoint(3, 1), snake.getHeadCell());
 
     Field field = dataLoader.getField();
 

@@ -1,12 +1,10 @@
 package ru.nsu.fit.oop.melnikov.game.data.loader;
 
 import java.util.*;
-
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.ObservableSnake;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 public class DataLoader {
@@ -15,7 +13,7 @@ public class DataLoader {
   private final Snake snake;
 
   public DataLoader(String filename) {
-    List<Point> snakePoints;
+    List<IntPoint> snakeIntPoints;
     Scanner scanner =
         new Scanner(Objects.requireNonNull(getClass().getResourceAsStream("/" + filename)));
 
@@ -24,9 +22,9 @@ public class DataLoader {
 
     int x = 0;
     int y = 0;
-    while(true) {
+    while (true) {
       String token = scanner.next();
-      if(token.equals(".")) {
+      if (token.equals(".")) {
         break;
       }
       if (token.equals("#") || token.equals(" ")) {
@@ -36,12 +34,10 @@ public class DataLoader {
         }
         cells.add(cell);
         x++;
-      }
-      else if(token.equals("\n")) {
+      } else if (token.equals("\n")) {
         x = 0;
         y++;
-      }
-      else {
+      } else {
         throw new IllegalStateException();
       }
     }
@@ -51,13 +47,13 @@ public class DataLoader {
     scanner.skip("\n");
 
     int size = scanner.nextInt();
-    snakePoints = new ArrayList<>(size);
+    snakeIntPoints = new ArrayList<>(size);
     scanner.reset();
     for (int i = 0; i < size; i++) {
-      snakePoints.add(i, new Point(scanner.nextInt(), scanner.nextInt()));
+      snakeIntPoints.add(i, new IntPoint(scanner.nextInt(), scanner.nextInt()));
     }
 
-    snake = new ObservableSnake(field, snakePoints);
+    snake = new Snake(field, snakeIntPoints);
   }
 
   public Field getField() {

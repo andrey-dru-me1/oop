@@ -32,7 +32,7 @@ public class Game {
                 t -> {
                   snake.move();
                   if (snake.isDestroyed()) {
-                    Game.this.timer.stop();
+                    timer.stop();
                     whenCrashed.run();
                   }
                   if (snake.getField().isNoPlaceForApple()) {

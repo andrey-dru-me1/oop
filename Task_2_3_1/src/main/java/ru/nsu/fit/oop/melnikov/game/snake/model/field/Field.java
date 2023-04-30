@@ -5,7 +5,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Apple;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
 
 public class Field {
 
@@ -100,8 +100,8 @@ public class Field {
     return cells[x][y];
   }
 
-  public Cell getCell(Point point) {
-    return this.getCell(point.getX(), point.getY());
+  public Cell getCell(IntPoint intPoint) {
+    return this.getCell(intPoint.getX(), intPoint.getY());
   }
 
   public int applesCount() {

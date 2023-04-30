@@ -6,7 +6,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
 
 public class Snake {
 
@@ -19,13 +19,13 @@ public class Snake {
   private boolean isDestroyed;
 
   /** Creates new snake with 3 nodes. */
-  protected Snake(Field field, List<Point> snakePoints) {
+  public Snake(Field field, List<IntPoint> snakeIntPoints) {
 
     this.nodes = new LinkedList<>();
     this.field = field;
 
-    for (Point point : snakePoints) {
-      Cell cell = field.getCell(point);
+    for (IntPoint intPoint : snakeIntPoints) {
+      Cell cell = field.getCell(intPoint);
       nodes.add(cell);
       cell.add(new SnakeNode(this));
     }

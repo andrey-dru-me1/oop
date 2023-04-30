@@ -5,7 +5,7 @@ The read() function reads data previously written to a file.  If any
        portion of a regular file prior to the end-of-file has not been written,
        read() returns bytes with value 0.  For example, lseek(2) allows the file
        offset to be set beyond the end of existing data in the file. If data is
-       later written at this point, subsequent reads in the gap between the
+       later written at this intPoint, subsequent reads in the gap between the
        previous end of data and the newly written data will return bytes with
        value 0 until data is written into the gap.
 
