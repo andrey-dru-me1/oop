@@ -33,7 +33,11 @@ public class CellPresenter implements PropertyChangeListener {
     canvas.getGraphicsContext2D().setFill(color);
     canvas
         .getGraphicsContext2D()
-        .fillRect(rect.p1().getX(), rect.p1().getY(), rect.p2().getX() - rect.p1().getX(), rect.p2().getY() - rect.p1().getY());
+        .fillRect(
+            rect.p1().getX() + 1,
+            rect.p1().getY() + 1,
+            rect.p2().getX() - rect.p1().getX() - 1,
+            rect.p2().getY() - rect.p1().getY() - 1);
   }
 
   @Override
