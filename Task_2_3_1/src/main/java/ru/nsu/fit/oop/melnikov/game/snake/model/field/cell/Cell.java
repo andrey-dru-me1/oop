@@ -34,8 +34,9 @@ public class Cell extends IntPoint {
   public boolean add(CellObject newCellObject) {
     List<CellObject> queueSnapshot = cellObjects.stream().toList();
     boolean result = cellObjects.add(newCellObject);
-    queueSnapshot.parallelStream()
-        .forEach(cellObject -> cellObject.onAnotherCellObjectAppearance(newCellObject));
+    for (CellObject cellObject : queueSnapshot) {
+      cellObject.onAnotherCellObjectAppearance(newCellObject);
+    }
     support.fireIndexedPropertyChange("add", 0, queueSnapshot.get(0), cellObjects.peek());
     return result;
   }

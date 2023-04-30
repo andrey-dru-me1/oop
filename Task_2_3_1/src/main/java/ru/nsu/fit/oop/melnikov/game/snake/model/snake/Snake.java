@@ -94,6 +94,8 @@ public class Snake {
 
   public void destroy() {
     isDestroyed = true;
-    nodes.parallelStream().forEach(cell -> cell.remove(SnakeNode.class));
+    for (Cell cell : nodes) {
+      cell.remove(SnakeNode.class);
+    }
   }
 }
