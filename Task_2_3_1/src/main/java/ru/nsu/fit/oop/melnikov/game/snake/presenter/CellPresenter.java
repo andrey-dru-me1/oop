@@ -54,12 +54,7 @@ public class CellPresenter implements PropertyChangeListener {
               canvas.getGraphicsContext2D().setGlobalAlpha(alpha);
               canvas
                   .getGraphicsContext2D()
-                  .drawImage(
-                      image,
-                      rect.p1().getX(),
-                      rect.p1().getY(),
-                      rect.p2().getX() - rect.p1().getX(),
-                      rect.p2().getY() - rect.p1().getY());
+                  .drawImage(image, rect.x(), rect.y(), rect.width(), rect.height());
             }
 
             @Override

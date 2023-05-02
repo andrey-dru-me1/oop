@@ -11,7 +11,6 @@ import ru.nsu.fit.oop.melnikov.game.data.loader.DataLoader;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 public class GamePresenter {
@@ -41,11 +40,7 @@ public class GamePresenter {
         Cell cell = row[j];
         cellPresenters[i][j] =
             new CellPresenter(
-                cell,
-                canvas,
-                new Rect<>(
-                    new Point<>(rectSize * i, rectSize * j),
-                    new Point<>(rectSize * (i + 1), rectSize * (j + 1))));
+                cell, canvas, new Rect<>(rectSize * i, rectSize * j, rectSize, rectSize));
         cell.addPropertyChangeListener(cellPresenters[i][j]);
       }
     }
@@ -55,12 +50,12 @@ public class GamePresenter {
     game =
         new Game(
             snake,
-            3000,
+            300,
             () -> {
               for (CellPresenter[] row : cellPresenters) {
-                  for (CellPresenter cellPresenter : row) {
-                    cellPresenter.stopThreads();
-                  }
+                for (CellPresenter cellPresenter : row) {
+                  cellPresenter.stopThreads();
+                }
               }
               canvas.getGraphicsContext2D().setFill(Color.RED);
               canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
