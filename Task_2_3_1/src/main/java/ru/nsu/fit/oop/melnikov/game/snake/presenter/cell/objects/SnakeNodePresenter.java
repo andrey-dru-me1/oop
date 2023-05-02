@@ -5,8 +5,14 @@ import javafx.scene.image.Image;
 
 public class SnakeNodePresenter implements CellObjectPresenter {
 
+    private final String texturePath;
+
+    public SnakeNodePresenter(String texturePackPath) {
+        this.texturePath = texturePackPath + "/snake.png";
+    }
+
     @Override
     public Image getImage() {
-    return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/cell_object_assets/snake.png")));
+    return new Image(Objects.requireNonNull(getClass().getResourceAsStream(texturePath)));
     }
 }

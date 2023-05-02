@@ -21,8 +21,9 @@ public class CellPresenter implements PropertyChangeListener {
   }
 
   private void fillRect() {
+    CellObjectFactory cellObjectFactory = new CellObjectFactory("default");
     for (CellObject cellObject : cell.getCellObjects()) {
-      Image image = CellObjectFactory.create(cellObject).getImage();
+      Image image = cellObjectFactory.create(cellObject).getImage();
       canvas
           .getGraphicsContext2D()
           .drawImage(

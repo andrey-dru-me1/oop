@@ -5,8 +5,14 @@ import javafx.scene.image.Image;
 
 public class EmptyCellPresenter implements CellObjectPresenter {
 
+    private final String texturePath;
+
+    public EmptyCellPresenter(String texturePackPath) {
+        this.texturePath = texturePackPath + "/empty_cell.png";
+    }
+
     @Override
     public Image getImage() {
-    return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/cell_object_assets/empty_cell.png")));
+    return new Image(Objects.requireNonNull(getClass().getResourceAsStream(texturePath)));
     }
 }

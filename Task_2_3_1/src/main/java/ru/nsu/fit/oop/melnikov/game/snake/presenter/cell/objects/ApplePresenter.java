@@ -5,8 +5,14 @@ import javafx.scene.image.Image;
 
 public class ApplePresenter implements CellObjectPresenter {
 
+    private final String texturePath;
+
+    public ApplePresenter(String texturePackPath) {
+        this.texturePath = texturePackPath + "/apple.png";
+    }
+
     @Override
     public Image getImage() {
-    return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/cell_object_assets/apple.png")));
+    return new Image(Objects.requireNonNull(getClass().getResourceAsStream(texturePath)));
     }
 }

@@ -5,14 +5,18 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.*;
 
 public class CellObjectFactory {
 
-  private static final Map<Class<? extends CellObject>, CellObjectPresenter> map =
-      Map.of(
-          Wall.class, new WallPresenter(),
-          EmptyCell.class, new EmptyCellPresenter(),
-          SnakeNode.class, new SnakeNodePresenter(),
-          Apple.class, new ApplePresenter());
+  private final Map<Class<? extends CellObject>, CellObjectPresenter> map;
 
-  public static <T extends CellObject> CellObjectPresenter create(T cellObject) {
+  public CellObjectFactory(String texturePack) {
+    String texturePackPath = "/textures/" + texturePack;
+    map = Map.of(
+            Wall.class, new WallPresenter(texturePackPath),
+            EmptyCell.class, new EmptyCellPresenter(texturePackPath),
+            SnakeNode.class, new SnakeNodePresenter(texturePackPath),
+            Apple.class, new ApplePresenter(texturePackPath));
+  }
+
+  public <T extends CellObject> CellObjectPresenter create(T cellObject) {
     return map.get(cellObject.getClass());
   }
 }
