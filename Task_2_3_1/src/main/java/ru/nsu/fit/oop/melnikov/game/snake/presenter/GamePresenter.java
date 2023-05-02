@@ -20,12 +20,16 @@ public class GamePresenter {
   private Field field;
   @FXML private Canvas canvas;
 
+  public Field getField() {
+    return field;
+  }
+
   public void initialize(String filename) {
 
     canvas.getScene().setOnKeyPressed(this::onKeyPressed);
 
-    canvas.widthProperty().bind(canvas.getScene().widthProperty());
-    canvas.heightProperty().bind(canvas.getScene().heightProperty());
+    //    canvas.widthProperty().bind(canvas.getScene().widthProperty());
+    //    canvas.heightProperty().bind(canvas.getScene().heightProperty());
 
     DataLoader dataLoader = new DataLoader(filename);
     field = dataLoader.getField();

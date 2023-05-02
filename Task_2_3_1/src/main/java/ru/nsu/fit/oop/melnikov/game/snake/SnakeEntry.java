@@ -12,7 +12,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.presenter.GamePresenter;
 
 public class SnakeEntry extends Application {
 
-  private static final double TITLE_BAR_HEIGHT = 31;
+  private static final double TITLE_BAR_HEIGHT = 29;
   private static final double WINDOW_SIZE = 800;
   private Stage stage;
   private GamePresenter presenter;

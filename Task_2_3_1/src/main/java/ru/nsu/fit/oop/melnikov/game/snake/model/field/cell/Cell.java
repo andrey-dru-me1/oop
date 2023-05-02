@@ -20,9 +20,8 @@ public class Cell extends IntPoint {
     super(x, y);
     support = new PropertyChangeSupport(this);
 
-    // Descending ordering
-    Comparator<CellObject> comparator =
-            (o1, o2) -> Integer.compare(o2.getPriority(), o1.getPriority());
+    // Straight ordering
+    Comparator<CellObject> comparator = Comparator.comparingInt(CellObject::getPriority);
     cellObjects = new PriorityQueue<>(1, comparator);
     cellObjects.add(new EmptyCell());
   }
@@ -37,7 +36,7 @@ public class Cell extends IntPoint {
     for (CellObject cellObject : queueSnapshot) {
       cellObject.onAnotherCellObjectAppearance(newCellObject);
     }
-    support.fireIndexedPropertyChange("add", 0, queueSnapshot.get(0), cellObjects.peek());
+    support.firePropertyChange("add", false, true);
     return result;
   }
 
@@ -45,7 +44,7 @@ public class Cell extends IntPoint {
     for (CellObject cellObject : cellObjects) {
       if (desiredClass.isInstance(cellObject)) {
         cellObjects.remove(cellObject);
-        support.fireIndexedPropertyChange("remove", 0, cellObject, cellObjects.peek());
+        support.firePropertyChange("remove", true, false);
         return true;
       }
     }
