@@ -28,9 +28,6 @@ public class GamePresenter {
 
     canvas.getScene().setOnKeyPressed(this::onKeyPressed);
 
-    //    canvas.widthProperty().bind(canvas.getScene().widthProperty());
-    //    canvas.heightProperty().bind(canvas.getScene().heightProperty());
-
     DataLoader dataLoader = new DataLoader(filename);
     field = dataLoader.getField();
 
@@ -58,12 +55,22 @@ public class GamePresenter {
     game =
         new Game(
             snake,
-            300,
+            3000,
             () -> {
+              for (CellPresenter[] row : cellPresenters) {
+                  for (CellPresenter cellPresenter : row) {
+                    cellPresenter.stopThreads();
+                  }
+              }
               canvas.getGraphicsContext2D().setFill(Color.RED);
               canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
             },
             () -> {
+              for (CellPresenter[] row : cellPresenters) {
+                for (CellPresenter cellPresenter : row) {
+                  cellPresenter.stopThreads();
+                }
+              }
               canvas.getGraphicsContext2D().setFill(Color.GREEN);
               canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
             });

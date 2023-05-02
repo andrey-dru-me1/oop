@@ -9,7 +9,7 @@ public class Wall implements CellObject {
   @Override
   public void onAnotherCellObjectAppearance(CellObject anotherCellObject) {
     if (anotherCellObject instanceof SnakeNode snakeNode) {
-      snakeNode.getSnake().destroy();
+      snakeNode.snake().destroy();
     }
   }
 }

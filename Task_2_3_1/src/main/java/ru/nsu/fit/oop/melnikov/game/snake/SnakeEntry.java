@@ -18,7 +18,7 @@ public class SnakeEntry extends Application {
   private GamePresenter presenter;
 
   public static void main(String[] args) {
-    Application.launch(args);
+    launch(args);
   }
 
   private void initStage() throws IOException {
