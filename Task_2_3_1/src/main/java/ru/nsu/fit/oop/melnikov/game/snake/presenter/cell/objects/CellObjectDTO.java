@@ -26,6 +26,16 @@ public abstract class CellObjectDTO {
     return image;
   }
 
+  /**
+   * Draws an object at specified context in specified place.
+   * This method should be overridden by inheritors if it is needed an animation on object
+   * appearance. Makes come object appears without animations by default.
+   *
+   * @param context where to draw
+   * @param rect place on a canvas to place an image
+   * @return Optional.empty() if there isn't any animation and both animation timer and timeline if
+   *     an animation takes place
+   */
   public Optional<Pair<AnimationTimer, Timeline>> draw(GraphicsContext context, Rect<Double> rect) {
     context.setGlobalAlpha(1.0);
     context.drawImage(getImage(), rect.x(), rect.y(), rect.width(), rect.height());
