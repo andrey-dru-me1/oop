@@ -24,36 +24,36 @@ public class AppleDTO extends CellObjectDTO {
         return "apple.png";
     }
 
-    @Override
-    public Optional<Pair<AnimationTimer, Timeline>> draw(GraphicsContext context, Rect<Double> rect) {
-        DoubleProperty y = new SimpleDoubleProperty(-rect.height());
-
-    AnimationTimer timer =
-        new AnimationTimer() {
-          @Override
-          public void handle(long now) {
-            drawCanvas(y.get());
-          }
-
-          private void drawCanvas(double y) {
-            context.drawImage(image, rect.x(), y, rect.width(), rect.height());
-          }
-
-          @Override
-          public void stop() {
-            drawCanvas(rect.y());
-            super.stop();
-          }
-        };
-
-        Timeline timeline =
-                new Timeline(
-                        new KeyFrame(Duration.millis(0), new KeyValue(y, -rect.height())),
-                        new KeyFrame(Duration.millis(200), new KeyValue(y, rect.y())));
-
-        timer.start();
-        timeline.play();
-        return Optional.of(new Pair<>(timer, timeline));
-    }
+//    @Override
+//    public Optional<Pair<AnimationTimer, Timeline>> draw(GraphicsContext context, Rect<Double> rect) {
+//        DoubleProperty y = new SimpleDoubleProperty(-rect.height());
+//
+//    AnimationTimer timer =
+//        new AnimationTimer() {
+//          @Override
+//          public void handle(long now) {
+//            drawCanvas(y.get());
+//          }
+//
+//          private void drawCanvas(double y) {
+//            context.drawImage(image, rect.x(), y, rect.width(), rect.height());
+//          }
+//
+//          @Override
+//          public void stop() {
+//            drawCanvas(rect.y());
+//            super.stop();
+//          }
+//        };
+//
+//        Timeline timeline =
+//                new Timeline(
+//                        new KeyFrame(Duration.millis(0), new KeyValue(y, -rect.height())),
+//                        new KeyFrame(Duration.millis(200), new KeyValue(y, rect.y())));
+//
+//        timer.start();
+//        timeline.play();
+//        return Optional.of(new Pair<>(timer, timeline));
+//    }
 
 }

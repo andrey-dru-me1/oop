@@ -1,7 +1,5 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.field.cell;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -12,13 +10,10 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
 
 public class Cell extends IntPoint {
 
-  protected final PropertyChangeSupport support;
-
   private final PriorityQueue<CellObject> cellObjects;
 
   public Cell(int x, int y) {
     super(x, y);
-    support = new PropertyChangeSupport(this);
 
     // Straight ordering
     Comparator<CellObject> comparator = Comparator.comparingInt(CellObject::getPriority);
@@ -36,7 +31,6 @@ public class Cell extends IntPoint {
     for (CellObject cellObject : queueSnapshot) {
       cellObject.onAnotherCellObjectAppearance(newCellObject);
     }
-    support.firePropertyChange("add", false, true);
     return result;
   }
 
@@ -44,7 +38,6 @@ public class Cell extends IntPoint {
     for (CellObject cellObject : cellObjects) {
       if (desiredClass.isInstance(cellObject)) {
         cellObjects.remove(cellObject);
-        support.firePropertyChange("remove", true, false);
         return true;
       }
     }
@@ -67,9 +60,5 @@ public class Cell extends IntPoint {
       }
     }
     throw new NoSuchElementException();
-  }
-
-  public void addPropertyChangeListener(PropertyChangeListener listener) {
-    support.addPropertyChangeListener(listener);
   }
 }

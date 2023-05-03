@@ -1,7 +1,5 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.*;
 import javafx.animation.AnimationTimer;
 import javafx.animation.Timeline;
@@ -12,7 +10,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.*;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSFactory;
 
-public class CellDTO implements PropertyChangeListener {
+public class CellDTO {
   private final Canvas canvas;
   private final Rect<Double> rect;
   private final CellObjectDTOSFactory cellObjectDTOSFactory;
@@ -28,7 +26,7 @@ public class CellDTO implements PropertyChangeListener {
     drawObjects();
   }
 
-  private void drawObjects() {
+  public void drawObjects() {
     for (CellObject cellObject : cell.getCellObjects()) {
       stopThreads();
       cellObjectDTOSFactory
@@ -45,10 +43,5 @@ public class CellDTO implements PropertyChangeListener {
       pair.getValue().stop();
       animations.remove(pair);
     }
-  }
-
-  @Override
-  public void propertyChange(PropertyChangeEvent evt) {
-    drawObjects();
   }
 }

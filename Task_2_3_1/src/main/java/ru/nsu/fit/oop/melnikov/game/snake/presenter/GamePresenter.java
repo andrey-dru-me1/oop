@@ -42,7 +42,6 @@ public class GamePresenter {
         cellDTOS[i][j] =
             new CellDTO(
                 cell, canvas, new Rect<>(rectSize * i, rectSize * j, rectSize, rectSize));
-        cell.addPropertyChangeListener(cellDTOS[i][j]);
       }
     }
 
@@ -51,6 +50,7 @@ public class GamePresenter {
     game =
         new Game(
             snake,
+            cellDTOS,
             300,
             () -> {
               for (CellDTO[] row : cellDTOS) {

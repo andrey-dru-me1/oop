@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 
 public class Game {
 
@@ -13,14 +14,16 @@ public class Game {
   private final int delay;
   private final Runnable whenCrashed;
   private final Runnable whenWon;
+  private final CellDTO[][] cellDTOS;
 
-  public Game(Snake snake, int delay, Runnable whenCrashed, Runnable whenWon) {
+  public Game(Snake snake, CellDTO[][] cellDTOS, int delay, Runnable whenCrashed, Runnable whenWon) {
     this.snake = snake;
     this.delay = delay;
     this.whenCrashed = whenCrashed;
     this.timer = new Timeline();
     this.timer.setCycleCount(Animation.INDEFINITE);
     this.whenWon = whenWon;
+    this.cellDTOS = cellDTOS;
   }
 
   public void start() {
@@ -34,10 +37,17 @@ public class Game {
                   if (snake.isDestroyed()) {
                     timer.stop();
                     whenCrashed.run();
+                    return;
                   }
                   if (snake.getField().isNoPlaceForApple()) {
                     timer.stop();
                     whenWon.run();
+                    return;
+                  }
+                  for (CellDTO[] row : cellDTOS) {
+                    for (CellDTO cellDTO : row) {
+                      cellDTO.drawObjects();
+                    }
                   }
                 }));
     timer.playFrom(new Duration(delay));
