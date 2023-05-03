@@ -3,12 +3,23 @@ package ru.nsu.fit.oop.melnikov.game.data.saver;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
+
+import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 public class DataSaver {
+
+
+  private static final Map<Direction, String> DIRECTIONS =
+          Map.of(
+                  Direction.RIGHT, "right",
+                  Direction.UP, "up",
+                  Direction.DOWN, "down",
+                  Direction.LEFT, "left");
 
   private DataSaver() {
     throw new IllegalStateException("Utility class");
@@ -34,7 +45,7 @@ public class DataSaver {
         result.append(cell.getX()).append(" ").append(cell.getY()).append("\n");
       }
 
-      result.append('\n');
+      result.append(DIRECTIONS.get(snake.getDirection())).append('\n');
 
       bufferedWriter.write(String.valueOf(result));
     }

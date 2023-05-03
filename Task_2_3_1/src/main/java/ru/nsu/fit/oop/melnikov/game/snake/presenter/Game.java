@@ -27,7 +27,7 @@ public class Game {
     this.timer.setCycleCount(Animation.INDEFINITE);
     this.whenWon = whenWon;
     this.cellDTOS = cellDTOS;
-    this.direction = Direction.RIGHT;
+    this.direction = snake.getDirection();
   }
 
   public void setDirection(Direction direction) {

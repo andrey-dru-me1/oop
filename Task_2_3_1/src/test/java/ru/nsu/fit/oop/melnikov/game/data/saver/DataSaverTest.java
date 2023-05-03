@@ -31,6 +31,7 @@ class DataSaverTest extends ModelInit {
         1 1
         2 1
         3 1
+        right
         """;
 
     Assertions.assertDoesNotThrow(() -> DataSaver.save(field, snake, "test.txt"));
