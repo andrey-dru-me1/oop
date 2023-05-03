@@ -23,7 +23,7 @@ public class DataSaver {
         for (Cell cell : row) {
           result.append((cell.contains(Wall.class)) ? '#' : ' ');
         }
-        result.append('\n');
+        result.append("|\n");
       }
       result.append(".\n");
 

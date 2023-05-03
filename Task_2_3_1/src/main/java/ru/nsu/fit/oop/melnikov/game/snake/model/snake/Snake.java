@@ -86,9 +86,28 @@ public class Snake {
   }
 
   protected void appendHead() {
-    Cell newHeadCell = field.getCell(direction.nextPoint(this.getHeadCell()));
+    IntPoint nextPoint = calculateNextPoint();
+    Cell newHeadCell = field.getCell(nextPoint);
     nodes.add(newHeadCell);
     newHeadCell.add(new SnakeNode(this));
+  }
+
+  private IntPoint calculateNextPoint() {
+    IntPoint nextPoint = direction.nextPoint(this.getHeadCell());
+
+    if(nextPoint.getX() >= field.getWidth()) {
+      nextPoint = new IntPoint(0, nextPoint.getY());
+    }
+    else if(nextPoint.getX() < 0){
+      nextPoint = new IntPoint(field.getWidth() - 1, nextPoint.getY());
+    }
+    else if(nextPoint.getY() >= field.getHeight()) {
+      nextPoint = new IntPoint(nextPoint.getX(), 0);
+    }
+    else if(nextPoint.getY() < 0){
+      nextPoint = new IntPoint(nextPoint.getX(), field.getHeight() - 1);
+    }
+    return nextPoint;
   }
 
   protected void removeTail() {

@@ -34,9 +34,10 @@ public class DataLoader {
         }
         cells.add(cell);
         x++;
-      } else if (token.equals("\n")) {
+      } else if (token.equals("|")) {
         x = 0;
         y++;
+        scanner.skip("\n");
       } else {
         throw new IllegalStateException();
       }
