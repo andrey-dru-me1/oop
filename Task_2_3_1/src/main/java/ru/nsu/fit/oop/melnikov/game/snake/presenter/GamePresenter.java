@@ -30,7 +30,7 @@ public class GamePresenter {
     DataLoader dataLoader = new DataLoader(filename);
     field = dataLoader.getField();
 
-    CellPresenter[][] cellPresenters = new CellPresenter[field.getWidth()][field.getHeight()];
+    CellDTO[][] cellDTOS = new CellDTO[field.getWidth()][field.getHeight()];
 
     double rectSize = calculateRectSize();
 
@@ -38,10 +38,10 @@ public class GamePresenter {
       Cell[] row = field.getCells()[i];
       for (int j = 0; j < field.getHeight(); j++) {
         Cell cell = row[j];
-        cellPresenters[i][j] =
-            new CellPresenter(
+        cellDTOS[i][j] =
+            new CellDTO(
                 cell, canvas, new Rect<>(rectSize * i, rectSize * j, rectSize, rectSize));
-        cell.addPropertyChangeListener(cellPresenters[i][j]);
+        cell.addPropertyChangeListener(cellDTOS[i][j]);
       }
     }
 
@@ -52,18 +52,18 @@ public class GamePresenter {
             snake,
             300,
             () -> {
-              for (CellPresenter[] row : cellPresenters) {
-                for (CellPresenter cellPresenter : row) {
-                  cellPresenter.stopThreads();
+              for (CellDTO[] row : cellDTOS) {
+                for (CellDTO cellDTO : row) {
+                  cellDTO.stopThreads();
                 }
               }
               canvas.getGraphicsContext2D().setFill(Color.RED);
               canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
             },
             () -> {
-              for (CellPresenter[] row : cellPresenters) {
-                for (CellPresenter cellPresenter : row) {
-                  cellPresenter.stopThreads();
+              for (CellDTO[] row : cellDTOS) {
+                for (CellDTO cellDTO : row) {
+                  cellDTO.stopThreads();
                 }
               }
               canvas.getGraphicsContext2D().setFill(Color.GREEN);
