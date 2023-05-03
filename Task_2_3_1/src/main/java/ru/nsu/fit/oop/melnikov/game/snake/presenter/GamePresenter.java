@@ -57,7 +57,7 @@ public class GamePresenter {
             () -> {
               for (CellDTO[] row : cellDTOS) {
                 for (CellDTO cellDTO : row) {
-                  cellDTO.stopThreads();
+                  cellDTO.stopAnimations();
                 }
               }
               canvas.getGraphicsContext2D().setFill(Color.RED);
@@ -66,7 +66,7 @@ public class GamePresenter {
             () -> {
               for (CellDTO[] row : cellDTOS) {
                 for (CellDTO cellDTO : row) {
-                  cellDTO.stopThreads();
+                  cellDTO.stopAnimations();
                 }
               }
               canvas.getGraphicsContext2D().setFill(Color.GREEN);

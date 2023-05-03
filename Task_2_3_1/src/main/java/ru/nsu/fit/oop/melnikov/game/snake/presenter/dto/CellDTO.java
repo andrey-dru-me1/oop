@@ -3,7 +3,6 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto;
 import java.util.*;
 import javafx.animation.AnimationTimer;
 import javafx.animation.Timeline;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.util.Pair;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
@@ -29,15 +28,12 @@ public class CellDTO {
 
   public void drawObjects() {
     for (CellObject cellObject : cell.getCellObjects()) {
-      stopThreads();
-      cellObjectDTOSFactory
-          .create(cellObject)
-          .draw(context, rect)
-          .ifPresent(animations::add);
+      stopAnimations();
+      cellObjectDTOSFactory.create(cellObject).draw(context, rect).ifPresent(animations::add);
     }
   }
 
-  public void stopThreads() {
+  public void stopAnimations() {
     Collection<Pair<AnimationTimer, Timeline>> snapshot = new ArrayList<>(animations);
     for (Pair<AnimationTimer, Timeline> pair : snapshot) {
       pair.getKey().stop();
