@@ -41,7 +41,9 @@ public class GamePresenter {
         Cell cell = row[j];
         cellDTOS[i][j] =
             new CellDTO(
-                cell, canvas, new Rect<>(rectSize * i, rectSize * j, rectSize, rectSize));
+                cell,
+                canvas.getGraphicsContext2D(),
+                new Rect<>(rectSize * i, rectSize * j, rectSize, rectSize));
       }
     }
 

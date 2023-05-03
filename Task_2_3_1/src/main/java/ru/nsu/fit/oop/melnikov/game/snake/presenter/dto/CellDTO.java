@@ -4,6 +4,7 @@ import java.util.*;
 import javafx.animation.AnimationTimer;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.util.Pair;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.*;
@@ -11,14 +12,14 @@ import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSFactory;
 
 public class CellDTO {
-  private final Canvas canvas;
+  private final GraphicsContext context;
   private final Rect<Double> rect;
   private final CellObjectDTOSFactory cellObjectDTOSFactory;
   private final Collection<Pair<AnimationTimer, Timeline>> animations;
   private final Cell cell;
 
-  public CellDTO(Cell cell, Canvas canvas, Rect<Double> rect) {
-    this.canvas = canvas;
+  public CellDTO(Cell cell, GraphicsContext context, Rect<Double> rect) {
+    this.context = context;
     this.rect = rect;
     this.cellObjectDTOSFactory = new CellObjectDTOSFactory("default");
     this.cell = cell;
@@ -31,7 +32,7 @@ public class CellDTO {
       stopThreads();
       cellObjectDTOSFactory
           .create(cellObject)
-          .draw(canvas.getGraphicsContext2D(), rect)
+          .draw(context, rect)
           .ifPresent(animations::add);
     }
   }
