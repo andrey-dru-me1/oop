@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter.cell.objects;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects;
 
 import java.util.Optional;
 import javafx.animation.AnimationTimer;
@@ -11,6 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTO;
 
 public class AppleDTO extends CellObjectDTO {
 

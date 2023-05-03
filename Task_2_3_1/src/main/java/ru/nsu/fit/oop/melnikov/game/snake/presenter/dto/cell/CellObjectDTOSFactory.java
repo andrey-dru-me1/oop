@@ -1,7 +1,11 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter.cell.objects;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell;
 
 import java.util.Map;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.*;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects.AppleDTO;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects.EmptyCellDTO;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects.SnakeNodeDTO;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects.WallDTO;
 
 public class CellObjectDTOSFactory {
 

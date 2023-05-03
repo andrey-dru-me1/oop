@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -9,7 +9,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.util.Pair;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.*;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.cell.objects.*;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSFactory;
 
 public class CellDTO implements PropertyChangeListener {
   private final Canvas canvas;
@@ -30,17 +31,20 @@ public class CellDTO implements PropertyChangeListener {
   private void drawObjects() {
     for (CellObject cellObject : cell.getCellObjects()) {
       stopThreads();
-      cellObjectDTOSFactory.create(cellObject).draw(canvas.getGraphicsContext2D(), rect).ifPresent(animations::add);
+      cellObjectDTOSFactory
+          .create(cellObject)
+          .draw(canvas.getGraphicsContext2D(), rect)
+          .ifPresent(animations::add);
     }
   }
 
   public void stopThreads() {
     Collection<Pair<AnimationTimer, Timeline>> snapshot = new ArrayList<>(animations);
     for (Pair<AnimationTimer, Timeline> pair : snapshot) {
-    pair.getKey().stop();
-    pair.getValue().stop();
-    animations.remove(pair);
-  }
+      pair.getKey().stop();
+      pair.getValue().stop();
+      animations.remove(pair);
+    }
   }
 
   @Override

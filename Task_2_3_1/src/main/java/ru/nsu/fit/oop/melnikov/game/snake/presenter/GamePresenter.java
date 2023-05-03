@@ -12,6 +12,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 
 public class GamePresenter {
   private Game game;

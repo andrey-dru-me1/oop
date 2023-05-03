@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter.cell.objects;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell;
 
 import java.util.Optional;
 import javafx.animation.AnimationTimer;

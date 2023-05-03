@@ -1,4 +1,6 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter.cell.objects;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects;
+
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectSmoothAnimationDTO;
 
 public class EmptyCellDTO extends CellObjectSmoothAnimationDTO {
 
