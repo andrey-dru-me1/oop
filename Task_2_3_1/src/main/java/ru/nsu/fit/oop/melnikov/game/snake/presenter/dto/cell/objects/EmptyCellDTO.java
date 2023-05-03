@@ -1,8 +1,8 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects;
 
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectSmoothAnimationDTO;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTO;
 
-public class EmptyCellDTO extends CellObjectSmoothAnimationDTO {
+public class EmptyCellDTO extends CellObjectDTO {
 
   public EmptyCellDTO(String texturePackPath) {
     super(texturePackPath);

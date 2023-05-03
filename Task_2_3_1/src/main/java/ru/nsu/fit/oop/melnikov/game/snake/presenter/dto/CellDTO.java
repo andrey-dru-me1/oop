@@ -8,19 +8,19 @@ import javafx.util.Pair;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.*;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSFactory;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSRepository;
 
 public class CellDTO {
   private final GraphicsContext context;
   private final Rect<Double> rect;
-  private final CellObjectDTOSFactory cellObjectDTOSFactory;
+  private final CellObjectDTOSRepository cellObjectDTOSRepository;
   private final Collection<Pair<AnimationTimer, Timeline>> animations;
   private final Cell cell;
 
   public CellDTO(Cell cell, GraphicsContext context, Rect<Double> rect) {
     this.context = context;
     this.rect = rect;
-    this.cellObjectDTOSFactory = new CellObjectDTOSFactory("default");
+    this.cellObjectDTOSRepository = new CellObjectDTOSRepository("default");
     this.cell = cell;
     this.animations = new ArrayList<>();
     drawObjects();
@@ -29,7 +29,7 @@ public class CellDTO {
   public void drawObjects() {
     for (CellObject cellObject : cell.getCellObjects()) {
       stopAnimations();
-      cellObjectDTOSFactory.create(cellObject).draw(context, rect).ifPresent(animations::add);
+      cellObjectDTOSRepository.get(cellObject).draw(context, rect);
     }
   }
 

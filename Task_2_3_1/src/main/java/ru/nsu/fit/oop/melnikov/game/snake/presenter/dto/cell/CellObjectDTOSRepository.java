@@ -7,11 +7,11 @@ import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects.EmptyCellDT
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects.SnakeNodeDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects.WallDTO;
 
-public class CellObjectDTOSFactory {
+public class CellObjectDTOSRepository {
 
   private final Map<Class<? extends CellObject>, CellObjectDTO> map;
 
-  public CellObjectDTOSFactory(String texturePack) {
+  public CellObjectDTOSRepository(String texturePack) {
     String texturePackPath = "/textures/" + texturePack;
     map = Map.of(
             Wall.class, new WallDTO(texturePackPath),
@@ -20,7 +20,7 @@ public class CellObjectDTOSFactory {
             Apple.class, new AppleDTO(texturePackPath));
   }
 
-  public <T extends CellObject> CellObjectDTO create(T cellObject) {
+  public <T extends CellObject> CellObjectDTO get(T cellObject) {
     return map.get(cellObject.getClass());
   }
 }
