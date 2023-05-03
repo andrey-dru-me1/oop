@@ -35,6 +35,14 @@ public class Snake {
     isDestroyed = false;
   }
 
+  public Direction getDirection() {
+    return direction;
+  }
+
+  public void setDirection(Direction direction) {
+    this.direction = direction;
+  }
+
   public boolean isDestroyed() {
     return isDestroyed;
   }
@@ -59,10 +67,6 @@ public class Snake {
   public void move(Direction direction) {
     this.setDirection(direction);
     this.move();
-  }
-
-  public void setDirection(Direction direction) {
-    this.direction = direction;
   }
 
   public void increaseSize() {

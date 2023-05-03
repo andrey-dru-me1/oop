@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 
@@ -15,8 +16,10 @@ public class Game {
   private final Runnable whenCrashed;
   private final Runnable whenWon;
   private final CellDTO[][] cellDTOS;
+  private Direction direction;
 
-  public Game(Snake snake, CellDTO[][] cellDTOS, int delay, Runnable whenCrashed, Runnable whenWon) {
+  public Game(
+      Snake snake, CellDTO[][] cellDTOS, int delay, Runnable whenCrashed, Runnable whenWon) {
     this.snake = snake;
     this.delay = delay;
     this.whenCrashed = whenCrashed;
@@ -24,6 +27,11 @@ public class Game {
     this.timer.setCycleCount(Animation.INDEFINITE);
     this.whenWon = whenWon;
     this.cellDTOS = cellDTOS;
+    this.direction = Direction.RIGHT;
+  }
+
+  public void setDirection(Direction direction) {
+    this.direction = direction;
   }
 
   public void start() {
@@ -33,7 +41,10 @@ public class Game {
             new KeyFrame(
                 new Duration(delay), // This is how often it updates in milliseconds
                 t -> {
-                  snake.move();
+                  if(isOpposite(direction, snake.getDirection())) {
+                    direction = snake.getDirection();
+                  }
+                  snake.move(direction);
                   if (snake.isDestroyed()) {
                     timer.stop();
                     whenCrashed.run();
@@ -51,6 +62,13 @@ public class Game {
                   }
                 }));
     timer.playFrom(new Duration(delay));
+  }
+
+  private boolean isOpposite(Direction d1, Direction d2) {
+    return d1 == Direction.DOWN && d2 == Direction.UP
+            || d1 == Direction.UP && d2 == Direction.DOWN
+            || d1 == Direction.RIGHT && d2 == Direction.LEFT
+            || d1 == Direction.LEFT && d2 == Direction.RIGHT;
   }
 
   public void stop() {

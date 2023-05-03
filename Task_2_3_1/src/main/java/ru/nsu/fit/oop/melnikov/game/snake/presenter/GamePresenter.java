@@ -16,7 +16,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 
 public class GamePresenter {
   private Game game;
-  private Snake snake;
+
   private Field field;
   @FXML private Canvas canvas;
 
@@ -25,6 +25,7 @@ public class GamePresenter {
   }
 
   public void initialize(String filename) {
+    Snake snake;
 
     canvas.getScene().setOnKeyPressed(this::onKeyPressed);
 
@@ -83,12 +84,12 @@ public class GamePresenter {
     return canvasSize / fieldSize;
   }
 
-  public void onKeyPressed(KeyEvent keyEvent) {
+  private void onKeyPressed(KeyEvent keyEvent) {
     switch (keyEvent.getCode()) {
-      case LEFT -> snake.setDirection(Direction.LEFT);
-      case RIGHT -> snake.setDirection(Direction.RIGHT);
-      case DOWN -> snake.setDirection(Direction.DOWN);
-      case UP -> snake.setDirection(Direction.UP);
+      case LEFT -> game.setDirection(Direction.LEFT);
+      case RIGHT -> game.setDirection(Direction.RIGHT);
+      case DOWN -> game.setDirection(Direction.DOWN);
+      case UP -> game.setDirection(Direction.UP);
       default -> {
         // No need to do anything on another keyboard keys
       }
