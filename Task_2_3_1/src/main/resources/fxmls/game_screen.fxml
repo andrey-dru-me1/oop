@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.layout.Pane?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.GamePresenter"
->
-    <Canvas fx:id="canvas" height="800.0" width="800.0"/>
-</Pane>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="200.0" prefWidth="100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.GameScreenPresenter">
+    <children>
+        <Label fx:id="scoreLabel" alignment="TOP_LEFT" contentDisplay="RIGHT" text="Score: 00">
+            <font>
+                <Font name="Open Sans SemiBold" size="44.0" />
+            </font>
+        </Label>
+        <Canvas fx:id="canvas" height="800.0" width="800.0" />
+    </children>
+</VBox>

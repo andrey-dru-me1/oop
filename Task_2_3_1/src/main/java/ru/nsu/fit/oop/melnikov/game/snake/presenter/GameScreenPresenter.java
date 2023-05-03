@@ -3,8 +3,11 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import ru.nsu.fit.oop.melnikov.game.data.loader.DataLoader;
@@ -14,16 +17,23 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 
-public class GamePresenter {
+public class GameScreenPresenter {
+  @FXML public Label scoreLabel;
   private Game game;
 
   private Field field;
   @FXML private Canvas canvas;
+  private SimpleIntegerProperty score;
+
+  public void setScore(int score) {
+    this.score.set(score);
+  }
 
   public Field getField() {
     return field;
   }
 
+  @FXML
   public void initialize(String filename) {
     Snake snake;
 
@@ -50,32 +60,23 @@ public class GamePresenter {
 
     snake = dataLoader.getSnake();
 
-    game =
-        new Game(
-            snake,
-            cellDTOS,
-            300,
-            () -> {
-              for (CellDTO[] row : cellDTOS) {
-                for (CellDTO cellDTO : row) {
-                  cellDTO.stopAnimations();
-                }
-              }
-              canvas.getGraphicsContext2D().setFill(Color.RED);
-              canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            },
-            () -> {
-              for (CellDTO[] row : cellDTOS) {
-                for (CellDTO cellDTO : row) {
-                  cellDTO.stopAnimations();
-                }
-              }
-              canvas.getGraphicsContext2D().setFill(Color.GREEN);
-              canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            });
+    game = new Game(snake, cellDTOS, 100, this);
     game.start();
 
+    this.score = new SimpleIntegerProperty(0);
+    scoreLabel.textProperty().bind((new SimpleStringProperty("Score: ")).concat(score.asString()));
+
     field.generateApple();
+  }
+
+  public void fillCanvas(CellDTO[][] cellDTOS, Color color) {
+    for (CellDTO[] row : cellDTOS) {
+      for (CellDTO cellDTO : row) {
+        cellDTO.stopAnimations();
+      }
+    }
+    canvas.getGraphicsContext2D().setFill(color);
+    canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
   }
 
   private double calculateRectSize() {

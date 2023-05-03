@@ -14,10 +14,10 @@ public class Snake {
   private final List<Cell> nodes;
 
   private final Field field;
+  private int score;
   private Direction direction;
   private int sizeToIncrease;
   private boolean isDestroyed;
-
   /** Creates new snake with 3 nodes. */
   public Snake(Field field, List<IntPoint> snakeIntPoints) {
 
@@ -33,6 +33,11 @@ public class Snake {
     this.direction = Direction.RIGHT;
     this.sizeToIncrease = 0;
     isDestroyed = false;
+    score = 0;
+  }
+
+  public int getScore() {
+    return score;
   }
 
   public Direction getDirection() {
@@ -71,6 +76,7 @@ public class Snake {
 
   public void increaseSize() {
     sizeToIncrease++;
+    score++;
   }
 
   public Cell getHeadCell() {

@@ -8,14 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.GamePresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.GameScreenPresenter;
 
 public class SnakeEntry extends Application {
 
   private static final double TITLE_BAR_HEIGHT = 29;
   private static final double WINDOW_SIZE = 800;
   private Stage stage;
-  private GamePresenter presenter;
+  private GameScreenPresenter presenter;
 
   public static void main(String[] args) {
     launch(args);
