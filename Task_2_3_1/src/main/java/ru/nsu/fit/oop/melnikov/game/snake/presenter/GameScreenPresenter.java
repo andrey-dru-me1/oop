@@ -4,7 +4,6 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -33,13 +32,10 @@ public class GameScreenPresenter {
     return field;
   }
 
-  @FXML
   public void initialize(String filename) {
     Snake snake;
 
-    Scene scene = canvas.getScene();
-
-    scene.setOnKeyPressed(this::onKeyPressed);
+    canvas.getScene().setOnKeyPressed(this::onKeyPressed);
 
     DataLoader dataLoader = new DataLoader(filename);
     field = dataLoader.getField();

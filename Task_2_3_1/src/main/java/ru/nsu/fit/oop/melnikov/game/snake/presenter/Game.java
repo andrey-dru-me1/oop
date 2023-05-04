@@ -3,11 +3,16 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
+
+import java.io.IOException;
 
 public class Game {
 
@@ -47,6 +52,14 @@ public class Game {
                   if (snake.isDestroyed()) {
                     timer.stop();
                     presenter.fillCanvas(cellDTOS, Color.RED);
+                    if (presenter.scoreLabel.getScene().getWindow() instanceof Stage stage) {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/game_end.fxml"));
+                            stage.setScene(new Scene(loader.load()));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                     return;
                   }
                   if (snake.getField().isNoPlaceForApple()) {
