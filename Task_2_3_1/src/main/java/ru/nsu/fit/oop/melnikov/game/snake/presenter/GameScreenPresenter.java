@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
@@ -49,6 +48,9 @@ public class GameScreenPresenter {
 
     NumberBinding rectSize = calculateRectSize();
 
+    canvas.heightProperty().bind(rectSize.multiply(field.getHeight()));
+    canvas.widthProperty().bind(rectSize.multiply(field.getWidth()));
+
     CellObjectDTOSRepository repository = new CellObjectDTOSRepository("default");
 
     for (int i = 0; i < field.getWidth(); i++) {
@@ -86,31 +88,13 @@ public class GameScreenPresenter {
   }
 
   private NumberBinding calculateRectSize() {
-    NumberBinding result =
-        Bindings.min(
-            canvas
-                .getScene()
-                .heightProperty()
-                .subtract(scoreLabel.heightProperty())
-                .divide(field.getHeight()),
-            canvas.getScene().widthProperty().divide(field.getWidth()));
-    result.addListener(
-        (observable, oldValue, newValue) -> {
-          canvas.widthProperty().unbind();
-          canvas.heightProperty().unbind();
-          if ((canvas.getScene().getHeight() - scoreLabel.getHeight()) / field.getHeight()
-              <= canvas.getScene().getWidth() / field.getWidth()) {
-            DoubleBinding binding =
-                canvas.getScene().heightProperty().subtract(scoreLabel.heightProperty());
-            canvas.widthProperty().bind(binding.divide(field.getHeight()).multiply(field.getWidth()));
-            canvas.heightProperty().bind(binding);
-          } else {
-            ReadOnlyDoubleProperty property = canvas.getScene().widthProperty();
-            canvas.widthProperty().bind(property);
-            canvas.heightProperty().bind(property.divide(field.getWidth()).multiply(field.getHeight()));
-          }
-        });
-    return result;
+    return Bindings.min(
+        canvas
+            .getScene()
+            .heightProperty()
+            .subtract(scoreLabel.heightProperty())
+            .divide(field.getHeight()),
+        canvas.getScene().widthProperty().divide(field.getWidth()));
   }
 
   private void onKeyPressed(KeyEvent keyEvent) {
