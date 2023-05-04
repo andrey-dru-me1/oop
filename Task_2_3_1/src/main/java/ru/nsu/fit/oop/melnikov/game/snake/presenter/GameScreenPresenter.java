@@ -1,11 +1,9 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 
 import static java.lang.Math.max;
-import static java.lang.Math.min;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -19,6 +17,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSRepository;
 
 public class GameScreenPresenter {
   @FXML public Label scoreLabel;
@@ -42,19 +41,19 @@ public class GameScreenPresenter {
 
     canvas.getScene().setOnKeyPressed(this::onKeyPressed);
 
-    NumberBinding minProperty =
-        Bindings.min(
-            canvas.getScene().heightProperty().subtract(scoreLabel.heightProperty()),
-            canvas.getScene().widthProperty());
-    canvas.heightProperty().bind(minProperty);
-    canvas.widthProperty().bind(minProperty);
-
     DataLoader dataLoader = new DataLoader(filename);
     field = dataLoader.getField();
+
+    canvas
+        .heightProperty()
+        .bind(canvas.getScene().heightProperty().subtract(scoreLabel.heightProperty()));
+    canvas.widthProperty().bind(canvas.getScene().widthProperty());
 
     CellDTO[][] cellDTOS = new CellDTO[field.getWidth()][field.getHeight()];
 
     NumberBinding rectSize = calculateRectSize();
+
+    CellObjectDTOSRepository repository = new CellObjectDTOSRepository("default");
 
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];
@@ -64,7 +63,8 @@ public class GameScreenPresenter {
             new CellDTO(
                 cell,
                 canvas.getGraphicsContext2D(),
-                new Rect<>(rectSize.multiply(i), rectSize.multiply(j), rectSize, rectSize));
+                new Rect<>(rectSize.multiply(i), rectSize.multiply(j), rectSize, rectSize),
+                repository);
       }
     }
 
@@ -90,7 +90,12 @@ public class GameScreenPresenter {
   }
 
   private NumberBinding calculateRectSize() {
-    NumberBinding canvasSize = Bindings.min(canvas.heightProperty(), canvas.widthProperty());
+    DoubleProperty canvasSize;
+    if (canvas.getHeight() / field.getHeight() <= canvas.getWidth() / field.getWidth()) {
+      canvasSize = canvas.heightProperty();
+    } else {
+      canvasSize = canvas.widthProperty();
+    }
     int fieldSize = max(field.getHeight(), field.getWidth());
     return canvasSize.divide(fieldSize);
   }
