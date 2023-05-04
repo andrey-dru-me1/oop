@@ -8,7 +8,7 @@
 <VBox prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.GameScreenPresenter">
-    <Label fx:id="scoreLabel" alignment="TOP_LEFT" contentDisplay="RIGHT" text="Score: 00">
+    <Label fx:id="scoreLabel" alignment="TOP_LEFT" contentDisplay="RIGHT" text="Score: 0">
         <font>
             <Font name="Open Sans SemiBold" size="44.0"/>
         </font>

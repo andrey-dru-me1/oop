@@ -4,6 +4,7 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -53,7 +54,7 @@ public class GameScreenPresenter {
 
     CellDTO[][] cellDTOS = new CellDTO[field.getWidth()][field.getHeight()];
 
-    double rectSize = calculateRectSize();
+    NumberBinding rectSize = calculateRectSize();
 
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];
@@ -63,7 +64,7 @@ public class GameScreenPresenter {
             new CellDTO(
                 cell,
                 canvas.getGraphicsContext2D(),
-                new Rect<>(rectSize * i, rectSize * j, rectSize, rectSize));
+                new Rect<>(rectSize.multiply(i), rectSize.multiply(j), rectSize, rectSize));
       }
     }
 
@@ -88,10 +89,10 @@ public class GameScreenPresenter {
     canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
   }
 
-  private double calculateRectSize() {
-    double canvasSize = min(canvas.getHeight(), canvas.getWidth());
+  private NumberBinding calculateRectSize() {
+    NumberBinding canvasSize = Bindings.min(canvas.heightProperty(), canvas.widthProperty());
     int fieldSize = max(field.getHeight(), field.getWidth());
-    return canvasSize / fieldSize;
+    return canvasSize.divide(fieldSize);
   }
 
   private void onKeyPressed(KeyEvent keyEvent) {

@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell;
 
 import java.util.Objects;
+import javafx.beans.binding.NumberBinding;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
@@ -32,8 +33,13 @@ public abstract class CellObjectDTO {
    * @return Optional.empty() if there isn't any animation and both animation timer and timeline if
    *     an animation takes place
    */
-  public void draw(GraphicsContext context, Rect<Double> rect) {
+  public void draw(GraphicsContext context, Rect<NumberBinding> rect) {
     context.setGlobalAlpha(1.0);
-    context.drawImage(getImage(), rect.x(), rect.y(), rect.width(), rect.height());
+    context.drawImage(
+            getImage(),
+            rect.x().doubleValue(),
+            rect.y().doubleValue(),
+            rect.width().doubleValue(),
+            rect.height().doubleValue());
   }
 }
