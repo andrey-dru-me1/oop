@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class GameEndScreenPresenter {
+public class EndScreenPresenter {
   @FXML public Pane parent;
 
   public void onPlayAgainClick() throws IOException {
