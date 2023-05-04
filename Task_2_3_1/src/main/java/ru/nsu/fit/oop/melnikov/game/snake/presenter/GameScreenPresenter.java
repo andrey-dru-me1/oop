@@ -1,12 +1,11 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 
-import static java.lang.Math.max;
-
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -39,15 +38,12 @@ public class GameScreenPresenter {
   public void initialize(String filename) {
     Snake snake;
 
-    canvas.getScene().setOnKeyPressed(this::onKeyPressed);
+    Scene scene = canvas.getScene();
+
+    scene.setOnKeyPressed(this::onKeyPressed);
 
     DataLoader dataLoader = new DataLoader(filename);
     field = dataLoader.getField();
-
-    canvas
-        .heightProperty()
-        .bind(canvas.getScene().heightProperty().subtract(scoreLabel.heightProperty()));
-    canvas.widthProperty().bind(canvas.getScene().widthProperty());
 
     CellDTO[][] cellDTOS = new CellDTO[field.getWidth()][field.getHeight()];
 
@@ -70,7 +66,7 @@ public class GameScreenPresenter {
 
     snake = dataLoader.getSnake();
 
-    game = new Game(snake, cellDTOS, 200, this);
+    game = new Game(snake, cellDTOS, 100, this);
     game.start();
 
     this.score = new SimpleIntegerProperty(0);
@@ -90,14 +86,31 @@ public class GameScreenPresenter {
   }
 
   private NumberBinding calculateRectSize() {
-    DoubleProperty canvasSize;
-    if (canvas.getHeight() / field.getHeight() <= canvas.getWidth() / field.getWidth()) {
-      canvasSize = canvas.heightProperty();
-    } else {
-      canvasSize = canvas.widthProperty();
-    }
-    int fieldSize = max(field.getHeight(), field.getWidth());
-    return canvasSize.divide(fieldSize);
+    NumberBinding result =
+        Bindings.min(
+            canvas
+                .getScene()
+                .heightProperty()
+                .subtract(scoreLabel.heightProperty())
+                .divide(field.getHeight()),
+            canvas.getScene().widthProperty().divide(field.getWidth()));
+    result.addListener(
+        (observable, oldValue, newValue) -> {
+          canvas.widthProperty().unbind();
+          canvas.heightProperty().unbind();
+          if ((canvas.getScene().getHeight() - scoreLabel.getHeight()) / field.getHeight()
+              <= canvas.getScene().getWidth() / field.getWidth()) {
+            DoubleBinding binding =
+                canvas.getScene().heightProperty().subtract(scoreLabel.heightProperty());
+            canvas.widthProperty().bind(binding.divide(field.getHeight()).multiply(field.getWidth()));
+            canvas.heightProperty().bind(binding);
+          } else {
+            ReadOnlyDoubleProperty property = canvas.getScene().widthProperty();
+            canvas.widthProperty().bind(property);
+            canvas.heightProperty().bind(property.divide(field.getWidth()).multiply(field.getHeight()));
+          }
+        });
+    return result;
   }
 
   private void onKeyPressed(KeyEvent keyEvent) {
