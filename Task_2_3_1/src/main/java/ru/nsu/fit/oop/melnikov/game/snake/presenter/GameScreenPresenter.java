@@ -3,6 +3,8 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -39,6 +41,13 @@ public class GameScreenPresenter {
 
     canvas.getScene().setOnKeyPressed(this::onKeyPressed);
 
+    NumberBinding minProperty =
+        Bindings.min(
+            canvas.getScene().heightProperty().subtract(scoreLabel.heightProperty()),
+            canvas.getScene().widthProperty());
+    canvas.heightProperty().bind(minProperty);
+    canvas.widthProperty().bind(minProperty);
+
     DataLoader dataLoader = new DataLoader(filename);
     field = dataLoader.getField();
 
@@ -60,7 +69,7 @@ public class GameScreenPresenter {
 
     snake = dataLoader.getSnake();
 
-    game = new Game(snake, cellDTOS, 100, this);
+    game = new Game(snake, cellDTOS, 200, this);
     game.start();
 
     this.score = new SimpleIntegerProperty(0);
