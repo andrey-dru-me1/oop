@@ -116,7 +116,8 @@ public class GameScreenPresenter {
           Parent parent = loader.load();
           JavafxDesigner.makeMatchParent(parent);
           SettingsPresenter settingsPresenter = loader.getController();
-          settingsPresenter.initialize(game, game.getDelay());
+          settingsPresenter.initialize(game, canvas, game.getDelay());
+          canvas.getScene().setOnKeyPressed(t -> {});
           pane.getChildren().add(parent);
         } catch (IOException e) {
           throw new RuntimeException(e);
