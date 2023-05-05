@@ -1,12 +1,16 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 
+import java.io.IOException;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import ru.nsu.fit.oop.melnikov.game.data.loader.DataLoader;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
@@ -18,6 +22,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSRepos
 
 public class GameScreenPresenter {
   @FXML public Label scoreLabel;
+  @FXML public Pane pane;
   private Game game;
 
   private Field field;
@@ -95,10 +100,21 @@ public class GameScreenPresenter {
 
   private void onKeyPressed(KeyEvent keyEvent) {
     switch (keyEvent.getCode()) {
-      case LEFT -> game.setDirection(Direction.LEFT);
-      case RIGHT -> game.setDirection(Direction.RIGHT);
-      case DOWN -> game.setDirection(Direction.DOWN);
-      case UP -> game.setDirection(Direction.UP);
+      case LEFT -> game.addDirection(Direction.LEFT);
+      case RIGHT -> game.addDirection(Direction.RIGHT);
+      case DOWN -> game.addDirection(Direction.DOWN);
+      case UP -> game.addDirection(Direction.UP);
+      case ESCAPE -> {
+        try {
+          VBox parent =
+              new FXMLLoader().load(getClass().getResourceAsStream("/fxmls/settings.fxml"));
+          parent.setMaxHeight(Double.MAX_VALUE);
+          parent.setMaxWidth(Double.MAX_VALUE);
+          pane.getChildren().add(parent);
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+      }
       default -> {
         // No need to do anything on another keyboard keys
       }

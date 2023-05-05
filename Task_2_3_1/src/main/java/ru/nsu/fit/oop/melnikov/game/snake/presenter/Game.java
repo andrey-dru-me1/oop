@@ -13,6 +13,8 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 
 import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Game {
 
@@ -21,7 +23,7 @@ public class Game {
   private final int delay;
   private final GameScreenPresenter presenter;
   private final CellDTO[][] cellDTOS;
-  private Direction direction;
+  private final Deque<Direction> directionQueue;
 
   public Game(Snake snake, CellDTO[][] cellDTOS, int delay, GameScreenPresenter presenter) {
     this.snake = snake;
@@ -29,12 +31,13 @@ public class Game {
     this.timer = new Timeline();
     this.timer.setCycleCount(Animation.INDEFINITE);
     this.cellDTOS = cellDTOS;
-    this.direction = snake.getDirection();
+    this.directionQueue = new ArrayDeque<>(2);
+    directionQueue.add(snake.getDirection());
     this.presenter = presenter;
   }
 
-  public void setDirection(Direction direction) {
-    this.direction = direction;
+  public void addDirection(Direction direction) {
+    this.directionQueue.add(direction);
   }
 
   public void start() {
@@ -44,8 +47,12 @@ public class Game {
             new KeyFrame(
                 new Duration(delay), // This is how often it updates in milliseconds
                 t -> {
-                  if (isOpposite(direction, snake.getDirection())) {
-                    direction = snake.getDirection();
+                    Direction direction = snake.getDirection();
+                  if (directionQueue.size() > 0) {
+                    direction = directionQueue.poll();
+                    if (isOpposite(direction, snake.getDirection())) {
+                      direction = snake.getDirection();
+                    }
                   }
                   snake.move(direction);
                   presenter.setScore(snake.getScore());
@@ -53,12 +60,13 @@ public class Game {
                     timer.stop();
                     presenter.fillCanvas(cellDTOS, Color.RED);
                     if (presenter.scoreLabel.getScene().getWindow() instanceof Stage stage) {
-                        try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/game_end.fxml"));
-                            stage.setScene(new Scene(loader.load()));
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                      try {
+                        FXMLLoader loader =
+                            new FXMLLoader(getClass().getResource("/fxmls/game_end.fxml"));
+                        stage.setScene(new Scene(loader.load()));
+                      } catch (IOException e) {
+                        throw new RuntimeException(e);
+                      }
                     }
                     return;
                   }
