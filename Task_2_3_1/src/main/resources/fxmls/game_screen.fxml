@@ -5,15 +5,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="pane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.GameScreenPresenter">
-   <center>
-         <Canvas fx:id="canvas" height="800.0" width="800.0" BorderPane.alignment="TOP_CENTER" />
-   </center>
-   <top>
-        <Label fx:id="scoreLabel" alignment="TOP_LEFT" contentDisplay="RIGHT" text="Score: 0" BorderPane.alignment="TOP_LEFT">
-            <font>
-                <Font name="Open Sans SemiBold" size="44.0" />
-            </font>
-        </Label>
-   </top>
-</BorderPane>
+
+<AnchorPane fx:id="pane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.GameScreenPresenter">
+    <BorderPane fx:id="borderPane">
+        <center>
+            <Canvas fx:id="canvas" height="800.0" width="800.0" BorderPane.alignment="TOP_CENTER"/>
+        </center>
+        <top>
+            <Label fx:id="scoreLabel" alignment="TOP_LEFT" contentDisplay="RIGHT" text="Score: 0"
+                   BorderPane.alignment="TOP_LEFT">
+                <font>
+                    <Font name="Open Sans SemiBold" size="44.0"/>
+                </font>
+            </Label>
+        </top>
+    </BorderPane>
+</AnchorPane>

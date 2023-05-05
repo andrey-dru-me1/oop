@@ -4,18 +4,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.SettingsPresenter">
-   <VBox fx:id="settingsSet" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-         minWidth="-Infinity" prefHeight="168.0" prefWidth="314.0" style="-fx-background-color: white;">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.SettingsPresenter">
+   <VBox fx:id="settingsSet" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="314.0" style="-fx-background-color: white;">
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <Label text="Game speed"/>
-         <Slider>
+         <Label text="Game speed" />
+         <Slider fx:id="gameSpeed">
             <HBox.margin>
-               <Insets bottom="2.0" left="15.0" right="15.0" top="2.0"/>
+               <Insets bottom="2.0" left="15.0" right="15.0" top="2.0" />
             </HBox.margin>
          </Slider>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#onOKClick" text="OK"/>
+      <Button mnemonicParsing="false" onAction="#onOKClick" text="OK" />
    </VBox>
 </VBox>

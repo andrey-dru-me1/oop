@@ -6,11 +6,12 @@ import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import ru.nsu.fit.oop.melnikov.game.data.loader.DataLoader;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
@@ -19,10 +20,12 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSRepository;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.JavafxDesigner;
 
 public class GameScreenPresenter {
   @FXML public Label scoreLabel;
   @FXML public Pane pane;
+  @FXML public BorderPane borderPane;
   private Game game;
 
   private Field field;
@@ -40,7 +43,10 @@ public class GameScreenPresenter {
   public void initialize(String filename) {
     Snake snake;
 
-    canvas.getScene().setOnKeyPressed(this::onKeyPressed);
+    JavafxDesigner.makeMatchParent(borderPane);
+
+    canvas.setOnKeyPressed(this::onKeyPressed);
+    canvas.getScene().setOnKeyPressed(keyEvent -> canvas.getOnKeyPressed().handle(keyEvent));
 
     DataLoader dataLoader = new DataLoader(filename);
     field = dataLoader.getField();
@@ -106,10 +112,11 @@ public class GameScreenPresenter {
       case UP -> game.addDirection(Direction.UP);
       case ESCAPE -> {
         try {
-          VBox parent =
-              new FXMLLoader().load(getClass().getResourceAsStream("/fxmls/settings.fxml"));
-          parent.setMaxHeight(Double.MAX_VALUE);
-          parent.setMaxWidth(Double.MAX_VALUE);
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/settings.fxml"));
+          Parent parent = loader.load();
+          JavafxDesigner.makeMatchParent(parent);
+          SettingsPresenter settingsPresenter = loader.getController();
+          settingsPresenter.initialize(game, game.getDelay());
           pane.getChildren().add(parent);
         } catch (IOException e) {
           throw new RuntimeException(e);
