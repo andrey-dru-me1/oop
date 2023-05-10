@@ -15,6 +15,7 @@ import javafx.util.Duration;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.GameScreenPresenter;
 
 public class Game {
 

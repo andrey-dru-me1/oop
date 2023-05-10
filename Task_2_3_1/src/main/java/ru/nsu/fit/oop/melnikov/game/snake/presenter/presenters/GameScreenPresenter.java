@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
 
 import java.io.IOException;
 import javafx.beans.binding.Bindings;
@@ -18,11 +18,14 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.Game;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSRepository;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.JavafxDesigner;
 
-public class GameScreenPresenter {
+public class GameScreenPresenter extends FXMLPresenter {
   @FXML public Label scoreLabel;
   @FXML public Pane pane;
   @FXML public BorderPane borderPane;
@@ -114,7 +117,7 @@ public class GameScreenPresenter {
       case UP -> game.addDirection(Direction.UP);
       case ESCAPE -> {
         try {
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/settings.fxml"));
+          FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SETTINGS);
           Parent parent = loader.load();
           JavafxDesigner.makeMatchParent(parent);
           SettingsPresenter settingsPresenter = loader.getController();

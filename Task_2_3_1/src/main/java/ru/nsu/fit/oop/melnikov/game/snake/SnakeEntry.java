@@ -1,27 +1,29 @@
 package ru.nsu.fit.oop.melnikov.game.snake;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.GameScreenPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.fxml.loaders.FXMLLoadersRepository;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.GameScreenPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 
 public class SnakeEntry extends Application {
 
   private static final double TITLE_BAR_HEIGHT = 29;
   private static final double WINDOW_SIZE = 800;
   private Stage stage;
-  private GameScreenPresenter presenter;
+  private FXMLLoadersRepository loadersRepository;
 
   public static void main(String[] args) {
     launch(args);
   }
 
-  private void initStage() throws IOException {
+  private void initStage() {
     stage.setTitle("Snake the game");
     stage
         .getIcons()
@@ -32,25 +34,36 @@ public class SnakeEntry extends Application {
     stage.show();
   }
 
-  private Scene initScene() throws IOException {
+  private void initLoadersRepository() throws IOException {
+    loadersRepository =
+        new FXMLLoadersRepository(
+            stage,
+            List.of(
+                FXMLScreens.CHANGE_KEYS,
+                FXMLScreens.GAME_SCREEN,
+                FXMLScreens.SETTINGS,
+                FXMLScreens.GAME_END,
+                FXMLScreens.MAIN_MENU,
+                FXMLScreens.SELECT_MAP));
+  }
+
+  private Scene initScene() {
     Scene scene;
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/game_screen.fxml"));
-    Parent root = loader.load();
+    Parent root = loadersRepository.getRootNode(FXMLScreens.MAIN_MENU);
     scene = new Scene(root);
-    presenter = loader.getController();
     return scene;
   }
 
   @Override
   public void start(Stage stage) throws IOException {
     this.stage = stage;
+    initLoadersRepository();
     initStage();
-    presenter.initialize("default.txt");
   }
 
   @Override
   public void stop() throws Exception {
-    presenter.stopAll();
+    loadersRepository.<GameScreenPresenter>getPresenter(FXMLScreens.GAME_SCREEN).stopAll();
     super.stop();
   }
 }

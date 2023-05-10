@@ -1,12 +1,13 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.Game;
 
-public class SettingsPresenter {
+public class SettingsPresenter extends FXMLPresenter {
   @FXML public VBox settingsSet;
   @FXML public Slider gameSpeed;
   private Game game;
