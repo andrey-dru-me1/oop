@@ -20,6 +20,7 @@ public abstract class CellObjectDTO {
   }
 
   protected abstract String getImageName();
+
   public abstract boolean checkForCoincidence(Cell cell, CellObject cellObject);
 
   public Image getImage() {
@@ -35,10 +36,10 @@ public abstract class CellObjectDTO {
   public void draw(GraphicsContext context, Rect<NumberBinding> rect) {
     context.setGlobalAlpha(1.0);
     context.drawImage(
-            getImage(),
-            rect.x().doubleValue(),
-            rect.y().doubleValue(),
-            rect.width().doubleValue(),
-            rect.height().doubleValue());
+        getImage(),
+        rect.x().doubleValue(),
+        rect.y().doubleValue(),
+        rect.width().doubleValue(),
+        rect.height().doubleValue());
   }
 }

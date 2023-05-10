@@ -52,24 +52,28 @@ public class Game {
   }
 
   public void addDirection(Direction direction) {
+    if (!directionQueue.isEmpty()
+        && (direction.isOpposite(directionQueue.peekLast())
+            || direction.equals(directionQueue.peek()))) {
+      return;
+    }
     this.directionQueue.add(direction);
   }
 
   public void start() {
     keyFrame = new KeyFrame(new Duration(delay), this::onTimerTriggers);
-    timeline
-        .getKeyFrames()
-        .add(keyFrame);
+    timeline.getKeyFrames().add(keyFrame);
     timeline.playFrom(new Duration(delay));
+  }
+
+  public Direction getDirection() {
+    return directionQueue.peek();
   }
 
   private void onTimerTriggers(ActionEvent actionEvent) {
     Direction direction = snake.getDirection();
     if (directionQueue.size() > 0) {
       direction = directionQueue.poll();
-      if (direction.isOpposite(snake.getDirection())) {
-        direction = snake.getDirection();
-      }
     }
     snake.move(direction);
     presenter.setScore(snake.getScore());
