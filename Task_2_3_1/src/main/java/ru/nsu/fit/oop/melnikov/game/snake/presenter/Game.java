@@ -20,22 +20,25 @@ public class Game {
 
   private final Snake snake;
   private final GameScreenPresenter presenter;
-  private final CellDTO[][] cellDTOS;
   private final Deque<Direction> directionQueue;
+  private CellDTO[][] cellDTOS;
   private Timeline timeline;
   private int delay;
   private KeyFrame keyFrame;
 
-  public Game(Snake snake, CellDTO[][] cellDTOS, int delay, GameScreenPresenter presenter) {
+  public Game(Snake snake, int delay, GameScreenPresenter presenter) {
     this.snake = snake;
     this.delay = delay;
     this.timeline = new Timeline();
     this.timeline.setCycleCount(Animation.INDEFINITE);
-    this.cellDTOS = cellDTOS;
     this.directionQueue = new ArrayDeque<>(2);
     directionQueue.add(snake.getDirection());
     this.presenter = presenter;
     timeline.setDelay(new Duration(delay));
+  }
+
+  public void setCellDTOS(CellDTO[][] cellDTOS) {
+    this.cellDTOS = cellDTOS;
   }
 
   public int getDelay() {
@@ -67,13 +70,16 @@ public class Game {
   }
 
   public Direction getDirection() {
-    return directionQueue.peek();
+    return snake.getDirection();
   }
 
   private void onTimerTriggers(ActionEvent actionEvent) {
     Direction direction = snake.getDirection();
     if (directionQueue.size() > 0) {
       direction = directionQueue.poll();
+      if (direction.isOpposite(snake.getDirection())) {
+        direction = snake.getDirection();
+      }
     }
     snake.move(direction);
     presenter.setScore(snake.getScore());
@@ -86,6 +92,10 @@ public class Game {
       presenter.fillCanvas(cellDTOS, Color.GREEN);
       return;
     }
+    redraw();
+  }
+
+  private void redraw() {
     for (CellDTO[] row : cellDTOS) {
       for (CellDTO cellDTO : row) {
         cellDTO.drawObjects();

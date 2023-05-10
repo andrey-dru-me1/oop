@@ -8,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.util.Pair;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.*;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.Game;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSRepository;
 
@@ -17,12 +18,15 @@ public class CellDTO {
   private final CellObjectDTOSRepository cellObjectDTOSRepository;
   private final Collection<Pair<AnimationTimer, Timeline>> animations;
   private final Cell cell;
+  private final Game game;
 
   public CellDTO(
+      Game game,
       Cell cell,
-      GraphicsContext context,
       Rect<NumberBinding> rect,
-      CellObjectDTOSRepository repository) {
+      CellObjectDTOSRepository repository,
+      GraphicsContext context) {
+    this.game = game;
     this.context = context;
     this.rect = rect;
     this.cellObjectDTOSRepository = repository;
@@ -35,7 +39,7 @@ public class CellDTO {
   public void drawObjects() {
     for (CellObject cellObject : cell.getCellObjects()) {
       stopAnimations();
-      cellObjectDTOSRepository.get(cell, cellObject).draw(context, rect);
+      cellObjectDTOSRepository.get(cell, cellObject).draw(context, game, rect);
     }
   }
 

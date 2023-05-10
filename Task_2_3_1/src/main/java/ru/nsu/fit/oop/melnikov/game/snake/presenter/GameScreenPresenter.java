@@ -48,6 +48,8 @@ public class GameScreenPresenter {
     canvas.setOnKeyPressed(this::onKeyPressed);
     canvas.getScene().setOnKeyPressed(keyEvent -> canvas.getOnKeyPressed().handle(keyEvent));
 
+    canvas.getGraphicsContext2D().setImageSmoothing(false);
+
     DataLoader dataLoader = new DataLoader(filename);
     field = dataLoader.getField();
 
@@ -60,22 +62,22 @@ public class GameScreenPresenter {
 
     CellObjectDTOSRepository repository = new CellObjectDTOSRepository("default");
 
+    snake = dataLoader.getSnake();
+    game = new Game(snake, 100, this);
+
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];
       for (int j = 0; j < field.getHeight(); j++) {
         Cell cell = row[j];
         cellDTOS[i][j] =
             new CellDTO(
-                cell,
-                canvas.getGraphicsContext2D(),
-                new Rect<>(rectSize.multiply(i), rectSize.multiply(j), rectSize, rectSize),
-                repository);
+                    game, cell,
+                    new Rect<>(rectSize.multiply(i), rectSize.multiply(j), rectSize, rectSize), repository, canvas.getGraphicsContext2D()
+            );
       }
     }
 
-    snake = dataLoader.getSnake();
-
-    game = new Game(snake, cellDTOS, 100, this);
+    game.setCellDTOS(cellDTOS);
     game.start();
 
     this.score = new SimpleIntegerProperty(0);

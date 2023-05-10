@@ -45,7 +45,7 @@ public class SnakeEntry extends Application {
   public void start(Stage stage) throws IOException {
     this.stage = stage;
     initStage();
-    presenter.initialize("big_map.txt");
+    presenter.initialize("default.txt");
   }
 
   @Override

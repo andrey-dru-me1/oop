@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.Game;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
 
 public abstract class CellObjectDTO {
@@ -33,7 +34,7 @@ public abstract class CellObjectDTO {
    * @param context where to draw
    * @param rect place on a canvas to place an image
    */
-  public void draw(GraphicsContext context, Rect<NumberBinding> rect) {
+  public void draw(GraphicsContext context, Game game, Rect<NumberBinding> rect) {
     context.setGlobalAlpha(1.0);
     context.drawImage(
         getImage(),
