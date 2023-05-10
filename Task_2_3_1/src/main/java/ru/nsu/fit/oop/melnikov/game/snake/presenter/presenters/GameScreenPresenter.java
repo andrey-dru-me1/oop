@@ -112,12 +112,12 @@ public class GameScreenPresenter extends FXMLPresenter {
   }
 
   private void onKeyPressed(KeyEvent keyEvent) {
-    switch (keyEvent.getCode()) {
+    switch (gameSettings.getSnakeKey(keyEvent.getCode())) {
       case LEFT -> game.addDirection(Direction.LEFT);
       case RIGHT -> game.addDirection(Direction.RIGHT);
       case DOWN -> game.addDirection(Direction.DOWN);
       case UP -> game.addDirection(Direction.UP);
-      case ESCAPE -> {
+      case MENU -> {
         FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SETTINGS);
         Parent parent = loader.getRoot();
         JavafxDesigner.makeMatchParent(parent);

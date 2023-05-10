@@ -14,6 +14,14 @@
             </HBox.margin>
          </Slider>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#onOKClick" text="OK" />
+      <Button mnemonicParsing="false" onAction="#onChangeKeysClick" text="Change key codes">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin></Button>
+      <Button layoutX="149.0" layoutY="131.0" mnemonicParsing="false" onAction="#onOKClick" text="OK">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </Button>
    </VBox>
 </VBox>

@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 
 public class SettingsPresenter extends FXMLPresenter {
   private static final int MIN_DELAY = 20;
@@ -31,5 +32,9 @@ public class SettingsPresenter extends FXMLPresenter {
         (int) ((gameSpeed.getValue() + MIN_DELAY) * MAX_DELAY / (100 + MIN_DELAY)));
     stage.setScene(prevScene);
     onSettingsClose.run();
+  }
+
+  public void onChangeKeysClick() {
+    stage.setScene(loadersRepository.getRootNode(FXMLScreens.CHANGE_KEYS).getScene());
   }
 }
