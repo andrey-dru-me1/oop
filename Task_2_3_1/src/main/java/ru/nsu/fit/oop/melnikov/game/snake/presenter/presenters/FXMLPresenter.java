@@ -2,18 +2,23 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
 
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.fxml.loaders.FXMLLoadersRepository;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 
 public class FXMLPresenter {
 
-    protected FXMLLoadersRepository loadersRepository;
-    protected Stage primaryStage;
+  protected FXMLLoadersRepository loadersRepository;
+  protected Stage stage;
+  protected GameSettings gameSettings;
 
-    public void setFXMLLoadersRepository(FXMLLoadersRepository repository) {
-        loadersRepository = repository;
-    }
+  public void setGameSettings(GameSettings gameSettings) {
+    this.gameSettings = gameSettings;
+  }
 
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
+  public void setFXMLLoadersRepository(FXMLLoadersRepository repository) {
+    loadersRepository = repository;
+  }
 
+  public void setStage(Stage stage) {
+    this.stage = stage;
+  }
 }

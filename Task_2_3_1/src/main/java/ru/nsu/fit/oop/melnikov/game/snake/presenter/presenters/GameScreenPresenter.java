@@ -66,7 +66,7 @@ public class GameScreenPresenter extends FXMLPresenter {
     CellObjectDTOSRepository repository = new CellObjectDTOSRepository("default");
 
     snake = dataLoader.getSnake();
-    game = new Game(snake, 100, this);
+    game = new Game(snake, gameSettings, this);
 
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];
@@ -122,10 +122,11 @@ public class GameScreenPresenter extends FXMLPresenter {
         Parent parent = loader.getRoot();
         JavafxDesigner.makeMatchParent(parent);
         SettingsPresenter settingsPresenter = loader.getController();
-        settingsPresenter.initialize(game, canvas, game.getDelay());
-        canvas.getScene().setOnKeyPressed(t -> {});
+        settingsPresenter.setPrevScene(stage.getScene());
+        settingsPresenter.initialize(gameSettings, () -> game.play());
         Scene scene = parent.getScene();
-        primaryStage.setScene(scene);
+        game.pause();
+        stage.setScene(scene);
       }
       default -> {
         // No need to do anything on another keyboard keys
@@ -138,6 +139,6 @@ public class GameScreenPresenter extends FXMLPresenter {
   }
 
   public void onGameEnd() {
-    primaryStage.setScene(loadersRepository.getRootNode(FXMLScreens.GAME_END).getScene());
+    stage.setScene(loadersRepository.getRootNode(FXMLScreens.GAME_END).getScene());
   }
 }

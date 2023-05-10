@@ -12,6 +12,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.GameScreenPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 
 public class Game {
 
@@ -20,31 +21,27 @@ public class Game {
   private final Deque<Direction> directionQueue;
   private CellDTO[][] cellDTOS;
   private Timeline timeline;
-  private int delay;
   private KeyFrame keyFrame;
+  private final GameSettings gameSettings;
 
-  public Game(Snake snake, int delay, GameScreenPresenter presenter) {
+  public Game(Snake snake, GameSettings gameSettings, GameScreenPresenter presenter) {
     this.snake = snake;
-    this.delay = delay;
+    this.gameSettings = gameSettings;
     this.timeline = new Timeline();
     this.timeline.setCycleCount(Animation.INDEFINITE);
     this.directionQueue = new ArrayDeque<>(2);
     directionQueue.add(snake.getDirection());
     this.presenter = presenter;
-    timeline.setDelay(new Duration(delay));
+    timeline.setDelay(new Duration(gameSettings.getTickDelay()));
   }
 
   public void setCellDTOS(CellDTO[][] cellDTOS) {
     this.cellDTOS = cellDTOS;
   }
 
-  public int getDelay() {
-    return delay;
-  }
-
   public void setDelay(int millisDelay) {
-    this.delay = millisDelay;
-    keyFrame = new KeyFrame(new Duration(delay), this::onTimerTriggers);
+    this.gameSettings.setTickDelay(millisDelay);
+    keyFrame = new KeyFrame(new Duration(millisDelay), this::onTimerTriggers);
     timeline.stop();
     timeline = new Timeline();
     timeline.setCycleCount(Animation.INDEFINITE);
@@ -61,9 +58,9 @@ public class Game {
   }
 
   public void start() {
-    keyFrame = new KeyFrame(new Duration(delay), this::onTimerTriggers);
+    keyFrame = new KeyFrame(new Duration(gameSettings.getTickDelay()), this::onTimerTriggers);
     timeline.getKeyFrames().add(keyFrame);
-    timeline.playFrom(new Duration(delay));
+    timeline.playFrom(new Duration(gameSettings.getTickDelay()));
   }
 
   public Direction getDirection() {
@@ -110,7 +107,8 @@ public class Game {
   }
 
   public void play() {
-    timeline.playFrom(new Duration(delay));
+    setDelay(gameSettings.getTickDelay());
+    timeline.playFrom(new Duration(gameSettings.getTickDelay()));
   }
 
   public void stop() {

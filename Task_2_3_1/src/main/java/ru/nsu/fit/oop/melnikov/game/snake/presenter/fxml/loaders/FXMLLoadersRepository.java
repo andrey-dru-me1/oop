@@ -9,19 +9,23 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 
 public class FXMLLoadersRepository {
 
   private final Map<String, FXMLLoader> loaders;
 
-  public FXMLLoadersRepository(Stage primaryStage, Collection<String> screenNames) throws IOException {
+  public FXMLLoadersRepository(
+      Stage primaryStage, GameSettings gameSettings, Collection<String> screenNames)
+      throws IOException {
     loaders = new HashMap<>(screenNames.size() * 2);
     for (String screenName : screenNames) {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/" + screenName + ".fxml"));
       loader.load();
       if (loader.getController() instanceof FXMLPresenter presenter) {
         presenter.setFXMLLoadersRepository(this);
-        presenter.setPrimaryStage(primaryStage);
+        presenter.setStage(primaryStage);
+        presenter.setGameSettings(gameSettings);
       }
       new Scene(loader.getRoot());
       loaders.put(screenName, loader);

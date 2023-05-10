@@ -1,31 +1,35 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
 
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
+import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.Game;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 
 public class SettingsPresenter extends FXMLPresenter {
   private static final int MIN_DELAY = 20;
   private static final int MAX_DELAY = 400;
   @FXML public VBox settingsSet;
   @FXML public Slider gameSpeed;
-  private Game game;
-  private Canvas canvas;
+  private GameSettings gameSettings;
+  private Scene prevScene;
+  private Runnable onSettingsClose;
 
-  public void initialize(Game game, Canvas canvas, int delay) {
-    game.pause();
-    this.game = game;
-    this.canvas = canvas;
-    gameSpeed.setValue((double) delay * (100 + 20) / MAX_DELAY - MIN_DELAY);
+  public void initialize(GameSettings gameSettings, Runnable onSettingsClose) {
+    this.gameSettings = gameSettings;
+    gameSpeed.setValue(
+        (double) (gameSettings.getTickDelay() * (100 + MIN_DELAY)) / MAX_DELAY - MIN_DELAY);
+    this.onSettingsClose = onSettingsClose;
+  }
+
+  public void setPrevScene(Scene prevScene) {
+    this.prevScene = prevScene;
   }
 
   public void onOKClick() {
-    game.setDelay((int)((gameSpeed.getValue() + MIN_DELAY) * MAX_DELAY / (100 +  MIN_DELAY)));
-    primaryStage.setScene(loadersRepository.getRootNode(FXMLScreens.GAME_SCREEN).getScene());
-    canvas.getScene().setOnKeyPressed(keyEvent -> canvas.getOnKeyPressed().handle(keyEvent));
-    game.play();
+    gameSettings.setTickDelay(
+        (int) ((gameSpeed.getValue() + MIN_DELAY) * MAX_DELAY / (100 + MIN_DELAY)));
+    stage.setScene(prevScene);
+    onSettingsClose.run();
   }
 }

@@ -14,12 +14,12 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
         </VBox.margin>
     </Button>
-    <Button layoutX="66.0" layoutY="106.0" mnemonicParsing="false" text="Settings">
+    <Button layoutX="66.0" layoutY="106.0" mnemonicParsing="false" onAction="#onSettingsClick" text="Settings">
         <font>
             <Font size="24.0" />
         </font>
     </Button>
-    <Button mnemonicParsing="false" text="Exit">
+    <Button mnemonicParsing="false" onAction="#onExitClick" text="Exit">
         <font>
             <Font size="24.0" />
         </font>
