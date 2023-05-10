@@ -67,23 +67,14 @@ public class Game {
     Direction direction = snake.getDirection();
     if (directionQueue.size() > 0) {
       direction = directionQueue.poll();
-      if (isOpposite(direction, snake.getDirection())) {
+      if (direction.isOpposite(snake.getDirection())) {
         direction = snake.getDirection();
       }
     }
     snake.move(direction);
     presenter.setScore(snake.getScore());
     if (snake.isDestroyed()) {
-      timeline.stop();
-      presenter.fillCanvas(cellDTOS, Color.RED);
-      if (presenter.scoreLabel.getScene().getWindow() instanceof Stage stage) {
-        try {
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/game_end.fxml"));
-          stage.setScene(new Scene(loader.load()));
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-      }
+      onSnakeDestroyed();
       return;
     }
     if (snake.getField().isNoPlaceForApple()) {
@@ -98,11 +89,17 @@ public class Game {
     }
   }
 
-  private boolean isOpposite(Direction d1, Direction d2) {
-    return d1 == Direction.DOWN && d2 == Direction.UP
-        || d1 == Direction.UP && d2 == Direction.DOWN
-        || d1 == Direction.RIGHT && d2 == Direction.LEFT
-        || d1 == Direction.LEFT && d2 == Direction.RIGHT;
+  private void onSnakeDestroyed() {
+    timeline.stop();
+    presenter.fillCanvas(cellDTOS, Color.RED);
+    if (presenter.scoreLabel.getScene().getWindow() instanceof Stage stage) {
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/game_end.fxml"));
+        stage.setScene(new Scene(loader.load()));
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
   }
 
   public void pause() {

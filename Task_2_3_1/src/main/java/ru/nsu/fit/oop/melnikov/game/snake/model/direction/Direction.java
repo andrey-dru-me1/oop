@@ -15,8 +15,14 @@ public enum Direction {
     this.shiftPoint = shiftPoint;
   }
 
+  public boolean isOpposite(Direction directionToCompare) {
+    return this == Direction.DOWN && directionToCompare == Direction.UP
+        || this == Direction.UP && directionToCompare == Direction.DOWN
+        || this == Direction.RIGHT && directionToCompare == Direction.LEFT
+        || this == Direction.LEFT && directionToCompare == Direction.RIGHT;
+  }
+
   public IntPoint nextPoint(IntPoint intPoint) {
     return this.shiftPoint.apply(intPoint);
   }
-
 }

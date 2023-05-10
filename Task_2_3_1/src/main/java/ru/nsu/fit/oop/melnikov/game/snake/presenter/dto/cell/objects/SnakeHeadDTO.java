@@ -2,23 +2,26 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.objects;
 
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTO;
 
-public class WallDTO extends CellObjectDTO {
+public class SnakeHeadDTO extends CellObjectDTO {
 
-    public WallDTO(String texturePackPath) {
+    public SnakeHeadDTO(String texturePackPath) {
         super(texturePackPath);
     }
 
     @Override
     protected String getImageName() {
-        return "wall.png";
+        return "snake_head.png";
     }
 
     @Override
     public boolean checkForCoincidence(Cell cell, CellObject cellObject) {
-        return cellObject.getClass().equals(Wall.class);
+        if(cellObject instanceof SnakeNode snakeNode) {
+            return snakeNode.snake().getHeadCell().equals(cell);
+        }
+        return false;
     }
 
 }

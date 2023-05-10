@@ -35,7 +35,7 @@ public class CellDTO {
   public void drawObjects() {
     for (CellObject cellObject : cell.getCellObjects()) {
       stopAnimations();
-      cellObjectDTOSRepository.get(cellObject).draw(context, rect);
+      cellObjectDTOSRepository.get(cell, cellObject).draw(context, rect);
     }
   }
 
