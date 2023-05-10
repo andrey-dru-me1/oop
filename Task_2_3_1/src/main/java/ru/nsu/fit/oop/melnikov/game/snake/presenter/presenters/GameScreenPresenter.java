@@ -1,12 +1,12 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
 
-import java.io.IOException;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -74,9 +74,11 @@ public class GameScreenPresenter extends FXMLPresenter {
         Cell cell = row[j];
         cellDTOS[i][j] =
             new CellDTO(
-                    game, cell,
-                    new Rect<>(rectSize.multiply(i), rectSize.multiply(j), rectSize, rectSize), repository, canvas.getGraphicsContext2D()
-            );
+                game,
+                cell,
+                new Rect<>(rectSize.multiply(i), rectSize.multiply(j), rectSize, rectSize),
+                repository,
+                canvas.getGraphicsContext2D());
       }
     }
 
@@ -116,17 +118,14 @@ public class GameScreenPresenter extends FXMLPresenter {
       case DOWN -> game.addDirection(Direction.DOWN);
       case UP -> game.addDirection(Direction.UP);
       case ESCAPE -> {
-        try {
-          FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SETTINGS);
-          Parent parent = loader.load();
-          JavafxDesigner.makeMatchParent(parent);
-          SettingsPresenter settingsPresenter = loader.getController();
-          settingsPresenter.initialize(game, canvas, game.getDelay());
-          canvas.getScene().setOnKeyPressed(t -> {});
-          pane.getChildren().add(parent);
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
+        FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SETTINGS);
+        Parent parent = loader.getRoot();
+        JavafxDesigner.makeMatchParent(parent);
+        SettingsPresenter settingsPresenter = loader.getController();
+        settingsPresenter.initialize(game, canvas, game.getDelay());
+        canvas.getScene().setOnKeyPressed(t -> {});
+        Scene scene = parent.getScene();
+        primaryStage.setScene(scene);
       }
       default -> {
         // No need to do anything on another keyboard keys
@@ -136,5 +135,9 @@ public class GameScreenPresenter extends FXMLPresenter {
 
   public void stopAll() {
     game.stop();
+  }
+
+  public void onGameEnd() {
+    primaryStage.setScene(loadersRepository.getRootNode(FXMLScreens.GAME_END).getScene());
   }
 }

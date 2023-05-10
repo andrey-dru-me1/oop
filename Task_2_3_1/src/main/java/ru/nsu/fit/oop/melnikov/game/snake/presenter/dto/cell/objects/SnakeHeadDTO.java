@@ -4,6 +4,7 @@ import javafx.beans.binding.NumberBinding;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
@@ -39,14 +40,16 @@ public class SnakeHeadDTO extends CellObjectDTO {
         .getGraphicsContext2D()
         .drawImage(image, 0, 0, rect.width().doubleValue(), rect.height().doubleValue());
     canvas.setRotate(directionToRotation(game.getDirection()));
+
     SnapshotParameters params = new SnapshotParameters();
+    params.setFill(Color.TRANSPARENT);
     context.setGlobalAlpha(1.0);
     context.drawImage(
         canvas.snapshot(params, null),
         rect.x().doubleValue(),
         rect.y().doubleValue(),
-        Math.ceil(rect.width().doubleValue()),
-        Math.ceil(rect.height().doubleValue()));
+        rect.width().doubleValue(),
+        rect.height().doubleValue());
   }
 
   private double directionToRotation(Direction direction) {

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 
@@ -22,6 +23,7 @@ public class FXMLLoadersRepository {
         presenter.setFXMLLoadersRepository(this);
         presenter.setPrimaryStage(primaryStage);
       }
+      new Scene(loader.getRoot());
       loaders.put(screenName, loader);
     }
   }

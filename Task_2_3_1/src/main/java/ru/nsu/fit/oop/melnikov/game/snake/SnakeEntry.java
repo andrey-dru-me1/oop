@@ -50,7 +50,7 @@ public class SnakeEntry extends Application {
   private Scene initScene() {
     Scene scene;
     Parent root = loadersRepository.getRootNode(FXMLScreens.MAIN_MENU);
-    scene = new Scene(root);
+    scene = root.getScene();
     return scene;
   }
 
