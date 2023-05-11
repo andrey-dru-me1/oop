@@ -28,6 +28,10 @@ public class GameSettings {
         this.tickDelay = tickDelay;
     }
 
+    public Map<KeyCode, SnakeKey> getKeys() {
+        return keys;
+    }
+
     public SnakeKey getSnakeKey(KeyCode key) {
         return keys.get(key);
     }

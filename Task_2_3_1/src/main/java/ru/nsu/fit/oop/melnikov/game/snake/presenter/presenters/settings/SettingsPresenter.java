@@ -33,7 +33,9 @@ public class SettingsPresenter extends FXMLPresenter {
 
   public void onChangeKeysClick() {
     FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.CHANGE_KEYS);
-    loader.<ChangeKeysPresenter>getController().setPrevScene(stage.getScene());
+    ChangeKeysPresenter changeKeysPresenter = loader.getController();
+    changeKeysPresenter.updateKeySet();
+    changeKeysPresenter.setPrevScene(stage.getScene());
     stage.setScene(loader.<Node>getRoot().getScene());
   }
 }
