@@ -65,7 +65,7 @@ public class GameScreenPresenter extends FXMLPresenter {
     CellObjectDTOSRepository repository = new CellObjectDTOSRepository("default");
 
     snake = dataLoader.getSnake();
-    game = new Game(snake, gameSettings, this);
+    game = new Game(snake, gameSettings, this, filename);
 
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];
@@ -101,21 +101,20 @@ public class GameScreenPresenter extends FXMLPresenter {
   }
 
   private void onKeyPressed(KeyEvent keyEvent) {
-    switch (gameSettings.getSnakeKey(keyEvent.getCode())) {
-      case LEFT -> game.addDirection(Direction.LEFT);
-      case RIGHT -> game.addDirection(Direction.RIGHT);
-      case DOWN -> game.addDirection(Direction.DOWN);
-      case UP -> game.addDirection(Direction.UP);
-      case MENU -> {
-        FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SETTINGS);
-        SettingsPresenter settingsPresenter = loader.getController();
-        settingsPresenter.setPrevScene(stage.getScene());
-        settingsPresenter.initialize(gameSettings, () -> game.play());
-        game.pause();
-        stage.setScene(loader.getRoot());
-      }
-      default -> {
-        // No need to do anything on another keyboard keys
+    if (gameSettings.getKeys().containsKey(keyEvent.getCode())) {
+      switch (gameSettings.getSnakeKey(keyEvent.getCode())) {
+        case LEFT -> game.addDirection(Direction.LEFT);
+        case RIGHT -> game.addDirection(Direction.RIGHT);
+        case DOWN -> game.addDirection(Direction.DOWN);
+        case UP -> game.addDirection(Direction.UP);
+        case MENU -> {
+          FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SETTINGS);
+          SettingsPresenter settingsPresenter = loader.getController();
+          settingsPresenter.setPrevScene(stage.getScene());
+          settingsPresenter.initialize(gameSettings, () -> game.play());
+          game.pause();
+          stage.setScene(loader.getRoot());
+        }
       }
     }
   }

@@ -24,9 +24,9 @@ public class Game {
   private Timeline timeline;
   private KeyFrame keyFrame;
 
-  public Game(Snake snake, GameSettings gameSettings, GameScreenPresenter presenter) {
+  public Game(Snake snake, GameSettings gameSettings, GameScreenPresenter presenter, String mapName) {
     this.snake = snake;
-    this.gameState = new GameState(snake.size());
+    this.gameState = new GameState(snake.size(), mapName);
     this.gameSettings = gameSettings;
     this.timeline = new Timeline();
     this.timeline.setCycleCount(Animation.INDEFINITE);

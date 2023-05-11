@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.MapNames;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.MapName;
 
 public class SelectMapPresenter extends FXMLPresenter {
 
@@ -21,7 +21,7 @@ public class SelectMapPresenter extends FXMLPresenter {
 
   @FXML
   private void initialize() {
-    Collection<String> mapFilenames = MapNames.getMapFilenames();
+    Collection<String> mapFilenames = MapName.getMapFilenames();
     List<HBox> listItems = new ArrayList<>(mapFilenames.size());
     for (String mapFilename : mapFilenames) {
       HBox listItem = new HBox();

@@ -1,14 +1,20 @@
 package ru.nsu.fit.oop.melnikov.game.snake.presenter;
 
 public class GameState {
-    private int score;
+  private final String mapName;
+  private int score;
   private int playerSnakeLength;
   private Status status;
-    public GameState(int playerSnakeLength) {
-        this.playerSnakeLength = playerSnakeLength;
-        this.score = 0;
-        this.status = Status.PAUSED;
-    }
+  public GameState(int playerSnakeLength, String mapName) {
+    this.mapName = mapName;
+    this.playerSnakeLength = playerSnakeLength;
+    this.score = 0;
+    this.status = Status.PAUSED;
+  }
+
+  public String getMapName() {
+    return mapName;
+  }
 
   public int getScore() {
     return score;

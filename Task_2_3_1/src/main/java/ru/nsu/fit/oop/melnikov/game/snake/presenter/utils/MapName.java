@@ -3,7 +3,7 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter.utils;
 import java.util.Collection;
 import java.util.List;
 
-public class MapNames {
+public class MapName {
 
     private static final Collection<String> MAP_FILENAMES = List.of(
             "big_map.txt",
@@ -12,7 +12,7 @@ public class MapNames {
             "test.txt"
     );
 
-    private MapNames() {}
+    private MapName() {}
 
     public static Collection<String> getMapFilenames() {
         return MAP_FILENAMES;
