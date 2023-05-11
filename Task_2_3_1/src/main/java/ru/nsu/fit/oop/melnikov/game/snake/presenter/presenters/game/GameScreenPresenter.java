@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
@@ -22,6 +22,8 @@ import ru.nsu.fit.oop.melnikov.game.snake.presenter.Game;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.Rect;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSRepository;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings.SettingsPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.JavafxDesigner;
 

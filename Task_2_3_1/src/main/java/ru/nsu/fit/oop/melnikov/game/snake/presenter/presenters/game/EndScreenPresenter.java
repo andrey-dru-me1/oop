@@ -1,9 +1,10 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 
 public class EndScreenPresenter extends FXMLPresenter {

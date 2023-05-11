@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.SelectMapPresenter">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.menu.SelectMapPresenter">
     <center>
         <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" />
     </center>

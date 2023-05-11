@@ -10,4 +10,5 @@ public class FXMLScreens {
   public static final String MAIN_MENU = "main_menu";
   public static final String SELECT_MAP = "select_map";
   public static final String SETTINGS = "settings";
+  public static final String LISTEN_KEY = "listen_key";
 }

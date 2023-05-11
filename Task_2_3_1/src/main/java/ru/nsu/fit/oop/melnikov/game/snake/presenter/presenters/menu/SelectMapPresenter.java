@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.menu;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.MapNames;
 

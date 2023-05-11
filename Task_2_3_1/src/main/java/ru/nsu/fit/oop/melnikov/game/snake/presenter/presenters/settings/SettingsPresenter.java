@@ -1,11 +1,11 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 
@@ -15,7 +15,6 @@ public class SettingsPresenter extends FXMLPresenter {
   @FXML public VBox settingsSet;
   @FXML public Slider gameSpeed;
   private GameSettings gameSettings;
-  private Scene prevScene;
   private Runnable onSettingsClose;
 
   public void initialize(GameSettings gameSettings, Runnable onSettingsClose) {
@@ -23,10 +22,6 @@ public class SettingsPresenter extends FXMLPresenter {
     gameSpeed.setValue(
         (double) (gameSettings.getTickDelay() * (100 + MIN_DELAY)) / MAX_DELAY - MIN_DELAY);
     this.onSettingsClose = onSettingsClose;
-  }
-
-  public void setPrevScene(Scene prevScene) {
-    this.prevScene = prevScene;
   }
 
   public void onOKClick() {

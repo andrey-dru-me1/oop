@@ -10,5 +10,8 @@ module oop.snake {
     opens ru.nsu.fit.oop.melnikov.game.snake.presenter.dto to javafx.fxml;
     opens ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters to javafx.fxml;
     opens ru.nsu.fit.oop.melnikov.game.snake.presenter.utils to javafx.fxml;
+    opens ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings to javafx.fxml;
+    opens ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game to javafx.fxml;
+    opens ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.menu to javafx.fxml;
 
 }

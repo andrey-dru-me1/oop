@@ -1,7 +1,9 @@
-package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters;
+package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.menu;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings.SettingsPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 
 public class MainMenuPresenter extends FXMLPresenter {

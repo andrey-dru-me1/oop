@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.ChangeKeysPresenter">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings.ChangeKeysPresenter">
     <padding>
         <Insets bottom="30.0" left="15.0" right="15.0" top="30.0" />
     </padding>
@@ -21,7 +21,7 @@
             </Label>
         </left>
         <right>
-            <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#onLeftKeyChange" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
                     <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>
@@ -40,7 +40,7 @@
             </Label>
         </left>
         <right>
-            <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#onRightKeyChange" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
                     <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>
@@ -59,7 +59,7 @@
             </Label>
         </left>
         <right>
-            <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#onUpKeyChange" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
                     <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>
@@ -78,7 +78,7 @@
             </Label>
         </left>
         <right>
-            <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#onDownKeyChange" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
                     <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>
@@ -97,7 +97,7 @@
             </Label>
         </left>
         <right>
-            <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#onMenuKeyChange" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
                     <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>

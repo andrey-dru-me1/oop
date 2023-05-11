@@ -7,7 +7,7 @@
 
 
 <AnchorPane fx:id="pane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.GameScreenPresenter">
+            fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.GameScreenPresenter">
     <BorderPane fx:id="borderPane">
         <center>
             <Canvas fx:id="canvas" height="800.0" width="800.0" BorderPane.alignment="TOP_CENTER"/>

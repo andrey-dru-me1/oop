@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.fxml.loaders.FXMLLoadersRepository;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.GameScreenPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 
@@ -41,6 +41,7 @@ public class SnakeEntry extends Application {
             stage,
             new GameSettings(),
             List.of(
+                FXMLScreens.LISTEN_KEY,
                 FXMLScreens.CHANGE_KEYS,
                 FXMLScreens.GAME_SCREEN,
                 FXMLScreens.SETTINGS,
