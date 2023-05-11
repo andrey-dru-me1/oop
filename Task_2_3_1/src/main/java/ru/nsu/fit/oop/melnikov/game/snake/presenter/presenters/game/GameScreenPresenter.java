@@ -5,6 +5,7 @@ import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -12,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import ru.nsu.fit.oop.melnikov.game.data.loader.DataLoader;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
@@ -93,16 +93,6 @@ public class GameScreenPresenter extends FXMLPresenter {
     field.generateApple();
   }
 
-  public void fillCanvas(CellDTO[][] cellDTOS, Color color) {
-    for (CellDTO[] row : cellDTOS) {
-      for (CellDTO cellDTO : row) {
-        cellDTO.stopAnimations();
-      }
-    }
-    canvas.getGraphicsContext2D().setFill(color);
-    canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-  }
-
   private NumberBinding calculateRectSize() {
     return Bindings.min(
         canvas
@@ -141,6 +131,8 @@ public class GameScreenPresenter extends FXMLPresenter {
   }
 
   public void onGameEnd() {
-    stage.setScene(loadersRepository.getRootNode(FXMLScreens.GAME_END).getScene());
+    FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.GAME_END);
+    loader.<EndScreenPresenter>getController().updateScore(game.getGameState());
+    stage.setScene(loader.<Node>getRoot().getScene());
   }
 }

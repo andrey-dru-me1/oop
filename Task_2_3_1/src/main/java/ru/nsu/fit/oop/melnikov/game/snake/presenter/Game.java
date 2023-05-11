@@ -6,11 +6,11 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.GameState;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 
@@ -19,13 +19,15 @@ public class Game {
   private final Snake snake;
   private final GameScreenPresenter presenter;
   private final Deque<Direction> directionQueue;
+  private final GameSettings gameSettings;
+  private final GameState gameState;
   private CellDTO[][] cellDTOS;
   private Timeline timeline;
   private KeyFrame keyFrame;
-  private final GameSettings gameSettings;
 
   public Game(Snake snake, GameSettings gameSettings, GameScreenPresenter presenter) {
     this.snake = snake;
+    this.gameState = new GameState(snake.size());
     this.gameSettings = gameSettings;
     this.timeline = new Timeline();
     this.timeline.setCycleCount(Animation.INDEFINITE);
@@ -33,6 +35,10 @@ public class Game {
     directionQueue.add(snake.getDirection());
     this.presenter = presenter;
     timeline.setDelay(new Duration(gameSettings.getTickDelay()));
+  }
+
+  public GameState getGameState() {
+    return gameState;
   }
 
   public void setCellDTOS(CellDTO[][] cellDTOS) {
@@ -61,6 +67,7 @@ public class Game {
     keyFrame = new KeyFrame(new Duration(gameSettings.getTickDelay()), this::onTimerTriggers);
     timeline.getKeyFrames().add(keyFrame);
     timeline.playFrom(new Duration(gameSettings.getTickDelay()));
+    gameState.setStatus(GameState.Status.RUNNING);
   }
 
   public Direction getDirection() {
@@ -77,13 +84,16 @@ public class Game {
     }
     snake.move(direction);
     presenter.setScore(snake.getScore());
+
+    gameState.setScore(snake.getScore());
+    gameState.setPlayerSnakeLength(snake.size());
+
     if (snake.isDestroyed()) {
       onSnakeDestroyed();
       return;
     }
     if (snake.getField().isNoPlaceForApple()) {
-      timeline.stop();
-      presenter.fillCanvas(cellDTOS, Color.GREEN);
+      onWin();
       return;
     }
     redraw();
@@ -98,17 +108,26 @@ public class Game {
   }
 
   private void onSnakeDestroyed() {
+    gameState.setStatus(GameState.Status.LOSE);
     timeline.stop();
+    presenter.onGameEnd();
+  }
+
+  private void onWin() {
+    gameState.setStatus(GameState.Status.WIN);
+    stop();
     presenter.onGameEnd();
   }
 
   public void pause() {
     timeline.pause();
+    gameState.setStatus(GameState.Status.PAUSED);
   }
 
   public void play() {
     setDelay(gameSettings.getTickDelay());
     timeline.playFrom(new Duration(gameSettings.getTickDelay()));
+    gameState.setStatus(GameState.Status.RUNNING);
   }
 
   public void stop() {
