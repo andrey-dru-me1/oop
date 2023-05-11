@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.ChangeKeysPresenter">
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.ChangeKeysPresenter">
     <padding>
-        <Insets bottom="30.0" left="15.0" right="15.0" top="30.0"/>
+        <Insets bottom="30.0" left="15.0" right="15.0" top="30.0" />
     </padding>
     <BorderPane>
         <left>
             <Label text="LEFT" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" left="20.0" top="7.0"/>
+                    <Insets bottom="7.0" left="20.0" top="7.0" />
                 </BorderPane.margin>
                 <font>
-                    <Font size="18.0"/>
+                    <Font size="18.0" />
                 </font>
             </Label>
         </left>
         <right>
             <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" right="20.0" top="7.0"/>
+                    <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>
             </Button>
         </right>
@@ -34,17 +32,17 @@
         <left>
             <Label text="RIGHT" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" left="20.0" top="7.0"/>
+                    <Insets bottom="7.0" left="20.0" top="7.0" />
                 </BorderPane.margin>
                 <font>
-                    <Font size="18.0"/>
+                    <Font size="18.0" />
                 </font>
             </Label>
         </left>
         <right>
             <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" right="20.0" top="7.0"/>
+                    <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>
             </Button>
         </right>
@@ -53,17 +51,17 @@
         <left>
             <Label text="UP" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" left="20.0" top="7.0"/>
+                    <Insets bottom="7.0" left="20.0" top="7.0" />
                 </BorderPane.margin>
                 <font>
-                    <Font size="18.0"/>
+                    <Font size="18.0" />
                 </font>
             </Label>
         </left>
         <right>
             <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" right="20.0" top="7.0"/>
+                    <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>
             </Button>
         </right>
@@ -72,17 +70,17 @@
         <left>
             <Label text="DOWN" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" left="20.0" top="7.0"/>
+                    <Insets bottom="7.0" left="20.0" top="7.0" />
                 </BorderPane.margin>
                 <font>
-                    <Font size="18.0"/>
+                    <Font size="18.0" />
                 </font>
             </Label>
         </left>
         <right>
             <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" right="20.0" top="7.0"/>
+                    <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>
             </Button>
         </right>
@@ -91,19 +89,27 @@
         <left>
             <Label text="MENU" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" left="20.0" top="7.0"/>
+                    <Insets bottom="7.0" left="20.0" top="7.0" />
                 </BorderPane.margin>
                 <font>
-                    <Font size="18.0"/>
+                    <Font size="18.0" />
                 </font>
             </Label>
         </left>
         <right>
             <Button mnemonicParsing="false" text="Change" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
-                    <Insets bottom="7.0" right="20.0" top="7.0"/>
+                    <Insets bottom="7.0" right="20.0" top="7.0" />
                 </BorderPane.margin>
             </Button>
         </right>
     </BorderPane>
+   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBackClick" text="Back">
+      <font>
+         <Font size="18.0" />
+      </font>
+      <VBox.margin>
+         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+      </VBox.margin>
+   </Button>
 </VBox>
