@@ -5,9 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
@@ -28,9 +25,6 @@ public class FXMLLoadersRepository {
         presenter.setStage(primaryStage);
         presenter.setGameSettings(gameSettings);
       }
-      if (loader.getRoot() instanceof Parent parent) {
-        new Scene(parent);
-      }
       loaders.put(screenName, loader);
     }
   }
@@ -43,7 +37,7 @@ public class FXMLLoadersRepository {
     return getLoader(screenName).getController();
   }
 
-  public <T extends Node> T getRootNode(String screenName) {
+  public <T> T getRoot(String screenName) {
     return getLoader(screenName).getRoot();
   }
 }

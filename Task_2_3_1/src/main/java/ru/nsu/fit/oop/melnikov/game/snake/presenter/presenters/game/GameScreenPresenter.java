@@ -5,9 +5,6 @@ import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -111,14 +108,11 @@ public class GameScreenPresenter extends FXMLPresenter {
       case UP -> game.addDirection(Direction.UP);
       case MENU -> {
         FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SETTINGS);
-        Parent parent = loader.getRoot();
-        JavafxDesigner.makeMatchParent(parent);
         SettingsPresenter settingsPresenter = loader.getController();
         settingsPresenter.setPrevScene(stage.getScene());
         settingsPresenter.initialize(gameSettings, () -> game.play());
-        Scene scene = parent.getScene();
         game.pause();
-        stage.setScene(scene);
+        stage.setScene(loader.getRoot());
       }
       default -> {
         // No need to do anything on another keyboard keys
@@ -133,6 +127,6 @@ public class GameScreenPresenter extends FXMLPresenter {
   public void onGameEnd() {
     FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.GAME_END);
     loader.<EndScreenPresenter>getController().updateScore(game.getGameState());
-    stage.setScene(loader.<Node>getRoot().getScene());
+    stage.setScene(loader.getRoot());
   }
 }

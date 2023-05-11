@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="parent" alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.EndScreenPresenter">
-   <Label fx:id="score" text="Score">
-      <font>
-         <Font size="54.0" />
-      </font>
-   </Label>
-     <Button mnemonicParsing="false" onAction="#onPlayAgainClick" prefWidth="500.0" text="Play again">
-      <VBox.margin>
-         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-      </VBox.margin>
-      <font>
-         <Font size="35.0" />
-      </font>
-   </Button>
-   <Button layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#onMainMenuClick" prefWidth="500.0" text="Main menu">
-      <font>
-         <Font size="35.0" />
-      </font>
-   </Button>
-     <Button graphicTextGap="2.0" mnemonicParsing="false" onAction="#onExitClick" prefWidth="500.0" text="Exit">
-      <font>
-         <Font size="35.0" />
-      </font>
-      <VBox.margin>
-         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-      </VBox.margin>
-   </Button>
- </VBox>
+
+<Scene xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+       fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.EndScreenPresenter">
+    <VBox fx:id="parent" alignment="CENTER">
+        <Label fx:id="score" text="Score">
+          <font>
+              <Font size="54.0"/>
+          </font>
+        </Label>
+        <Button mnemonicParsing="false" onAction="#onPlayAgainClick" prefWidth="500.0" text="Play again">
+          <VBox.margin>
+              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+          </VBox.margin>
+          <font>
+              <Font size="35.0"/>
+          </font>
+        </Button>
+        <Button layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#onMainMenuClick" prefWidth="500.0"
+                text="Main menu">
+          <font>
+              <Font size="35.0"/>
+          </font>
+        </Button>
+        <Button graphicTextGap="2.0" mnemonicParsing="false" onAction="#onExitClick" prefWidth="500.0" text="Exit">
+          <font>
+              <Font size="35.0"/>
+          </font>
+          <VBox.margin>
+              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+          </VBox.margin>
+        </Button>
+    </VBox>
+</Scene>

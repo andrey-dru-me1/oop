@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import javafx.application.Application;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.fxml.loaders.FXMLLoadersRepository;
@@ -31,7 +29,7 @@ public class SnakeEntry extends Application {
         .add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png"))));
     stage.setWidth(WINDOW_SIZE);
     stage.setHeight(WINDOW_SIZE + TITLE_BAR_HEIGHT);
-    stage.setScene(initScene());
+    stage.setScene(loadersRepository.getRoot(FXMLScreens.MAIN_MENU));
     stage.show();
   }
 
@@ -48,13 +46,6 @@ public class SnakeEntry extends Application {
                 FXMLScreens.GAME_END,
                 FXMLScreens.MAIN_MENU,
                 FXMLScreens.SELECT_MAP));
-  }
-
-  private Scene initScene() {
-    Scene scene;
-    Parent root = loadersRepository.getRootNode(FXMLScreens.MAIN_MENU);
-    scene = root.getScene();
-    return scene;
   }
 
   @Override

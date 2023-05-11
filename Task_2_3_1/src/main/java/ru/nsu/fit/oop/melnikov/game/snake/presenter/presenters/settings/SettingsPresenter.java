@@ -2,7 +2,6 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
@@ -36,6 +35,6 @@ public class SettingsPresenter extends FXMLPresenter {
     ChangeKeysPresenter changeKeysPresenter = loader.getController();
     changeKeysPresenter.updateKeySet();
     changeKeysPresenter.setPrevScene(stage.getScene());
-    stage.setScene(loader.<Node>getRoot().getScene());
+    stage.setScene(loader.getRoot());
   }
 }

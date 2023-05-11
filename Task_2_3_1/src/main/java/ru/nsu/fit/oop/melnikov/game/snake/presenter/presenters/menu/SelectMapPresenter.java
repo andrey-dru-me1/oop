@@ -6,7 +6,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -32,7 +31,7 @@ public class SelectMapPresenter extends FXMLPresenter {
       button.setOnAction(
           t -> {
             FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.GAME_SCREEN);
-            stage.setScene(loader.<Node>getRoot().getScene());
+            stage.setScene(loader.getRoot());
             loader.<GameScreenPresenter>getController().initialize(mapFilename);
           });
       listItems.add(listItem);

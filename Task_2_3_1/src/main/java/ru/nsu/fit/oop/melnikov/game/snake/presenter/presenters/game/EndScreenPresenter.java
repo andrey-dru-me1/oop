@@ -5,8 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.GameState;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.GameState;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
 
 public class EndScreenPresenter extends FXMLPresenter {
@@ -29,6 +29,6 @@ public class EndScreenPresenter extends FXMLPresenter {
   }
 
   public void onMainMenuClick() {
-    stage.setScene(loadersRepository.getRootNode(FXMLScreens.MAIN_MENU).getScene());
+    stage.setScene(loadersRepository.getRoot(FXMLScreens.MAIN_MENU));
   }
 }
