@@ -47,9 +47,6 @@ public class GameScreenPresenter extends FXMLPresenter {
 
     JavafxDesigner.makeMatchParent(borderPane);
 
-    canvas.setOnKeyPressed(this::onKeyPressed);
-    canvas.getScene().setOnKeyPressed(keyEvent -> canvas.getOnKeyPressed().handle(keyEvent));
-
     canvas.getGraphicsContext2D().setImageSmoothing(false);
 
     DataLoader dataLoader = new DataLoader(filename);
@@ -82,7 +79,7 @@ public class GameScreenPresenter extends FXMLPresenter {
     }
 
     game.setCellDTOS(cellDTOS);
-    game.start();
+    pauseGame();
 
     this.score = new SimpleIntegerProperty(0);
     scoreLabel.textProperty().bind((new SimpleStringProperty("Score: ")).concat(score.asString()));
@@ -111,12 +108,21 @@ public class GameScreenPresenter extends FXMLPresenter {
           FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.SETTINGS);
           SettingsPresenter settingsPresenter = loader.getController();
           settingsPresenter.setPrevScene(stage.getScene());
-          settingsPresenter.initialize(gameSettings, () -> game.play());
-          game.pause();
+          settingsPresenter.initialize(gameSettings);
+          pauseGame();
           stage.setScene(loader.getRoot());
         }
       }
     }
+  }
+
+  public void pauseGame() {
+    game.pause();
+    canvas.getScene().setOnKeyPressed(keyEvent -> {
+      game.start();
+      canvas.getScene().setOnKeyPressed(this::onKeyPressed);
+      canvas.getScene().getOnKeyPressed().handle(keyEvent);
+    });
   }
 
   public void stopAll() {

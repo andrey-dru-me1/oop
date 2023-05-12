@@ -18,7 +18,7 @@ public class MainMenuPresenter extends FXMLPresenter {
   public void onSettingsClick() {
     FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.SETTINGS);
     SettingsPresenter settingsPresenter = loader.getController();
-    settingsPresenter.initialize(gameSettings, () -> {});
+    settingsPresenter.initialize(gameSettings);
     settingsPresenter.setPrevScene(stage.getScene());
     stage.setScene(loader.getRoot());
   }

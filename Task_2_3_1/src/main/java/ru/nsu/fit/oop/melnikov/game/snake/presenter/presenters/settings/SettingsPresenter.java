@@ -14,20 +14,17 @@ public class SettingsPresenter extends FXMLPresenter {
   @FXML public VBox settingsSet;
   @FXML public Slider gameSpeed;
   private GameSettings gameSettings;
-  private Runnable onSettingsClose;
 
-  public void initialize(GameSettings gameSettings, Runnable onSettingsClose) {
+  public void initialize(GameSettings gameSettings) {
     this.gameSettings = gameSettings;
     gameSpeed.setValue(
         (double) (gameSettings.getTickDelay() * (100 + MIN_DELAY)) / MAX_DELAY - MIN_DELAY);
-    this.onSettingsClose = onSettingsClose;
   }
 
   public void onContinueClick() {
     gameSettings.setTickDelay(
         (int) ((gameSpeed.getValue() + MIN_DELAY) * MAX_DELAY / (100 + MIN_DELAY)));
     stage.setScene(prevScene);
-    onSettingsClose.run();
   }
 
   public void onChangeKeysClick() {
