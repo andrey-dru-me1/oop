@@ -8,36 +8,37 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 
 public class FXMLLoadersRepository {
 
-  private final Map<String, FXMLLoader> loaders;
+  private final Map<FXMLScreen, FXMLLoader> loaders;
 
   public FXMLLoadersRepository(
-      Stage primaryStage, GameSettings gameSettings, Collection<String> screenNames)
+      Stage primaryStage, GameSettings gameSettings, Collection<FXMLScreen> screens)
       throws IOException {
-    loaders = new HashMap<>(screenNames.size() * 2);
-    for (String screenName : screenNames) {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/" + screenName + ".fxml"));
+    loaders = new HashMap<>(screens.size() * 2);
+    for (FXMLScreen screen : screens) {
+      FXMLLoader loader = new FXMLLoader(screen.getScreenUrl());
       loader.load();
       if (loader.getController() instanceof FXMLPresenter presenter) {
         presenter.setFXMLLoadersRepository(this);
         presenter.setStage(primaryStage);
         presenter.setGameSettings(gameSettings);
       }
-      loaders.put(screenName, loader);
+      loaders.put(screen, loader);
     }
   }
 
-  public FXMLLoader getLoader(String screenName) {
-    return loaders.get(screenName);
+  public FXMLLoader getLoader(FXMLScreen screen) {
+    return loaders.get(screen);
   }
 
-  public <T extends FXMLPresenter> T getPresenter(String screenName) {
-    return getLoader(screenName).getController();
+  public <T extends FXMLPresenter> T getPresenter(FXMLScreen screen) {
+    return getLoader(screen).getController();
   }
 
-  public <T> T getRoot(String screenName) {
-    return getLoader(screenName).getRoot();
+  public <T> T getRoot(FXMLScreen screen) {
+    return getLoader(screen).getRoot();
   }
 }

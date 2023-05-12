@@ -21,7 +21,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSRepository;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings.SettingsPresenter;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.JavafxDesigner;
 
 public class GameScreenPresenter extends FXMLPresenter {
@@ -108,7 +108,7 @@ public class GameScreenPresenter extends FXMLPresenter {
         case DOWN -> game.addDirection(Direction.DOWN);
         case UP -> game.addDirection(Direction.UP);
         case MENU -> {
-          FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SETTINGS);
+          FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.SETTINGS);
           SettingsPresenter settingsPresenter = loader.getController();
           settingsPresenter.setPrevScene(stage.getScene());
           settingsPresenter.initialize(gameSettings, () -> game.play());
@@ -124,7 +124,7 @@ public class GameScreenPresenter extends FXMLPresenter {
   }
 
   public void onGameEnd() {
-    FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.GAME_END);
+    FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.GAME_END);
     loader.<EndScreenPresenter>getController().updateScore(game.getGameState());
     stage.setScene(loader.getRoot());
   }

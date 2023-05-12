@@ -6,7 +6,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 
 public class SettingsPresenter extends FXMLPresenter {
   private static final int MIN_DELAY = 20;
@@ -23,7 +23,7 @@ public class SettingsPresenter extends FXMLPresenter {
     this.onSettingsClose = onSettingsClose;
   }
 
-  public void onOKClick() {
+  public void onContinueClick() {
     gameSettings.setTickDelay(
         (int) ((gameSpeed.getValue() + MIN_DELAY) * MAX_DELAY / (100 + MIN_DELAY)));
     stage.setScene(prevScene);
@@ -31,10 +31,18 @@ public class SettingsPresenter extends FXMLPresenter {
   }
 
   public void onChangeKeysClick() {
-    FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.CHANGE_KEYS);
+    FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.CHANGE_KEYS);
     ChangeKeysPresenter changeKeysPresenter = loader.getController();
     changeKeysPresenter.updateKeySet();
     changeKeysPresenter.setPrevScene(stage.getScene());
     stage.setScene(loader.getRoot());
+  }
+
+  public void onMainMenuClick() {
+    stage.setScene(loadersRepository.getRoot(FXMLScreen.MAIN_MENU));
+  }
+
+  public void onExitClick() {
+    stage.close();
   }
 }

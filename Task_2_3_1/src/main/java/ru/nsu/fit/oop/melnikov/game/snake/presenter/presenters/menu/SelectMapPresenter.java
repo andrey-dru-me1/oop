@@ -12,7 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.GameScreenPresenter;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.MapName;
 
 public class SelectMapPresenter extends FXMLPresenter {
@@ -30,7 +30,7 @@ public class SelectMapPresenter extends FXMLPresenter {
       listItem.getChildren().add(button);
       button.setOnAction(
           t -> {
-            FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.GAME_SCREEN);
+            FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.GAME_SCREEN);
             stage.setScene(loader.getRoot());
             loader.<GameScreenPresenter>getController().initialize(mapFilename);
           });

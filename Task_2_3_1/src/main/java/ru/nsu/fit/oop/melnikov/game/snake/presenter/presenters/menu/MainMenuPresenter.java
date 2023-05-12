@@ -3,11 +3,11 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.menu;
 import javafx.fxml.FXMLLoader;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings.SettingsPresenter;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 
 public class MainMenuPresenter extends FXMLPresenter {
   public void onNewGameClick() {
-    FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SELECT_MAP);
+    FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.SELECT_MAP);
     stage.setScene(loader.getRoot());
   }
 
@@ -16,7 +16,7 @@ public class MainMenuPresenter extends FXMLPresenter {
   }
 
   public void onSettingsClick() {
-    FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.SETTINGS);
+    FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.SETTINGS);
     SettingsPresenter settingsPresenter = loader.getController();
     settingsPresenter.initialize(gameSettings, () -> {});
     settingsPresenter.setPrevScene(stage.getScene());

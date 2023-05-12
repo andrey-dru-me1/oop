@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.melnikov.game.data.loader;
 
 import java.util.*;
-
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
@@ -11,15 +10,14 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 public class DataLoader {
 
-  private final Field field;
-  private final Snake snake;
-
   private static final Map<String, Direction> DIRECTIONS =
       Map.of(
           "right", Direction.RIGHT,
           "up", Direction.UP,
           "down", Direction.DOWN,
           "left", Direction.LEFT);
+  private final Field field;
+  private final Snake snake;
 
   public DataLoader(String filename) {
     List<IntPoint> snakeIntPoints;

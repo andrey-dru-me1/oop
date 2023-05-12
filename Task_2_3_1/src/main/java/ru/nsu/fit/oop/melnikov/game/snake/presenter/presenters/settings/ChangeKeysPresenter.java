@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.SnakeKey;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 
 public class ChangeKeysPresenter extends FXMLPresenter {
 
@@ -50,7 +50,7 @@ public class ChangeKeysPresenter extends FXMLPresenter {
   }
 
   private void createModalKeyListener(SnakeKey snakeKey) {
-    FXMLLoader loader = loadersRepository.getLoader(FXMLScreens.LISTEN_KEY);
+    FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.LISTEN_KEY);
     Stage keyListenerStage = loader.getRoot();
     ListenKeyPresenter listenKeyPresenter = loader.getController();
     listenKeyPresenter.setKeyToChange(snakeKey);

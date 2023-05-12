@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.fxml.loaders.FXMLLoadersRepository;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
-import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreens;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 
 public class SnakeEntry extends Application {
 
@@ -29,7 +29,7 @@ public class SnakeEntry extends Application {
         .add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png"))));
     stage.setWidth(WINDOW_SIZE);
     stage.setHeight(WINDOW_SIZE + TITLE_BAR_HEIGHT);
-    stage.setScene(loadersRepository.getRoot(FXMLScreens.MAIN_MENU));
+    stage.setScene(loadersRepository.getRoot(FXMLScreen.MAIN_MENU));
     stage.show();
   }
 
@@ -39,13 +39,13 @@ public class SnakeEntry extends Application {
             stage,
             new GameSettings(),
             List.of(
-                FXMLScreens.LISTEN_KEY,
-                FXMLScreens.CHANGE_KEYS,
-                FXMLScreens.GAME_SCREEN,
-                FXMLScreens.SETTINGS,
-                FXMLScreens.GAME_END,
-                FXMLScreens.MAIN_MENU,
-                FXMLScreens.SELECT_MAP));
+                FXMLScreen.LISTEN_KEY,
+                FXMLScreen.CHANGE_KEYS,
+                FXMLScreen.GAME_SCREEN,
+                FXMLScreen.SETTINGS,
+                FXMLScreen.GAME_END,
+                FXMLScreen.MAIN_MENU,
+                FXMLScreen.SELECT_MAP));
   }
 
   @Override
@@ -57,7 +57,7 @@ public class SnakeEntry extends Application {
 
   @Override
   public void stop() throws Exception {
-    loadersRepository.<GameScreenPresenter>getPresenter(FXMLScreens.GAME_SCREEN).stopAll();
+    loadersRepository.<GameScreenPresenter>getPresenter(FXMLScreen.GAME_SCREEN).stopAll();
     super.stop();
   }
 }
