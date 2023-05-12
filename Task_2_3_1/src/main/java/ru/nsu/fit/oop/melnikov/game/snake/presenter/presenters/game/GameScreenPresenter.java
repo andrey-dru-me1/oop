@@ -79,6 +79,7 @@ public class GameScreenPresenter extends FXMLPresenter {
     }
 
     game.setCellDTOS(cellDTOS);
+    game.start();
     pauseGame();
 
     this.score = new SimpleIntegerProperty(0);
@@ -119,7 +120,7 @@ public class GameScreenPresenter extends FXMLPresenter {
   public void pauseGame() {
     game.pause();
     canvas.getScene().setOnKeyPressed(keyEvent -> {
-      game.start();
+      game.play();
       canvas.getScene().setOnKeyPressed(this::onKeyPressed);
       canvas.getScene().getOnKeyPressed().handle(keyEvent);
     });
