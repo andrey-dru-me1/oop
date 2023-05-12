@@ -98,6 +98,10 @@ public class GameScreenPresenter extends FXMLPresenter {
         canvas.getScene().widthProperty().divide(field.getWidth()));
   }
 
+  public Game getGame() {
+    return game;
+  }
+
   private void onKeyPressed(KeyEvent keyEvent) {
     if (gameSettings.getKeys().containsKey(keyEvent.getCode())) {
       switch (gameSettings.getSnakeKey(keyEvent.getCode())) {
@@ -119,15 +123,20 @@ public class GameScreenPresenter extends FXMLPresenter {
 
   public void pauseGame() {
     game.pause();
-    canvas.getScene().setOnKeyPressed(keyEvent -> {
-      game.play();
-      canvas.getScene().setOnKeyPressed(this::onKeyPressed);
-      canvas.getScene().getOnKeyPressed().handle(keyEvent);
-    });
+    canvas
+        .getScene()
+        .setOnKeyPressed(
+            keyEvent -> {
+              game.play();
+              canvas.getScene().setOnKeyPressed(this::onKeyPressed);
+              canvas.getScene().getOnKeyPressed().handle(keyEvent);
+            });
   }
 
   public void stopAll() {
-    game.stop();
+    if (game != null) {
+      game.stop();
+    }
   }
 
   public void onGameEnd() {

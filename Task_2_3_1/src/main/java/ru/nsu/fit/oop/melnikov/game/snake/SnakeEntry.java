@@ -57,7 +57,9 @@ public class SnakeEntry extends Application {
 
   @Override
   public void stop() throws Exception {
-    loadersRepository.<GameScreenPresenter>getPresenter(FXMLScreen.GAME_SCREEN).stopAll();
+    GameScreenPresenter gameScreenPresenter =
+        loadersRepository.getPresenter(FXMLScreen.GAME_SCREEN);
+    gameScreenPresenter.stopAll();
     super.stop();
   }
 }

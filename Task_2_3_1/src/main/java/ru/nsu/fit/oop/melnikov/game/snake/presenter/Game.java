@@ -24,7 +24,8 @@ public class Game {
   private Timeline timeline;
   private KeyFrame keyFrame;
 
-  public Game(Snake snake, GameSettings gameSettings, GameScreenPresenter presenter, String mapName) {
+  public Game(
+      Snake snake, GameSettings gameSettings, GameScreenPresenter presenter, String mapName) {
     this.snake = snake;
     this.gameState = new GameState(snake.size(), mapName);
     this.gameSettings = gameSettings;
@@ -34,6 +35,10 @@ public class Game {
     directionQueue.add(snake.getDirection());
     this.presenter = presenter;
     timeline.setDelay(new Duration(gameSettings.getTickDelay()));
+  }
+
+  public GameSettings getGameSettings() {
+    return gameSettings;
   }
 
   public GameState getGameState() {
@@ -130,6 +135,8 @@ public class Game {
   }
 
   public void stop() {
-    timeline.stop();
+    if (timeline != null) {
+      timeline.stop();
+    }
   }
 }
