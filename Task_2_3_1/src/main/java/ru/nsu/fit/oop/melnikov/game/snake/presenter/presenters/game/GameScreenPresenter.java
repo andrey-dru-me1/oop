@@ -113,7 +113,7 @@ public class GameScreenPresenter extends FXMLPresenter {
           FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.SETTINGS);
           SettingsPresenter settingsPresenter = loader.getController();
           settingsPresenter.setPrevScene(stage.getScene());
-          settingsPresenter.initialize(gameSettings);
+          settingsPresenter.init();
           pauseGame();
           stage.setScene(loader.getRoot());
         }

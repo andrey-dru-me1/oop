@@ -7,27 +7,39 @@
 
 <Scene xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings.SettingsPresenter">
    <VBox alignment="CENTER">
-      <VBox fx:id="settingsSet" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="314.0" style="-fx-background-color: white;">
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <VBox fx:id="settingsSet" alignment="CENTER" style="-fx-background-color: white;">
+         <HBox alignment="CENTER">
             <Label text="Game speed" />
-            <Slider fx:id="gameSpeed" onDragDetected="#onGameSpeedDragDone" onDragDone="#onGameSpeedDragDone" onDragDropped="#onGameSpeedDragDone" onDragEntered="#onGameSpeedDragDone" onDragExited="#onGameSpeedDragDone" onDragOver="#onGameSpeedDragDone" onMouseDragEntered="#onGameSpeedDragDone" onMouseDragExited="#onGameSpeedDragDone" onMouseDragOver="#onGameSpeedDragDone" onMouseDragReleased="#onGameSpeedDragDone">
+            <Slider fx:id="gameSpeed" max="400.0" min="20.0" minWidth="-Infinity" prefWidth="150.0" showTickLabels="true" showTickMarks="true" value="100.0">
                <HBox.margin>
-                  <Insets bottom="2.0" left="15.0" right="15.0" top="2.0" />
+                  <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                </HBox.margin>
             </Slider>
+            <VBox.margin>
+               <Insets left="50.0" right="50.0" />
+            </VBox.margin>
          </HBox>
-         <Button mnemonicParsing="false" onAction="#onChangeKeysClick" text="Change key codes">
+         <Button mnemonicParsing="false" onAction="#onChangeKeysClick" prefWidth="150.0" text="Change key codes">
             <VBox.margin>
                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </VBox.margin>
          </Button>
-         <Button layoutX="130.0" layoutY="147.0" mnemonicParsing="false" onAction="#onMainMenuClick" text="Main menu" />
-         <Button defaultButton="true" layoutX="149.0" layoutY="131.0" mnemonicParsing="false" onAction="#onContinueClick" text="Continue">
+         <Button layoutX="130.0" layoutY="147.0" mnemonicParsing="false" onAction="#onMainMenuClick" prefWidth="150.0" text="Main menu">
             <VBox.margin>
-               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </VBox.margin></Button>
+         <Button defaultButton="true" layoutX="149.0" layoutY="131.0" mnemonicParsing="false" onAction="#onContinueClick" prefWidth="150.0" text="Continue">
+            <VBox.margin>
+               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </VBox.margin>
          </Button>
-         <Button layoutX="130.0" layoutY="147.0" mnemonicParsing="false" onAction="#onExitClick" text="Exit" />
+         <Button layoutX="130.0" layoutY="147.0" mnemonicParsing="false" onAction="#onExitClick" prefWidth="150.0" text="Exit">
+            <VBox.margin>
+               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </VBox.margin></Button>
+         <VBox.margin>
+            <Insets bottom="30.0" top="30.0" />
+         </VBox.margin>
       </VBox>
    </VBox>
 </Scene>

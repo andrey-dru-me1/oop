@@ -12,6 +12,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.presenter.fxml.loaders.FXMLLoadersRepo
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.Resources;
 
 public class SnakeEntry extends Application {
 
@@ -37,7 +38,13 @@ public class SnakeEntry extends Application {
 
   private void initLoadersRepository() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
-    GameSettings gameSettings = mapper.readValue(new File("game_settings.json"), GameSettings.class);
+    File file = new File(Resources.GAME_SETTINGS_FILE);
+    GameSettings gameSettings;
+    if (file.isFile()) {
+      gameSettings = mapper.readValue(file, GameSettings.class);
+    } else {
+      gameSettings = new GameSettings();
+    }
     loadersRepository =
         new FXMLLoadersRepository(
             stage,
@@ -66,8 +73,13 @@ public class SnakeEntry extends Application {
     gameScreenPresenter.stopAll();
 
     ObjectMapper mapper = new ObjectMapper();
-    mapper.writerWithDefaultPrettyPrinter().writeValue(new File("game_settings.json"), gameScreenPresenter.getGameSettings());
-
+    mapper
+        .writerWithDefaultPrettyPrinter()
+        .writeValue(
+            new File(Resources.GAME_SETTINGS_FILE),
+            loadersRepository
+                .<GameScreenPresenter>getPresenter(FXMLScreen.GAME_SCREEN)
+                .getGameSettings());
     super.stop();
   }
 }
