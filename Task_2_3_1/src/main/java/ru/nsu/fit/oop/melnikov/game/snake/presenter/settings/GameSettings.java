@@ -2,11 +2,15 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter.settings;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.scene.input.KeyCode;
 
 public class GameSettings {
 
+    @JsonProperty
     private final Map<KeyCode, SnakeKey> keys;
+    @JsonProperty
     private int tickDelay;
 
     public GameSettings() {

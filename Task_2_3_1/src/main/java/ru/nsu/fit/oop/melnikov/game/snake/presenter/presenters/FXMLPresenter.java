@@ -12,6 +12,10 @@ public class FXMLPresenter {
   protected GameSettings gameSettings;
   protected Scene prevScene;
 
+  public GameSettings getGameSettings() {
+    return gameSettings;
+  }
+
   public void setGameSettings(GameSettings gameSettings) {
     this.gameSettings = gameSettings;
   }

@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Slider;
+import javafx.scene.input.DragEvent;
 import javafx.scene.layout.VBox;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
@@ -22,8 +23,6 @@ public class SettingsPresenter extends FXMLPresenter {
   }
 
   public void onContinueClick() {
-    gameSettings.setTickDelay(
-        (int) ((gameSpeed.getValue() + MIN_DELAY) * MAX_DELAY / (100 + MIN_DELAY)));
     stage.setScene(prevScene);
   }
 
@@ -41,5 +40,10 @@ public class SettingsPresenter extends FXMLPresenter {
 
   public void onExitClick() {
     stage.close();
+  }
+
+  public void onGameSpeedDragDone() {
+    gameSettings.setTickDelay(
+            (int) ((gameSpeed.getValue() + MIN_DELAY) * MAX_DELAY / (100 + MIN_DELAY)));
   }
 }

@@ -1,5 +1,7 @@
 package ru.nsu.fit.oop.melnikov.game.snake;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -34,10 +36,12 @@ public class SnakeEntry extends Application {
   }
 
   private void initLoadersRepository() throws IOException {
+    ObjectMapper mapper = new ObjectMapper();
+    GameSettings gameSettings = mapper.readValue(new File("game_settings.json"), GameSettings.class);
     loadersRepository =
         new FXMLLoadersRepository(
             stage,
-            new GameSettings(),
+            gameSettings,
             List.of(
                 FXMLScreen.LISTEN_KEY,
                 FXMLScreen.CHANGE_KEYS,
@@ -60,6 +64,10 @@ public class SnakeEntry extends Application {
     GameScreenPresenter gameScreenPresenter =
         loadersRepository.getPresenter(FXMLScreen.GAME_SCREEN);
     gameScreenPresenter.stopAll();
+
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.writerWithDefaultPrettyPrinter().writeValue(new File("game_settings.json"), gameScreenPresenter.getGameSettings());
+
     super.stop();
   }
 }

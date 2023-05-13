@@ -10,7 +10,7 @@
       <VBox fx:id="settingsSet" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="314.0" style="-fx-background-color: white;">
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <Label text="Game speed" />
-            <Slider fx:id="gameSpeed">
+            <Slider fx:id="gameSpeed" onDragDetected="#onGameSpeedDragDone" onDragDone="#onGameSpeedDragDone" onDragDropped="#onGameSpeedDragDone" onDragEntered="#onGameSpeedDragDone" onDragExited="#onGameSpeedDragDone" onDragOver="#onGameSpeedDragDone" onMouseDragEntered="#onGameSpeedDragDone" onMouseDragExited="#onGameSpeedDragDone" onMouseDragOver="#onGameSpeedDragDone" onMouseDragReleased="#onGameSpeedDragDone">
                <HBox.margin>
                   <Insets bottom="2.0" left="15.0" right="15.0" top="2.0" />
                </HBox.margin>

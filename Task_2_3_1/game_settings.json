@@ -1,0 +1,14 @@
+{
+  "keys" : {
+    "UP" : "UP",
+    "DOWN" : "DOWN",
+    "LEFT" : "LEFT",
+    "ESCAPE" : "MENU",
+    "RIGHT" : "RIGHT",
+    "NUMPAD4" : "LEFT",
+    "NUMPAD6" : "RIGHT",
+    "NUMPAD8" : "UP",
+    "NUMPAD5" : "DOWN"
+  },
+  "tickDelay" : 177
+}
