@@ -5,6 +5,7 @@ module oop.snake {
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
+    requires com.googlecode.lanterna;
 
     opens ru.nsu.fit.oop.melnikov.game.snake.presenter to javafx.fxml;
     opens ru.nsu.fit.oop.melnikov.game.snake.presenter.settings to com.fasterxml.jackson.databind;

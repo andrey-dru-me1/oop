@@ -10,7 +10,7 @@
       <VBox fx:id="settingsSet" alignment="CENTER" style="-fx-background-color: white;">
          <HBox alignment="CENTER">
             <Label text="Game speed" />
-            <Slider fx:id="gameSpeed" max="400.0" min="20.0" minWidth="-Infinity" prefWidth="150.0" showTickLabels="true" showTickMarks="true" value="100.0">
+            <Slider fx:id="gameSpeed" blockIncrement="100.0" majorTickUnit="100.0" max="420.0" min="20.0" minWidth="-Infinity" minorTickCount="100" prefWidth="150.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0">
                <HBox.margin>
                   <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                </HBox.margin>

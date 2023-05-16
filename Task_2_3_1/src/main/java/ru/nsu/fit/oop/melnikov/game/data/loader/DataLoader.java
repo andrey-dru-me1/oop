@@ -54,9 +54,9 @@ public class DataLoader {
 
     scanner.skip("\n");
 
+    scanner.reset();
     int size = scanner.nextInt();
     snakeIntPoints = new ArrayList<>(size);
-    scanner.reset();
     for (int i = 0; i < size; i++) {
       snakeIntPoints.add(i, new IntPoint(scanner.nextInt(), scanner.nextInt()));
     }

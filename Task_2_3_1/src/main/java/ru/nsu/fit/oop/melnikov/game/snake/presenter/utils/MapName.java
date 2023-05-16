@@ -9,7 +9,8 @@ public class MapName {
             "big_map.txt",
             "default.txt",
             "default_walls.txt",
-            "test.txt"
+            "test.txt",
+            "big_empty_map.txt"
     );
 
     private MapName() {}
