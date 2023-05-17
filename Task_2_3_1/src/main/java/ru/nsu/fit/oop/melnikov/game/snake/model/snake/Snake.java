@@ -6,7 +6,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
 public class Snake {
 
@@ -19,12 +19,12 @@ public class Snake {
   private int sizeToIncrease;
   private boolean isDestroyed;
   /** Creates new snake with 3 nodes. */
-  public Snake(Field field, List<IntPoint> snakeIntPoints) {
+  public Snake(Field field, List<Point<Integer>> snakeIntPoints) {
 
     this.nodes = new LinkedList<>();
     this.field = field;
 
-    for (IntPoint intPoint : snakeIntPoints) {
+    for (Point<Integer> intPoint : snakeIntPoints) {
       Cell cell = field.getCell(intPoint);
       nodes.add(cell);
       cell.add(new SnakeNode(this));
@@ -92,26 +92,26 @@ public class Snake {
   }
 
   protected void appendHead() {
-    IntPoint nextPoint = calculateNextPoint();
+    Point<Integer> nextPoint = calculateNextPoint();
     Cell newHeadCell = field.getCell(nextPoint);
     nodes.add(newHeadCell);
     newHeadCell.add(new SnakeNode(this));
   }
 
-  private IntPoint calculateNextPoint() {
-    IntPoint nextPoint = direction.nextPoint(this.getHeadCell());
+  private Point<Integer> calculateNextPoint() {
+    Point<Integer> nextPoint = direction.nextPoint(this.getHeadCell());
 
     if(nextPoint.getX() >= field.getWidth()) {
-      nextPoint = new IntPoint(0, nextPoint.getY());
+      nextPoint = new Point<>(0, nextPoint.getY());
     }
     else if(nextPoint.getX() < 0){
-      nextPoint = new IntPoint(field.getWidth() - 1, nextPoint.getY());
+      nextPoint = new Point<>(field.getWidth() - 1, nextPoint.getY());
     }
     else if(nextPoint.getY() >= field.getHeight()) {
-      nextPoint = new IntPoint(nextPoint.getX(), 0);
+      nextPoint = new Point<>(nextPoint.getX(), 0);
     }
     else if(nextPoint.getY() < 0){
-      nextPoint = new IntPoint(nextPoint.getX(), field.getHeight() - 1);
+      nextPoint = new Point<>(nextPoint.getX(), field.getHeight() - 1);
     }
     return nextPoint;
   }

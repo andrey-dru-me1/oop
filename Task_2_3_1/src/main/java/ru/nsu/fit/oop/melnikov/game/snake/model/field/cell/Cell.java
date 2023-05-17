@@ -6,9 +6,9 @@ import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.EmptyCell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
-public class Cell extends IntPoint {
+public class Cell extends Point<Integer> {
 
   private final PriorityQueue<CellObject> cellObjects;
 

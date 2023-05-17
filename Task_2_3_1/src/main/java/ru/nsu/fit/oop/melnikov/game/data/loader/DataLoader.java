@@ -5,7 +5,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 public class DataLoader {
@@ -20,7 +20,7 @@ public class DataLoader {
   private final Snake snake;
 
   public DataLoader(String filename) {
-    List<IntPoint> snakeIntPoints;
+    List<Point<Integer>> snakeIntPoints;
     Scanner scanner =
         new Scanner(Objects.requireNonNull(getClass().getResourceAsStream("/" + filename)));
 
@@ -58,7 +58,7 @@ public class DataLoader {
     int size = scanner.nextInt();
     snakeIntPoints = new ArrayList<>(size);
     for (int i = 0; i < size; i++) {
-      snakeIntPoints.add(i, new IntPoint(scanner.nextInt(), scanner.nextInt()));
+      snakeIntPoints.add(i, new Point<>(scanner.nextInt(), scanner.nextInt()));
     }
 
     snake = new Snake(field, snakeIntPoints);

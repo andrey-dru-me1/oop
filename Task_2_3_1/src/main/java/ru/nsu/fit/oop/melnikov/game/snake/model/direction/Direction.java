@@ -1,17 +1,18 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.direction;
 
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
+
 import java.util.function.UnaryOperator;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.IntPoint;
 
 public enum Direction {
-  LEFT(point -> new IntPoint(point.getX() - 1, point.getY())),
-  RIGHT(point -> new IntPoint(point.getX() + 1, point.getY())),
-  UP(point -> new IntPoint(point.getX(), point.getY() - 1)),
-  DOWN(point -> new IntPoint(point.getX(), point.getY() + 1));
+  LEFT(point -> new Point<>(point.getX() - 1, point.getY())),
+  RIGHT(point -> new Point<>(point.getX() + 1, point.getY())),
+  UP(point -> new Point<>(point.getX(), point.getY() - 1)),
+  DOWN(point -> new Point<>(point.getX(), point.getY() + 1));
 
-  private final UnaryOperator<IntPoint> shiftPoint;
+  private final UnaryOperator<Point<Integer>> shiftPoint;
 
-  Direction(UnaryOperator<IntPoint> shiftPoint) {
+  Direction(UnaryOperator<Point<Integer>> shiftPoint) {
     this.shiftPoint = shiftPoint;
   }
 
@@ -22,7 +23,7 @@ public enum Direction {
         || this == Direction.LEFT && directionToCompare == Direction.RIGHT;
   }
 
-  public IntPoint nextPoint(IntPoint intPoint) {
+  public Point<Integer> nextPoint(Point<Integer> intPoint) {
     return this.shiftPoint.apply(intPoint);
   }
 }
