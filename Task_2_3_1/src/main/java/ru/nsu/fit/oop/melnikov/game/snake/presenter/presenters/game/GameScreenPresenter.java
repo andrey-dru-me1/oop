@@ -21,6 +21,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.dto.cell.CellObjectDTOSRepository;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings.SettingsPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.JavafxDesigner;
 
@@ -62,7 +63,7 @@ public class GameScreenPresenter extends FXMLPresenter {
     CellObjectDTOSRepository repository = new CellObjectDTOSRepository("default");
 
     snake = dataLoader.getSnake();
-    game = new Game(snake, gameSettings, this, filename);
+    game = new Game(snake, this, filename);
 
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];
@@ -103,8 +104,8 @@ public class GameScreenPresenter extends FXMLPresenter {
   }
 
   private void onKeyPressed(KeyEvent keyEvent) {
-    if (gameSettings.getKeys().containsKey(keyEvent.getCode())) {
-      switch (gameSettings.getSnakeKey(keyEvent.getCode())) {
+    if (GameSettings.INSTANCE.getKeys().containsKey(keyEvent.getCode())) {
+      switch (GameSettings.INSTANCE.getSnakeKey(keyEvent.getCode())) {
         case LEFT -> game.addDirection(Direction.LEFT);
         case RIGHT -> game.addDirection(Direction.RIGHT);
         case DOWN -> game.addDirection(Direction.DOWN);

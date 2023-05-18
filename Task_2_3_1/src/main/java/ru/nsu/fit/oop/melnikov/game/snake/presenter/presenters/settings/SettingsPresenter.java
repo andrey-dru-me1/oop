@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 
 public class SettingsPresenter extends FXMLPresenter {
@@ -12,7 +13,7 @@ public class SettingsPresenter extends FXMLPresenter {
   @FXML public Slider gameSpeed;
 
   public void init() {
-    gameSpeed.setValue(gameSettings.getTickDelay());
+    gameSpeed.setValue(GameSettings.INSTANCE.getTickDelay());
   }
 
   public void onContinueClick() {
@@ -39,7 +40,7 @@ public class SettingsPresenter extends FXMLPresenter {
   }
 
   public void saveSettings() {
-    gameSettings.setTickDelay((int) gameSpeed.getValue());
+    GameSettings.INSTANCE.setTickDelay((int) gameSpeed.getValue());
   }
 
 }

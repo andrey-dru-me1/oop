@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.SnakeKey;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.utils.FXMLScreen;
 
@@ -34,7 +35,7 @@ public class ChangeKeysPresenter extends FXMLPresenter {
           && (pane.getCenter() instanceof Label keyCodes
               && pane.getLeft() instanceof Label snakeKeyName)) {
         StringBuilder stringBuilder = new StringBuilder();
-        Map<KeyCode, SnakeKey> keyMapping = gameSettings.getKeys();
+        Map<KeyCode, SnakeKey> keyMapping = GameSettings.INSTANCE.getKeys();
         for (KeyCode keyCode : keyMapping.keySet()) {
           if (keyMapping.get(keyCode) != KEY_MATCHING.get(snakeKeyName.getText())) {
             continue;

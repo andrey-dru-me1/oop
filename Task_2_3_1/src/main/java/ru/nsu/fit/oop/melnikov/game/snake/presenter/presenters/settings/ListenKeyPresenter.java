@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.FXMLPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.presenter.settings.SnakeKey;
 
 public class ListenKeyPresenter extends FXMLPresenter {
@@ -14,7 +15,7 @@ public class ListenKeyPresenter extends FXMLPresenter {
   @FXML
   private void initialize() {
     listenKeyScene.setOnKeyPressed(keyEvent -> {
-      gameSettings.putKey(keyEvent.getCode(), keyToChange);
+      GameSettings.INSTANCE.putKey(keyEvent.getCode(), keyToChange);
       listenKeyStage.close();
     });
   }

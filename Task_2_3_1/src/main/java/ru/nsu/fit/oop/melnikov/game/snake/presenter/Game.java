@@ -18,27 +18,21 @@ public class Game {
   private final Snake snake;
   private final GameScreenPresenter presenter;
   private final Deque<Direction> directionQueue;
-  private final GameSettings gameSettings;
   private final GameState gameState;
   private CellDTO[][] cellDTOS;
   private Timeline timeline;
   private KeyFrame keyFrame;
 
   public Game(
-      Snake snake, GameSettings gameSettings, GameScreenPresenter presenter, String mapName) {
+      Snake snake, GameScreenPresenter presenter, String mapName) {
     this.snake = snake;
     this.gameState = new GameState(snake.size(), mapName);
-    this.gameSettings = gameSettings;
     this.timeline = new Timeline();
     this.timeline.setCycleCount(Animation.INDEFINITE);
     this.directionQueue = new ArrayDeque<>(2);
     directionQueue.add(snake.getDirection());
     this.presenter = presenter;
-    timeline.setDelay(new Duration(gameSettings.getTickDelay()));
-  }
-
-  public GameSettings getGameSettings() {
-    return gameSettings;
+    timeline.setDelay(new Duration(GameSettings.INSTANCE.getTickDelay()));
   }
 
   public GameState getGameState() {
@@ -50,7 +44,7 @@ public class Game {
   }
 
   public void setDelay(int millisDelay) {
-    this.gameSettings.setTickDelay(millisDelay);
+    GameSettings.INSTANCE.setTickDelay(millisDelay);
     keyFrame = new KeyFrame(new Duration(millisDelay), this::onTimerTriggers);
     timeline.stop();
     timeline = new Timeline();
@@ -68,9 +62,9 @@ public class Game {
   }
 
   public void start() {
-    keyFrame = new KeyFrame(new Duration(gameSettings.getTickDelay()), this::onTimerTriggers);
+    keyFrame = new KeyFrame(new Duration(GameSettings.INSTANCE.getTickDelay()), this::onTimerTriggers);
     timeline.getKeyFrames().add(keyFrame);
-    timeline.playFrom(new Duration(gameSettings.getTickDelay()));
+    timeline.playFrom(new Duration(GameSettings.INSTANCE.getTickDelay()));
     gameState.setStatus(GameState.Status.RUNNING);
   }
 
@@ -129,8 +123,8 @@ public class Game {
   }
 
   public void play() {
-    setDelay(gameSettings.getTickDelay());
-    timeline.playFrom(new Duration(gameSettings.getTickDelay()));
+    setDelay(GameSettings.INSTANCE.getTickDelay());
+    timeline.playFrom(new Duration(GameSettings.INSTANCE.getTickDelay()));
     gameState.setStatus(GameState.Status.RUNNING);
   }
 

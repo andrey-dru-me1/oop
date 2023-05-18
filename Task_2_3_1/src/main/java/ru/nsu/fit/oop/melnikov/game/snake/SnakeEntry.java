@@ -37,18 +37,9 @@ public class SnakeEntry extends Application {
   }
 
   private void initLoadersRepository() throws IOException {
-    ObjectMapper mapper = new ObjectMapper();
-    File file = new File(Resources.GAME_SETTINGS_FILE);
-    GameSettings gameSettings;
-    if (file.isFile()) {
-      gameSettings = mapper.readValue(file, GameSettings.class);
-    } else {
-      gameSettings = new GameSettings();
-    }
     loadersRepository =
         new FXMLLoadersRepository(
             stage,
-            gameSettings,
             List.of(
                 FXMLScreen.LISTEN_KEY,
                 FXMLScreen.CHANGE_KEYS,
@@ -77,9 +68,7 @@ public class SnakeEntry extends Application {
         .writerWithDefaultPrettyPrinter()
         .writeValue(
             new File(Resources.GAME_SETTINGS_FILE),
-            loadersRepository
-                .<GameScreenPresenter>getPresenter(FXMLScreen.GAME_SCREEN)
-                .getGameSettings());
+            GameSettings.INSTANCE);
     super.stop();
   }
 }
