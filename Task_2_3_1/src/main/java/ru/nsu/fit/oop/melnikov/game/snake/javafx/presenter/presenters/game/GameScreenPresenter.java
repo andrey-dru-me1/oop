@@ -11,10 +11,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import ru.nsu.fit.oop.melnikov.game.data.loader.DataLoader;
-import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Game;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Rect;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.CellDTO;
@@ -24,6 +20,10 @@ import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.settings.S
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.FXMLScreen;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.JavafxDesigner;
+import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 public class GameScreenPresenter extends FXMLPresenter {
   @FXML public Label scoreLabel;
@@ -60,7 +60,8 @@ public class GameScreenPresenter extends FXMLPresenter {
     canvas.heightProperty().bind(rectSize.multiply(field.getHeight()));
     canvas.widthProperty().bind(rectSize.multiply(field.getWidth()));
 
-    CellObjectDTOSRepository repository = new CellObjectDTOSRepository("default");
+    CellObjectDTOSRepository repository =
+        new CellObjectDTOSRepository(GameSettings.INSTANCE.getTextureName());
 
     snake = dataLoader.getSnake();
     game = new Game(snake, this, filename);

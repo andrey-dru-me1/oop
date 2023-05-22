@@ -15,6 +15,7 @@ public class GameSettings {
 
   @JsonProperty private final Map<KeyCode, SnakeKey> keys;
   @JsonProperty private int tickDelay;
+  @JsonProperty private String textureName;
 
   private GameSettings() {
     tickDelay = 100;
@@ -26,6 +27,7 @@ public class GameSettings {
                 KeyCode.RIGHT, SnakeKey.RIGHT,
                 KeyCode.DOWN, SnakeKey.DOWN,
                 KeyCode.ESCAPE, SnakeKey.MENU));
+    textureName = "minecraft";
   }
 
   private static GameSettings getInstance() {
@@ -40,6 +42,14 @@ public class GameSettings {
       // instance
     }
     return new GameSettings();
+  }
+
+  public String getTextureName() {
+    return textureName;
+  }
+
+  public void setTextureName(String textureName) {
+    this.textureName = textureName;
   }
 
   public int getTickDelay() {

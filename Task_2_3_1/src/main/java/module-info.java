@@ -21,5 +21,6 @@ module oop.snake {
     opens ru.nsu.fit.oop.melnikov.game.snake.javafx to javafx.fxml;
     exports ru.nsu.fit.oop.melnikov.game.snake.terminal;
     opens ru.nsu.fit.oop.melnikov.game.snake.terminal to javafx.fxml;
+    exports ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils to com.fasterxml.jackson.databind;
 
 }
