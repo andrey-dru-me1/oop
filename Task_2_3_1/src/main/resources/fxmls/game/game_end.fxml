@@ -8,7 +8,7 @@
 
 
 <Scene xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-       fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.game.EndScreenPresenter">
+       fx:controller="ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.EndScreenPresenter">
     <VBox fx:id="parent" alignment="CENTER">
         <Label fx:id="score" text="Score">
           <font>

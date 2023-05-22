@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.nsu.fit.oop.melnikov.game.snake.model.ModelInit;
+import ru.nsu.fit.oop.melnikov.game.snake.javafx.model.ModelInit;
 
 class DataSaverTest extends ModelInit {
 

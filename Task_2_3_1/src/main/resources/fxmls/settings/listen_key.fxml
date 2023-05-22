@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.stage.*?>
 
-<Stage fx:id="listenKeyStage" alwaysOnTop="true" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.presenter.presenters.settings.ListenKeyPresenter">
+<Stage fx:id="listenKeyStage" alwaysOnTop="true" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.settings.ListenKeyPresenter">
     <scene>
         <Scene fx:id="listenKeyScene">
             <VBox alignment="TOP_CENTER">
