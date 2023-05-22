@@ -32,7 +32,8 @@ public class SelectMapPresenter extends FXMLPresenter {
           t -> {
             FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.GAME_SCREEN);
             stage.setScene(loader.getRoot());
-            loader.<GameScreenPresenter>getController().initialize(mapFilename);
+            GameScreenPresenter presenter = loader.getController();
+            presenter.initialize(mapFilename);
           });
       listItems.add(listItem);
     }

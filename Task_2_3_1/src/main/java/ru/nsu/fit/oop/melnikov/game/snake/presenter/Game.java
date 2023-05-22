@@ -23,8 +23,7 @@ public class Game {
   private Timeline timeline;
   private KeyFrame keyFrame;
 
-  public Game(
-      Snake snake, GameScreenPresenter presenter, String mapName) {
+  public Game(Snake snake, GameScreenPresenter presenter, String mapName) {
     this.snake = snake;
     this.gameState = new GameState(snake.size(), mapName);
     this.timeline = new Timeline();
@@ -62,7 +61,8 @@ public class Game {
   }
 
   public void start() {
-    keyFrame = new KeyFrame(new Duration(GameSettings.INSTANCE.getTickDelay()), this::onTimerTriggers);
+    keyFrame =
+        new KeyFrame(new Duration(GameSettings.INSTANCE.getTickDelay()), this::onTimerTriggers);
     timeline.getKeyFrames().add(keyFrame);
     timeline.playFrom(new Duration(GameSettings.INSTANCE.getTickDelay()));
     gameState.setStatus(GameState.Status.RUNNING);

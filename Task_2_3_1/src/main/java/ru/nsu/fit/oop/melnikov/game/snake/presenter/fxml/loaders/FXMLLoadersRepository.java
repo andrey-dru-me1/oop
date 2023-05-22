@@ -19,10 +19,11 @@ public class FXMLLoadersRepository {
     for (FXMLScreen screen : screens) {
       FXMLLoader loader = new FXMLLoader(screen.getScreenUrl());
       loader.load();
-      if (loader.getController() instanceof FXMLPresenter presenter) {
-        presenter.setFXMLLoadersRepository(this);
-        presenter.setStage(primaryStage);
-      }
+
+      FXMLPresenter presenter = loader.getController();
+      presenter.setFXMLLoadersRepository(this);
+      presenter.setStage(primaryStage);
+
       loaders.put(screen, loader);
     }
   }

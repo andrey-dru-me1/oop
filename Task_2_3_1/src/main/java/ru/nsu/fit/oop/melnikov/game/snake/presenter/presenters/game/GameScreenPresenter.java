@@ -122,7 +122,7 @@ public class GameScreenPresenter extends FXMLPresenter {
     }
   }
 
-  public void pauseGame() {
+  private void pauseGame() {
     game.pause();
     canvas
         .getScene()
