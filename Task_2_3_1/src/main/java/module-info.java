@@ -10,8 +10,6 @@ module oop.snake {
     opens ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter to javafx.fxml;
     opens ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings to com.fasterxml.jackson.databind;
     exports ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings to com.fasterxml.jackson.databind;
-    exports ru.nsu.fit.oop.melnikov.game.snake;
-    opens ru.nsu.fit.oop.melnikov.game.snake to javafx.fxml;
     opens ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.cell to javafx.fxml;
     opens ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto to javafx.fxml;
     opens ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters to javafx.fxml;
@@ -21,5 +19,7 @@ module oop.snake {
     opens ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.menu to javafx.fxml;
     exports ru.nsu.fit.oop.melnikov.game.snake.javafx;
     opens ru.nsu.fit.oop.melnikov.game.snake.javafx to javafx.fxml;
+    exports ru.nsu.fit.oop.melnikov.game.snake.terminal;
+    opens ru.nsu.fit.oop.melnikov.game.snake.terminal to javafx.fxml;
 
 }

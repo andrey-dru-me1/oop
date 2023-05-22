@@ -26,8 +26,8 @@ javafx {
 }
 
 application {
-    mainModule = "oop.snake"
-    mainClassName = 'ru.nsu.fit.oop.melnikov.game.snake.SnakeEntry'
+    mainModule = "oop.snake.javafx"
+    mainClassName = 'ru.nsu.fit.oop.melnikov.game.snake.javafx.SnakeEntry'
 }
 
 java {
