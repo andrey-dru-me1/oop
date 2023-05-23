@@ -92,6 +92,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Field</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Field is an unmodifiable set of cells where snake is going to move.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -126,17 +127,25 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eatApple(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell)" class="member-name-link">eatApple</a><wbr>(<a href="cell/Cell.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a>&nbsp;appleCell)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Correctly removes apple from the field.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateApple()" class="member-name-link">generateApple</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Generates new single apple in random place.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="cell/Cell.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCell(int,int)" class="member-name-link">getCell</a><wbr>(int&nbsp;x,
  int&nbsp;y)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns cell with specified coordinates.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="cell/Cell.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCell(ru.nsu.fit.oop.melnikov.game.snake.model.point.Point)" class="member-name-link">getCell</a><wbr>(<a href="../point/Point.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.point">Point</a>&lt;<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;intPoint)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Delegates duties to <a href="#getCell(int,int)"><code>getCell(int, int)</code></a></div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="cell/Cell.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a>[][]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCells()" class="member-name-link">getCells</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -148,10 +157,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNoPlaceForApple()" class="member-name-link">isNoPlaceForApple</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Shows if there are some spaces for apples to be placed.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#regenerateApples(int)" class="member-name-link">regenerateApples</a><wbr>(int&nbsp;appleCount)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Clean all the existing apples and generate the specified count of new ones.</div>
+</div>
 </div>
 </div>
 </div>
@@ -193,6 +206,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isNoPlaceForApple()">
 <h3>isNoPlaceForApple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isNoPlaceForApple</span>()</div>
+<div class="block">Shows if there are some spaces for apples to be placed.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><code>true</code> if there is such a cell where apple can be places and <code>false</code>
+     otherwise</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -218,12 +237,28 @@ loadScripts(document, 'script');</script>
 <h3>getCell</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="cell/Cell.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a></span>&nbsp;<span class="element-name">getCell</span><wbr><span class="parameters">(int&nbsp;x,
  int&nbsp;y)</span></div>
+<div class="block">Returns cell with specified coordinates. Throws IndexOutOfBoundException if either x or y out
+ of field size.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - x cell coordinate</dd>
+<dd><code>y</code> - y cell coordinate</dd>
+<dt>Returns:</dt>
+<dd>cell if such exists</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getCell(ru.nsu.fit.oop.melnikov.game.snake.model.point.Point)">
 <h3>getCell</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="cell/Cell.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a></span>&nbsp;<span class="element-name">getCell</span><wbr><span class="parameters">(<a href="../point/Point.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.point">Point</a>&lt;<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;intPoint)</span></div>
+<div class="block">Delegates duties to <a href="#getCell(int,int)"><code>getCell(int, int)</code></a></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>intPoint</code> - point with specified x and y to search cell by them</dd>
+<dt>Returns:</dt>
+<dd>cell if such exists</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -236,18 +271,31 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="regenerateApples(int)">
 <h3>regenerateApples</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">regenerateApples</span><wbr><span class="parameters">(int&nbsp;appleCount)</span></div>
+<div class="block">Clean all the existing apples and generate the specified count of new ones.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>appleCount</code> - count of apples to generate</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="generateApple()">
 <h3>generateApple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">generateApple</span>()</div>
+<div class="block">Generates new single apple in random place.
+
+ <p>Does nothing if there is no place for apple.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="eatApple(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell)">
 <h3>eatApple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">eatApple</span><wbr><span class="parameters">(<a href="cell/Cell.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a>&nbsp;appleCell)</span></div>
+<div class="block">Correctly removes apple from the field.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>appleCell</code> - cell where one of apples is located</dd>
+</dl>
 </section>
 </li>
 </ul>

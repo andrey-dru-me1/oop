@@ -97,6 +97,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Wall</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a></span></div>
+<div class="block">Wall is an object that fills all the cell, so snakes can't go through it.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -126,10 +127,14 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPriority()" class="member-name-link">getPriority</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Highest priority among default cell objects.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)" class="member-name-link">onAnotherCellObjectAppearance</a><wbr>(<a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;anotherCellObject)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Destroys every snake happens to appear on a cell with a wall.</div>
+</div>
 </div>
 </div>
 </div>
@@ -165,9 +170,12 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <section class="detail" id="getPriority()">
 <h3>getPriority</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getPriority</span>()</div>
+<div class="block">Highest priority among default cell objects.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="CellObject.html#getPriority()">getPriority</a></code>&nbsp;in interface&nbsp;<code><a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a></code></dd>
+<dt>Returns:</dt>
+<dd>object priority</dd>
 </dl>
 </section>
 </li>
@@ -175,9 +183,12 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <section class="detail" id="onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)">
 <h3>onAnotherCellObjectAppearance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onAnotherCellObjectAppearance</span><wbr><span class="parameters">(<a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;anotherCellObject)</span></div>
+<div class="block">Destroys every snake happens to appear on a cell with a wall.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="CellObject.html#onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)">onAnotherCellObjectAppearance</a></code>&nbsp;in interface&nbsp;<code><a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>anotherCellObject</code> - new object on current cell</dd>
 </dl>
 </section>
 </li>

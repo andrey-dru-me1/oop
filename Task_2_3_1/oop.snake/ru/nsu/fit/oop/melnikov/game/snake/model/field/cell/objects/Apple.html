@@ -109,7 +109,9 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.Runnable)" class="member-name-link">Apple</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;onAppleEating)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Passes runnable argument <code>onAppleEating</code> which will be called on snake appearance.</div>
+</div>
 </div>
 </section>
 </li>
@@ -126,10 +128,15 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPriority()" class="member-name-link">getPriority</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Greater than empty cell, less than snake node.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)" class="member-name-link">onAnotherCellObjectAppearance</a><wbr>(<a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;anotherCellObject)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Increases snake size and calls <code>onAppleEating()</code> callback method specified in <code>
+ Apple</code> constructor if snake node appears on cell.</div>
+</div>
 </div>
 </div>
 </div>
@@ -151,6 +158,11 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <section class="detail" id="&lt;init&gt;(java.lang.Runnable)">
 <h3>Apple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Apple</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;onAppleEating)</span></div>
+<div class="block">Passes runnable argument <code>onAppleEating</code> which will be called on snake appearance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>onAppleEating</code> - method specifies behaviour of game when snake eats apple</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -165,9 +177,12 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <section class="detail" id="getPriority()">
 <h3>getPriority</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getPriority</span>()</div>
+<div class="block">Greater than empty cell, less than snake node.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="CellObject.html#getPriority()">getPriority</a></code>&nbsp;in interface&nbsp;<code><a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a></code></dd>
+<dt>Returns:</dt>
+<dd>object priority</dd>
 </dl>
 </section>
 </li>
@@ -175,9 +190,13 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <section class="detail" id="onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)">
 <h3>onAnotherCellObjectAppearance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onAnotherCellObjectAppearance</span><wbr><span class="parameters">(<a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;anotherCellObject)</span></div>
+<div class="block">Increases snake size and calls <code>onAppleEating()</code> callback method specified in <code>
+ Apple</code> constructor if snake node appears on cell.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="CellObject.html#onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)">onAnotherCellObjectAppearance</a></code>&nbsp;in interface&nbsp;<code><a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>anotherCellObject</code> - cell object that appears on cell</dd>
 </dl>
 </section>
 </li>

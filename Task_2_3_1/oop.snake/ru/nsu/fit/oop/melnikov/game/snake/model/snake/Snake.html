@@ -92,6 +92,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Snake</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Snake consists from cells.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -124,7 +125,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#appendHead()" class="member-name-link">appendHead</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Appends head to a next cell according to snake direction.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#destroy()" class="member-name-link">destroy</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -154,10 +157,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move()" class="member-name-link">move</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Appends head and if there is no need to increase its size removes tail.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)" class="member-name-link">move</a><wbr>(<a href="../direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a>&nbsp;direction)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Changes snake move direction and moves like <a href="#move()"><code>move()</code></a></div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeTail()" class="member-name-link">removeTail</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -240,12 +247,19 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="move()">
 <h3>move</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">move</span>()</div>
+<div class="block">Appends head and if there is no need to increase its size removes tail. Doesn't change
+ direction.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="move(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)">
 <h3>move</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">move</span><wbr><span class="parameters">(<a href="../direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a>&nbsp;direction)</span></div>
+<div class="block">Changes snake move direction and moves like <a href="#move()"><code>move()</code></a></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>direction</code> - direction to move to</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -276,6 +290,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="appendHead()">
 <h3>appendHead</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">appendHead</span>()</div>
+<div class="block">Appends head to a next cell according to snake direction.</div>
 </section>
 </li>
 <li>

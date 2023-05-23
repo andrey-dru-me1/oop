@@ -94,6 +94,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Cell</span>
 <span class="extends-implements">extends <a href="../../point/Point.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.point">Point</a>&lt;<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span></div>
+<div class="block">Cell is an element of field. It has its own coordinates and objects which is linked to cell.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -124,19 +125,23 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#add(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)" class="member-name-link">add</a><wbr>(<a href="objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;newCellObject)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds new object, links it to the cell and polls other objects if they want to do something on
+ object appearance.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#contains(java.lang.Class)" class="member-name-link">contains</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;? extends <a href="objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&gt;&nbsp;desiredClass)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if object of desired class is licked to current cell.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/PriorityQueue.html" title="class or interface in java.util" class="external-link">PriorityQueue</a>&lt;<a href="objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCellObjects()" class="member-name-link">getCellObjects</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;T</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getExemplar(java.lang.Class)" class="member-name-link">getExemplar</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;desiredClass)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#remove(java.lang.Class)" class="member-name-link">remove</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;? extends <a href="objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&gt;&nbsp;desiredClass)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#remove(java.lang.Class)" class="member-name-link">remove</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;? extends <a href="objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&gt;&nbsp;desiredClass)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Removes cell object of specified class.</div>
+</div>
 </div>
 </div>
 </div>
@@ -182,24 +187,40 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="add(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)">
 <h3>add</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">add</span><wbr><span class="parameters">(<a href="objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;newCellObject)</span></div>
+<div class="block">Adds new object, links it to the cell and polls other objects if they want to do something on
+ object appearance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>newCellObject</code> - object to add to current cell</dd>
+<dt>Returns:</dt>
+<dd><code>true</code> (as specified by <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Collection.html#add(E)" title="class or interface in java.util" class="external-link"><code>Collection.add(E)</code></a>)</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="remove(java.lang.Class)">
 <h3>remove</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">remove</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;? extends <a href="objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&gt;&nbsp;desiredClass)</span></div>
+<div class="block">Removes cell object of specified class.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>desiredClass</code> - class, object of which to remove</dd>
+<dt>Returns:</dt>
+<dd><code>true</code> if there is something to remove, false otherwise</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="contains(java.lang.Class)">
 <h3>contains</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">contains</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;? extends <a href="objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&gt;&nbsp;desiredClass)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="getExemplar(java.lang.Class)">
-<h3>getExemplar</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T</span>&nbsp;<span class="element-name">getExemplar</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;desiredClass)</span></div>
+<div class="block">Checks if object of desired class is licked to current cell.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>desiredClass</code> - class to search for</dd>
+<dt>Returns:</dt>
+<dd>true if there is object of specified class and false otherwise</dd>
+</dl>
 </section>
 </li>
 </ul>

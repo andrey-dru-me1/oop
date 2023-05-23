@@ -92,6 +92,10 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-snake">snake</span></code> - </dd>
+</dl>
+<dl class="notes">
 <dt>All Implemented Interfaces:</dt>
 <dd><code><a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a></code></dd>
 </dl>
@@ -99,6 +103,8 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">SnakeNode</span>(<a href="../../../snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a>&nbsp;snake)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a>
 implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a></span></div>
+<div class="block">Snake node can represent whether snake head and other snake body: model doesn't see any
+ differences.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -135,7 +141,9 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPriority()" class="member-name-link">getPriority</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">More than apple, less than wall.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -143,11 +151,13 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)" class="member-name-link">onAnotherCellObjectAppearance</a><wbr>(<a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;anotherCellObject)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Destroys linked snake when something crashes into its node.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#snake()" class="member-name-link">snake</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>snake</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-snake"><code>snake</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -178,7 +188,7 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <div class="block">Creates an instance of a <code>SnakeNode</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>snake</code> - the value for the <code>snake</code> record component</dd>
+<dd><code>snake</code> - the value for the <a href="#param-snake"><code>snake</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -194,9 +204,12 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <section class="detail" id="getPriority()">
 <h3>getPriority</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getPriority</span>()</div>
+<div class="block">More than apple, less than wall.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="CellObject.html#getPriority()">getPriority</a></code>&nbsp;in interface&nbsp;<code><a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a></code></dd>
+<dt>Returns:</dt>
+<dd>object priority</dd>
 </dl>
 </section>
 </li>
@@ -204,9 +217,12 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <section class="detail" id="onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)">
 <h3>onAnotherCellObjectAppearance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onAnotherCellObjectAppearance</span><wbr><span class="parameters">(<a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;anotherCellObject)</span></div>
+<div class="block">Destroys linked snake when something crashes into its node.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="CellObject.html#onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)">onAnotherCellObjectAppearance</a></code>&nbsp;in interface&nbsp;<code><a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>anotherCellObject</code> - new object on current cell</dd>
 </dl>
 </section>
 </li>
@@ -255,10 +271,10 @@ implements <a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov
 <section class="detail" id="snake()">
 <h3>snake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></span>&nbsp;<span class="element-name">snake</span>()</div>
-<div class="block">Returns the value of the <code>snake</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-snake"><code>snake</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>snake</code> record component</dd>
+<dd>the value of the <a href="#param-snake"><code>snake</code></a> record component</dd>
 </dl>
 </section>
 </li>

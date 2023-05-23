@@ -92,6 +92,14 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">CellObject</span></div>
+<div class="block">Cell objects are objects that can be placed on cell, such as wall, snake node, apple and even
+ empty cell. They are strongly connected to the cell, so the field looks like set of cells with
+ stack of cell objects on each of it.
+
+ <p>Objects can appear and disappear during the game.
+
+ <p>Each type of object has its own priority: the more priority, the higher level object has. This
+ influences on drawing, for example.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -108,10 +116,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPriority()" class="member-name-link">getPriority</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Returns the priority of current cell object.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)" class="member-name-link">onAnotherCellObjectAppearance</a><wbr>(<a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;anotherCellObject)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Method is called when another object appears on cell where current object is located.</div>
+</div>
 </div>
 </div>
 </div>
@@ -130,12 +142,28 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getPriority()">
 <h3>getPriority</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getPriority</span>()</div>
+<div class="block">Returns the priority of current cell object. The more priority, the higher object is located on
+ field's Z axis.
+
+ <p>Default snake has priority variance from 0 (empty cell) up to 100 (wall), but new custom
+ cell objects can have either less or more.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>priority of current object</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="onAnotherCellObjectAppearance(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)">
 <h3>onAnotherCellObjectAppearance</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onAnotherCellObjectAppearance</span><wbr><span class="parameters">(<a href="CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;anotherCellObject)</span></div>
+<div class="block">Method is called when another object appears on cell where current object is located. This
+ might be using, for example, when snake node appears on cell with apple, so this method allows
+ apple to react on snake node appearance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>anotherCellObject</code> - new object on current cell</dd>
+</dl>
 </section>
 </li>
 </ul>
