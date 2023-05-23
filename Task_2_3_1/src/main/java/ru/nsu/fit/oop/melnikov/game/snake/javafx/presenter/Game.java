@@ -97,7 +97,7 @@ public class Game {
     redraw();
   }
 
-  private void redraw() {
+  public void redraw() {
     for (CellDTO[] row : cellDTOS) {
       for (CellDTO cellDTO : row) {
         cellDTO.drawObjects();

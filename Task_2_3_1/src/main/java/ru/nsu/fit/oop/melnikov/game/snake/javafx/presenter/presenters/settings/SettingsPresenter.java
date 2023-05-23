@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.FXMLPresenter;
+import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.FXMLScreen;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.TextureName;
@@ -34,6 +35,10 @@ public class SettingsPresenter extends FXMLPresenter {
   public void onContinueClick() {
     saveSettings();
     stage.setScene(prevScene);
+    if(loadersRepository.getRoot(FXMLScreen.GAME_SCREEN) == prevScene) {
+      GameScreenPresenter gameScreenPresenter = loadersRepository.getPresenter(FXMLScreen.GAME_SCREEN);
+      gameScreenPresenter.getGame().redraw();
+    }
   }
 
   public void onChangeKeysClick() {

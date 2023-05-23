@@ -62,6 +62,7 @@ public class GameScreenPresenter extends FXMLPresenter {
 
     CellObjectDTOSRepository repository =
         new CellObjectDTOSRepository(GameSettings.INSTANCE.getTextureName());
+    GameSettings.INSTANCE.setRepository(repository);
 
     snake = dataLoader.getSnake();
     game = new Game(snake, this, filename);

@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.input.KeyCode;
+import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.cell.CellObjectDTOSRepository;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.Resources;
 
 public class GameSettings {
@@ -16,6 +18,7 @@ public class GameSettings {
   @JsonProperty private final Map<KeyCode, SnakeKey> keys;
   @JsonProperty private int tickDelay;
   @JsonProperty private String textureName;
+  @JsonIgnore private CellObjectDTOSRepository repository;
 
   private GameSettings() {
     tickDelay = 100;
@@ -44,12 +47,19 @@ public class GameSettings {
     return new GameSettings();
   }
 
+  public void setRepository(CellObjectDTOSRepository repository) {
+    this.repository = repository;
+  }
+
   public String getTextureName() {
     return textureName;
   }
 
   public void setTextureName(String textureName) {
     this.textureName = textureName;
+    if (repository != null) {
+      repository.onTextureChange(textureName);
+    }
   }
 
   public int getTickDelay() {

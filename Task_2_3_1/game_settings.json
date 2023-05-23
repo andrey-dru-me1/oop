@@ -1,11 +1,11 @@
 {
   "keys" : {
-    "DOWN" : "DOWN",
-    "RIGHT" : "RIGHT",
-    "LEFT" : "LEFT",
     "ESCAPE" : "MENU",
+    "DOWN" : "DOWN",
+    "LEFT" : "LEFT",
+    "RIGHT" : "RIGHT",
     "UP" : "UP"
   },
-  "tickDelay" : 20,
+  "tickDelay" : 120,
   "textureName" : "minimalism"
 }
