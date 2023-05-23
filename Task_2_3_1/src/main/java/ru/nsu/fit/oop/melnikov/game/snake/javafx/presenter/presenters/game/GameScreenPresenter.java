@@ -65,7 +65,7 @@ public class GameScreenPresenter extends FXMLPresenter {
     GameSettings.INSTANCE.setRepository(repository);
 
     snake = dataLoader.getSnake();
-    game = new Game(snake, this, filename);
+    game = new Game(field, snake, this, filename);
 
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];
@@ -83,12 +83,14 @@ public class GameScreenPresenter extends FXMLPresenter {
 
     game.setCellDTOS(cellDTOS);
     game.start();
+    game.regenerateApples(
+        Math.max(
+            GameSettings.INSTANCE.getApplesPercentage() * (field.getWidth() * field.getHeight()) / 100,
+            1));
     pauseGame();
 
     this.score = new SimpleIntegerProperty(0);
     scoreLabel.textProperty().bind((new SimpleStringProperty("Score: ")).concat(score.asString()));
-
-    field.generateApple();
   }
 
   private NumberBinding calculateRectSize() {

@@ -58,13 +58,13 @@ public class Field {
     this.height = h + 1;
 
     Cell[][] cellMatrix = new Cell[width][height];
-    for(Cell cell : cells) {
+    for (Cell cell : cells) {
       cellMatrix[cell.getX()][cell.getY()] = cell;
     }
 
-    for(int i = 0; i < width; i++) {
-      for(int j = 0; j < height; j++) {
-        if(cellMatrix[i][j] == null) {
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        if (cellMatrix[i][j] == null) {
           cellMatrix[i][j] = new Cell(i, j);
         }
       }
@@ -106,6 +106,16 @@ public class Field {
 
   public int applesCount() {
     return appleCells.size();
+  }
+
+  public void regenerateApples(int appleCount) {
+    Collection<Cell> snapshot = new ArrayList<>(appleCells);
+    for (Cell appleCell : snapshot) {
+      eatApple(appleCell);
+    }
+    for (int i = 0; i < appleCount; i++) {
+      generateApple();
+    }
   }
 
   public void generateApple() {

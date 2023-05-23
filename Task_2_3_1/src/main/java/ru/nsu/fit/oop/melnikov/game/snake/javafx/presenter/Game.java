@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.util.Duration;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter;
@@ -15,6 +16,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings.GameSettings
 
 public class Game {
 
+  private final Field field;
   private final Snake snake;
   private final GameScreenPresenter presenter;
   private final Deque<Direction> directionQueue;
@@ -23,7 +25,8 @@ public class Game {
   private Timeline timeline;
   private KeyFrame keyFrame;
 
-  public Game(Snake snake, GameScreenPresenter presenter, String mapName) {
+  public Game(Field field, Snake snake, GameScreenPresenter presenter, String mapName) {
+    this.field = field;
     this.snake = snake;
     this.gameState = new GameState(snake.size(), mapName);
     this.timeline = new Timeline();
@@ -58,6 +61,10 @@ public class Game {
       return;
     }
     this.directionQueue.add(direction);
+  }
+
+  public void regenerateApples(int appleCount) {
+    field.regenerateApples(appleCount);
   }
 
   public void start() {

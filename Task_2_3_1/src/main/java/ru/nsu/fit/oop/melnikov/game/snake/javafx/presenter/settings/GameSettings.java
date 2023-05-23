@@ -18,10 +18,12 @@ public class GameSettings {
   @JsonProperty private final Map<KeyCode, SnakeKey> keys;
   @JsonProperty private int tickDelay;
   @JsonProperty private String textureName;
+  @JsonProperty private int applesPercentage;
   @JsonIgnore private CellObjectDTOSRepository repository;
 
   private GameSettings() {
     tickDelay = 100;
+    applesPercentage = 20;
     keys =
         new HashMap<>(
             Map.of(
@@ -68,6 +70,14 @@ public class GameSettings {
 
   public void setTickDelay(int tickDelay) {
     this.tickDelay = tickDelay;
+  }
+
+  public int getApplesPercentage() {
+    return applesPercentage;
+  }
+
+  public void setApplesPercentage(int applesPercentage) {
+    this.applesPercentage = applesPercentage;
   }
 
   public Map<KeyCode, SnakeKey> getKeys() {
