@@ -8,6 +8,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
+/** Snake consists from cells. */
 public class Snake {
 
   /** Snake nodes, where 0 is a tail and last element is a head. */
@@ -60,6 +61,10 @@ public class Snake {
     return nodes;
   }
 
+  /**
+   * Appends head and if there is no need to increase its size removes tail. Doesn't change
+   * direction.
+   */
   public void move() {
     appendHead();
     if (sizeToIncrease > 0) {
@@ -69,6 +74,11 @@ public class Snake {
     removeTail();
   }
 
+  /**
+   * Changes snake move direction and moves like {@link Snake#move()}
+   *
+   * @param direction direction to move to
+   */
   public void move(Direction direction) {
     this.setDirection(direction);
     this.move();
@@ -91,6 +101,7 @@ public class Snake {
     return nodes.size();
   }
 
+  /** Appends head to a next cell according to snake direction. */
   protected void appendHead() {
     Point<Integer> nextPoint = calculateNextPoint();
     Cell newHeadCell = field.getCell(nextPoint);
@@ -98,25 +109,31 @@ public class Snake {
     newHeadCell.add(new SnakeNode(this));
   }
 
+  /**
+   * Returns next point according to direction if point doesn't exit field's bounds and first point
+   * on a same line/row from an opposite side.
+   *
+   * @return next point
+   */
   private Point<Integer> calculateNextPoint() {
     Point<Integer> nextPoint = direction.nextPoint(this.getHeadCell());
 
-    if(nextPoint.getX() >= field.getWidth()) {
+    if (nextPoint.getX() >= field.getWidth()) {
       nextPoint = new Point<>(0, nextPoint.getY());
-    }
-    else if(nextPoint.getX() < 0){
+    } else if (nextPoint.getX() < 0) {
       nextPoint = new Point<>(field.getWidth() - 1, nextPoint.getY());
-    }
-    else if(nextPoint.getY() >= field.getHeight()) {
+    } else if (nextPoint.getY() >= field.getHeight()) {
       nextPoint = new Point<>(nextPoint.getX(), 0);
-    }
-    else if(nextPoint.getY() < 0){
+    } else if (nextPoint.getY() < 0) {
       nextPoint = new Point<>(nextPoint.getX(), field.getHeight() - 1);
     }
     return nextPoint;
   }
 
   protected void removeTail() {
+    if(nodes.isEmpty()) {
+      return;
+    }
     Cell tailCell = nodes.remove(0);
     tailCell.remove(SnakeNode.class);
   }
@@ -126,5 +143,6 @@ public class Snake {
     for (Cell cell : nodes) {
       cell.remove(SnakeNode.class);
     }
+    nodes.clear();
   }
 }

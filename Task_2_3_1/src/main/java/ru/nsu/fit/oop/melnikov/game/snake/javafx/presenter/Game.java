@@ -33,7 +33,6 @@ public class Game {
     this.timeline = new Timeline();
     this.timeline.setCycleCount(Animation.INDEFINITE);
     this.directionQueue = new ArrayDeque<>(2);
-    directionQueue.add(snake.getDirection());
     this.presenter = presenter;
     timeline.setDelay(new Duration(GameSettings.INSTANCE.getTickDelay()));
   }

@@ -7,6 +7,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
+/** Field is an unmodifiable set of cells where snake is going to move. */
 public class Field {
 
   private static final Random RANDOM = new Random();
@@ -77,6 +78,12 @@ public class Field {
     noPlaceForApple = false;
   }
 
+  /**
+   * Shows if there are some spaces for apples to be placed.
+   *
+   * @return {@code true} if there is such a cell where apple can be places and {@code false}
+   *     otherwise
+   */
   public boolean isNoPlaceForApple() {
     return noPlaceForApple;
   }
@@ -93,6 +100,14 @@ public class Field {
     return cells;
   }
 
+  /**
+   * Returns cell with specified coordinates. Throws IndexOutOfBoundException if either x or y out
+   * of field size.
+   *
+   * @param x x cell coordinate
+   * @param y y cell coordinate
+   * @return cell if such exists
+   */
   public Cell getCell(int x, int y) {
     if (x < 0 || x >= width || y < 0 || y >= height) {
       throw new IndexOutOfBoundsException();
@@ -100,6 +115,12 @@ public class Field {
     return cells[x][y];
   }
 
+  /**
+   * Delegates duties to {@link Field#getCell(int, int)}
+   *
+   * @param intPoint point with specified x and y to search cell by them
+   * @return cell if such exists
+   */
   public Cell getCell(Point<Integer> intPoint) {
     return this.getCell(intPoint.getX(), intPoint.getY());
   }
@@ -108,6 +129,11 @@ public class Field {
     return appleCells.size();
   }
 
+  /**
+   * Clean all the existing apples and generate the specified count of new ones.
+   *
+   * @param appleCount count of apples to generate
+   */
   public void regenerateApples(int appleCount) {
     Collection<Cell> snapshot = new ArrayList<>(appleCells);
     for (Cell appleCell : snapshot) {
@@ -118,6 +144,11 @@ public class Field {
     }
   }
 
+  /**
+   * Generates new single apple in random place.
+   *
+   * <p>Does nothing if there is no place for apple.
+   */
   public void generateApple() {
     if (noPlaceForApple) {
       return;
@@ -143,6 +174,11 @@ public class Field {
     appleCells.add(newAppleCell);
   }
 
+  /**
+   * Correctly removes apple from the field.
+   *
+   * @param appleCell cell where one of apples is located
+   */
   public void eatApple(Cell appleCell) {
     if (appleCell.contains(Apple.class)) {
       appleCells.remove(appleCell);

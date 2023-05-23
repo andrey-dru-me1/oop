@@ -7,6 +7,6 @@
     "UP" : "UP"
   },
   "tickDelay" : 100,
-  "textureName" : "minimalism",
-  "applesPercentage" : 1
+  "textureName" : "minecraft",
+  "applesPercentage" : 50
 }
