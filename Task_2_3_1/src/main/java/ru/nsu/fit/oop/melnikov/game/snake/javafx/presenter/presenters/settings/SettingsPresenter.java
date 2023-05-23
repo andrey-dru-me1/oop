@@ -31,7 +31,7 @@ public class SettingsPresenter extends FXMLPresenter {
   }
 
   public void init() {
-    gameSpeed.setValue(GameSettings.INSTANCE.getTickDelay());
+    gameSpeed.setValue(40.0 / GameSettings.INSTANCE.getTickDelay());
     appleCount.setValue(GameSettings.INSTANCE.getApplesPercentage());
   }
 
@@ -74,7 +74,7 @@ public class SettingsPresenter extends FXMLPresenter {
   }
 
   public void saveSettings() {
-    GameSettings.INSTANCE.setTickDelay((int) gameSpeed.getValue());
+    GameSettings.INSTANCE.setTickDelay((int) (40 / gameSpeed.getValue()));
     GameSettings.INSTANCE.setTextureName(texturePackChanger.getValue().getText());
     GameSettings.INSTANCE.setApplesPercentage((int) appleCount.getValue());
   }
