@@ -96,6 +96,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">CellObjectDTO</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents object which is places on cell from model with parameters needed for javafx.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -146,7 +147,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#checkForCoincidence(ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell,ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject)" class="member-name-link">checkForCoincidence</a><wbr>(<a href="../../../../model/field/cell/Cell.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a>&nbsp;cell,
  <a href="../../../../model/field/cell/objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;cellObject)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Returns true if such an object satisfies specific conditions and false otherwise.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#draw(javafx.scene.canvas.GraphicsContext,ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Game,ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Rect)" class="member-name-link">draw</a><wbr>(javafx.scene.canvas.GraphicsContext&nbsp;context,
  <a href="../../Game.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Game</a>&nbsp;game,
@@ -222,6 +225,14 @@ loadScripts(document, 'script');</script>
 <h3>checkForCoincidence</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">checkForCoincidence</span><wbr><span class="parameters">(<a href="../../../../model/field/cell/Cell.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a>&nbsp;cell,
  <a href="../../../../model/field/cell/objects/CellObject.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">CellObject</a>&nbsp;cellObject)</span></div>
+<div class="block">Returns true if such an object satisfies specific conditions and false otherwise.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>cell</code> - cell on which the object is places</dd>
+<dd><code>cellObject</code> - specific cell object to check</dd>
+<dt>Returns:</dt>
+<dd>true if such an object satisfies specific conditions and false otherwise</dd>
+</dl>
 </section>
 </li>
 <li>

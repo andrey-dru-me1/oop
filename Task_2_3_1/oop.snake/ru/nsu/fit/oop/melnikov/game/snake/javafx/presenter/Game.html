@@ -92,6 +92,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Game</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents game data.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -124,7 +125,10 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addDirection(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)" class="member-name-link">addDirection</a><wbr>(<a href="../../model/direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a>&nbsp;direction)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Appends direction to the queue of directions, so user can choose a route quicker than snake
+ moves.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../model/direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDirection()" class="member-name-link">getDirection</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -139,10 +143,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#redraw()" class="member-name-link">redraw</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Redraw all the field.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#regenerateApples(int)" class="member-name-link">regenerateApples</a><wbr>(int&nbsp;appleCount)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method is delegated to the field.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCellDTOS(ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.CellDTO%5B%5D%5B%5D)" class="member-name-link">setCellDTOS</a><wbr>(<a href="dto/CellDTO.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto">CellDTO</a>[][]&nbsp;cellDTOS)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -151,7 +159,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#start()" class="member-name-link">start</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Make the game begin.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stop()" class="member-name-link">stop</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -211,18 +221,31 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addDirection(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)">
 <h3>addDirection</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addDirection</span><wbr><span class="parameters">(<a href="../../model/direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a>&nbsp;direction)</span></div>
+<div class="block">Appends direction to the queue of directions, so user can choose a route quicker than snake
+ moves. Also compares with previous direction, so new direction must be orthogonally for the
+ previous.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>direction</code> - direction for snake to move</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="regenerateApples(int)">
 <h3>regenerateApples</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">regenerateApples</span><wbr><span class="parameters">(int&nbsp;appleCount)</span></div>
+<div class="block">Method is delegated to the field.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>appleCount</code> - count of apples to generate.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="start()">
 <h3>start</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">start</span>()</div>
+<div class="block">Make the game begin.</div>
 </section>
 </li>
 <li>
@@ -235,6 +258,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="redraw()">
 <h3>redraw</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">redraw</span>()</div>
+<div class="block">Redraw all the field.</div>
 </section>
 </li>
 <li>
