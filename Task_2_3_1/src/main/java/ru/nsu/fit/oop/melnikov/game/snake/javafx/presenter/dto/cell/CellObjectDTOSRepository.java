@@ -14,6 +14,11 @@ public class CellObjectDTOSRepository {
     onTextureChange(texturePack);
   }
 
+  /**
+   * Changes textures for all the cell objects.
+   *
+   * @param texturePack name of a new texture pack to change to
+   */
   public void onTextureChange(String texturePack) {
     String texturePackPath = "/textures/" + texturePack;
     defaultDTO = new EmptyCellDTO(texturePackPath);
@@ -27,6 +32,13 @@ public class CellObjectDTOSRepository {
             defaultDTO);
   }
 
+/**
+* Returns first occurrence of cell object dto whose condition is satisfied by cellObject.
+ * @param cell cell to check
+ * @param cellObject cell object to check
+ * @return cell object dto whose condition is satisfied by cell object
+ * @param <T> implementation of cell object
+*/
   public <T extends CellObject> CellObjectDTO get(Cell cell, T cellObject) {
     for (CellObjectDTO dto : dtos) {
       if (dto.checkForCoincidence(cell, cellObject)) {

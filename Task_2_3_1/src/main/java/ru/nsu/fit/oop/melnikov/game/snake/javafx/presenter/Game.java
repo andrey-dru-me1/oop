@@ -7,13 +7,14 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.util.Duration;
-import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings.GameSettings;
+import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
+/** Represents game data. */
 public class Game {
 
   private final Field field;
@@ -54,6 +55,13 @@ public class Game {
     timeline.getKeyFrames().add(keyFrame);
   }
 
+  /**
+   * Appends direction to the queue of directions, so user can choose a route quicker than snake
+   * moves. Also compares with previous direction, so new direction must be orthogonally for the
+   * previous.
+   *
+   * @param direction direction for snake to move
+   */
   public void addDirection(Direction direction) {
     if (!directionQueue.isEmpty()
         && (direction.isOpposite(directionQueue.peekLast())
@@ -63,10 +71,16 @@ public class Game {
     this.directionQueue.add(direction);
   }
 
+  /**
+   * Method is delegated to the field.
+   *
+   * @param appleCount count of apples to generate.
+   */
   public void regenerateApples(int appleCount) {
     field.regenerateApples(appleCount);
   }
 
+  /** Make the game begin. */
   public void start() {
     keyFrame =
         new KeyFrame(new Duration(GameSettings.INSTANCE.getTickDelay()), this::onTimerTriggers);
@@ -79,6 +93,11 @@ public class Game {
     return snake.getDirection();
   }
 
+  /**
+   * Called each tick of game time.
+   *
+   * @param actionEvent ignored
+   */
   private void onTimerTriggers(ActionEvent actionEvent) {
     Direction direction = snake.getDirection();
     if (directionQueue.size() > 0) {
@@ -104,6 +123,7 @@ public class Game {
     redraw();
   }
 
+  /** Redraw all the field. */
   public void redraw() {
     for (CellDTO[] row : cellDTOS) {
       for (CellDTO cellDTO : row) {

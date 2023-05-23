@@ -6,12 +6,13 @@ import javafx.animation.Timeline;
 import javafx.beans.binding.NumberBinding;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.util.Pair;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Game;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Rect;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.cell.CellObjectDTOSRepository;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 
+/** Represents model's cell for javafx. */
 public class CellDTO {
   private final GraphicsContext context;
   private final Rect<NumberBinding> rect;
@@ -36,6 +37,7 @@ public class CellDTO {
     drawObjects();
   }
 
+  /** Draw all the objects locates on cell. */
   public void drawObjects() {
     for (CellObject cellObject : cell.getCellObjects()) {
       stopAnimations();

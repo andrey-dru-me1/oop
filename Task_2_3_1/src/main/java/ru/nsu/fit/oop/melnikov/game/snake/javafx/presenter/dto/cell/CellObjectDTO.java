@@ -4,11 +4,12 @@ import java.util.Objects;
 import javafx.beans.binding.NumberBinding;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Game;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Rect;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 
+/** Represents object which is places on cell from model with parameters needed for javafx. */
 public abstract class CellObjectDTO {
 
   protected final Image image;
@@ -22,6 +23,13 @@ public abstract class CellObjectDTO {
 
   protected abstract String getImageName();
 
+  /**
+   * Returns true if such an object satisfies specific conditions and false otherwise.
+   *
+   * @param cell cell on which the object is places
+   * @param cellObject specific cell object to check
+   * @return true if such an object satisfies specific conditions and false otherwise
+   */
   public abstract boolean checkForCoincidence(Cell cell, CellObject cellObject);
 
   public Image getImage() {

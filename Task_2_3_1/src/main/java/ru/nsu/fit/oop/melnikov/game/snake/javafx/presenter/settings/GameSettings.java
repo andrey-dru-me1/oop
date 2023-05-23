@@ -11,6 +11,9 @@ import javafx.scene.input.KeyCode;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.cell.CellObjectDTOSRepository;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.Resources;
 
+/**
+* Contains all the game settings.
+*/
 public class GameSettings {
 
   public static final GameSettings INSTANCE = getInstance();

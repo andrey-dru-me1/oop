@@ -10,9 +10,10 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
+/**
+* Saves map from snake model objects to .txt file.
+*/
 public class DataSaver {
-
-
   private static final Map<Direction, String> DIRECTIONS =
           Map.of(
                   Direction.RIGHT, "right",
@@ -24,6 +25,13 @@ public class DataSaver {
     throw new IllegalStateException("Utility class");
   }
 
+/**
+*
+ * @param field field where snake is moving on
+ * @param snake snake which is under user's control
+ * @param filename name of a file to save to
+ * @throws IOException when there is some error with a file
+*/
   public static void save(Field field, Snake snake, String filename) throws IOException {
     try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename))) {
       StringBuilder result = new StringBuilder();

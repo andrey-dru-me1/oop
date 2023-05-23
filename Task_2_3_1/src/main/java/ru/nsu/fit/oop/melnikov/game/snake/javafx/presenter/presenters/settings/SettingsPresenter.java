@@ -6,6 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings.GameSettings;
@@ -23,6 +24,7 @@ public class SettingsPresenter extends FXMLPresenter {
   private void initialize() {
     for (String textureDirectory : TextureName.getTextureDirectories()) {
       Label label = new Label(textureDirectory);
+      label.setTextFill(Color.BLACK);
       texturePackChanger.getItems().add(label);
       if (textureDirectory.equals(GameSettings.INSTANCE.getTextureName())) {
         texturePackChanger.setValue(label);

@@ -8,6 +8,9 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
+/**
+* Loads map from .txt special file to snake model objects.
+*/
 public class DataLoader {
 
   private static final Map<String, Direction> DIRECTIONS =

@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.FXMLScreen;
 
+/**
+ * Contains all the loaders so instead of loading new view from fxml each time you can just use this
+ * class to get required screen by FXMLScreen enum.
+ */
 public class FXMLLoadersRepository {
 
   private final Map<FXMLScreen, FXMLLoader> loaders;
