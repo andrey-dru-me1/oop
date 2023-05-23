@@ -16,7 +16,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
-import ru.nsu.fit.oop.melnikov.game.snake.terminal.view.CellObjectsRepository;
+import ru.nsu.fit.oop.melnikov.game.snake.terminal.view.CellObjectViewsRepository;
 
 public class TerminalSnake {
 
@@ -77,6 +77,12 @@ public class TerminalSnake {
     }
   }
 
+/**
+* Draw the whole field.
+ * @param screen Screen where to draw
+ * @param field what to draw
+ * @throws IOException see {@link Screen#refresh()}
+*/
   private static void redraw(Screen screen, Field field) throws IOException {
     for (Cell[] row : field.getCells()) {
       for (Cell cell : row) {
@@ -86,7 +92,7 @@ public class TerminalSnake {
 
         char cellChar;
         cellChar =
-            CellObjectsRepository.INSTANCE.getCellObjectView(cellObject.getClass()).getSymbol();
+            CellObjectViewsRepository.INSTANCE.getCellObjectView(cellObject.getClass()).getSymbol();
 
         TextCharacter textCharacter = new TextCharacter(cellChar);
         screen.setCharacter(cell.getX() * 2, cell.getY(), textCharacter);
