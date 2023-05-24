@@ -20,7 +20,7 @@
                <Insets left="5.0" right="5.0" />
             </HBox.margin>
             <Label text="Count of apples, %" />
-            <Slider fx:id="appleCount" max="50.0" min="1.0" showTickLabels="true" showTickMarks="true" value="20.0" />
+            <Slider fx:id="appleCount" blockIncrement="1.0" majorTickUnit="5.0" max="25.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" value="5.0" />
          </VBox>
          <VBox.margin>
             <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
