@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects;
 
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Destroyable;
 
 /**
@@ -8,7 +9,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Destroyable;
  *
  * @param snake
  */
-public record SnakeNode(Destroyable snake) implements CellObject, Destroyable {
+public record SnakeNode(Snake snake) implements CellObject, Destroyable {
 
   /**
    * More than apple, less than wall.
