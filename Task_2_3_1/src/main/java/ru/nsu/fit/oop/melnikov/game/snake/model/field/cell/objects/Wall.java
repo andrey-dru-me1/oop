@@ -1,5 +1,7 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects;
 
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Destroyable;
+
 /** Wall is an object that fills all the cell, so snakes can't go through it. */
 public class Wall implements CellObject {
   /**
@@ -19,8 +21,8 @@ public class Wall implements CellObject {
    */
   @Override
   public void onAnotherCellObjectAppearance(CellObject anotherCellObject) {
-    if (anotherCellObject instanceof SnakeNode snakeNode) {
-      snakeNode.snake().destroy();
+    if (anotherCellObject instanceof Destroyable objectInWall) {
+      objectInWall.destroy();
     }
   }
 }

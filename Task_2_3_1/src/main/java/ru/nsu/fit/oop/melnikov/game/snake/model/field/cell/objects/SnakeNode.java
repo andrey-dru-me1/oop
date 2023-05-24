@@ -1,6 +1,6 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects;
 
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Destroyable;
 
 /**
  * Snake node can represent whether snake head and other snake body: model doesn't see any
@@ -8,7 +8,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
  *
  * @param snake
  */
-public record SnakeNode(Snake snake) implements CellObject {
+public record SnakeNode(Destroyable snake) implements CellObject, Destroyable {
 
   /**
    * More than apple, less than wall.
@@ -27,6 +27,16 @@ public record SnakeNode(Snake snake) implements CellObject {
    */
   @Override
   public void onAnotherCellObjectAppearance(CellObject anotherCellObject) {
+    destroy();
+  }
+
+  @Override
+  public void destroy() {
     snake.destroy();
+  }
+
+  @Override
+  public boolean isDestroyed() {
+    return false;
   }
 }
