@@ -89,9 +89,14 @@ loadScripts(document, 'script');</script>
 <div class="inheritance">ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake</div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Destroyable</a></code>, <code><a href="interfaces/Increasing.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a></code>, <code><a href="interfaces/Movable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Movable</a></code>, <code><a href="interfaces/Scoring.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Scoring</a></code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Snake</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
+implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Destroyable</a>, <a href="interfaces/Increasing.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a>, <a href="interfaces/Movable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Movable</a>, <a href="interfaces/Scoring.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Scoring</a></span></div>
 <div class="block">Snake consists from cells.</div>
 </section>
 <section class="summary">
@@ -214,6 +219,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getScore()">
 <h3>getScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getScore</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Scoring.html#getScore()">getScore</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Scoring.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Scoring</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -232,6 +241,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isDestroyed()">
 <h3>isDestroyed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDestroyed</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Destroyable.html#isDestroyed()">isDestroyed</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Destroyable</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -252,6 +265,10 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">move</span>()</div>
 <div class="block">Appends head and if there is no need to increase its size removes tail. Doesn't change
  direction.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Movable.html#move()">move</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Movable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Movable</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -260,6 +277,8 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">move</span><wbr><span class="parameters">(<a href="../direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a>&nbsp;direction)</span></div>
 <div class="block">Changes snake move direction and moves like <a href="#move()"><code>move()</code></a></div>
 <dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Movable.html#move(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)">move</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Movable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Movable</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>direction</code> - direction to move to</dd>
 </dl>
@@ -269,12 +288,20 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="increaseSize(int)">
 <h3>increaseSize</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">increaseSize</span><wbr><span class="parameters">(int&nbsp;additionalSize)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Increasing.html#increaseSize(int)">increaseSize</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Increasing.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="increaseScore(int)">
 <h3>increaseScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">increaseScore</span><wbr><span class="parameters">(int&nbsp;additionalPoints)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Scoring.html#increaseScore(int)">increaseScore</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Scoring.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Scoring</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -312,6 +339,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="destroy()">
 <h3>destroy</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">destroy</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Destroyable.html#destroy()">destroy</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Destroyable</a></code></dd>
+</dl>
 </section>
 </li>
 </ul>

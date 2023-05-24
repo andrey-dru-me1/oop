@@ -19,6 +19,7 @@ ru.nsu.fit.oop.melnikov.game.snake.model.field.cell
 ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects
 ru.nsu.fit.oop.melnikov.game.snake.model.point
 ru.nsu.fit.oop.melnikov.game.snake.model.snake
+ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces
 ru.nsu.fit.oop.melnikov.game.snake.terminal
 ru.nsu.fit.oop.melnikov.game.snake.terminal.view
 ru.nsu.fit.oop.melnikov.game.snake.terminal.view.cell.objects
