@@ -5,6 +5,9 @@ import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.cell.objects.*;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 
+/**
+* Where all the cell object DTOs' are contained in.
+*/
 public class CellObjectDTOSRepository {
 
   private List<CellObjectDTO> dtos;

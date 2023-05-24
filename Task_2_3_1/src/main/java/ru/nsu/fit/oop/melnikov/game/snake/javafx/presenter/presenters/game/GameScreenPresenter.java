@@ -43,6 +43,11 @@ public class GameScreenPresenter extends FXMLPresenter {
     return field;
   }
 
+  /**
+   * Creates game, loads snake and field and initializes all the textures.
+   *
+   * @param filename level data
+   */
   public void initialize(String filename) {
     Snake snake;
 
@@ -85,7 +90,9 @@ public class GameScreenPresenter extends FXMLPresenter {
     game.start();
     game.regenerateApples(
         Math.max(
-            GameSettings.INSTANCE.getApplesPercentage() * (field.getWidth() * field.getHeight()) / 100,
+            GameSettings.INSTANCE.getApplesPercentage()
+                * (field.getWidth() * field.getHeight())
+                / 100,
             1));
     pauseGame();
 
@@ -93,6 +100,11 @@ public class GameScreenPresenter extends FXMLPresenter {
     scoreLabel.textProperty().bind((new SimpleStringProperty("Score: ")).concat(score.asString()));
   }
 
+  /**
+   * Calculates size of cell to show and adds a listener if scene is resizing.
+   *
+   * @return calculated rectangle size with listener
+   */
   private NumberBinding calculateRectSize() {
     return Bindings.min(
         canvas
@@ -107,6 +119,11 @@ public class GameScreenPresenter extends FXMLPresenter {
     return game;
   }
 
+  /**
+   * Specifies game behaviour on user's actions.
+   *
+   * @param keyEvent information about key
+   */
   private void onKeyPressed(KeyEvent keyEvent) {
     if (GameSettings.INSTANCE.getKeys().containsKey(keyEvent.getCode())) {
       switch (GameSettings.INSTANCE.getSnakeKey(keyEvent.getCode())) {
@@ -126,6 +143,10 @@ public class GameScreenPresenter extends FXMLPresenter {
     }
   }
 
+  /**
+   * Pauses game and redefines reaction on key events: now user has to press any button for game
+   * continuing
+   */
   private void pauseGame() {
     game.pause();
     canvas
@@ -138,12 +159,14 @@ public class GameScreenPresenter extends FXMLPresenter {
             });
   }
 
+  /** Stops the game correctly. */
   public void stopAll() {
     if (game != null) {
       game.stop();
     }
   }
 
+  /** Called when game is ended. Loads game end scene. */
   public void onGameEnd() {
     FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.GAME_END);
     loader.<EndScreenPresenter>getController().updateScore(game.getGameState());

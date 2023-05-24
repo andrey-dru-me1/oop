@@ -25,10 +25,12 @@ public class ChangeKeysPresenter extends FXMLPresenter {
           "MENU", SnakeKey.MENU);
   @FXML public VBox keys;
 
+  /** Loads previous scene */
   public void onBackClick() {
     stage.setScene(prevScene);
   }
 
+  /** Updates text on each list item showing keys bound with action. */
   public void updateKeySet() {
     for (Node child : keys.getChildren()) {
       if (child instanceof BorderPane pane
@@ -50,6 +52,12 @@ public class ChangeKeysPresenter extends FXMLPresenter {
     }
   }
 
+  /**
+   * Creates modal window that listen for user's input, waits for its end and associate new key with
+   * the specified snakeKey
+   *
+   * @param snakeKey snake action
+   */
   private void createModalKeyListener(SnakeKey snakeKey) {
     FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.LISTEN_KEY);
     Stage keyListenerStage = loader.getRoot();

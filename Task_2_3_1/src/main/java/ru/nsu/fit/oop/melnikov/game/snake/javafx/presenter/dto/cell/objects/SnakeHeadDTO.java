@@ -5,13 +5,13 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Game;
+import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Rect;
+import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.cell.CellObjectDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
-import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Game;
-import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Rect;
-import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.cell.CellObjectDTO;
 
 public class SnakeHeadDTO extends CellObjectDTO {
 
@@ -32,6 +32,13 @@ public class SnakeHeadDTO extends CellObjectDTO {
     return false;
   }
 
+/**
+* Draws snake head rotated according to the current snake direction.
+ *
+ * @param context where to draw
+ * @param game all the information required for knowing how to draw an object
+ * @param rect place on a canvas to place an image
+*/
   @Override
   public void draw(GraphicsContext context, Game game, Rect<NumberBinding> rect) {
     Canvas canvas = new Canvas(rect.width().doubleValue(), rect.height().doubleValue());
@@ -52,6 +59,11 @@ public class SnakeHeadDTO extends CellObjectDTO {
         rect.height().doubleValue());
   }
 
+/**
+* Helper method that converts direction to an angle to rotate image to.
+ * @param direction direction where a snake is looking to
+ * @return angle on which image should be rotated
+*/
   private double directionToRotation(Direction direction) {
     return switch (direction) {
       case UP -> 0;

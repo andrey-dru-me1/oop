@@ -13,6 +13,7 @@ public class EndScreenPresenter extends FXMLPresenter {
   @FXML public Label score;
   private GameState gameState;
 
+  /** Reloads last level to play again. */
   public void onPlayAgainClick() {
     FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.GAME_SCREEN);
     GameScreenPresenter presenter = loader.getController();
@@ -20,6 +21,11 @@ public class EndScreenPresenter extends FXMLPresenter {
     stage.setScene(loader.getRoot());
   }
 
+  /**
+   * Updates score given with gameState on the screen.
+   *
+   * @param gameState state of the game at the end moment
+   */
   public void updateScore(GameState gameState) {
     this.gameState = gameState;
     score.setText("Score: " + gameState.getScore());

@@ -37,7 +37,7 @@ public class CellDTO {
     drawObjects();
   }
 
-  /** Draw all the objects locates on cell. */
+  /** Draw all the objects located on cell. */
   public void drawObjects() {
     for (CellObject cellObject : cell.getCellObjects()) {
       stopAnimations();
@@ -45,6 +45,7 @@ public class CellDTO {
     }
   }
 
+  /** Seal for the future. Project hasn't any animation for now. */
   public void stopAnimations() {
     Collection<Pair<AnimationTimer, Timeline>> snapshot = new ArrayList<>(animations);
     for (Pair<AnimationTimer, Timeline> pair : snapshot) {

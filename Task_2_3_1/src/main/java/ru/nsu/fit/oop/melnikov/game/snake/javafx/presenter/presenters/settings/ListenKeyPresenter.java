@@ -12,12 +12,14 @@ public class ListenKeyPresenter extends FXMLPresenter {
   @FXML public Scene listenKeyScene;
   private SnakeKey keyToChange;
 
+  /** Associates new key for specific snakeKey */
   @FXML
   private void initialize() {
-    listenKeyScene.setOnKeyPressed(keyEvent -> {
-      GameSettings.INSTANCE.putKey(keyEvent.getCode(), keyToChange);
-      listenKeyStage.close();
-    });
+    listenKeyScene.setOnKeyPressed(
+        keyEvent -> {
+          GameSettings.INSTANCE.putKey(keyEvent.getCode(), keyToChange);
+          listenKeyStage.close();
+        });
   }
 
   public void setKeyToChange(SnakeKey keyToChange) {

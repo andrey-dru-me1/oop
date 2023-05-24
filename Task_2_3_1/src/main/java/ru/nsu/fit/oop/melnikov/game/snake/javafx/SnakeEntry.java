@@ -57,6 +57,11 @@ public class SnakeEntry extends Application {
     initStage();
   }
 
+  /**
+   * Stops tha game if it is running, saves all the data and exits.
+   *
+   * @throws Exception if it can't save data
+   */
   @Override
   public void stop() throws Exception {
     GameScreenPresenter gameScreenPresenter =
@@ -66,9 +71,7 @@ public class SnakeEntry extends Application {
     ObjectMapper mapper = new ObjectMapper();
     mapper
         .writerWithDefaultPrettyPrinter()
-        .writeValue(
-            new File(Resources.GAME_SETTINGS_FILE),
-            GameSettings.INSTANCE);
+        .writeValue(new File(Resources.GAME_SETTINGS_FILE), GameSettings.INSTANCE);
     super.stop();
   }
 }

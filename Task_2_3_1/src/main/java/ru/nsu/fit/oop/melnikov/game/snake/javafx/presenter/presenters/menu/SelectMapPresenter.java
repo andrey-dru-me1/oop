@@ -19,6 +19,7 @@ public class SelectMapPresenter extends FXMLPresenter {
 
   @FXML public ListView<HBox> listView;
 
+  /** Dynamically forms a list of all the accessible maps. */
   @FXML
   private void initialize() {
     Collection<String> mapFilenames = MapName.getMapFilenames();

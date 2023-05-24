@@ -9,7 +9,10 @@ import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Rect;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 
-/** Represents object which is places on cell from model with parameters needed for javafx. */
+/**
+ * Represents object which is places on cell from model with parameters needed for javafx.
+ * Responsible for object drawing with chosen texture pack.
+ */
 public abstract class CellObjectDTO {
 
   protected final Image image;
@@ -40,6 +43,8 @@ public abstract class CellObjectDTO {
    * Draws an object at specified context in specified place.
    *
    * @param context where to draw
+   * @param game all the information required for knowing how to draw an object (at overridden
+   *     methods)
    * @param rect place on a canvas to place an image
    */
   public void draw(GraphicsContext context, Game game, Rect<NumberBinding> rect) {
