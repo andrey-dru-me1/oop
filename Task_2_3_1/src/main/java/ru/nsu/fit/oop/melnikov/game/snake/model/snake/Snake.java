@@ -23,12 +23,12 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
   private int sizeToIncrease;
   private boolean isDestroyed;
   /** Creates new snake with 3 nodes. */
-  public Snake(Field field, List<Point<Integer>> snakeIntPoints) {
+  public Snake(Field field, List<SnakePoint> snakeIntPoints) {
 
     this.body = new SnakeBody(snakeIntPoints);
     this.field = field;
 
-    for (Point<Integer> intPoint : snakeIntPoints) {
+    for (SnakePoint intPoint : snakeIntPoints) {
       field.getCell(intPoint).add(new SnakeNode(this));
     }
 
@@ -63,7 +63,7 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
     return body.size();
   }
 
-  public List<Point<Integer>> getNodes() {
+  public List<SnakePoint> getNodes() {
     return body.getNodes();
   }
 
@@ -114,7 +114,7 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
   protected void appendHead() {
     Point<Integer> nextPoint = calculateNextPoint();
     Cell newHeadCell = field.getCell(nextPoint);
-    body.appendHead(newHeadCell);
+    body.appendHead(new SnakePoint(nextPoint));
     newHeadCell.add(new SnakeNode(this));
   }
 
@@ -150,7 +150,7 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
   @Override
   public void destroy() {
     isDestroyed = true;
-    for (Point<Integer> snakePoint : body.getNodes()) {
+    for (SnakePoint snakePoint : body.getNodes()) {
       field.getCell(snakePoint).remove(SnakeNode.class);
     }
     body.destroy();

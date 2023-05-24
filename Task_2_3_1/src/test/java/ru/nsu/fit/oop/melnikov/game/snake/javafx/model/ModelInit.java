@@ -5,8 +5,8 @@ import java.util.List;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakePoint;
 
 public class ModelInit {
 
@@ -37,10 +37,10 @@ public class ModelInit {
 
     field = new Field(fieldCells);
 
-    List<Point<Integer>> nodes = new LinkedList<>();
+    List<SnakePoint> nodes = new LinkedList<>();
     for (int i = 1; i <= 3; i++) {
       if (!field.getCell(i, 1).contains(Wall.class)) {
-        nodes.add(new Point<>(i, 1));
+        nodes.add(new SnakePoint(i, 1));
       }
     }
 

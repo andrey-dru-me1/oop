@@ -1,28 +1,27 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.snake;
 
 import java.util.List;
-import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Destroyable;
 
 class SnakeBody implements Destroyable {
 
   /** Snake nodes, where 0 is a tail and last element is a head. */
-  private final List<Point<Integer>> nodes;
+  private final List<SnakePoint> nodes;
 
   /** Creates new snake with 3 nodes. */
-  public SnakeBody(List<Point<Integer>> snakeIntPoints) {
+  public SnakeBody(List<SnakePoint> snakeIntPoints) {
     this.nodes = snakeIntPoints;
   }
 
-  public List<Point<Integer>> getNodes() {
+  public List<SnakePoint> getNodes() {
     return nodes;
   }
 
-  public Point<Integer> getHeadPoint() {
+  public SnakePoint getHeadPoint() {
     return nodes.get(nodes.size() - 1);
   }
 
-  public Point<Integer> getTailPoint() {
+  public SnakePoint getTailPoint() {
     return nodes.get(0);
   }
 
@@ -31,11 +30,11 @@ class SnakeBody implements Destroyable {
   }
 
   /** Appends head to a next cell according to snake direction. */
-  public void appendHead(Point<Integer> newHeadPoint) {
+  public void appendHead(SnakePoint newHeadPoint) {
     nodes.add(newHeadPoint);
   }
 
-  public Point<Integer> removeTail() {
+  public SnakePoint removeTail() {
     return nodes.remove(0);
   }
 
