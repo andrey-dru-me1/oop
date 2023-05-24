@@ -141,7 +141,7 @@ loadScripts(document, 'script');</script>
  <a href="../../../Game.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Game</a>&nbsp;game,
  <a href="../../../Rect.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Rect</a>&lt;javafx.beans.binding.NumberBinding&gt;&nbsp;rect)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Draws an object at specified context in specified place.</div>
+<div class="block">Draws snake head rotated according to the current snake direction.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getImageName()" class="member-name-link">getImageName</a>()</code></div>
@@ -214,13 +214,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">draw</span><wbr><span class="parameters">(javafx.scene.canvas.GraphicsContext&nbsp;context,
  <a href="../../../Game.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Game</a>&nbsp;game,
  <a href="../../../Rect.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Rect</a>&lt;javafx.beans.binding.NumberBinding&gt;&nbsp;rect)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="../CellObjectDTO.html#draw(javafx.scene.canvas.GraphicsContext,ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Game,ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Rect)">CellObjectDTO</a></code></span></div>
-<div class="block">Draws an object at specified context in specified place.</div>
+<div class="block">Draws snake head rotated according to the current snake direction.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="../CellObjectDTO.html#draw(javafx.scene.canvas.GraphicsContext,ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Game,ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.Rect)">draw</a></code>&nbsp;in class&nbsp;<code><a href="../CellObjectDTO.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.cell">CellObjectDTO</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>context</code> - where to draw</dd>
+<dd><code>game</code> - all the information required for knowing how to draw an object</dd>
 <dd><code>rect</code> - place on a canvas to place an image</dd>
 </dl>
 </section>

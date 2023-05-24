@@ -96,7 +96,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">CellObjectDTO</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Represents object which is places on cell from model with parameters needed for javafx.</div>
+<div class="block">Represents object which is places on cell from model with parameters needed for javafx.
+ Responsible for object drawing with chosen texture pack.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -251,6 +252,8 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>context</code> - where to draw</dd>
+<dd><code>game</code> - all the information required for knowing how to draw an object (at overridden
+     methods)</dd>
 <dd><code>rect</code> - place on a canvas to place an image</dd>
 </dl>
 </section>
