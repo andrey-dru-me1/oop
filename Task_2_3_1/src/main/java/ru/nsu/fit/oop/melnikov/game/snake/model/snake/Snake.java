@@ -12,21 +12,14 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Movable;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Scoring;
 
 /** Snake consists from cells. */
-public class Snake implements Destroyable, Increasing, Movable, Scoring {
-
-  /** Snake nodes, where 0 is a tail and last element is a head. */
-  private final SnakeBody body;
-
-  private final Field field;
+public class Snake extends StaticSnake implements Destroyable, Increasing, Movable, Scoring {
   private int score;
   private Direction direction;
   private int sizeToIncrease;
   private boolean isDestroyed;
   /** Creates new snake with 3 nodes. */
   public Snake(Field field, List<SnakePoint> snakeIntPoints) {
-
-    this.body = new SnakeBody(snakeIntPoints);
-    this.field = field;
+    super(field, snakeIntPoints);
 
     for (SnakePoint intPoint : snakeIntPoints) {
       field.getCell(intPoint).add(new SnakeNode(this));
@@ -53,18 +46,6 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
 
   public boolean isDestroyed() {
     return isDestroyed;
-  }
-
-  public Field getField() {
-    return field;
-  }
-
-  public int size() {
-    return body.size();
-  }
-
-  public List<SnakePoint> getNodes() {
-    return body.getNodes();
   }
 
   /**
@@ -102,14 +83,6 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
     score += additionalPoints;
   }
 
-  public Cell getHeadCell() {
-    return field.getCell(body.getHeadPoint());
-  }
-
-  public Cell getTailCell() {
-    return field.getCell(body.getTailPoint());
-  }
-
   /** Appends head to a next cell according to snake direction. */
   protected void appendHead() {
     Point<Integer> nextPoint = calculateNextPoint();
@@ -140,7 +113,7 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
   }
 
   protected void removeTail() {
-    if(body.getNodes().isEmpty()) {
+    if (body.getNodes().isEmpty()) {
       return;
     }
     Cell tailCell = field.getCell(body.removeTail());
