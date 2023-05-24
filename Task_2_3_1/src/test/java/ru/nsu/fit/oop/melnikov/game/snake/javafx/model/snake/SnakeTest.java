@@ -13,9 +13,7 @@ class SnakeTest extends ModelInit {
 
   @Test
   void testSnakeInSnakeStartPlace() {
-    snake.increaseSize();
-    snake.increaseSize();
-    snake.increaseSize();
+    snake.increaseSize(3);
 
     Assertions.assertDoesNotThrow(() -> snake.move(Direction.DOWN));
     Assertions.assertDoesNotThrow(() -> snake.move(Direction.LEFT));
@@ -26,9 +24,7 @@ class SnakeTest extends ModelInit {
 
   @Test
   void testSnakeInSnakeNewPlace() {
-    snake.increaseSize();
-    snake.increaseSize();
-    snake.increaseSize();
+    snake.increaseSize(3);
 
     Assertions.assertDoesNotThrow(() -> snake.move(Direction.DOWN));
     Assertions.assertDoesNotThrow(() -> snake.move());
@@ -63,8 +59,7 @@ class SnakeTest extends ModelInit {
     Assertions.assertEquals(5, snake.getTailCell().getX());
     Assertions.assertEquals(1, snake.getTailCell().getY());
 
-    snake.increaseSize();
-    snake.increaseSize();
+    snake.increaseSize(2);
     Assertions.assertDoesNotThrow(() -> snake.move());
     Assertions.assertDoesNotThrow(() -> snake.move());
 

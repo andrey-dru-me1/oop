@@ -84,9 +84,12 @@ public class Snake {
     this.move();
   }
 
-  public void increaseSize() {
-    sizeToIncrease++;
-    score++;
+  public void increaseSize(int additionalSize) {
+    sizeToIncrease += additionalSize;
+  }
+
+  public void increaseScore(int additionalPoints) {
+    score += additionalPoints;
   }
 
   public Cell getHeadCell() {

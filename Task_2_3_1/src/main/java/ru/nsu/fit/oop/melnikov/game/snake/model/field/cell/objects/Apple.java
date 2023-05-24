@@ -32,7 +32,8 @@ public class Apple implements CellObject {
   @Override
   public void onAnotherCellObjectAppearance(CellObject anotherCellObject) {
     if (anotherCellObject instanceof SnakeNode snakeNode) {
-      snakeNode.snake().increaseSize();
+      snakeNode.snake().increaseSize(1);
+      snakeNode.snake().increaseScore(1);
       onAppleEating.run();
     }
   }
