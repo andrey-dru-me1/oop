@@ -3,15 +3,20 @@ package ru.nsu.fit.oop.melnikov.game.snake.model.snake;
 import java.util.List;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
 
-public class StaticSnake {
+public abstract class AbstractSnake {
 
   protected final SnakeBody body;
   protected final Field field;
 
-  public StaticSnake(Field field, List<SnakePoint> snakeIntPoints) {
+  protected AbstractSnake(Field field, List<SnakePoint> snakeIntPoints) {
     this.body = new SnakeBody(snakeIntPoints);
     this.field = field;
+
+    for (SnakePoint intPoint : snakeIntPoints) {
+      field.getCell(intPoint).add(new SnakeNode(this));
+    }
   }
 
   public Field getField() {

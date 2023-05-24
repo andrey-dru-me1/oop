@@ -21,8 +21,10 @@ public class Wall implements CellObject {
    */
   @Override
   public void onAnotherCellObjectAppearance(CellObject anotherCellObject) {
-    if (anotherCellObject instanceof Destroyable objectInWall) {
-      objectInWall.destroy();
+    if (anotherCellObject instanceof SnakeNode snakeNode
+        && (snakeNode.snake() instanceof Destroyable destroyableSnake)) {
+        destroyableSnake.destroy();
+
     }
   }
 }

@@ -1,5 +1,8 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects;
 
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Increasing;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Scoring;
+
 public class Apple implements CellObject {
 
   private final Runnable onAppleEating;
@@ -32,8 +35,12 @@ public class Apple implements CellObject {
   @Override
   public void onAnotherCellObjectAppearance(CellObject anotherCellObject) {
     if (anotherCellObject instanceof SnakeNode snakeNode) {
-      snakeNode.snake().increaseSize(1);
-      snakeNode.snake().increaseScore(1);
+      if(snakeNode.snake() instanceof Increasing increasingSnake) {
+        increasingSnake.increaseSize(1);
+      }
+      if(snakeNode.snake() instanceof Scoring scoringSnake) {
+        scoringSnake.increaseScore(1);
+      }
       onAppleEating.run();
     }
   }
