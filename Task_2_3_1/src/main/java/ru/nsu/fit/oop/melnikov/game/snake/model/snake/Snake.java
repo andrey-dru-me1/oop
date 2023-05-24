@@ -7,9 +7,13 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Destroyable;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Increasing;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Movable;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Scoring;
 
 /** Snake consists from cells. */
-public class Snake {
+public class Snake implements Destroyable, Increasing, Movable, Scoring {
 
   /** Snake nodes, where 0 is a tail and last element is a head. */
   private final List<Cell> nodes;
@@ -37,6 +41,7 @@ public class Snake {
     score = 0;
   }
 
+  @Override
   public int getScore() {
     return score;
   }
@@ -49,6 +54,7 @@ public class Snake {
     this.direction = direction;
   }
 
+  @Override
   public boolean isDestroyed() {
     return isDestroyed;
   }
@@ -65,6 +71,7 @@ public class Snake {
    * Appends head and if there is no need to increase its size removes tail. Doesn't change
    * direction.
    */
+  @Override
   public void move() {
     appendHead();
     if (sizeToIncrease > 0) {
@@ -79,15 +86,18 @@ public class Snake {
    *
    * @param direction direction to move to
    */
+  @Override
   public void move(Direction direction) {
     this.setDirection(direction);
     this.move();
   }
 
+  @Override
   public void increaseSize(int additionalSize) {
     sizeToIncrease += additionalSize;
   }
 
+  @Override
   public void increaseScore(int additionalPoints) {
     score += additionalPoints;
   }
@@ -134,13 +144,14 @@ public class Snake {
   }
 
   protected void removeTail() {
-    if(nodes.isEmpty()) {
+    if (nodes.isEmpty()) {
       return;
     }
     Cell tailCell = nodes.remove(0);
     tailCell.remove(SnakeNode.class);
   }
 
+  @Override
   public void destroy() {
     isDestroyed = true;
     for (Cell cell : nodes) {
