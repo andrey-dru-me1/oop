@@ -8,6 +8,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
+import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 /**
@@ -48,8 +49,8 @@ public class DataSaver {
       result.append(snake.size()).append("\n");
 
       // snake
-      for (Cell cell : snake.getNodes()) {
-        result.append(cell.getX()).append(" ").append(cell.getY()).append("\n");
+      for (Point<Integer> point : snake.getNodes()) {
+        result.append(point.getX()).append(" ").append(point.getY()).append("\n");
       }
 
       result.append(DIRECTIONS.get(snake.getDirection())).append('\n');

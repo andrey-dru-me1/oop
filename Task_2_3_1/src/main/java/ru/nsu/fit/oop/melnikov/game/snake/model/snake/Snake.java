@@ -1,6 +1,5 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.snake;
 
-import java.util.LinkedList;
 import java.util.List;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
@@ -16,7 +15,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Scoring;
 public class Snake implements Destroyable, Increasing, Movable, Scoring {
 
   /** Snake nodes, where 0 is a tail and last element is a head. */
-  private final List<Cell> nodes;
+  private final SnakeBody body;
 
   private final Field field;
   private int score;
@@ -26,13 +25,11 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
   /** Creates new snake with 3 nodes. */
   public Snake(Field field, List<Point<Integer>> snakeIntPoints) {
 
-    this.nodes = new LinkedList<>();
+    this.body = new SnakeBody(snakeIntPoints);
     this.field = field;
 
     for (Point<Integer> intPoint : snakeIntPoints) {
-      Cell cell = field.getCell(intPoint);
-      nodes.add(cell);
-      cell.add(new SnakeNode(this));
+      field.getCell(intPoint).add(new SnakeNode(this));
     }
 
     this.direction = Direction.RIGHT;
@@ -54,7 +51,6 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
     this.direction = direction;
   }
 
-  @Override
   public boolean isDestroyed() {
     return isDestroyed;
   }
@@ -63,8 +59,12 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
     return field;
   }
 
-  public List<Cell> getNodes() {
-    return nodes;
+  public int size() {
+    return body.size();
+  }
+
+  public List<Point<Integer>> getNodes() {
+    return body.getNodes();
   }
 
   /**
@@ -103,22 +103,18 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
   }
 
   public Cell getHeadCell() {
-    return nodes.get(nodes.size() - 1);
+    return field.getCell(body.getHeadPoint());
   }
 
   public Cell getTailCell() {
-    return nodes.get(0);
-  }
-
-  public int size() {
-    return nodes.size();
+    return field.getCell(body.getTailPoint());
   }
 
   /** Appends head to a next cell according to snake direction. */
   protected void appendHead() {
     Point<Integer> nextPoint = calculateNextPoint();
     Cell newHeadCell = field.getCell(nextPoint);
-    nodes.add(newHeadCell);
+    body.appendHead(newHeadCell);
     newHeadCell.add(new SnakeNode(this));
   }
 
@@ -144,19 +140,19 @@ public class Snake implements Destroyable, Increasing, Movable, Scoring {
   }
 
   protected void removeTail() {
-    if (nodes.isEmpty()) {
+    if(body.getNodes().isEmpty()) {
       return;
     }
-    Cell tailCell = nodes.remove(0);
+    Cell tailCell = field.getCell(body.removeTail());
     tailCell.remove(SnakeNode.class);
   }
 
   @Override
   public void destroy() {
     isDestroyed = true;
-    for (Cell cell : nodes) {
-      cell.remove(SnakeNode.class);
+    for (Point<Integer> snakePoint : body.getNodes()) {
+      field.getCell(snakePoint).remove(SnakeNode.class);
     }
-    nodes.clear();
+    body.destroy();
   }
 }

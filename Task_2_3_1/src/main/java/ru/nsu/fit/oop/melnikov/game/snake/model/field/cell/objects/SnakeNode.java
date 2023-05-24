@@ -36,8 +36,4 @@ public record SnakeNode(Snake snake) implements CellObject, Destroyable {
     snake.destroy();
   }
 
-  @Override
-  public boolean isDestroyed() {
-    return false;
-  }
 }
