@@ -86,7 +86,7 @@ loadScripts(document, 'script');</script>
 <h1 title="Class Snake" class="title">Class Snake</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="StaticSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">ru.nsu.fit.oop.melnikov.game.snake.model.snake.StaticSnake</a>
+<div class="inheritance"><a href="AbstractSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">ru.nsu.fit.oop.melnikov.game.snake.model.snake.AbstractSnake</a>
 <div class="inheritance">ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake</div>
 </div>
 </div>
@@ -97,8 +97,8 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Snake</span>
-<span class="extends-implements">extends <a href="StaticSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">StaticSnake</a>
-implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Destroyable</a>, <a href="interfaces/Increasing.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a>, <a href="interfaces/Movable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Movable</a>, <a href="interfaces/Scoring.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Scoring</a></span></div>
+<span class="extends-implements">extends <a href="AbstractSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">AbstractSnake</a>
+implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Destroyable</a>, <a href="interfaces/Increasing.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a>, <a href="interfaces/Scoring.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Scoring</a></span></div>
 <div class="block">Snake consists from cells.</div>
 </section>
 <section class="summary">
@@ -108,8 +108,8 @@ implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.
 <section class="field-summary" id="field-summary">
 <h2>Field Summary</h2>
 <div class="inherited-list">
-<h3 id="fields-inherited-from-class-ru.nsu.fit.oop.melnikov.game.snake.model.snake.StaticSnake">Fields inherited from class&nbsp;ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="StaticSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">StaticSnake</a></h3>
-<code><a href="StaticSnake.html#body">body</a>, <a href="StaticSnake.html#field">field</a></code></div>
+<h3 id="fields-inherited-from-class-ru.nsu.fit.oop.melnikov.game.snake.model.snake.AbstractSnake">Fields inherited from class&nbsp;ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="AbstractSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">AbstractSnake</a></h3>
+<code><a href="AbstractSnake.html#body">body</a>, <a href="AbstractSnake.html#field">field</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -170,7 +170,7 @@ implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)" class="member-name-link">move</a><wbr>(<a href="../direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a>&nbsp;direction)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Changes snake move direction and moves like <a href="#move()"><code>move()</code></a></div>
+<div class="block">Changes snake move direction and moves like <a href="interfaces/Movable.html#move()"><code>Movable.move()</code></a></div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeTail()" class="member-name-link">removeTail</a>()</code></div>
@@ -182,11 +182,14 @@ implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.
 </div>
 </div>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-ru.nsu.fit.oop.melnikov.game.snake.model.snake.StaticSnake">Methods inherited from class&nbsp;ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="StaticSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">StaticSnake</a></h3>
-<code><a href="StaticSnake.html#getField()">getField</a>, <a href="StaticSnake.html#getHeadCell()">getHeadCell</a>, <a href="StaticSnake.html#getNodes()">getNodes</a>, <a href="StaticSnake.html#getTailCell()">getTailCell</a>, <a href="StaticSnake.html#size()">size</a></code></div>
+<h3 id="methods-inherited-from-class-ru.nsu.fit.oop.melnikov.game.snake.model.snake.AbstractSnake">Methods inherited from class&nbsp;ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="AbstractSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">AbstractSnake</a></h3>
+<code><a href="AbstractSnake.html#getField()">getField</a>, <a href="AbstractSnake.html#getHeadCell()">getHeadCell</a>, <a href="AbstractSnake.html#getNodes()">getNodes</a>, <a href="AbstractSnake.html#getTailCell()">getTailCell</a>, <a href="AbstractSnake.html#size()">size</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Increasing">Methods inherited from interface&nbsp;ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.<a href="interfaces/Increasing.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a></h3>
+<code><a href="interfaces/Increasing.html#increaseSize(int)">increaseSize</a></code></div>
 </section>
 </li>
 </ul>
@@ -225,6 +228,32 @@ implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.
 </section>
 </li>
 <li>
+<section class="detail" id="isDestroyed()">
+<h3>isDestroyed</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDestroyed</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="increaseScore(int)">
+<h3>increaseScore</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">increaseScore</span><wbr><span class="parameters">(int&nbsp;additionalPoints)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Scoring.html#increaseScore(int)">increaseScore</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Scoring.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Scoring</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="destroy()">
+<h3>destroy</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">destroy</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Destroyable.html#destroy()">destroy</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Destroyable</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getDirection()">
 <h3>getDirection</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a></span>&nbsp;<span class="element-name">getDirection</span>()</div>
@@ -237,9 +266,13 @@ implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.
 </section>
 </li>
 <li>
-<section class="detail" id="isDestroyed()">
-<h3>isDestroyed</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDestroyed</span>()</div>
+<section class="detail" id="increaseSize(int)">
+<h3>increaseSize</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">increaseSize</span><wbr><span class="parameters">(int&nbsp;additionalSize)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="interfaces/Increasing.html#increaseSize(int)">increaseSize</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Increasing.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -258,32 +291,12 @@ implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.
 <section class="detail" id="move(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)">
 <h3>move</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">move</span><wbr><span class="parameters">(<a href="../direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a>&nbsp;direction)</span></div>
-<div class="block">Changes snake move direction and moves like <a href="#move()"><code>move()</code></a></div>
+<div class="block">Changes snake move direction and moves like <a href="interfaces/Movable.html#move()"><code>Movable.move()</code></a></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="interfaces/Movable.html#move(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)">move</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Movable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Movable</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>direction</code> - direction to move to</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="increaseSize(int)">
-<h3>increaseSize</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">increaseSize</span><wbr><span class="parameters">(int&nbsp;additionalSize)</span></div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="interfaces/Increasing.html#increaseSize(int)">increaseSize</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Increasing.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="increaseScore(int)">
-<h3>increaseScore</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">increaseScore</span><wbr><span class="parameters">(int&nbsp;additionalPoints)</span></div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="interfaces/Scoring.html#increaseScore(int)">increaseScore</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Scoring.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Scoring</a></code></dd>
 </dl>
 </section>
 </li>
@@ -298,16 +311,6 @@ implements <a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.
 <section class="detail" id="removeTail()">
 <h3>removeTail</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeTail</span>()</div>
-</section>
-</li>
-<li>
-<section class="detail" id="destroy()">
-<h3>destroy</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">destroy</span>()</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="interfaces/Destroyable.html#destroy()">destroy</a></code>&nbsp;in interface&nbsp;<code><a href="interfaces/Destroyable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Destroyable</a></code></dd>
-</dl>
 </section>
 </li>
 </ul>
