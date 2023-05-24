@@ -5,7 +5,6 @@ import java.util.Deque;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.util.Duration;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter;
@@ -47,7 +46,7 @@ public class Game {
 
   public void setDelay(int millisDelay) {
     GameSettings.INSTANCE.setTickDelay(millisDelay);
-    keyFrame = new KeyFrame(new Duration(millisDelay), this::onTimerTriggers);
+    keyFrame = new KeyFrame(new Duration(millisDelay), actionEvent -> onTimerTriggers());
     timeline.stop();
     timeline = new Timeline();
     timeline.setCycleCount(Animation.INDEFINITE);
@@ -82,7 +81,7 @@ public class Game {
   /** Make the game begin. */
   public void start() {
     keyFrame =
-        new KeyFrame(new Duration(GameSettings.INSTANCE.getTickDelay()), this::onTimerTriggers);
+        new KeyFrame(new Duration(GameSettings.INSTANCE.getTickDelay()), actionEvent -> onTimerTriggers());
     timeline.getKeyFrames().add(keyFrame);
     timeline.playFrom(new Duration(GameSettings.INSTANCE.getTickDelay()));
     gameState.setStatus(GameState.Status.RUNNING);
@@ -92,12 +91,8 @@ public class Game {
     return snake.getDirection();
   }
 
-  /**
-   * Called each tick of game time.
-   *
-   * @param actionEvent ignored
-   */
-  private void onTimerTriggers(ActionEvent actionEvent) {
+  /** Called each tick of game time. */
+  private void onTimerTriggers() {
     Direction direction = snake.getDirection();
     if (directionQueue.size() > 0) {
       direction = directionQueue.poll();

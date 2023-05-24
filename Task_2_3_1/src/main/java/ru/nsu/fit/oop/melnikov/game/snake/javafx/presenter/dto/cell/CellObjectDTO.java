@@ -16,10 +16,8 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 public abstract class CellObjectDTO {
 
   protected final Image image;
-  protected final String texturePackPath;
 
   protected CellObjectDTO(String texturePackPath) {
-    this.texturePackPath = texturePackPath;
     String texturePath = texturePackPath + "/" + getImageName();
     this.image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(texturePath)));
   }
