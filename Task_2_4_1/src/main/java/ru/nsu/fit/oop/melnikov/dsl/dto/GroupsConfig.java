@@ -11,7 +11,7 @@ public class GroupsConfig extends AbstractConfig {
 
   private final Collection<Group> groups;
 
-  public GroupsConfig() {
+  private GroupsConfig() {
     super();
     groups = new ArrayList<>();
   }
