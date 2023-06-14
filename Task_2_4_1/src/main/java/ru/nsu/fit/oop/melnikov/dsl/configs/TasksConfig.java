@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov.dsl.dto;
+package ru.nsu.fit.oop.melnikov.dsl.configs;
 
 import java.io.IOException;
 import java.util.ArrayList;
