@@ -1,5 +1,3 @@
-package ru.nsu.fit.oop.melnikov.dsl.config
-
 groups {
     group(21214) {
         students {
