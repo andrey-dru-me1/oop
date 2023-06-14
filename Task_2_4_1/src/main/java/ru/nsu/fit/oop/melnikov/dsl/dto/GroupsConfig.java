@@ -1,41 +1,30 @@
 package ru.nsu.fit.oop.melnikov.dsl.dto;
 
-import groovy.lang.Binding;
 import groovy.lang.Closure;
-import groovy.lang.GroovyShell;
-import groovy.util.DelegatingScript;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import org.codehaus.groovy.control.CompilerConfiguration;
 import ru.nsu.fit.oop.melnikov.dsl.model.Group;
 import ru.nsu.fit.oop.melnikov.dsl.model.Student;
 
-public class GroupsConfig {
+public class GroupsConfig extends AbstractConfig {
 
   private final Collection<Group> groups;
 
-  private GroupsConfig() {
+  public GroupsConfig() {
+    super();
     groups = new ArrayList<>();
   }
 
   public static Collection<Group> parse(String filePath) throws IOException {
-    CompilerConfiguration cc = new CompilerConfiguration();
-    cc.setScriptBaseClass(DelegatingScript.class.getName());
-    GroovyShell sh = new GroovyShell(GroupsConfig.class.getClassLoader(), new Binding(), cc);
-    DelegatingScript script = (DelegatingScript) sh.parse(new File(filePath));
     GroupsConfig groupsConfig = new GroupsConfig();
-    script.setDelegate(groupsConfig);
-    script.run();
+    parse(filePath, groupsConfig);
     return groupsConfig.groups;
   }
 
   private void group(Closure<?> closure) {
     GroupDTO groupDTO = new GroupDTO();
-    closure.setDelegate(groupDTO);
-    closure.setResolveStrategy(Closure.DELEGATE_FIRST);
-    closure.call();
+    delegate(groupDTO, closure);
     groups.add(new Group(groupDTO.number, groupDTO.students));
   }
 
@@ -49,9 +38,7 @@ public class GroupsConfig {
 
     private void student(Closure<?> closure) {
       StudentDTO studentDTO = new StudentDTO();
-      closure.setDelegate(studentDTO);
-      closure.setResolveStrategy(Closure.DELEGATE_FIRST);
-      closure.call();
+      delegate(studentDTO, closure);
       students.add(new Student(studentDTO.name, studentDTO.gitName));
     }
 
