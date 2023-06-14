@@ -1,74 +1,81 @@
 package ru.nsu.fit.oop.melnikov.dsl;
 
-import groovy.lang.Binding;
-import groovy.lang.Closure;
-import groovy.lang.GroovyShell;
-import groovy.lang.MetaProperty;
+import groovy.lang.*;
 import groovy.util.DelegatingScript;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
-
 import org.codehaus.groovy.control.CompilerConfiguration;
-
-import static java.lang.System.getProperty;
-import static java.lang.System.setProperty;
-import static org.codehaus.groovy.runtime.DefaultGroovyMethods.getMetaClass;
 
 public class Main {
 
   public static void main(String[] args) throws IOException {
+
     CompilerConfiguration cc = new CompilerConfiguration();
-    cc.setScriptBaseClass(DelegatingScript.class.getName());
+    cc.setScriptBaseClass(
+        DelegatingScript.class
+            .getName()); // благодаря этой настройке все создаваемые groovy скрипты будут
+    // наследоваться от DelegatingScript
     GroovyShell sh = new GroovyShell(Main.class.getClassLoader(), new Binding(), cc);
     DelegatingScript script = (DelegatingScript) sh.parse(new File("dsl_configs/group.groovy"));
-//    GroupsConfig config = new GroupsConfig();
-    Group config = new Group();
-    script.setDelegate(config);
+    Group group = new Group();
+    script.setDelegate(group);
     script.run();
-    System.out.println(config);
+    System.out.println(group);
   }
 
-  private static class Group {
+  private static class Group extends ConfigObject {
     private Integer number;
-    private Collection<Student> students;
+    private Collection<Student> students = new ArrayList<>();
 
-    public void methodMissing(String name, Object args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-      MetaProperty metaProperty = getMetaClass(this).getMetaProperty(name);
-      if (metaProperty != null) {
-        Closure<?> closure = (Closure<?>) ((Object[]) args)[0];
-        Object value = getProperty(name) == null ?
-                metaProperty.getType().getConstructor().newInstance() :
-                getProperty(name);
-        closure.setDelegate(value);
-        closure.setResolveStrategy(Closure.DELEGATE_FIRST);
-        closure.call();
-        setProperty(name, (String) value);
-      } else {
-        throw new IllegalArgumentException("No such field: " + name);
-      }
+    public void student(Closure<?> closure) {
+      Student student = new Student();
+      closure.setDelegate(student);
+      closure.setResolveStrategy(Closure.DELEGATE_FIRST);
+      closure.call();
+      students.add(student);
     }
 
     @Override
     public String toString() {
-      return "Group{" +
-              "number=" + number +
-              ", students=" + students +
-              '}';
+      return "Group{" + "number=" + number + ", students=" + students + '}';
+    }
+  }
+
+  private static class ConfigObject extends GroovyObjectSupport {
+    public void methodMissing(String name, Object args)
+        throws NoSuchMethodException,
+            InvocationTargetException,
+            InstantiationException,
+            IllegalAccessException {
+      MetaProperty metaProperty = getMetaClass().getMetaProperty(name);
+
+      if (metaProperty == null) throw new IllegalArgumentException("No such field: " + name);
+
+      if (args instanceof Object[] argArray && argArray[0] instanceof Closure<?> closure) {
+        Object value = getProperty(name);
+        if (value == null) {
+          Class<?> clazz = metaProperty.getType();
+          value = clazz.getConstructor().newInstance();
+        }
+        closure.setDelegate(value);
+        closure.setResolveStrategy(Closure.DELEGATE_FIRST);
+        closure.call();
+        setProperty(name, value);
+      }
     }
   }
 
   private static class Student {
-
     private String name;
+
+    public Student() {}
 
     @Override
     public String toString() {
-      return "Student{" +
-              "name='" + name + '\'' +
-              '}';
+      return "Student{" + "name='" + name + '\'' + '}';
     }
   }
-
 }

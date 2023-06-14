@@ -1,6 +1,7 @@
 number = 21214
-students =   [
-    {
+
+students {
+    student {
         name = "Мельников Андрей Петрович"
     }
-]
+}
