@@ -40,11 +40,15 @@ public class GradleTaskExecutor {
         }
       }
 
+      if(taskDir == null) {
+        return new TasksStatus(false, -1, false);
+      }
+
       boolean buildResult = true;
-      int styleResult = taskDir == null ? -1 : checkStyle(getJavaFiles(taskDir).stream().toList());
+      int styleResult = checkStyle(getJavaFiles(taskDir).stream().toList());
       boolean docResult = true;
 
-      build.forTasks(taskName + ":compileJava");
+      build.forTasks(taskDir.getName() + ":compileJava");
       try {
         build.run();
       } catch (BuildException ignored) {
