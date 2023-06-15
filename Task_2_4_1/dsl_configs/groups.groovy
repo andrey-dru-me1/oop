@@ -34,8 +34,8 @@ group {
         gitName = 'rafi2002'
     }
     student {
-        name = 'Tretiakovv'
-        gitName = 'NikFive'
+        name = 'Третьяков Артём Александрович'
+        gitName = 'Tretiakovv'
     }
     student {
         name = 'Трубинов Тимофей Андреевич'
