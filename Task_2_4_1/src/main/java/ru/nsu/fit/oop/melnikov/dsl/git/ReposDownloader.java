@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import ru.nsu.fit.oop.melnikov.dsl.GlobalConstants;
 
 public class ReposDownloader {
   private static final String VCS_URL = "https://github.com";
@@ -15,12 +16,12 @@ public class ReposDownloader {
   private ReposDownloader() {}
 
   public static Git download(String studentGitName) throws GitAPIException, IOException {
-    File workingDirectory = new File("repos/" + studentGitName);
+    File workingDirectory = new File(GlobalConstants.REPOS_DIR_PATH + '/' + studentGitName);
     if (workingDirectory.exists()) {
       return Git.open(workingDirectory);
     }
     return Git.cloneRepository()
-        .setURI(VCS_URL + "/" + studentGitName + "/" + DEFAULT_DIR_NAME + POSTFIX)
+        .setURI(VCS_URL + '/' + studentGitName + '/' + DEFAULT_DIR_NAME + POSTFIX)
         .setDirectory(workingDirectory)
         .call();
   }
