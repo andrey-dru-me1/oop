@@ -2,10 +2,10 @@ package ru.nsu.fit.oop.melnikov.dsl.grades.table;
 
 import java.util.Collection;
 import java.util.Map;
-
 import ru.nsu.fit.oop.melnikov.dsl.grades.table.model.GradeTable;
 import ru.nsu.fit.oop.melnikov.dsl.grades.table.model.GroupGradeTable;
 import ru.nsu.fit.oop.melnikov.dsl.grades.table.model.StudentGrades;
+import ru.nsu.fit.oop.melnikov.dsl.grades.table.model.TasksStatus;
 import ru.nsu.fit.oop.melnikov.dsl.model.Group;
 import ru.nsu.fit.oop.melnikov.dsl.model.Student;
 import ru.nsu.fit.oop.melnikov.dsl.model.Task;
@@ -60,25 +60,32 @@ public class PrettyPrinter {
     return tableHeaderString;
   }
 
-  private static StringBuilder buildTableRow(Student student, StudentGrades studentGrades, Iterable<Task> tasks) {
+  private static StringBuilder buildTableRow(
+      Student student, StudentGrades studentGrades, Iterable<Task> tasks) {
     StringBuilder tableRowString = new StringBuilder();
     tableRowString.append("| ").append(normalizeString(student.name(), 13)).append(" |");
     for (Task task : tasks) {
-      String taskResult = " ";
-      if(studentGrades.containsKey(task)) {
-        taskResult = Boolean.TRUE.equals(studentGrades.get(task)) ? "+" : "-";
+      String taskResult = "";
+      if (studentGrades.containsKey(task)) {
+        TasksStatus tasksStatus = studentGrades.get(task);
+        taskResult += Boolean.TRUE.equals(tasksStatus.build()) ? " + " : " - ";
+        Integer styleErrorsCount = tasksStatus.style();
+        taskResult += normalizeString(styleErrorsCount < 0 ? " " : styleErrorsCount.toString(), 4);
+        taskResult += Boolean.TRUE.equals(tasksStatus.doc()) ? " + " : " - ";
       }
-      tableRowString.append(' ').append(normalizeString(taskResult, task.name().length())).append(" |");
+      tableRowString
+          .append(' ')
+          .append(normalizeString(taskResult, task.name().length()))
+          .append(" |");
     }
     tableRowString.append('\n');
     return tableRowString;
   }
 
   private static String normalizeString(String string, Integer length) {
-    if(string.length() >= length) {
+    if (string.length() >= length) {
       return string.substring(0, length);
     }
     return string + " ".repeat(length - string.length());
   }
-
 }

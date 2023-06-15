@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.melnikov.dsl;
 import java.io.IOException;
 import java.util.Collection;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import ru.nsu.fit.oop.melnikov.dsl.configs.GroupsConfig;
 import ru.nsu.fit.oop.melnikov.dsl.configs.TasksConfig;
@@ -23,7 +24,7 @@ public class EntryPoint {
   private static final String TASKS_CONFIG_FILENAME = "tasks";
   private static final String GROOVY_POSTFIX = ".groovy";
 
-  public static void main(String[] args) throws GitAPIException, IOException {
+  public static void main(String[] args) throws GitAPIException, IOException, CheckstyleException {
     Collection<Group> groups =
         GroupsConfig.parse(DSL_CONFIG_PATH + '/' + GROUPS_CONFIG_FILENAME + GROOVY_POSTFIX);
     for (Group group : groups) {
