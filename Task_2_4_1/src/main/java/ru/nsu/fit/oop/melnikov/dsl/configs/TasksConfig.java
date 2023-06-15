@@ -12,6 +12,7 @@ public class TasksConfig extends AbstractConfig {
   private final Collection<Task> tasks;
 
   private TasksConfig() {
+    super();
     tasks = new ArrayList<>();
   }
 
