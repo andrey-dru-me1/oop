@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.melnikov.dsl.grades.table.model;
+package ru.nsu.fit.oop.melnikov.dsl.table.model.grades;
 
 import ru.nsu.fit.oop.melnikov.dsl.model.Task;
 

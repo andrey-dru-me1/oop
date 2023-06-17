@@ -14,7 +14,7 @@ import org.gradle.tooling.BuildLauncher;
 import org.gradle.tooling.GradleConnector;
 import org.gradle.tooling.ProjectConnection;
 import ru.nsu.fit.oop.melnikov.dsl.GlobalConstants;
-import ru.nsu.fit.oop.melnikov.dsl.grades.table.model.TasksStatus;
+import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.TasksStatus;
 
 public class GradleTaskExecutor {
 
@@ -35,12 +35,12 @@ public class GradleTaskExecutor {
         Pattern pattern =
             Pattern.compile(
                 "[Tt]ask[-_]" + numbers.get(0) + "[-_]" + numbers.get(1) + "[-_]" + numbers.get(2));
-        if(pattern.matcher(file.getName()).matches()) {
+        if (pattern.matcher(file.getName()).matches()) {
           taskDir = file;
         }
       }
 
-      if(taskDir == null) {
+      if (taskDir == null) {
         return new TasksStatus(false, -1, false);
       }
 

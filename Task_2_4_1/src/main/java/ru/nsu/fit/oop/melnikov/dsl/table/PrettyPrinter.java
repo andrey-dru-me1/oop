@@ -1,11 +1,11 @@
-package ru.nsu.fit.oop.melnikov.dsl.grades.table;
+package ru.nsu.fit.oop.melnikov.dsl.table;
 
 import java.util.Collection;
 import java.util.Map;
-import ru.nsu.fit.oop.melnikov.dsl.grades.table.model.GradeTable;
-import ru.nsu.fit.oop.melnikov.dsl.grades.table.model.GroupGradeTable;
-import ru.nsu.fit.oop.melnikov.dsl.grades.table.model.StudentGrades;
-import ru.nsu.fit.oop.melnikov.dsl.grades.table.model.TasksStatus;
+import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.GradeTable;
+import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.GroupGradeTable;
+import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.StudentGrades;
+import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.TasksStatus;
 import ru.nsu.fit.oop.melnikov.dsl.model.Group;
 import ru.nsu.fit.oop.melnikov.dsl.model.Student;
 import ru.nsu.fit.oop.melnikov.dsl.model.Task;

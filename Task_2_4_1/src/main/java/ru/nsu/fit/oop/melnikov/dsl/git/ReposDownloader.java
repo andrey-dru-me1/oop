@@ -2,11 +2,11 @@ package ru.nsu.fit.oop.melnikov.dsl.git;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import ru.nsu.fit.oop.melnikov.dsl.GlobalConstants;
+import ru.nsu.fit.oop.melnikov.dsl.model.Student;
 
 public class ReposDownloader {
   private static final String VCS_URL = "https://github.com";
@@ -15,23 +15,22 @@ public class ReposDownloader {
 
   private ReposDownloader() {}
 
-  public static Git download(String studentGitName) throws GitAPIException, IOException {
-    File workingDirectory = new File(GlobalConstants.REPOS_DIR_PATH + '/' + studentGitName);
+  public static void downloadAndBind(Student student) throws GitAPIException, IOException {
+    File workingDirectory = new File(GlobalConstants.REPOS_DIR_PATH + '/' + student.gitName());
     if (workingDirectory.exists()) {
-      return Git.open(workingDirectory);
+      student.setGit(Git.open(workingDirectory));
     }
-    return Git.cloneRepository()
-        .setURI(VCS_URL + '/' + studentGitName + '/' + DEFAULT_DIR_NAME + POSTFIX)
-        .setDirectory(workingDirectory)
-        .call();
+    student.setGit(
+        Git.cloneRepository()
+            .setURI(VCS_URL + '/' + student.gitName() + '/' + DEFAULT_DIR_NAME + POSTFIX)
+            .setDirectory(workingDirectory)
+            .call());
   }
 
-  public static Collection<Git> downloadAll(Collection<String> studentGitNames)
+  public static void downloadAndBindAll(Collection<Student> students)
       throws GitAPIException, IOException {
-    Collection<Git> studentGits = new ArrayList<>(studentGitNames.size());
-    for (String studentGitName : studentGitNames) {
-      studentGits.add(download(studentGitName));
+    for (Student student : students) {
+      downloadAndBind(student);
     }
-    return studentGits;
   }
 }
