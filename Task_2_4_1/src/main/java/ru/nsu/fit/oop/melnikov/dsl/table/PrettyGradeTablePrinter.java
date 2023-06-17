@@ -56,7 +56,7 @@ public class PrettyGradeTablePrinter extends AbstractPrettyPrinter {
 
   private static StringBuilder buildTableHeader(Iterable<Task> tasks) {
     StringBuilder tableHeaderString = new StringBuilder();
-    tableHeaderString.append('|').append(" ".repeat(15)).append('|');
+    tableHeaderString.append('|').append(" ".repeat(NAME_COL_LEN)).append('|');
     for (Task task : tasks) {
       tableHeaderString.append(' ').append(task.name()).append(" |");
     }
@@ -67,7 +67,7 @@ public class PrettyGradeTablePrinter extends AbstractPrettyPrinter {
   private static StringBuilder buildTableRow(
       Student student, StudentGrades studentGrades, Iterable<Task> tasks) {
     StringBuilder tableRowString = new StringBuilder();
-    tableRowString.append("| ").append(normalizeString(student.name(), 13)).append(" |");
+    tableRowString.append("| ").append(normalizeString(student.name(), NAME_COL_LEN - 2)).append(" |");
     for (Task task : tasks) {
       String taskResult = "";
       if (studentGrades.containsKey(task)) {

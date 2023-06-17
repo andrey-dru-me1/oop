@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.melnikov.dsl.table;
 
 public class AbstractPrettyPrinter {
+  protected static final int NAME_COL_LEN = 15;
 
   protected AbstractPrettyPrinter() {}
 
