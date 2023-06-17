@@ -19,12 +19,13 @@ public class ReposDownloader {
     File workingDirectory = new File(GlobalConstants.REPOS_DIR_PATH + '/' + student.gitName());
     if (workingDirectory.exists()) {
       student.setGit(Git.open(workingDirectory));
+    } else {
+      student.setGit(
+          Git.cloneRepository()
+              .setURI(VCS_URL + '/' + student.gitName() + '/' + DEFAULT_DIR_NAME + POSTFIX)
+              .setDirectory(workingDirectory)
+              .call());
     }
-    student.setGit(
-        Git.cloneRepository()
-            .setURI(VCS_URL + '/' + student.gitName() + '/' + DEFAULT_DIR_NAME + POSTFIX)
-            .setDirectory(workingDirectory)
-            .call());
   }
 
   public static void downloadAndBindAll(Collection<Student> students)

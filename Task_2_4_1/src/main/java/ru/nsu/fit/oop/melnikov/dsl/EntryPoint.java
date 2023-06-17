@@ -4,24 +4,24 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.IOException;
 import java.util.*;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.filter.CommitTimeRevFilter;
 import org.eclipse.jgit.revwalk.filter.RevFilter;
 import ru.nsu.fit.oop.melnikov.dsl.configs.GroupsConfig;
 import ru.nsu.fit.oop.melnikov.dsl.configs.ScheduleConfig;
 import ru.nsu.fit.oop.melnikov.dsl.configs.TasksConfig;
 import ru.nsu.fit.oop.melnikov.dsl.git.ReposDownloader;
-import ru.nsu.fit.oop.melnikov.dsl.table.PrettyPrinter;
-import ru.nsu.fit.oop.melnikov.dsl.table.model.attendance.AttendanceTable;
-import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.GradeTable;
-import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.GroupGradeTable;
-import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.StudentGrades;
 import ru.nsu.fit.oop.melnikov.dsl.model.Group;
 import ru.nsu.fit.oop.melnikov.dsl.model.Lesson;
 import ru.nsu.fit.oop.melnikov.dsl.model.Student;
 import ru.nsu.fit.oop.melnikov.dsl.model.Task;
+import ru.nsu.fit.oop.melnikov.dsl.table.PrettyAttendancePrinter;
+import ru.nsu.fit.oop.melnikov.dsl.table.PrettyGradeTablePrinter;
+import ru.nsu.fit.oop.melnikov.dsl.table.model.attendance.AttendanceTable;
+import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.GradeTable;
+import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.GroupGradeTable;
+import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.StudentGrades;
 import ru.nsu.fit.oop.melnikov.dsl.tasks.execution.GradleTaskExecutor;
-import ru.nsu.fit.oop.melnikov.dsl.utils.Point;
 
 public class EntryPoint {
 
@@ -42,24 +42,34 @@ public class EntryPoint {
     Collection<Task> tasks =
         TasksConfig.parse(DSL_CONFIG_PATH + '/' + TASKS_CONFIG_FILENAME + GROOVY_POSTFIX);
 
+    GradeTable gradeTable = generateGradeTable(groups, tasks);
+
     Collection<Lesson> lessons =
         ScheduleConfig.parse(DSL_CONFIG_PATH + '/' + SCHEDULE_CONFIG_FILENAME + GROOVY_POSTFIX);
 
     AttendanceTable attendanceTable = generateAttendanceTable(groups, lessons);
 
-    GradeTable gradeTable = generateGradeTable(groups, tasks);
+    PrettyGradeTablePrinter.print(gradeTable, tasks);
 
-    PrettyPrinter.print(gradeTable, tasks);
+    PrettyAttendancePrinter.print(attendanceTable, lessons);
   }
 
-  private static AttendanceTable generateAttendanceTable(Collection<Group> groups, Collection<Lesson> lessons) throws IOException {
+  private static AttendanceTable generateAttendanceTable(
+      Collection<Group> groups, Collection<Lesson> lessons) throws GitAPIException {
     AttendanceTable attendanceTable = new AttendanceTable();
+
+    for (Group group : groups) {
+      for (Student student : group.students()) {
+        attendanceTable.put(student, new ArrayList<>());
+      }
+    }
 
     for (Lesson lesson : lessons) {
       Date since = lesson.date();
       Date until;
 
       Calendar c = Calendar.getInstance();
+      c.setTime(since);
       c.add(Calendar.DATE, 7);
 
       until = c.getTime();
@@ -67,19 +77,21 @@ public class EntryPoint {
       RevFilter between = CommitTimeRevFilter.between(since, until);
 
       for (Group group : groups) {
-        for (Student student : group.students()) {
-          RevWalk walk = new RevWalk(student.getGit().getRepository());
-          walk.setRevFilter(between);
 
-          boolean attendance = walk.next() != null;
-          attendanceTable.put(new Point<>(student, lesson), attendance);
+        for (Student student : group.students()) {
+          Iterable<RevCommit> commits = student.getGit().log().setRevFilter(between).call();
+
+          if (commits.iterator().hasNext()) {
+            attendanceTable.get(student).add(lesson);
+          }
         }
       }
     }
     return attendanceTable;
   }
 
-  private static GradeTable generateGradeTable(Collection<Group> groups, Collection<Task> tasks) throws CheckstyleException {
+  private static GradeTable generateGradeTable(Collection<Group> groups, Collection<Task> tasks)
+      throws CheckstyleException {
     GradeTable gradeTable = new GradeTable();
     for (Group group : groups) {
       GroupGradeTable groupGradeTable = new GroupGradeTable();
@@ -94,5 +106,4 @@ public class EntryPoint {
     }
     return gradeTable;
   }
-
 }

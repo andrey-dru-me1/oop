@@ -2,19 +2,21 @@ package ru.nsu.fit.oop.melnikov.dsl.table;
 
 import java.util.Collection;
 import java.util.Map;
+import ru.nsu.fit.oop.melnikov.dsl.model.Group;
+import ru.nsu.fit.oop.melnikov.dsl.model.Student;
+import ru.nsu.fit.oop.melnikov.dsl.model.Task;
 import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.GradeTable;
 import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.GroupGradeTable;
 import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.StudentGrades;
 import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.TasksStatus;
-import ru.nsu.fit.oop.melnikov.dsl.model.Group;
-import ru.nsu.fit.oop.melnikov.dsl.model.Student;
-import ru.nsu.fit.oop.melnikov.dsl.model.Task;
 
-public class PrettyPrinter {
+public class PrettyGradeTablePrinter extends AbstractPrettyPrinter {
 
   private static final Integer STRING_LENGTH = 70;
 
-  private PrettyPrinter() {}
+  private PrettyGradeTablePrinter() {
+    super();
+  }
 
   public static void print(GradeTable gradeTable, Collection<Task> tasks) {
     StringBuilder stringGradeTable = new StringBuilder();
@@ -42,7 +44,9 @@ public class PrettyPrinter {
         .append("=".repeat(STRING_LENGTH))
         .append('\n')
         .append("=".repeat(delimiterLength))
+        .append(' ')
         .append(groupNumber)
+        .append(' ')
         .append("=".repeat(delimiterLength))
         .append('\n')
         .append("=".repeat(STRING_LENGTH))
@@ -80,12 +84,5 @@ public class PrettyPrinter {
     }
     tableRowString.append('\n');
     return tableRowString;
-  }
-
-  private static String normalizeString(String string, Integer length) {
-    if (string.length() >= length) {
-      return string.substring(0, length);
-    }
-    return string + " ".repeat(length - string.length());
   }
 }
