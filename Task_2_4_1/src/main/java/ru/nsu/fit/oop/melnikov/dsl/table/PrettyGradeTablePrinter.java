@@ -66,23 +66,47 @@ public class PrettyGradeTablePrinter extends AbstractPrettyPrinter {
 
   private static StringBuilder buildTableRow(
       Student student, StudentGrades studentGrades, Iterable<Task> tasks) {
+
     StringBuilder tableRowString = new StringBuilder();
-    tableRowString.append("| ").append(normalizeString(student.name(), NAME_COL_LEN - 2)).append(" |");
+
+    tableRowString
+        .append("| ")
+        .append(normalizeString(student.name(), NAME_COL_LEN - 2))
+        .append(" |");
+
+    int buildSum = 0;
+    int styleErrorsSum = 0;
+    int docSum = 0;
+
     for (Task task : tasks) {
       String taskResult = "";
+
       if (studentGrades.containsKey(task)) {
         TasksStatus tasksStatus = studentGrades.get(task);
         taskResult += Boolean.TRUE.equals(tasksStatus.build()) ? " + " : " - ";
         Integer styleErrorsCount = tasksStatus.style();
         taskResult += normalizeString(styleErrorsCount < 0 ? " " : styleErrorsCount.toString(), 4);
         taskResult += Boolean.TRUE.equals(tasksStatus.doc()) ? " + " : " - ";
+
+        buildSum += Boolean.TRUE.equals(tasksStatus.build()) ? 1 : 0;
+        styleErrorsSum += tasksStatus.style();
+        docSum += Boolean.TRUE.equals(tasksStatus.build()) ? 1 : 0;
       }
+
       tableRowString
           .append(' ')
           .append(normalizeString(taskResult, task.name().length()))
           .append(" |");
     }
-    tableRowString.append('\n');
+    tableRowString
+        .append(" ")
+        .append(normalizeString(String.valueOf(buildSum), 2))
+        .append(" ")
+        .append(normalizeString(String.valueOf(styleErrorsSum), 4))
+        .append(" ")
+        .append(normalizeString(String.valueOf(docSum), 2))
+        .append(" |\n");
+
     return tableRowString;
   }
 }
