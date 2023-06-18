@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import ru.nsu.fit.oop.melnikov.game.data.loader.DataLoader;
+import ru.nsu.fit.oop.melnikov.game.snake.model.GameData;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
@@ -21,10 +22,10 @@ import ru.nsu.fit.oop.melnikov.game.snake.terminal.view.CellObjectViewsRepositor
 public class TerminalSnake {
 
   public static void main(String[] args) throws IOException {
-    DataLoader dataLoader = new DataLoader("big_map.txt");
+    GameData gameData = DataLoader.load("big_map.txt");
 
-    Snake snake = dataLoader.getSnake();
-    Field field = dataLoader.getField();
+    Snake snake = gameData.snake();
+    Field field = gameData.field();
     field.generateApple();
 
     DefaultTerminalFactory defaultTerminalFactory =
@@ -51,6 +52,9 @@ public class TerminalSnake {
                   case ArrowDown -> direction = Direction.DOWN;
                   case ArrowLeft -> direction = Direction.LEFT;
                   case ArrowRight -> direction = Direction.RIGHT;
+                  default -> {
+                    // Do nothing on any other button
+                  }
                 }
               }
 
@@ -77,12 +81,13 @@ public class TerminalSnake {
     }
   }
 
-/**
-* Draw the whole field.
- * @param screen Screen where to draw
- * @param field what to draw
- * @throws IOException see {@link Screen#refresh()}
-*/
+  /**
+   * Draw the whole field.
+   *
+   * @param screen Screen where to draw
+   * @param field what to draw
+   * @throws IOException see {@link Screen#refresh()}
+   */
   private static void redraw(Screen screen, Field field) throws IOException {
     for (Cell[] row : field.getCells()) {
       for (Cell cell : row) {

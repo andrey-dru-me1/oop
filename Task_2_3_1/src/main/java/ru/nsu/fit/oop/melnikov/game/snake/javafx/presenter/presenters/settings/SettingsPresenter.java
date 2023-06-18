@@ -51,7 +51,7 @@ public class SettingsPresenter extends FXMLPresenter {
       GameScreenPresenter gameScreenPresenter =
           loadersRepository.getPresenter(FXMLScreen.GAME_SCREEN);
 
-      Field field = gameScreenPresenter.getField();
+      Field field = gameScreenPresenter.getGameData().field();
 
       gameScreenPresenter.getGame().redraw();
       gameScreenPresenter

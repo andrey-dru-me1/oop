@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.melnikov.game.data.loader;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.melnikov.game.snake.model.GameData;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
@@ -11,13 +12,13 @@ class DataLoaderTest {
 
   @Test
   void test() {
-    DataLoader dataLoader = new DataLoader("test.txt");
-    Snake snake = dataLoader.getSnake();
+    GameData gameData = DataLoader.load("test.txt");
+    Snake snake = gameData.snake();
 
     Assertions.assertEquals(new Point<>(1, 1), snake.getTailCell());
     Assertions.assertEquals(new Point<>(3, 1), snake.getHeadCell());
 
-    Field field = dataLoader.getField();
+    Field field = gameData.field();
 
     Assertions.assertEquals(7, field.getWidth());
     Assertions.assertEquals(7, field.getHeight());

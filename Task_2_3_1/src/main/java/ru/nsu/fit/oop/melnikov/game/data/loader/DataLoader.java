@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.melnikov.game.data.loader;
 
 import java.util.*;
+import ru.nsu.fit.oop.melnikov.game.snake.model.GameData;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
@@ -17,13 +18,13 @@ public class DataLoader {
           "up", Direction.UP,
           "down", Direction.DOWN,
           "left", Direction.LEFT);
-  private final Field field;
-  private final Snake snake;
 
-  public DataLoader(String filename) {
+  private DataLoader() {}
+
+  public static GameData load(String filename) {
     List<SnakePoint> snakeIntPoints;
     Scanner scanner =
-        new Scanner(Objects.requireNonNull(getClass().getResourceAsStream("/" + filename)));
+        new Scanner(Objects.requireNonNull(DataLoader.class.getResourceAsStream("/" + filename)));
 
     Queue<Cell> cells = new ArrayDeque<>();
     scanner.useDelimiter("");
@@ -51,7 +52,7 @@ public class DataLoader {
       }
     }
 
-    field = new Field(cells);
+    Field field = new Field(cells);
 
     scanner.skip("\n");
 
@@ -62,16 +63,10 @@ public class DataLoader {
       snakeIntPoints.add(i, new SnakePoint(scanner.nextInt(), scanner.nextInt()));
     }
 
-    snake = new Snake(field, snakeIntPoints);
+    Snake snake = new Snake(field, snakeIntPoints);
 
     snake.setDirection(DIRECTIONS.get(scanner.next()));
-  }
 
-  public Field getField() {
-    return field;
-  }
-
-  public Snake getSnake() {
-    return snake;
+    return new GameData(field, snake);
   }
 }

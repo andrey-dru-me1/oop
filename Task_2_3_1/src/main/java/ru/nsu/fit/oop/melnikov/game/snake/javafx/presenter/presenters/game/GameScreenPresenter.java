@@ -20,6 +20,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.settings.S
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings.GameSettings;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.FXMLScreen;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.JavafxDesigner;
+import ru.nsu.fit.oop.melnikov.game.snake.model.GameData;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
@@ -31,7 +32,7 @@ public class GameScreenPresenter extends FXMLPresenter {
   @FXML public BorderPane borderPane;
   private Game game;
 
-  private Field field;
+  private GameData gameData;
   @FXML private Canvas canvas;
   private SimpleIntegerProperty score;
 
@@ -39,8 +40,8 @@ public class GameScreenPresenter extends FXMLPresenter {
     this.score.set(score);
   }
 
-  public Field getField() {
-    return field;
+  public GameData getGameData() {
+    return gameData;
   }
 
   /**
@@ -49,14 +50,12 @@ public class GameScreenPresenter extends FXMLPresenter {
    * @param filename level data
    */
   public void initialize(String filename) {
-    Snake snake;
-
     JavafxDesigner.makeMatchParent(borderPane);
 
     canvas.getGraphicsContext2D().setImageSmoothing(false);
 
-    DataLoader dataLoader = new DataLoader(filename);
-    field = dataLoader.getField();
+    gameData = DataLoader.load(filename);
+    Field field = gameData.field();
 
     CellDTO[][] cellDTOS = new CellDTO[field.getWidth()][field.getHeight()];
 
@@ -69,7 +68,7 @@ public class GameScreenPresenter extends FXMLPresenter {
         new CellObjectDTOSRepository(GameSettings.INSTANCE.getTextureName());
     GameSettings.INSTANCE.setRepository(repository);
 
-    snake = dataLoader.getSnake();
+    Snake snake = gameData.snake();
     game = new Game(field, snake, this, filename);
 
     for (int i = 0; i < field.getWidth(); i++) {
@@ -111,8 +110,8 @@ public class GameScreenPresenter extends FXMLPresenter {
             .getScene()
             .heightProperty()
             .subtract(scoreLabel.heightProperty())
-            .divide(field.getHeight()),
-        canvas.getScene().widthProperty().divide(field.getWidth()));
+            .divide(gameData.field().getHeight()),
+        canvas.getScene().widthProperty().divide(gameData.field().getWidth()));
   }
 
   public Game getGame() {
