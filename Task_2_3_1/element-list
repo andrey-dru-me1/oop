@@ -13,6 +13,7 @@ ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.menu
 ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.settings
 ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings
 ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils
+ru.nsu.fit.oop.melnikov.game.snake.model
 ru.nsu.fit.oop.melnikov.game.snake.model.direction
 ru.nsu.fit.oop.melnikov.game.snake.model.field
 ru.nsu.fit.oop.melnikov.game.snake.model.field.cell
