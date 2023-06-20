@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.field;
 
 import java.util.*;
+
+import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Apple;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
@@ -185,4 +187,20 @@ public class Field {
       appleCell.remove(Apple.class);
     }
   }
+
+  public Point<Integer> calculateNextPoint(Point<Integer> point, Direction direction) {
+    Point<Integer> nextPoint = direction.nextPoint(point);
+
+    if (nextPoint.getX() >= width) {
+      nextPoint = new Point<>(0, nextPoint.getY());
+    } else if (nextPoint.getX() < 0) {
+      nextPoint = new Point<>(width - 1, nextPoint.getY());
+    } else if (nextPoint.getY() >= height) {
+      nextPoint = new Point<>(nextPoint.getX(), 0);
+    } else if (nextPoint.getY() < 0) {
+      nextPoint = new Point<>(nextPoint.getX(), height - 1);
+    }
+    return nextPoint;
+  }
+
 }

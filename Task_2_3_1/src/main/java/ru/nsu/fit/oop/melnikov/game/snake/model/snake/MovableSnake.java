@@ -73,18 +73,7 @@ abstract class MovableSnake extends AbstractSnake implements Movable, Increasing
    * @return next point
    */
   private Point<Integer> calculateNextPoint() {
-    Point<Integer> nextPoint = direction.nextPoint(this.getHeadCell());
-
-    if (nextPoint.getX() >= field.getWidth()) {
-      nextPoint = new Point<>(0, nextPoint.getY());
-    } else if (nextPoint.getX() < 0) {
-      nextPoint = new Point<>(field.getWidth() - 1, nextPoint.getY());
-    } else if (nextPoint.getY() >= field.getHeight()) {
-      nextPoint = new Point<>(nextPoint.getX(), 0);
-    } else if (nextPoint.getY() < 0) {
-      nextPoint = new Point<>(nextPoint.getX(), field.getHeight() - 1);
-    }
-    return nextPoint;
+    return field.calculateNextPoint(this.getHeadCell(), this.getDirection());
   }
 
   protected void removeTail() {
