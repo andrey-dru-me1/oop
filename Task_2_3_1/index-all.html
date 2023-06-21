@@ -66,6 +66,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Appends direction to the queue of directions, so user can choose a route quicker than snake
  moves.</div>
 </dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html#appendHead()" class="member-name-link">appendHead()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a></dt>
+<dd>
+<div class="block">Appends head to a next cell according to snake direction.</div>
+</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html#appendHead()" class="member-name-link">appendHead()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></dt>
 <dd>
 <div class="block">Appends head to a next cell according to snake direction.</div>
@@ -95,9 +99,25 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/presenters/game/GameScreenPresenter.html#borderPane" class="member-name-link">borderPane</a> - Variable in class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/presenters/game/GameScreenPresenter.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game">GameScreenPresenter</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" class="type-name-link" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a> - Class in <a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/package-summary.html">ru.nsu.fit.oop.melnikov.game.snake.model.snake</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html#%3Cinit%3E(ru.nsu.fit.oop.melnikov.game.snake.model.field.Field,java.util.List)" class="member-name-link">BotSnake(Field, List&lt;SnakePoint&gt;)</a> - Constructor for class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html#calculateNextPoint()" class="member-name-link">calculateNextPoint()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a></dt>
+<dd>
+<div class="block">Returns next point according to direction if point doesn't exit field's bounds and first point
+ on a same line/row from an opposite side.</div>
+</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html#calculateNextPoint()" class="member-name-link">calculateNextPoint()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></dt>
+<dd>
+<div class="block">Returns next point according to direction if point doesn't exit field's bounds and first point
+ on a same line/row from an opposite side.</div>
+</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/field/Field.html#calculateNextPoint(ru.nsu.fit.oop.melnikov.game.snake.model.point.Point,ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)" class="member-name-link">calculateNextPoint(Point&lt;Integer&gt;, Direction)</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.field.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/field/Field.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field">Field</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/field/cell/Cell.html" class="type-name-link" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell">Cell</a> - Class in <a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/field/cell/package-summary.html">ru.nsu.fit.oop.melnikov.game.snake.model.field.cell</a></dt>
 <dd>
 <div class="block">Cell is an element of field.</div>
@@ -272,7 +292,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Represents game data.</div>
 </dd>
-<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html#%3Cinit%3E(ru.nsu.fit.oop.melnikov.game.snake.model.field.Field,ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake,ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter,java.lang.String)" class="member-name-link">Game(Field, Snake, GameScreenPresenter, String)</a> - Constructor for class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Game</a></dt>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html#%3Cinit%3E(ru.nsu.fit.oop.melnikov.game.snake.model.GameData,ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter,java.lang.String)" class="member-name-link">Game(GameData, GameScreenPresenter, String)</a> - Constructor for class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Game</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/utils/FXMLScreen.html#GAME_END" class="member-name-link">GAME_END</a> - Enum constant in enum class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/utils/FXMLScreen.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils">FXMLScreen</a></dt>
 <dd>&nbsp;</dd>
@@ -282,7 +302,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/GameData.html" class="type-name-link" title="class in ru.nsu.fit.oop.melnikov.game.snake.model">GameData</a> - Record Class in <a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/package-summary.html">ru.nsu.fit.oop.melnikov.game.snake.model</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/GameData.html#%3Cinit%3E(ru.nsu.fit.oop.melnikov.game.snake.model.field.Field,ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake)" class="member-name-link">GameData(Field, Snake)</a> - Constructor for record class ru.nsu.fit.oop.melnikov.game.snake.model.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/GameData.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model">GameData</a></dt>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/GameData.html#%3Cinit%3E(ru.nsu.fit.oop.melnikov.game.snake.model.field.Field,java.util.List)" class="member-name-link">GameData(Field, List&lt;Snake&gt;)</a> - Constructor for record class ru.nsu.fit.oop.melnikov.game.snake.model.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/GameData.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model">GameData</a></dt>
 <dd>
 <div class="block">Creates an instance of a <code>GameData</code> record class.</div>
 </dd>
@@ -342,6 +362,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html#getDirection()" class="member-name-link">getDirection()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Game</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html#getDirection()" class="member-name-link">getDirection()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html#getDirection()" class="member-name-link">getDirection()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/AbstractSnake.html#getField()" class="member-name-link">getField()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/AbstractSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">AbstractSnake</a></dt>
@@ -381,6 +403,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/GameState.html#getMapName()" class="member-name-link">getMapName()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/GameState.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">GameState</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/AbstractSnake.html#getNodes()" class="member-name-link">getNodes()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/AbstractSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">AbstractSnake</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/direction/Direction.html#getOpposite()" class="member-name-link">getOpposite()</a> - Method in enum class ru.nsu.fit.oop.melnikov.game.snake.model.direction.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/direction/Direction.html" title="enum class in ru.nsu.fit.oop.melnikov.game.snake.model.direction">Direction</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/GameState.html#getPlayerSnakeLength()" class="member-name-link">getPlayerSnakeLength()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/GameState.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">GameState</a></dt>
 <dd>&nbsp;</dd>
@@ -478,6 +502,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Increasing.html#increaseSize(int)" class="member-name-link">increaseSize(int)</a> - Method in interface ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Increasing.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html#increaseSize(int)" class="member-name-link">increaseSize(int)</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html#increaseSize(int)" class="member-name-link">increaseSize(int)</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Increasing.html" class="type-name-link" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Increasing</a> - Interface in <a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/package-summary.html">ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces</a></dt>
@@ -560,6 +586,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Movable.html" class="type-name-link" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Movable</a> - Interface in <a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/package-summary.html">ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html#move()" class="member-name-link">move()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Movable.html#move()" class="member-name-link">move()</a> - Method in interface ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Movable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Movable</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html#move()" class="member-name-link">move()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></dt>
@@ -568,6 +596,10 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Movable.html#move(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)" class="member-name-link">move(Direction)</a> - Method in interface ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Movable.html" title="interface in ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces">Movable</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html#move(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)" class="member-name-link">move(Direction)</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a></dt>
+<dd>
+<div class="block">Changes snake move direction and moves like <a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Movable.html#move()"><code>Movable.move()</code></a></div>
+</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html#move(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)" class="member-name-link">move(Direction)</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></dt>
 <dd>
 <div class="block">Changes snake move direction and moves like <a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/interfaces/Movable.html#move()"><code>Movable.move()</code></a></div>
@@ -714,6 +746,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Removes cell object of specified class.</div>
 </dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html#removeTail()" class="member-name-link">removeTail()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html#removeTail()" class="member-name-link">removeTail()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/utils/Resources.html" class="type-name-link" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils">Resources</a> - Class in <a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/utils/package-summary.html">ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils</a></dt>
@@ -801,6 +835,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html#setDelay(int)" class="member-name-link">setDelay(int)</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Game</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html#setDirection(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)" class="member-name-link">setDirection(Direction)</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/BotSnake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">BotSnake</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html#setDirection(ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction)" class="member-name-link">setDirection(Direction)</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/presenters/FXMLPresenter.html#setFXMLLoadersRepository(ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.fxml.loaders.FXMLLoadersRepository)" class="member-name-link">setFXMLLoadersRepository(FXMLLoadersRepository)</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/presenters/FXMLPresenter.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters">FXMLPresenter</a></dt>
@@ -838,10 +874,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/field/cell/objects/SnakeNode.html#snake()" class="member-name-link">snake()</a> - Method in record class ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/field/cell/objects/SnakeNode.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects">SnakeNode</a></dt>
 <dd>
 <div class="block">Returns the value of the <a href="./oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/field/cell/objects/SnakeNode.html#param-snake"><code>snake</code></a> record component.</div>
-</dd>
-<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/GameData.html#snake()" class="member-name-link">snake()</a> - Method in record class ru.nsu.fit.oop.melnikov.game.snake.model.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/GameData.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model">GameData</a></dt>
-<dd>
-<div class="block">Returns the value of the <code>snake</code> record component.</div>
 </dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/Snake.html" class="type-name-link" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">Snake</a> - Class in <a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/package-summary.html">ru.nsu.fit.oop.melnikov.game.snake.model.snake</a></dt>
 <dd>
@@ -884,6 +916,10 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/SnakePoint.html#%3Cinit%3E(ru.nsu.fit.oop.melnikov.game.snake.model.point.Point)" class="member-name-link">SnakePoint(Point&lt;Integer&gt;)</a> - Constructor for class ru.nsu.fit.oop.melnikov.game.snake.model.snake.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/snake/SnakePoint.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model.snake">SnakePoint</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/GameData.html#snakes()" class="member-name-link">snakes()</a> - Method in record class ru.nsu.fit.oop.melnikov.game.snake.model.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/model/GameData.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.model">GameData</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>snakes</code> record component.</div>
+</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/presenters/FXMLPresenter.html#stage" class="member-name-link">stage</a> - Variable in class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/presenters/FXMLPresenter.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters">FXMLPresenter</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html#start()" class="member-name-link">start()</a> - Method in class ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.<a href="oop.snake/ru/nsu/fit/oop/melnikov/game/snake/javafx/presenter/Game.html" title="class in ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter">Game</a></dt>
