@@ -28,7 +28,8 @@ public record SnakeNode(AbstractSnake snake) implements CellObject {
    */
   @Override
   public void onAnotherCellObjectAppearance(CellObject anotherCellObject) {
-    if (snake instanceof Destroyable destroyableSnake) {
+    if (anotherCellObject instanceof SnakeNode snakeNode
+        && snakeNode.snake() instanceof Destroyable destroyableSnake) {
       destroyableSnake.destroy();
     }
   }

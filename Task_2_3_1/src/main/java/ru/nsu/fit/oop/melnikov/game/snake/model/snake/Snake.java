@@ -1,7 +1,9 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.snake;
 
+import java.util.Collection;
 import java.util.List;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
+import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.CellObject;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Destroyable;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.interfaces.Increasing;
@@ -37,7 +39,13 @@ public class Snake extends MovableSnake implements Destroyable, Increasing, Scor
   public void destroy() {
     isDestroyed = true;
     for (SnakePoint snakePoint : body.getNodes()) {
-      field.getCell(snakePoint).remove(SnakeNode.class);
+      Collection<CellObject> cellObjects = field.getCell(snakePoint).getCellObjects();
+      cellObjects.removeAll(
+          cellObjects.stream()
+              .filter(
+                  cellObject ->
+                      cellObject instanceof SnakeNode snakeNode && snakeNode.snake() == this)
+              .toList());
     }
     body.destroy();
   }
