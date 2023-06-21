@@ -13,7 +13,7 @@ class DataLoaderTest {
   @Test
   void test() {
     GameData gameData = DataLoader.load("test.txt");
-    Snake snake = gameData.snake();
+    Snake snake = gameData.snakes().get(0);
 
     Assertions.assertEquals(new Point<>(1, 1), snake.getTailCell());
     Assertions.assertEquals(new Point<>(3, 1), snake.getHeadCell());

@@ -51,6 +51,8 @@
                                                                                 |
                                                                                 |
 .
+6
+bot
 15
 1 1
 2 1
@@ -68,3 +70,28 @@
 14 1
 15 1
 right
+
+bot
+1
+55 5
+left
+
+bot
+1
+55 15
+left
+
+bot
+1
+20 5
+left
+
+bot
+1
+55 1
+left
+
+bot
+1
+1 5
+left

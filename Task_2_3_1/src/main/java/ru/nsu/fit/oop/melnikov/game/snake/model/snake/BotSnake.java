@@ -31,7 +31,7 @@ public class BotSnake extends Snake {
         new PriorityQueue<>(Comparator.comparingInt(GrayCell::priority));
     GrayCell current = new GrayCell(cell, this.getDirection().getOpposite(), 0);
     grayCells.add(current);
-    while (!current.cell.contains(Apple.class) && !grayCells.isEmpty()) {
+    for (int i = 0; i < 500 && !current.cell.contains(Apple.class) && !grayCells.isEmpty(); i++) {
       current = grayCells.poll();
 
       Collections.shuffle(directions);
@@ -58,6 +58,9 @@ public class BotSnake extends Snake {
     while (currentReverse != cell) {
       direction = ways.get(currentReverse);
       currentReverse = field.getCell(field.calculateNextPoint(currentReverse, direction));
+    }
+    if (direction == null) {
+      direction = this.getDirection();
     }
     return direction.getOpposite();
   }

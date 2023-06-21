@@ -61,6 +61,7 @@ public class DataLoader {
     int snakeCount = scanner.nextInt();
     List<Snake> snakes = new ArrayList<>(snakeCount);
     for(int i = 0; i < snakeCount; i++) {
+      String snakeType = scanner.next();
       int size = scanner.nextInt();
       snakeIntPoints = new ArrayList<>(size);
       for (int j = 0; j < size; j++) {
@@ -68,7 +69,7 @@ public class DataLoader {
       }
 
       Snake snake;
-      if(i == 0) snake = new Snake(field, snakeIntPoints);
+      if(snakeType.equals("player")) snake = new Snake(field, snakeIntPoints);
       else snake = new BotSnake(field, snakeIntPoints);
       snake.setDirection(DIRECTIONS.get(scanner.next()));
 
