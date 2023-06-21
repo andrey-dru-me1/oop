@@ -60,7 +60,7 @@ public class PrettyGradeTablePrinter extends AbstractPrettyPrinter {
     for (Task task : tasks) {
       tableHeaderString.append(' ').append(task.name()).append(" |");
     }
-    tableHeaderString.append('\n');
+    tableHeaderString.append(normalizeString(" Result ", 12)).append("|\n");
     return tableHeaderString;
   }
 
