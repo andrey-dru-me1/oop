@@ -12,45 +12,77 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 public class BotSnake extends Snake {
 
   private static final List<Direction> directions =
-      List.of(Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN);
+      new ArrayList<>(List.of(Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN));
+
+  private final Deque<Direction> way;
 
   public BotSnake(Field field, List<SnakePoint> snakeIntPoints) {
     super(field, snakeIntPoints);
+    way = new ArrayDeque<>();
   }
 
   @Override
   public void move() {
-    Direction res = this.getDirection();
-    int max = 0;
-    for (Direction direction : directions) {
-      if (direction.isOpposite(this.getDirection())) continue;
-
-      Cell cell = field.getCell(field.calculateNextPoint(body.getHeadPoint(), direction));
-      int result = calculatePoints(10, new ArrayDeque<>(), cell);
-      if(result > max) {
-        max = result;
-        res = direction;
-      }
+    if (way.isEmpty()) {
+      bfs(field.getCell(body.getHeadPoint()));
     }
-    super.setDirection(res);
+    super.setDirection(way.pop());
     super.move();
   }
 
-  private Integer calculatePoints(Integer depth, Collection<Cell> markedCells, Cell cell) {
-    if (depth <= 0 || markedCells.contains(cell) || cell.contains(Wall.class) || cell.contains(SnakeNode.class))
-      return 0;
-    markedCells.add(cell);
+  private void bfs(Cell cell) {
+    Collection<Cell> markedCells = new ArrayDeque<>();
+    Map<Cell, Direction> ways = new HashMap<>();
 
-    Integer score = 0;
-    if (cell.contains(Apple.class)) score += 2;
-    else if (cell.contains(EmptyCell.class)) score += 1;
+    PriorityQueue<GrayCell> grayCells =
+        new PriorityQueue<>(Comparator.comparingInt(GrayCell::priority));
+    GrayCell current = new GrayCell(cell, this.getDirection().getOpposite(), 0);
+    grayCells.add(current);
+    while (!current.cell.contains(Apple.class) && !grayCells.isEmpty()) {
+      current = grayCells.poll();
 
-    for (Direction direction : directions) {
-      Cell nextCell = field.getCell(field.calculateNextPoint(cell, direction));
-      score += calculatePoints(depth - 1, markedCells, nextCell);
+      Collections.shuffle(directions);
+      for (Direction direction : directions) {
+        if (direction != current.from()) {
+          Cell nextCell = field.getCell(field.calculateNextPoint(current.cell(), direction));
+          Integer dPriority = nextCell.contains(Apple.class) ? 0 : 15;
+          GrayCell nextGrayCell =
+              new GrayCell(nextCell, direction.getOpposite(), current.priority() + dPriority);
+          if (markedCells.contains(nextCell)
+              || grayCells.contains(nextGrayCell)
+              || nextCell.contains(Wall.class)
+              || nextCell.contains(SnakeNode.class)) continue;
+          grayCells.add(nextGrayCell);
+          ways.put(nextCell, direction.getOpposite());
+        }
+      }
+
+      markedCells.add(current.cell());
     }
 
-    markedCells.remove(cell);
-    return score;
+    Cell currentReverse = current.cell();
+    Direction direction;
+    while (currentReverse != cell) {
+      direction = ways.get(currentReverse);
+      way.push(direction.getOpposite());
+      currentReverse = field.getCell(field.calculateNextPoint(currentReverse, direction));
+    }
+  }
+
+  private record GrayCell(Cell cell, Direction from, Integer priority) {
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+
+      GrayCell grayCell = (GrayCell) o;
+
+      return Objects.equals(cell, grayCell.cell);
+    }
+
+    @Override
+    public int hashCode() {
+      return cell != null ? cell.hashCode() : 0;
+    }
   }
 }

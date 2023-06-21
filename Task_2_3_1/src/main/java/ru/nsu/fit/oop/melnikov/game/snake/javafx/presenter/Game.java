@@ -101,12 +101,6 @@ public class Game {
         direction = playerSnake.getDirection();
       }
     }
-    playerSnake.move(direction);
-    presenter.setScore(playerSnake.getScore());
-
-    gameState.setScore(playerSnake.getScore());
-    gameState.setPlayerSnakeLength(playerSnake.size());
-
     if (playerSnake.isDestroyed()) {
       onSnakeDestroyed();
       return;
@@ -115,6 +109,12 @@ public class Game {
       onWin();
       return;
     }
+    playerSnake.move(direction);
+    presenter.setScore(playerSnake.getScore());
+
+    gameState.setScore(playerSnake.getScore());
+    gameState.setPlayerSnakeLength(playerSnake.size());
+
 
     Queue<Snake> snakesToRemove = new ArrayDeque<>();
     for (int i = 1; i < gameData.snakes().size(); i++) {

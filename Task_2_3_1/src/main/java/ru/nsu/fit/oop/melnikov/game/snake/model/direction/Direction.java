@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.melnikov.game.snake.model.direction;
 
+import java.util.Map;
 import java.util.function.UnaryOperator;
 import ru.nsu.fit.oop.melnikov.game.snake.model.point.Point;
 
@@ -9,6 +10,12 @@ public enum Direction {
   UP(point -> new Point<>(point.getX(), point.getY() - 1)),
   DOWN(point -> new Point<>(point.getX(), point.getY() + 1));
 
+  private static final Map<Direction, Direction> opposite =
+      Map.of(
+          LEFT, RIGHT,
+          RIGHT, LEFT,
+          UP, DOWN,
+          DOWN, UP);
   private final UnaryOperator<Point<Integer>> shiftPoint;
 
   Direction(UnaryOperator<Point<Integer>> shiftPoint) {
@@ -22,10 +29,11 @@ public enum Direction {
    * @return true if two directions are opposite and false otherwise
    */
   public boolean isOpposite(Direction directionToCompare) {
-    return this == Direction.DOWN && directionToCompare == Direction.UP
-        || this == Direction.UP && directionToCompare == Direction.DOWN
-        || this == Direction.RIGHT && directionToCompare == Direction.LEFT
-        || this == Direction.LEFT && directionToCompare == Direction.RIGHT;
+    return directionToCompare == opposite.get(this);
+  }
+
+  public Direction getOpposite() {
+    return opposite.get(this);
   }
 
   /**
