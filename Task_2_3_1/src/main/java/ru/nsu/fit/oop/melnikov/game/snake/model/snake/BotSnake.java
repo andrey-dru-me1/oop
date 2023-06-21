@@ -5,7 +5,6 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Apple;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.EmptyCell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.SnakeNode;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 
@@ -14,23 +13,17 @@ public class BotSnake extends Snake {
   private static final List<Direction> directions =
       new ArrayList<>(List.of(Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN));
 
-  private final Deque<Direction> way;
-
   public BotSnake(Field field, List<SnakePoint> snakeIntPoints) {
     super(field, snakeIntPoints);
-    way = new ArrayDeque<>();
   }
 
   @Override
   public void move() {
-    if (way.isEmpty()) {
-      bfs(field.getCell(body.getHeadPoint()));
-    }
-    super.setDirection(way.pop());
+    super.setDirection(bfs(this.getHeadCell()));
     super.move();
   }
 
-  private void bfs(Cell cell) {
+  private Direction bfs(Cell cell) {
     Collection<Cell> markedCells = new ArrayDeque<>();
     Map<Cell, Direction> ways = new HashMap<>();
 
@@ -61,12 +54,12 @@ public class BotSnake extends Snake {
     }
 
     Cell currentReverse = current.cell();
-    Direction direction;
+    Direction direction = ways.get(currentReverse);
     while (currentReverse != cell) {
       direction = ways.get(currentReverse);
-      way.push(direction.getOpposite());
       currentReverse = field.getCell(field.calculateNextPoint(currentReverse, direction));
     }
+    return direction.getOpposite();
   }
 
   private record GrayCell(Cell cell, Direction from, Integer priority) {
