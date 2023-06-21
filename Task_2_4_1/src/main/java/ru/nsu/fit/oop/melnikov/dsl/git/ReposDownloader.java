@@ -18,7 +18,10 @@ public class ReposDownloader {
   public static void downloadAndBind(Student student) throws GitAPIException, IOException {
     File workingDirectory = new File(GlobalConstants.REPOS_DIR_PATH + '/' + student.gitName());
     if (workingDirectory.exists()) {
-      student.setGit(Git.open(workingDirectory));
+      try (Git git = Git.open(workingDirectory)) {
+        git.pull().call();
+        student.setGit(git);
+      }
     } else {
       student.setGit(
           Git.cloneRepository()
