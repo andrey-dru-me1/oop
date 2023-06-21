@@ -6,6 +6,7 @@ import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 import org.apache.commons.io.FileUtils;
@@ -15,8 +16,12 @@ import org.gradle.tooling.GradleConnector;
 import org.gradle.tooling.ProjectConnection;
 import ru.nsu.fit.oop.melnikov.dsl.GlobalConstants;
 import ru.nsu.fit.oop.melnikov.dsl.table.model.grades.TasksStatus;
+import ru.nsu.fit.oop.melnikov.dsl.tasks.execution.jacoco.JacocoParser;
 
 public class GradleTaskExecutor {
+
+  private static final String JACOCO_REPORT_RELATIVE_PATH =
+      "build/reports/jacoco/test/jacocoTestReport.xml";
 
   private GradleTaskExecutor() {}
 
@@ -41,12 +46,12 @@ public class GradleTaskExecutor {
       }
 
       if (taskDir == null) {
-        return new TasksStatus(false, -1, false);
+        return new TasksStatus(false, -1, -1);
       }
 
       boolean buildResult = true;
       int styleResult = checkStyle(getJavaFiles(taskDir).stream().toList());
-      boolean docResult = true;
+      int testCoveragePercentage;
 
       build.forTasks(taskDir.getName() + ":compileJava");
       try {
@@ -55,7 +60,30 @@ public class GradleTaskExecutor {
         buildResult = false;
       }
 
-      return new TasksStatus(buildResult, styleResult, docResult);
+      try {
+        build.forTasks(taskDir.getName() + ":jacocoTestReport");
+        build.run();
+        File jacocoTestReportFile =
+            new File(taskDir.getAbsolutePath() + '/' + JACOCO_REPORT_RELATIVE_PATH);
+        if (jacocoTestReportFile.exists()) {
+          JacocoParser jacocoParser = JacocoParser.parse(jacocoTestReportFile);
+          JacocoParser.Counter instructionCounter =
+              jacocoParser.getCounters().stream()
+                  .filter(counter -> counter.getType() == JacocoParser.Counter.TestType.INSTRUCTION)
+                  .findAny()
+                  .orElseThrow();
+          testCoveragePercentage =
+              instructionCounter.getCovered()
+                  * 100
+                  / (instructionCounter.getCovered() + instructionCounter.getMissed());
+        } else {
+          testCoveragePercentage = -1;
+        }
+      } catch (IOException | BuildException ignored) {
+        testCoveragePercentage = -1;
+      }
+
+      return new TasksStatus(buildResult, styleResult, testCoveragePercentage);
     }
   }
 
