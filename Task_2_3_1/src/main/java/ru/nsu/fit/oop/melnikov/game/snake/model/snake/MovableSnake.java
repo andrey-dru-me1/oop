@@ -72,7 +72,7 @@ abstract class MovableSnake extends AbstractSnake implements Movable, Increasing
    *
    * @return next point
    */
-  private Point<Integer> calculateNextPoint() {
+  protected Point<Integer> calculateNextPoint() {
     return field.calculateNextPoint(this.getHeadCell(), this.getDirection());
   }
 

@@ -24,7 +24,6 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.GameData;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 public class GameScreenPresenter extends FXMLPresenter {
   @FXML public Label scoreLabel;
@@ -68,8 +67,7 @@ public class GameScreenPresenter extends FXMLPresenter {
         new CellObjectDTOSRepository(GameSettings.INSTANCE.getTextureName());
     GameSettings.INSTANCE.setRepository(repository);
 
-    Snake snake = gameData.snake();
-    game = new Game(field, snake, this, filename);
+    game = new Game(gameData, this, filename);
 
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];

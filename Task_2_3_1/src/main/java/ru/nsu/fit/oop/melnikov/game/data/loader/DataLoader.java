@@ -6,6 +6,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
+import ru.nsu.fit.oop.melnikov.game.snake.model.snake.BotSnake;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakePoint;
 
@@ -57,16 +58,23 @@ public class DataLoader {
     scanner.skip("\n");
 
     scanner.reset();
-    int size = scanner.nextInt();
-    snakeIntPoints = new ArrayList<>(size);
-    for (int i = 0; i < size; i++) {
-      snakeIntPoints.add(i, new SnakePoint(scanner.nextInt(), scanner.nextInt()));
+    int snakeCount = scanner.nextInt();
+    List<Snake> snakes = new ArrayList<>(snakeCount);
+    for(int i = 0; i < snakeCount; i++) {
+      int size = scanner.nextInt();
+      snakeIntPoints = new ArrayList<>(size);
+      for (int j = 0; j < size; j++) {
+        snakeIntPoints.add(j, new SnakePoint(scanner.nextInt(), scanner.nextInt()));
+      }
+
+      Snake snake;
+      if(i == 0) snake = new Snake(field, snakeIntPoints);
+      else snake = new BotSnake(field, snakeIntPoints);
+      snake.setDirection(DIRECTIONS.get(scanner.next()));
+
+      snakes.add(snake);
     }
 
-    Snake snake = new Snake(field, snakeIntPoints);
-
-    snake.setDirection(DIRECTIONS.get(scanner.next()));
-
-    return new GameData(field, snake);
+    return new GameData(field, snakes);
   }
 }

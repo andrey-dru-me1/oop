@@ -2,6 +2,7 @@ package ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Queue;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -9,15 +10,14 @@ import javafx.util.Duration;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.dto.CellDTO;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.settings.GameSettings;
+import ru.nsu.fit.oop.melnikov.game.snake.model.GameData;
 import ru.nsu.fit.oop.melnikov.game.snake.model.direction.Direction;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 
 /** Represents game data. */
 public class Game {
 
-  private final Field field;
-  private final Snake snake;
+  private final GameData gameData;
   private final GameScreenPresenter presenter;
   private final Deque<Direction> directionQueue;
   private final GameState gameState;
@@ -25,10 +25,9 @@ public class Game {
   private Timeline timeline;
   private KeyFrame keyFrame;
 
-  public Game(Field field, Snake snake, GameScreenPresenter presenter, String mapName) {
-    this.field = field;
-    this.snake = snake;
-    this.gameState = new GameState(snake.size(), mapName);
+  public Game(GameData gameData, GameScreenPresenter presenter, String mapName) {
+    this.gameData = gameData;
+    this.gameState = new GameState(gameData.snakes().get(0).size(), mapName);
     this.timeline = new Timeline();
     this.timeline.setCycleCount(Animation.INDEFINITE);
     this.directionQueue = new ArrayDeque<>(2);
@@ -75,45 +74,61 @@ public class Game {
    * @param appleCount count of apples to generate.
    */
   public void regenerateApples(int appleCount) {
-    field.regenerateApples(appleCount);
+    gameData.field().regenerateApples(appleCount);
   }
 
   /** Make the game begin. */
   public void start() {
     keyFrame =
-        new KeyFrame(new Duration(GameSettings.INSTANCE.getTickDelay()), actionEvent -> onTimerTriggers());
+        new KeyFrame(
+            new Duration(GameSettings.INSTANCE.getTickDelay()), actionEvent -> onTimerTriggers());
     timeline.getKeyFrames().add(keyFrame);
     timeline.playFrom(new Duration(GameSettings.INSTANCE.getTickDelay()));
     gameState.setStatus(GameState.Status.RUNNING);
   }
 
   public Direction getDirection() {
-    return snake.getDirection();
+    return gameData.snakes().get(0).getDirection();
   }
 
   /** Called each tick of game time. */
   private void onTimerTriggers() {
-    Direction direction = snake.getDirection();
+    Snake playerSnake = gameData.snakes().get(0);
+    Direction direction = playerSnake.getDirection();
     if (directionQueue.size() > 0) {
       direction = directionQueue.poll();
-      if (direction.isOpposite(snake.getDirection())) {
-        direction = snake.getDirection();
+      if (direction.isOpposite(playerSnake.getDirection())) {
+        direction = playerSnake.getDirection();
       }
     }
-    snake.move(direction);
-    presenter.setScore(snake.getScore());
+    playerSnake.move(direction);
+    presenter.setScore(playerSnake.getScore());
 
-    gameState.setScore(snake.getScore());
-    gameState.setPlayerSnakeLength(snake.size());
+    gameState.setScore(playerSnake.getScore());
+    gameState.setPlayerSnakeLength(playerSnake.size());
 
-    if (snake.isDestroyed()) {
+    if (playerSnake.isDestroyed()) {
       onSnakeDestroyed();
       return;
     }
-    if (snake.getField().isNoPlaceForApple()) {
+    if (playerSnake.getField().isNoPlaceForApple()) {
       onWin();
       return;
     }
+
+    Queue<Snake> snakesToRemove = new ArrayDeque<>();
+    for (int i = 1; i < gameData.snakes().size(); i++) {
+      Snake snake = gameData.snakes().get(i);
+      if (!snake.isDestroyed()) snake.move();
+      if (snake.isDestroyed()) {
+        snakesToRemove.add(snake);
+      }
+    }
+
+    for (Snake snake : snakesToRemove) {
+      gameData.snakes().remove(snake);
+    }
+
     redraw();
   }
 

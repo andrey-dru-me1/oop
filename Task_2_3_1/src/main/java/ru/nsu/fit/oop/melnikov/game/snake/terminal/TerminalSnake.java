@@ -24,7 +24,7 @@ public class TerminalSnake {
   public static void main(String[] args) throws IOException {
     GameData gameData = DataLoader.load("big_map.txt");
 
-    Snake snake = gameData.snake();
+    List<Snake> snakes = gameData.snakes();
     Field field = gameData.field();
     field.generateApple();
 
@@ -43,9 +43,11 @@ public class TerminalSnake {
           () -> {
             try {
 
+              Snake playerSnake = snakes.get(0);
+
               KeyStroke keyStroke = screen.pollInput();
 
-              Direction direction = snake.getDirection();
+              Direction direction = playerSnake.getDirection();
               if (keyStroke != null) {
                 switch (keyStroke.getKeyType()) {
                   case ArrowUp -> direction = Direction.UP;
@@ -58,10 +60,14 @@ public class TerminalSnake {
                 }
               }
 
-              snake.move(direction);
+              playerSnake.move(direction);
 
-              if (snake.isDestroyed()) {
+              if (playerSnake.isDestroyed()) {
                 executorService.shutdown();
+              }
+
+              for(int i = 1; i < snakes.size(); i++) {
+                snakes.get(i).move();
               }
 
               redraw(screen, field);
