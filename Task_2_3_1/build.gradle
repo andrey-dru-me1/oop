@@ -1,19 +1,46 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'java-library'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
-group 'ru.nsu.fit.melnikov'
-version 'unspecified'
+group = 'ru.nsu.fit.oop.melnikov'
+version = 'unspecified'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.jetbrains:annotations:24.0.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    implementation 'com.googlecode.lanterna:lanterna:3.2.0-alpha1'
+    testImplementation platform('org.junit:junit-bom:5.9.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+}
+
+javafx {
+    version = '20-ea+4'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+application {
+    mainModule = "oop.snake.javafx"
+    mainClassName = 'ru.nsu.fit.oop.melnikov.game.snake.javafx.SnakeEntry'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(20)
+    }
+}
+
+apply plugin: 'idea'
+idea {
+    module {
+        inheritOutputDirs = true
+    }
 }
 
 test {

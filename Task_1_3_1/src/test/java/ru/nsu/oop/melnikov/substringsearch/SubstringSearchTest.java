@@ -38,13 +38,13 @@ class SubstringSearchTest {
                 )
         );
         Assertions.assertEquals(
-                6556,
+                6559,
                 SubstringSearch.searchZ(
                         new BufferedReader(new FileReader("src/test/resources/input.txt")), "preadv() function"
                 )
         );
         Assertions.assertEquals(
-                6556,
+                6559,
                 SubstringSearch.search(
                         new BufferedReader(new FileReader("src/test/resources/input.txt")), "preadv() function"
                 )

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Scene xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.menu.MainMenuPresenter">
+    <VBox alignment="CENTER">
+        <Button mnemonicParsing="false" onAction="#onNewGameClick" text="New game">
+            <font>
+                <Font size="24.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </VBox.margin>
+        </Button>
+        <Button layoutX="66.0" layoutY="106.0" mnemonicParsing="false" onAction="#onSettingsClick" text="Settings">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#onExitClick" text="Exit">
+            <font>
+                <Font size="24.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </VBox.margin>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#onGenerateClick" text="Generate">
+            <font>
+                <Font size="24.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </VBox.margin>
+        </Button>
+    </VBox>
+</Scene>

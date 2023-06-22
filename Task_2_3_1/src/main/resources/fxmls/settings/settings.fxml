@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Scene xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.settings.SettingsPresenter">
+   <VBox fx:id="settingsSet" alignment="CENTER" style="-fx-background-color: white;">
+      <HBox alignment="CENTER">
+         <VBox>
+            <HBox.margin>
+               <Insets left="5.0" right="5.0" />
+            </HBox.margin>
+            <Label text="Game speed" />
+            <Slider fx:id="gameSpeed" blockIncrement="0.1" majorTickUnit="0.3" max="1.0" min="0.1" minWidth="-Infinity" minorTickCount="2" prefWidth="150.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="0.4" />
+         </VBox>
+         <VBox>
+            <HBox.margin>
+               <Insets left="5.0" right="5.0" />
+            </HBox.margin>
+            <Label text="Count of apples, %" />
+            <Slider fx:id="appleCount" blockIncrement="1.0" majorTickUnit="5.0" max="25.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" value="5.0" />
+         </VBox>
+         <VBox.margin>
+            <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="357.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <Button mnemonicParsing="false" onAction="#onChangeKeysClick" prefWidth="150.0" text="Change key codes">
+            <HBox.margin>
+               <Insets left="20.0" right="20.0" />
+            </HBox.margin>
+         </Button>
+         <ComboBox fx:id="texturePackChanger" prefWidth="150.0" promptText="Change texture pack">
+            <HBox.margin>
+               <Insets left="20.0" right="20.0" />
+            </HBox.margin>
+         </ComboBox>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="36.0" prefWidth="242.0">
+         <VBox.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </VBox.margin>
+         <Button mnemonicParsing="false" onAction="#onMainMenuClick" prefWidth="150.0" text="Main menu">
+            <HBox.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </HBox.margin>
+         </Button>
+         <Button defaultButton="true" mnemonicParsing="false" onAction="#onContinueClick" prefWidth="150.0" text="Continue">
+            <HBox.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </HBox.margin>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#onExitClick" prefWidth="150.0" text="Exit">
+            <HBox.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </HBox.margin>
+         </Button>
+      </HBox>
+   </VBox>
+</Scene>

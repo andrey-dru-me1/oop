@@ -1,0 +1,12 @@
+{
+  "keys" : {
+    "ESCAPE" : "MENU",
+    "DOWN" : "DOWN",
+    "LEFT" : "LEFT",
+    "RIGHT" : "RIGHT",
+    "UP" : "UP"
+  },
+  "tickDelay" : 40,
+  "textureName" : "minimalism",
+  "applesPercentage" : 1
+}
