@@ -54,6 +54,11 @@ public class GameScreenPresenter extends FXMLPresenter {
     canvas.getGraphicsContext2D().setImageSmoothing(false);
 
     gameData = DataLoader.load(filename);
+    initialize(gameData);
+  }
+
+  public void initialize(GameData gameData) {
+
     Field field = gameData.field();
 
     CellDTO[][] cellDTOS = new CellDTO[field.getWidth()][field.getHeight()];
@@ -64,33 +69,33 @@ public class GameScreenPresenter extends FXMLPresenter {
     canvas.widthProperty().bind(rectSize.multiply(field.getWidth()));
 
     CellObjectDTOSRepository repository =
-        new CellObjectDTOSRepository(GameSettings.INSTANCE.getTextureName());
+            new CellObjectDTOSRepository(GameSettings.INSTANCE.getTextureName());
     GameSettings.INSTANCE.setRepository(repository);
 
-    game = new Game(gameData, this, filename);
+    game = new Game(gameData, this, "generating");
 
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];
       for (int j = 0; j < field.getHeight(); j++) {
         Cell cell = row[j];
         cellDTOS[i][j] =
-            new CellDTO(
-                game,
-                cell,
-                new Rect<>(rectSize.multiply(i), rectSize.multiply(j), rectSize, rectSize),
-                repository,
-                canvas.getGraphicsContext2D());
+                new CellDTO(
+                        game,
+                        cell,
+                        new Rect<>(rectSize.multiply(i), rectSize.multiply(j), rectSize, rectSize),
+                        repository,
+                        canvas.getGraphicsContext2D());
       }
     }
 
     game.setCellDTOS(cellDTOS);
     game.start();
     game.regenerateApples(
-        Math.max(
-            GameSettings.INSTANCE.getApplesPercentage()
-                * (field.getWidth() * field.getHeight())
-                / 100,
-            1));
+            Math.max(
+                    GameSettings.INSTANCE.getApplesPercentage()
+                            * (field.getWidth() * field.getHeight())
+                            / 100,
+                    1));
     pauseGame();
 
     this.score = new SimpleIntegerProperty(0);
