@@ -1,6 +1,7 @@
 package ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.menu;
 
-import javafx.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXMLLoader;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter;
@@ -13,9 +14,6 @@ import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
 import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakePoint;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainMenuPresenter extends FXMLPresenter {
   public void onNewGameClick() {
@@ -36,17 +34,22 @@ public class MainMenuPresenter extends FXMLPresenter {
     stage.setScene(loader.getRoot());
   }
 
-    public void onGenerateClick() {
-      Field field = FieldGenerator.generate(80, 50, 10);
-      Snake snake = null;
-      for (Cell[] cells : field.getCells()) {
-        for (Cell cell : cells) {
-          if(!cell.contains(Wall.class)) {
-            snake = new Snake(field, List.of(new SnakePoint(cell)));
-          }
+  public void onGenerateClick() {
+    Field field = FieldGenerator.generate(80, 50, 50);
+    Snake snake = null;
+    for (Cell[] cells : field.getCells()) {
+      for (Cell cell : cells) {
+        if (!cell.contains(Wall.class)) {
+          snake = new Snake(field, new ArrayList<>(List.of(new SnakePoint(cell))));
+          break;
         }
       }
-      GameData gameData = new GameData(field, List.of(snake));
-      loadersRepository.<GameScreenPresenter>getPresenter(FXMLScreen.GAME_SCREEN).initialize(gameData);
+      if (snake != null) break;
     }
+    GameData gameData = new GameData(field, new ArrayList<>(List.of(snake)));
+    FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.GAME_SCREEN);
+    GameScreenPresenter presenter = loader.getController();
+    presenter.initialize(gameData);
+    stage.setScene(loader.getRoot());
+  }
 }

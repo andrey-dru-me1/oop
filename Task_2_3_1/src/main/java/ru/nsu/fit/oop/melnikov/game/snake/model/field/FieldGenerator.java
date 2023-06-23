@@ -2,7 +2,6 @@ package ru.nsu.fit.oop.melnikov.game.snake.model.field;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import javafx.util.Pair;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
 import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
 
@@ -10,12 +9,12 @@ public class FieldGenerator {
   public static Field generate(int width, int height, int wallCovPct) {
     GeneratingCell[][] genField = new GeneratingCell[width][height];
 
-    for (GeneratingCell[] generatingCells : genField) {
-      for (GeneratingCell generatingCell : generatingCells) {
-        if (ThreadLocalRandom.current().nextInt(100) < wallCovPct) {
-          generatingCell = GeneratingCell.WALL;
+    for(int i = 0; i < width; i++) {
+      for(int j = 0; j < height; j++) {
+        if(ThreadLocalRandom.current().nextInt(100) < wallCovPct) {
+          genField[i][j] = GeneratingCell.WALL;
         } else {
-          generatingCell = GeneratingCell.EMPTY;
+          genField[i][j] = GeneratingCell.EMPTY;
         }
       }
     }
@@ -49,6 +48,7 @@ public class FieldGenerator {
             }
 
             markedCells.add(grayCellCoords);
+            clique.add(grayCellCoords);
           }
 
           cliques.add(clique);

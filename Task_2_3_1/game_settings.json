@@ -6,7 +6,7 @@
     "RIGHT" : "RIGHT",
     "UP" : "UP"
   },
-  "tickDelay" : 40,
+  "tickDelay" : 44,
   "textureName" : "minimalism",
   "applesPercentage" : 1
 }

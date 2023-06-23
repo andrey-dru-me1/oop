@@ -49,15 +49,16 @@ public class GameScreenPresenter extends FXMLPresenter {
    * @param filename level data
    */
   public void initialize(String filename) {
-    JavafxDesigner.makeMatchParent(borderPane);
-
-    canvas.getGraphicsContext2D().setImageSmoothing(false);
-
     gameData = DataLoader.load(filename);
     initialize(gameData);
   }
 
   public void initialize(GameData gameData) {
+
+    this.gameData = gameData;
+
+    JavafxDesigner.makeMatchParent(borderPane);
+    canvas.getGraphicsContext2D().setImageSmoothing(false);
 
     Field field = gameData.field();
 
