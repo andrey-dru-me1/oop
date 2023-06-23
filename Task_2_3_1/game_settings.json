@@ -4,9 +4,13 @@
     "DOWN" : "DOWN",
     "LEFT" : "LEFT",
     "RIGHT" : "RIGHT",
-    "UP" : "UP"
+    "UP" : "UP",
+    "NUMPAD4" : "LEFT",
+    "NUMPAD6" : "RIGHT",
+    "NUMPAD8" : "UP",
+    "NUMPAD5" : "DOWN"
   },
-  "tickDelay" : 44,
+  "tickDelay" : 400,
   "textureName" : "minimalism",
-  "applesPercentage" : 1
+  "applesPercentage" : 25
 }

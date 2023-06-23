@@ -35,7 +35,7 @@ public class MainMenuPresenter extends FXMLPresenter {
   }
 
   public void onGenerateClick() {
-    Field field = FieldGenerator.generate(80, 50, 50);
+    Field field = FieldGenerator.generate(80, 40, 50);
     Snake snake = null;
     for (Cell[] cells : field.getCells()) {
       for (Cell cell : cells) {
