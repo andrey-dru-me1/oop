@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.GameState;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.FXMLScreen;
+import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.Resources;
 import ru.nsu.fit.oop.melnikov.game.snake.model.GameGenerator;
 
 public class EndScreenPresenter extends FXMLPresenter {
@@ -17,8 +18,8 @@ public class EndScreenPresenter extends FXMLPresenter {
   /** Reloads last level to play again. */
   public void onPlayAgainClick() {FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.GAME_SCREEN);
     GameScreenPresenter presenter = loader.getController();
-    if(gameState.getMapName().equals("generated")) {
-      presenter.initialize(GameGenerator.generate(80, 40, 50), "generated");
+    if(gameState.getMapName().equals(Resources.GENERATED_MAP)) {
+      presenter.initialize(GameGenerator.generate(80, 40, 50), Resources.GENERATED_MAP);
     } else {
       presenter.initialize(gameState.getMapName());
     }

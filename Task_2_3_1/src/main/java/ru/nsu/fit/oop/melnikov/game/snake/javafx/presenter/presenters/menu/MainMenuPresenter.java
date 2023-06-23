@@ -5,6 +5,7 @@ import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.FXMLPresen
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.settings.SettingsPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.FXMLScreen;
+import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.Resources;
 import ru.nsu.fit.oop.melnikov.game.snake.model.GameData;
 import ru.nsu.fit.oop.melnikov.game.snake.model.GameGenerator;
 
@@ -31,7 +32,7 @@ public class MainMenuPresenter extends FXMLPresenter {
     GameData gameData = GameGenerator.generate(80, 40, 50);
     FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.GAME_SCREEN);
     GameScreenPresenter presenter = loader.getController();
-    presenter.initialize(gameData, "generated");
+    presenter.initialize(gameData, Resources.GENERATED_MAP);
     stage.setScene(loader.getRoot());
   }
 }
