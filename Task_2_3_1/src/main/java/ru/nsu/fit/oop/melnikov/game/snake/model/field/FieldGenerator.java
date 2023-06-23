@@ -21,7 +21,8 @@ public class FieldGenerator {
 
     List<List<Point>> cliques = fieldGen.findCliques();
 
-    fieldGen.connectAllCliques(cliques);
+    fieldGen.removeSquares();
+//    fieldGen.connectAllCliques(cliques);
 
     return fieldGen.genField2Field();
   }
@@ -53,6 +54,33 @@ public class FieldGenerator {
         }
       }
     }
+  }
+
+  private void removeSquares() {
+    for(int i = 0; i < width; i++) {
+      for(int j = 0; j < height; j++) {
+
+        int[][] options = new int[][] {{i, (i + 1) % width}, {j, (j + 1) % height}};
+        int wallsCount = countWallsInSquare(options);
+
+        if(wallsCount == 4) {
+          int k = ThreadLocalRandom.current().nextInt(2);
+          int l = ThreadLocalRandom.current().nextInt(2);
+          genField[options[0][k]][options[1][l]] = GeneratingCell.EMPTY;
+        }
+
+      }
+    }
+  }
+
+  private int countWallsInSquare(int[][] square) {
+    int wallsCount = 0;
+    for(int k = 0; k < 2; k++) {
+      for(int l = 0; l < 2; l++) {
+        if(genField[square[0][k]][square[1][l]] == GeneratingCell.WALL) wallsCount++;
+      }
+    }
+    return wallsCount;
   }
 
   private List<List<Point>> findCliques() {
@@ -117,10 +145,10 @@ public class FieldGenerator {
     return genFieldCreator;
   }
 
-  private record Point(Integer x, Integer y) {}
-
   private enum GeneratingCell {
     WALL,
     EMPTY
   }
+
+  private record Point(Integer x, Integer y) {}
 }
