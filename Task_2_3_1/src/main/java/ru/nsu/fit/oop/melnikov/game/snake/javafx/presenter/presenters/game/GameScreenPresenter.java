@@ -50,10 +50,10 @@ public class GameScreenPresenter extends FXMLPresenter {
    */
   public void initialize(String filename) {
     gameData = DataLoader.load(filename);
-    initialize(gameData);
+    initialize(gameData, filename);
   }
 
-  public void initialize(GameData gameData) {
+  public void initialize(GameData gameData, String mapName) {
 
     this.gameData = gameData;
 
@@ -73,7 +73,7 @@ public class GameScreenPresenter extends FXMLPresenter {
             new CellObjectDTOSRepository(GameSettings.INSTANCE.getTextureName());
     GameSettings.INSTANCE.setRepository(repository);
 
-    game = new Game(gameData, this, "generating");
+    game = new Game(gameData, this, mapName);
 
     for (int i = 0; i < field.getWidth(); i++) {
       Cell[] row = field.getCells()[i];

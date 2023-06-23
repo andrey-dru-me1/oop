@@ -1,19 +1,12 @@
 package ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.menu;
 
-import java.util.ArrayList;
-import java.util.List;
 import javafx.fxml.FXMLLoader;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.FXMLPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.game.GameScreenPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.presenters.settings.SettingsPresenter;
 import ru.nsu.fit.oop.melnikov.game.snake.javafx.presenter.utils.FXMLScreen;
 import ru.nsu.fit.oop.melnikov.game.snake.model.GameData;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.Field;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.FieldGenerator;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.Cell;
-import ru.nsu.fit.oop.melnikov.game.snake.model.field.cell.objects.Wall;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.Snake;
-import ru.nsu.fit.oop.melnikov.game.snake.model.snake.SnakePoint;
+import ru.nsu.fit.oop.melnikov.game.snake.model.GameGenerator;
 
 public class MainMenuPresenter extends FXMLPresenter {
   public void onNewGameClick() {
@@ -35,21 +28,10 @@ public class MainMenuPresenter extends FXMLPresenter {
   }
 
   public void onGenerateClick() {
-    Field field = FieldGenerator.generate(80, 40, 50);
-    Snake snake = null;
-    for (Cell[] cells : field.getCells()) {
-      for (Cell cell : cells) {
-        if (!cell.contains(Wall.class)) {
-          snake = new Snake(field, new ArrayList<>(List.of(new SnakePoint(cell))));
-          break;
-        }
-      }
-      if (snake != null) break;
-    }
-    GameData gameData = new GameData(field, new ArrayList<>(List.of(snake)));
+    GameData gameData = GameGenerator.generate(80, 40, 50);
     FXMLLoader loader = loadersRepository.getLoader(FXMLScreen.GAME_SCREEN);
     GameScreenPresenter presenter = loader.getController();
-    presenter.initialize(gameData);
+    presenter.initialize(gameData, "generated");
     stage.setScene(loader.getRoot());
   }
 }
