@@ -101,7 +101,7 @@ public class FieldGenerator {
 
   private List<List<Point>> findCliques() {
     List<List<Point>> cliques = new ArrayList<>();
-    Collection<Point> markedCells = new ArrayList<>();
+    Collection<Point> markedCells = new HashSet<>();
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
         Point currentPoint = new Point(i, j);
